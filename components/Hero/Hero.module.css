@@ -3,10 +3,10 @@
 .hero {
   width: 100vw;
   height: auto;
-  min-height: 100vh;
+  min-height: 120vh;
   position: relative;
   background: #000;
-  overflow: hidden;
+  overflow: visible;
   margin-left: calc(-50vw + 50%);
   margin-top: 80px;
   display: flex;
