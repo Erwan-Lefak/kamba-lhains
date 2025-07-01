@@ -1,82 +1,20 @@
-import { useState } from 'react';
 import Link from 'next/link';
+import styles from '../styles/Products.module.css';
 
 export default function ProductCard({ product }) {
   return (
-    <>
-      <Link href={`/produit/${product.id}`} className="product-card">
-        <div className="product-image-container">
-          <img 
-            src={product.image}
-            alt={product.name}
-            className="product-image"
-          />
-          <div className="product-overlay">
-            <div className="product-name">{product.name}</div>
-            <div className="product-price">{product.price}</div>
-          </div>
+    <Link href={`/produit/${product.id}`} className={styles.productCard}>
+      <div className={styles.productImageContainer}>
+        <img 
+          src={product.image}
+          alt={product.name}
+          className={styles.productImage}
+        />
+        <div className={styles.productOverlay}>
+          <div className={styles.productName}>{product.name}</div>
+          <div className={styles.productPrice}>{product.price}</div>
         </div>
-      </Link>
-      
-      <style jsx>{`
-        .product-card {
-          position: relative;
-          cursor: pointer;
-          overflow: hidden;
-          width: 100%;
-          height: 100%;
-          display: block;
-          text-decoration: none;
-        }
-        
-        .product-card:hover .product-image {
-          transform: scale(1.02);
-        }
-        
-        .product-image-container {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          display: block;
-          overflow: hidden;
-        }
-
-        
-        .product-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          background: white;
-          transition: transform 0.3s ease;
-        }
-        
-        .product-overlay {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          padding: 20px;
-          color: white;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
-        
-        .product-name {
-          font-size: 14px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        
-        .product-price {
-          font-size: 14px;
-          font-weight: 500;
-        }
-        
-      `}</style>
-    </>
+      </div>
+    </Link>
   );
 }

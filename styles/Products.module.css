@@ -1,0 +1,157 @@
+/* Products CSS Module - E-commerce Best Practices */
+
+/* Product Card Component */
+.productCard {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.productImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: white;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+.productOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.productName {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.productPrice {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Large Product Card Component */
+.largeProductCard {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.largeProductImage {
+  width: 100%;
+  height: calc(100vh + 80px);
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.largeProductCard:hover .largeProductImage {
+  transform: scale(1.05);
+}
+
+.largeProductOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.largeProductName {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.largeProductPrice {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Responsive adjustments for large products */
+@media (min-width: 1440px) {
+  .largeProductImage {
+    height: calc(120vh + 80px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .largeProductImage {
+    height: calc(140vh + 80px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .largeProductImage {
+    height: 90vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .largeProductImage {
+    height: 80vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .largeProductImage {
+    height: 70vh;
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .productImage,
+  .largeProductImage {
+    transition: none;
+  }
+  
+  .productCard:hover .productImage,
+  .largeProductCard:hover .largeProductImage {
+    transform: none;
+  }
+}
