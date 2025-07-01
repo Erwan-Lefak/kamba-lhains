@@ -3,15 +3,12 @@
 .hero {
   width: 100vw;
   height: auto;
-  min-height: 120vh;
   position: relative;
   background: #000;
-  overflow: visible;
+  overflow: hidden;
   margin-left: calc(-50vw + 50%);
   margin-top: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
 }
 
 .videoContainer {
@@ -22,12 +19,9 @@
 }
 
 .heroVideo {
-  width: 100vw;
+  width: 100%;
   height: auto;
-  min-height: 100vh;
-  object-fit: fill;
   display: block;
-  background: #000;
   pointer-events: none;
 }
 
