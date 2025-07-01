@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { products } from '../../data/products';
-import { handleImageError, getFallbackImage } from '../../utils/imageUtils';
 import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
@@ -155,7 +154,10 @@ export default function ProductDetail() {
                   src={product.image}
                   alt={product.name}
                   className={styles.productImage}
-                  onError={(e) => handleImageError(e, getFallbackImage(product.category))}
+                  onError={(e) => {
+                    console.log('Image failed to load:', product.image);
+                    e.target.src = '/logo.png';
+                  }}
                 />
               </div>
               <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
@@ -279,7 +281,6 @@ export default function ProductDetail() {
                         src={recommendedProduct.image} 
                         alt={recommendedProduct.name} 
                         className={styles.recommendedProductImage}
-                        onError={(e) => handleImageError(e, getFallbackImage(recommendedProduct.category))}
                       />
                       <div className={styles.productOverlay}>
                         <div className={styles.productName}>{recommendedProduct.name}</div>
