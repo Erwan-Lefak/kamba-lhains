@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
         }
         
         .product-card:hover .product-image {
-          transform: scale(1.05);
+          transform: scale(1.02);
         }
         
         .product-image-container {
@@ -48,7 +48,7 @@ export default function ProductCard({ product }) {
           object-fit: cover;
           display: block;
           background: white;
-          transition: transform 0.4s ease;
+          transition: transform 0.3s ease;
         }
         
         .product-overlay {
