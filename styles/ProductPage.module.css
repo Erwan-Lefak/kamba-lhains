@@ -137,7 +137,7 @@
 
 /* Product Info Section */
 .productInfoSection {
-  padding: 80px 25px 60px 25px;
+  padding: 240px 12px 60px 12px;
   background: white;
   display: flex;
   flex-direction: column;
@@ -594,7 +594,7 @@
   }
   
   .productInfoSection {
-    padding: 60px 20px 40px 20px;
+    padding: 180px 10px 40px 10px;
     max-width: 500px;
   }
 
@@ -622,7 +622,7 @@
   }
 
   .productInfoSection {
-    padding: 50px 15px 30px 15px;
+    padding: 150px 8px 30px 8px;
     max-width: none;
   }
 
