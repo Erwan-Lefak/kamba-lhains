@@ -11,6 +11,9 @@
   grid-template-columns: 60% 40%;
   min-height: 100vh;
   background: white;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* Image Section */
@@ -20,9 +23,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   overflow: hidden;
 }
 
@@ -89,19 +90,19 @@
 }
 
 .navPrev {
-  left: 20px;
+  left: 10px;
 }
 
 .navNext {
-  right: 20px;
+  right: 10px;
 }
 
 .productImage {
-  width: calc(100% + 140px);
+  width: calc(100% + 20px);
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  margin: 0 -70px;
+  margin: 0 -10px;
   padding: 0;
   max-width: none;
 }
