@@ -94,6 +94,38 @@ export const products = [
     category: "homme",
     colors: ["Beige", "Navy"],
     sizes: ["46", "48", "50", "52"]
+  },
+  {
+    id: 7,
+    name: "CHEMISE URIEL",
+    price: "390,00 €",
+    image: "/chemise-uriel.png",
+    description: [
+      "• Chemise coupe droite en coton",
+      "• Col boutonné moderne",
+      "• Manches longues ajustables",
+      "• Finitions soignées",
+      "• Style contemporain"
+    ],
+    category: "homme",
+    colors: ["Blanc", "Bleu"],
+    sizes: ["S", "M", "L", "XL"]
+  },
+  {
+    id: 8,
+    name: "VESTE KMOBOU",
+    price: "590,00 €",
+    image: "/veste-kmobou.png",
+    description: [
+      "• Veste légère en coton mélangé",
+      "• Coupe moderne décontractée",
+      "• Poches fonctionnelles",
+      "• Fermeture boutonnée",
+      "• Parfaite pour toutes saisons"
+    ],
+    category: "femme",
+    colors: ["Beige", "Kaki"],
+    sizes: ["S", "M", "L", "XL"]
   }
 ];
 

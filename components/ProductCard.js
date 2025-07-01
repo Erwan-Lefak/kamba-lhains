@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function ProductCard({ product }) {
   return (
     <>
-      <div className="product-card">
+      <Link href={`/produit/${product.id}`} className="product-card">
         <div className="product-image-container">
           <img 
             src={product.image}
@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
             <div className="product-price">{product.price}</div>
           </div>
         </div>
-      </div>
+      </Link>
       
       <style jsx>{`
         .product-card {

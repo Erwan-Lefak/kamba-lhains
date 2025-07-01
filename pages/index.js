@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
@@ -35,20 +36,20 @@ export default function Home() {
         {/* Additional Products Section */}
         <section className="additional-products">
           <div className="products-container">
-            <div className="product-item">
+            <Link href="/produit/7" className="product-item">
               <img src="/chemise-uriel.png" alt="CHEMISE URIEL" className="product-image-large" />
               <div className="product-overlay-large">
                 <div className="product-name-large">CHEMISE URIEL</div>
                 <div className="product-price-large">390,00 €</div>
               </div>
-            </div>
-            <div className="product-item">
+            </Link>
+            <Link href="/produit/8" className="product-item">
               <img src="/veste-kmobou.png" alt="VESTE KMOBOU" className="product-image-large" />
               <div className="product-overlay-large">
                 <div className="product-name-large">VESTE KMOBOU</div>
                 <div className="product-price-large">590,00 €</div>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
       </main>
