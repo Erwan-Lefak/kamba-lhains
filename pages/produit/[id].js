@@ -257,6 +257,62 @@ export default function ProductDetail() {
           </div>
         </div>
 
+        {/* Complete Your Look Section */}
+        <section className={styles.completeYourLook}>
+          <div className={styles.sectionContainer}>
+            <h2 className={styles.sectionTitle}>Complétez votre look</h2>
+            <div className={styles.recommendedProducts}>
+              {/* T-shirt Mykonos */}
+              <div className={styles.recommendedProduct}>
+                <div className={styles.productImageWrapper}>
+                  <img 
+                    src="/chemise-uriel.png" 
+                    alt="Le t-shirt Mykonos" 
+                    className={styles.recommendedProductImage}
+                  />
+                </div>
+                <div className={styles.productInfo}>
+                  <h3 className={styles.productName}>Le t-shirt Mykonos</h3>
+                  <p className={styles.productPrice}>270 EUR</p>
+                  <button className={styles.favoriteButton}>♡</button>
+                </div>
+              </div>
+
+              {/* Mug Mykonos */}
+              <div className={styles.recommendedProduct}>
+                <div className={styles.productImageWrapper}>
+                  <img 
+                    src="/veste-jane.png" 
+                    alt="Le mug Mykonos" 
+                    className={styles.recommendedProductImage}
+                  />
+                </div>
+                <div className={styles.productInfo}>
+                  <h3 className={styles.productName}>Le mug Mykonos</h3>
+                  <p className={styles.productPrice}>65 EUR</p>
+                  <button className={styles.favoriteButton}>♡</button>
+                </div>
+              </div>
+
+              {/* Casquette Mykonos */}
+              <div className={styles.recommendedProduct}>
+                <div className={styles.productImageWrapper}>
+                  <img 
+                    src="/bombers-itoua.png" 
+                    alt="La casquette Mykonos" 
+                    className={styles.recommendedProductImage}
+                  />
+                </div>
+                <div className={styles.productInfo}>
+                  <h3 className={styles.productName}>La casquette Mykonos</h3>
+                  <p className={styles.productPrice}>150 EUR</p>
+                  <button className={styles.favoriteButton}>♡</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Modal Overlay */}
         <div 
           className={`${styles.modalOverlay} ${modalOpen ? styles.open : ''}`}
