@@ -8,7 +8,7 @@
 
 .productContainer {
   display: grid;
-  grid-template-columns: 1fr 480px;
+  grid-template-columns: 60% 40%;
   min-height: 100vh;
   background: white;
 }
@@ -76,18 +76,30 @@
 
 .heartIcon {
   position: absolute;
-  bottom: 30px;
+  top: 30px;
   right: 30px;
   background: none;
   border: none;
-  font-size: 1.5rem;
-  color: #999;
+  font-size: 2rem;
+  color: transparent;
+  stroke: #000;
+  stroke-width: 2px;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heartIcon:hover {
-  color: #333;
+  transform: scale(1.1);
+}
+
+.heartIcon.liked {
+  color: #000;
+  stroke: #000;
 }
 
 /* Product Info Section */
@@ -305,18 +317,106 @@
   text-align: center;
 }
 
-.tab:hover,
-.tab.active {
+.tab:hover {
   color: #000;
-  border-bottom: 2px solid #000;
 }
 
-.tabContent {
-  padding: 30px 25px;
-  min-height: 150px;
-  font-size: 14px;
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modalOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sliding Modal */
+.slidingModal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 100vh;
+  background: white;
+  z-index: 1001;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.slidingModal.open {
+  transform: translateX(0);
+}
+
+.modalHeader {
+  padding: 30px 40px 20px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #000;
+  margin: 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
   color: #666;
+  transition: color 0.3s;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+.modalContent {
+  padding: 40px;
+  font-size: 15px;
+  color: #333;
   line-height: 1.6;
+}
+
+.modalContent h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.modalContent p {
+  margin-bottom: 15px;
+}
+
+.modalContent ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modalContent li {
+  margin-bottom: 12px;
+  color: #666;
 }
 
 /* Responsive Design */
@@ -331,6 +431,10 @@
 
   .sizeGrid {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .slidingModal {
+    width: 90vw;
   }
 }
 
@@ -355,5 +459,22 @@
 
   .sizeGrid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .slidingModal {
+    width: 100vw;
+  }
+
+  .modalHeader {
+    padding: 20px 30px 15px;
+  }
+
+  .modalContent {
+    padding: 30px;
+  }
+
+  .closeButton {
+    top: 20px;
+    right: 30px;
   }
 }

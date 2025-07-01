@@ -13,7 +13,9 @@ export default function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
-  const [activeTab, setActiveTab] = useState('details');
+  const [isLiked, setIsLiked] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -28,6 +30,95 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     alert(`${product.name} ajouté à la liste d'attente !`);
+  };
+
+  const handleHeartClick = () => {
+    setIsLiked(!isLiked);
+  };
+
+  const openModal = (content) => {
+    setModalContent(content);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const getModalTitle = () => {
+    switch (modalContent) {
+      case 'details': return 'Détails du produit';
+      case 'delivery': return 'Livraison et retours';
+      case 'help': return 'Aide';
+      default: return '';
+    }
+  };
+
+  const renderModalContent = () => {
+    switch (modalContent) {
+      case 'details':
+        return (
+          <div>
+            <h3>Composition et entretien</h3>
+            <ul>
+              {product.description.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+            <h3>Conseils d'entretien</h3>
+            <p>Lavage à la main recommandé</p>
+            <p>Séchage à plat, à l'abri de la lumière directe</p>
+            <p>Repassage à température moyenne</p>
+            <h3>Modèle</h3>
+            <p>Le modèle mesure 1m75 et porte une taille {product.sizes[1] || product.sizes[0]}</p>
+          </div>
+        );
+      case 'delivery':
+        return (
+          <div>
+            <h3>Livraison</h3>
+            <p><strong>Livraison standard (3-5 jours ouvrés) :</strong> Gratuite à partir de 150€, sinon 9,90€</p>
+            <p><strong>Livraison express (24-48h) :</strong> 19,90€</p>
+            <p><strong>Livraison même jour (Paris) :</strong> 29,90€</p>
+            
+            <h3>Retours</h3>
+            <p>Retours gratuits sous 30 jours</p>
+            <p>Les articles doivent être dans leur état d'origine avec toutes les étiquettes</p>
+            <p>Remboursement sous 5-7 jours ouvrés après réception</p>
+            
+            <h3>Échanges</h3>
+            <p>Échanges gratuits en boutique ou par correspondance</p>
+            <p>Service client disponible pour vous accompagner</p>
+          </div>
+        );
+      case 'help':
+        return (
+          <div>
+            <h3>Service client</h3>
+            <p><strong>Email :</strong> service@kambalahins.com</p>
+            <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
+            <p><strong>Horaires :</strong> Lundi au vendredi, 9h-18h</p>
+            
+            <h3>FAQ</h3>
+            <p><strong>Comment connaître ma taille ?</strong><br/>
+            Utilisez notre guide des tailles disponible sur chaque fiche produit.</p>
+            
+            <p><strong>Puis-je modifier ma commande ?</strong><br/>
+            Contactez-nous dans les 2h suivant votre commande.</p>
+            
+            <p><strong>Les produits sont-ils authentiques ?</strong><br/>
+            Tous nos produits sont 100% authentiques et proviennent directement du créateur.</p>
+            
+            <h3>Boutiques</h3>
+            <p>Retrouvez nos boutiques à Paris, Lyon, et Marseille</p>
+            <p>Prendre rendez-vous en boutique pour un essayage personnalisé</p>
+          </div>
+        );
+      default:
+        return null;
+    }
   };
 
   if (!product) {
@@ -54,7 +145,7 @@ export default function ProductDetail() {
 
       <main className={styles.productPage}>
         <div className={styles.productContainer}>
-          {/* Image Section */}
+          {/* Image Section - 60% */}
           <div className={styles.productImageSection}>
             <div className={styles.imageNavigation}>
               <button className={`${styles.navArrow} ${styles.navPrev}`}>‹</button>
@@ -67,10 +158,15 @@ export default function ProductDetail() {
               </div>
               <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
             </div>
-            <button className={styles.heartIcon}>♡</button>
+            <button 
+              className={`${styles.heartIcon} ${isLiked ? styles.liked : ''}`}
+              onClick={handleHeartClick}
+            >
+              ♡
+            </button>
           </div>
 
-          {/* Product Info Section */}
+          {/* Product Info Section - 40% */}
           <div className={styles.productInfoSection}>
             <h1 className={styles.productTitle}>{product.name}</h1>
             
@@ -138,50 +234,45 @@ export default function ProductDetail() {
               <div className={styles.tabsContainer}>
                 <div className={styles.tabsNav}>
                   <button 
-                    className={`${styles.tab} ${activeTab === 'details' ? styles.active : ''}`}
-                    onClick={() => setActiveTab('details')}
+                    className={styles.tab}
+                    onClick={() => openModal('details')}
                   >
                     Détails
                   </button>
                   <button 
-                    className={`${styles.tab} ${activeTab === 'delivery' ? styles.active : ''}`}
-                    onClick={() => setActiveTab('delivery')}
+                    className={styles.tab}
+                    onClick={() => openModal('delivery')}
                   >
                     Livraison et retours
                   </button>
                   <button 
-                    className={`${styles.tab} ${activeTab === 'help' ? styles.active : ''}`}
-                    onClick={() => setActiveTab('help')}
+                    className={styles.tab}
+                    onClick={() => openModal('help')}
                   >
                     Aide
                   </button>
                 </div>
-                
-                <div className={styles.tabContent}>
-                  {activeTab === 'details' && (
-                    <div>
-                      {product.description.map((item, index) => (
-                        <div key={index} style={{ marginBottom: '8px' }}>{item}</div>
-                      ))}
-                    </div>
-                  )}
-                  {activeTab === 'delivery' && (
-                    <div>
-                      <p>Livraison gratuite à partir de 150€</p>
-                      <p>Retours gratuits sous 30 jours</p>
-                      <p>Livraison express en 24h disponible</p>
-                    </div>
-                  )}
-                  {activeTab === 'help' && (
-                    <div>
-                      <p>Contactez notre service client pour toute question.</p>
-                      <p>Email: service@kambalahins.com</p>
-                      <p>Téléphone: +33 1 23 45 67 89</p>
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Modal Overlay */}
+        <div 
+          className={`${styles.modalOverlay} ${modalOpen ? styles.open : ''}`}
+          onClick={closeModal}
+        />
+
+        {/* Sliding Modal */}
+        <div className={`${styles.slidingModal} ${modalOpen ? styles.open : ''}`}>
+          <div className={styles.modalHeader}>
+            <h2 className={styles.modalTitle}>{getModalTitle()}</h2>
+            <button className={styles.closeButton} onClick={closeModal}>
+              ×
+            </button>
+          </div>
+          <div className={styles.modalContent}>
+            {renderModalContent()}
           </div>
         </div>
       </main>
