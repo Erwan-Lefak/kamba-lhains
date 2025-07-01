@@ -222,7 +222,11 @@ export default function ProductDetail() {
             {/* Add to Cart Button */}
             <div className={styles.addToCartSection}>
               <button className={styles.addToCartButton} onClick={handleAddToCart}>
-                📋 LISTE D'ATTENTE
+                <span className={styles.buttonLeft}>
+                  <span className={styles.cartIcon}>🛒</span>
+                  <span>AJOUTER AU PANIER</span>
+                </span>
+                <span className={styles.buttonPrice}>{product.price}</span>
               </button>
               <div className={styles.availabilityLink}>
                 Voir la disponibilité et prendre un rendez-vous en boutique
