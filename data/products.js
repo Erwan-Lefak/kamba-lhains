@@ -3,7 +3,7 @@ export const products = [
     id: 1,
     name: "BOMBERS ITOUA",
     price: "1090,00 €",
-    image: "/images/bombers-itoua.jpg",
+    image: "/bombers-itoua.png",
     description: [
       "• Bomber en coton biologique certifié GOTS",
       "• Coupe moderne et ajustée",
@@ -19,7 +19,7 @@ export const products = [
     id: 2,
     name: "JUPE BINË",
     price: "620,00 €",
-    image: "/images/jupe-bine.jpg",
+    image: "/jupe-bine.png",
     description: [
       "• Jupe midi en lin biologue",
       "• Taille haute ajustable",
@@ -35,7 +35,7 @@ export const products = [
     id: 3,
     name: "VESTE JANÉ",
     price: "780,00 €",
-    image: "/images/veste-jane.jpg",
+    image: "/veste-jane.png",
     description: [
       "• Veste structurée en coton premium",
       "• Col châle sophistiqué",
@@ -51,7 +51,7 @@ export const products = [
     id: 4,
     name: "CHEMISE NGOZI",
     price: "450,00 €",
-    image: "/images/chemise-ngozi.jpg",
+    image: "/chemise-ngozi.png",
     description: [
       "• Chemise en popeline de coton",
       "• Col classique français",
@@ -67,7 +67,7 @@ export const products = [
     id: 5,
     name: "PANTALON KOFFI",
     price: "580,00 €",
-    image: "/images/pantalon-koffi.jpg",
+    image: "/pantalon-koffi.png",
     description: [
       "• Pantalon droit en laine mérinos",
       "• Taille mi-haute confortable",
@@ -83,7 +83,7 @@ export const products = [
     id: 6,
     name: "BLAZER AMARA",
     price: "890,00 €",
-    image: "/images/blazer-amara.jpg",
+    image: "/blazer-amara.png",
     description: [
       "• Blazer non doublé en lin",
       "• Coupe déstructurée moderne",

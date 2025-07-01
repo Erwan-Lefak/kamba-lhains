@@ -20,7 +20,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 0;
+  min-height: 100vh;
 }
 
 .imageNavigation {
@@ -59,9 +60,8 @@
 }
 
 .productImageContainer {
-  max-width: 500px;
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,9 +69,10 @@
 
 .productImage {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  max-height: 80vh;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+  max-height: none;
 }
 
 .heartIcon {
