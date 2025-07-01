@@ -1,0 +1,359 @@
+/* Product Page CSS Module - Jacquemus Style */
+
+.productPage {
+  margin-top: 80px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: white;
+}
+
+.productContainer {
+  display: grid;
+  grid-template-columns: 1fr 480px;
+  min-height: 100vh;
+  background: white;
+}
+
+/* Image Section */
+.productImageSection {
+  background: #f5f5f5;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.imageNavigation {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #999;
+  cursor: pointer;
+  z-index: 10;
+  padding: 20px;
+  transition: color 0.3s;
+}
+
+.navArrow:hover {
+  color: #333;
+}
+
+.navPrev {
+  left: 20px;
+}
+
+.navNext {
+  right: 20px;
+}
+
+.productImageContainer {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 80vh;
+}
+
+.heartIcon {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.heartIcon:hover {
+  color: #333;
+}
+
+/* Product Info Section */
+.productInfoSection {
+  padding: 60px 50px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+}
+
+.productTitle {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #000;
+  line-height: 1.2;
+}
+
+.productDescription {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
+/* Color Section */
+.colorSection {
+  margin-bottom: 30px;
+}
+
+.colorLabel {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.colorSwatch {
+  width: 35px;
+  height: 35px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.colorSwatch.active {
+  border-color: #000;
+  box-shadow: 0 0 0 1px #000;
+}
+
+.colorSwatchYellow {
+  background-color: #F5E6A3;
+}
+
+.colorSwatchPink {
+  background-color: #F4C2C2;
+}
+
+.seeAllColors {
+  font-size: 12px;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.seeAllColors:hover {
+  color: #000;
+}
+
+/* Size Section */
+.sizeSection {
+  margin-bottom: 30px;
+}
+
+.sizeLabel {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.sizeGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.sizeOption {
+  padding: 12px 8px;
+  border: 1px solid #ddd;
+  background: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  min-width: 45px;
+  color: #333;
+}
+
+.sizeOption:hover {
+  border-color: #000;
+}
+
+.sizeOption.active {
+  background: #000;
+  color: white;
+  border-color: #000;
+}
+
+.sizeGuide {
+  font-size: 12px;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sizeGuide:hover {
+  color: #666;
+}
+
+/* Price Section */
+.priceSection {
+  margin: 40px 0 30px 0;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #000;
+}
+
+/* Add to Cart Section */
+.addToCartSection {
+  margin-bottom: 20px;
+}
+
+.addToCartButton {
+  width: 100%;
+  padding: 16px;
+  background: white;
+  border: 2px solid #000;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.addToCartButton:hover {
+  background: #000;
+  color: white;
+}
+
+.availabilityLink {
+  font-size: 12px;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  margin-top: 15px;
+}
+
+.availabilityLink:hover {
+  color: #666;
+}
+
+/* Tabs Section */
+.tabsSection {
+  background: white;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+}
+
+.tabsContainer {
+  max-width: 100%;
+}
+
+.tabsNav {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.tab {
+  padding: 20px 25px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  flex: 1;
+  text-align: center;
+}
+
+.tab:hover,
+.tab.active {
+  color: #000;
+  border-bottom: 2px solid #000;
+}
+
+.tabContent {
+  padding: 30px 25px;
+  min-height: 150px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .productContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .productInfoSection {
+    padding: 40px 30px;
+  }
+
+  .sizeGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .productTitle {
+    font-size: 1.7rem;
+  }
+
+  .productInfoSection {
+    padding: 30px 20px;
+  }
+
+  .tabsNav {
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    min-width: 50%;
+    padding: 15px 10px;
+    font-size: 12px;
+  }
+
+  .sizeGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

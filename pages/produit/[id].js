@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { products } from '../../data/products';
+import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function ProductDetail() {
   }, [id]);
 
   const handleAddToCart = () => {
-    alert(`${product.name} ajouté au panier !`);
+    alert(`${product.name} ajouté à la liste d'attente !`);
   };
 
   if (!product) {
@@ -51,444 +52,141 @@ export default function ProductDetail() {
 
       <Header />
 
-      <main className="product-page">
-        <div className="product-container">
+      <main className={styles.productPage}>
+        <div className={styles.productContainer}>
           {/* Image Section */}
-          <div className="product-image-section">
-            <div className="image-navigation">
-              <button className="nav-arrow nav-prev">‹</button>
-              <div className="product-image-container">
+          <div className={styles.productImageSection}>
+            <div className={styles.imageNavigation}>
+              <button className={`${styles.navArrow} ${styles.navPrev}`}>‹</button>
+              <div className={styles.productImageContainer}>
                 <img 
                   src={product.image}
                   alt={product.name}
-                  className="product-image"
+                  className={styles.productImage}
                 />
               </div>
-              <button className="nav-arrow nav-next">›</button>
+              <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
             </div>
+            <button className={styles.heartIcon}>♡</button>
           </div>
 
           {/* Product Info Section */}
-          <div className="product-info-section">
-            <div className="product-info">
-              <p className="product-category">{product.category.toUpperCase()}</p>
-              <h1 className="product-title">{product.name}</h1>
-              <p className="product-subtitle">LA CHEMISE</p>
-              
-              <p className="product-description">
-                Veste non doubleé en lin
-              </p>
-
-              {/* Color Selector */}
-              <div className="color-section">
-                <label className="option-label">Black</label>
-                <div className="color-options">
-                  {product.colors.map((color, index) => (
-                    <div
-                      key={index}
-                      className={`color-swatch ${selectedColor === color ? 'active' : ''}`}
-                      onClick={() => setSelectedColor(color)}
-                      style={{ backgroundColor: color.toLowerCase() === 'black' ? '#000' : '#f0f0f0' }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Size Selector */}
-              <div className="size-section">
-                <label className="option-label">Taille</label>
-                <div className="size-grid">
-                  {product.sizes.map((size, index) => (
-                    <button
-                      key={index}
-                      className={`size-option ${selectedSize === size ? 'active' : ''}`}
-                      onClick={() => setSelectedSize(size)}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-                <Link href="/guide-tailles" className="size-guide">
-                  Calculer votre taille
-                </Link>
-              </div>
-
-              {/* Price */}
-              <div className="price-section">
-                <span className="price">{product.price}</span>
-              </div>
-
-              {/* Add to Cart Button */}
-              <button className="add-to-cart" onClick={handleAddToCart}>
-                <span>🛍</span> AJOUTER AU PANIER
-              </button>
-
-              {/* Availability */}
-              <p className="availability">Vous le donnerez en boutique</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Tabs Section */}
-        <div className="tabs-section">
-          <div className="tabs-container">
-            <div className="tabs-nav">
-              <button 
-                className={`tab ${activeTab === 'details' ? 'active' : ''}`}
-                onClick={() => setActiveTab('details')}
-              >
-                Détails
-              </button>
-              <button 
-                className={`tab ${activeTab === 'tracability' ? 'active' : ''}`}
-                onClick={() => setActiveTab('tracability')}
-              >
-                Traçabilité
-              </button>
-              <button 
-                className={`tab ${activeTab === 'delivery' ? 'active' : ''}`}
-                onClick={() => setActiveTab('delivery')}
-              >
-                Livraison et retours
-              </button>
-              <button 
-                className={`tab ${activeTab === 'help' ? 'active' : ''}`}
-                onClick={() => setActiveTab('help')}
-              >
-                Aide
-              </button>
-            </div>
+          <div className={styles.productInfoSection}>
+            <h1 className={styles.productTitle}>{product.name}</h1>
             
-            <div className="tab-content">
-              {activeTab === 'details' && (
-                <div className="details-content">
-                  <ul>
-                    {product.description.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+            <p className={styles.productDescription}>
+              {product.category === 'femme' ? 'Robe boutonnée en maille' : 'Veste non doublée en lin'}
+            </p>
+
+            {/* Color Selector */}
+            <div className={styles.colorSection}>
+              <div className={styles.colorLabel}>
+                {selectedColor === 'Blanc' || selectedColor === 'Beige' ? 'Pale Yellow' : selectedColor}
+              </div>
+              <div className={styles.colorOptions}>
+                {product.colors.map((color, index) => (
+                  <div
+                    key={index}
+                    className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''} ${
+                      color.toLowerCase().includes('jaune') || color.toLowerCase().includes('beige') || color.toLowerCase().includes('blanc') 
+                        ? styles.colorSwatchYellow 
+                        : styles.colorSwatchPink
+                    }`}
+                    onClick={() => setSelectedColor(color)}
+                  />
+                ))}
+              </div>
+              <div className={styles.seeAllColors}>Voir les couleurs</div>
+            </div>
+
+            {/* Size Selector */}
+            <div className={styles.sizeSection}>
+              <div className={styles.sizeLabel}>Taille</div>
+              <div className={styles.sizeGrid}>
+                {product.sizes.map((size, index) => (
+                  <button
+                    key={index}
+                    className={`${styles.sizeOption} ${selectedSize === size ? styles.active : ''}`}
+                    onClick={() => setSelectedSize(size)}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+              <div className={styles.sizeGuide}>
+                ⓘ Calculez votre taille
+              </div>
+            </div>
+
+            {/* Price */}
+            <div className={styles.priceSection}>
+              <div className={styles.price}>{product.price}</div>
+            </div>
+
+            {/* Add to Cart Button */}
+            <div className={styles.addToCartSection}>
+              <button className={styles.addToCartButton} onClick={handleAddToCart}>
+                📋 LISTE D'ATTENTE
+              </button>
+              <div className={styles.availabilityLink}>
+                Voir la disponibilité et prendre un rendez-vous en boutique
+              </div>
+            </div>
+
+            {/* Tabs Section */}
+            <div className={styles.tabsSection}>
+              <div className={styles.tabsContainer}>
+                <div className={styles.tabsNav}>
+                  <button 
+                    className={`${styles.tab} ${activeTab === 'details' ? styles.active : ''}`}
+                    onClick={() => setActiveTab('details')}
+                  >
+                    Détails
+                  </button>
+                  <button 
+                    className={`${styles.tab} ${activeTab === 'delivery' ? styles.active : ''}`}
+                    onClick={() => setActiveTab('delivery')}
+                  >
+                    Livraison et retours
+                  </button>
+                  <button 
+                    className={`${styles.tab} ${activeTab === 'help' ? styles.active : ''}`}
+                    onClick={() => setActiveTab('help')}
+                  >
+                    Aide
+                  </button>
                 </div>
-              )}
-              {activeTab === 'tracability' && (
-                <div className="tracability-content">
-                  <p>Informations sur la traçabilité du produit...</p>
+                
+                <div className={styles.tabContent}>
+                  {activeTab === 'details' && (
+                    <div>
+                      {product.description.map((item, index) => (
+                        <div key={index} style={{ marginBottom: '8px' }}>{item}</div>
+                      ))}
+                    </div>
+                  )}
+                  {activeTab === 'delivery' && (
+                    <div>
+                      <p>Livraison gratuite à partir de 150€</p>
+                      <p>Retours gratuits sous 30 jours</p>
+                      <p>Livraison express en 24h disponible</p>
+                    </div>
+                  )}
+                  {activeTab === 'help' && (
+                    <div>
+                      <p>Contactez notre service client pour toute question.</p>
+                      <p>Email: service@kambalahins.com</p>
+                      <p>Téléphone: +33 1 23 45 67 89</p>
+                    </div>
+                  )}
                 </div>
-              )}
-              {activeTab === 'delivery' && (
-                <div className="delivery-content">
-                  <p>Livraison gratuite à partir de 150€</p>
-                  <p>Retours gratuits sous 30 jours</p>
-                </div>
-              )}
-              {activeTab === 'help' && (
-                <div className="help-content">
-                  <p>Contactez notre service client pour toute question.</p>
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
       </main>
 
       <Footer />
-
-      <style jsx>{`
-        .product-page {
-          margin-top: 80px;
-          font-family: 'Helvetica Neue', Arial, sans-serif;
-          background: #f8f8f8;
-        }
-
-        .product-container {
-          display: grid;
-          grid-template-columns: 1fr 500px;
-          min-height: 100vh;
-          background: white;
-        }
-
-        .product-image-section {
-          background: #f0f0f0;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .image-navigation {
-          width: 100%;
-          height: 100%;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .nav-arrow {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          background: none;
-          border: none;
-          font-size: 3rem;
-          color: #666;
-          cursor: pointer;
-          z-index: 10;
-          padding: 20px;
-          transition: color 0.3s;
-        }
-
-        .nav-arrow:hover {
-          color: #000;
-        }
-
-        .nav-prev {
-          left: 30px;
-        }
-
-        .nav-next {
-          right: 30px;
-        }
-
-        .product-image-container {
-          width: 70%;
-          height: 80%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .product-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 0;
-        }
-
-        .product-info-section {
-          padding: 60px 50px;
-          background: white;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-        }
-
-        .product-category {
-          font-size: 12px;
-          color: #666;
-          letter-spacing: 1px;
-          margin-bottom: 10px;
-        }
-
-        .product-title {
-          font-size: 2.5rem;
-          font-weight: 300;
-          letter-spacing: 2px;
-          margin-bottom: 10px;
-          color: #000;
-        }
-
-        .product-subtitle {
-          font-size: 14px;
-          color: #666;
-          margin-bottom: 30px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
-
-        .product-description {
-          font-size: 16px;
-          color: #333;
-          margin-bottom: 40px;
-          line-height: 1.5;
-        }
-
-        .color-section,
-        .size-section {
-          margin-bottom: 30px;
-        }
-
-        .option-label {
-          display: block;
-          font-size: 14px;
-          color: #000;
-          margin-bottom: 15px;
-          font-weight: 500;
-        }
-
-        .color-options {
-          display: flex;
-          gap: 10px;
-          margin-bottom: 10px;
-        }
-
-        .color-swatch {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          border: 2px solid #ddd;
-          cursor: pointer;
-          transition: border-color 0.3s;
-        }
-
-        .color-swatch.active {
-          border-color: #000;
-          border-width: 3px;
-        }
-
-        .size-grid {
-          display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          gap: 8px;
-          margin-bottom: 15px;
-        }
-
-        .size-option {
-          padding: 12px 8px;
-          border: 1px solid #ddd;
-          background: white;
-          font-size: 14px;
-          cursor: pointer;
-          transition: all 0.3s;
-          text-align: center;
-          min-width: 50px;
-        }
-
-        .size-option:hover {
-          border-color: #000;
-        }
-
-        .size-option.active {
-          background: #000;
-          color: white;
-          border-color: #000;
-        }
-
-        .size-guide {
-          font-size: 12px;
-          color: #666;
-          text-decoration: underline;
-          cursor: pointer;
-        }
-
-        .size-guide:hover {
-          color: #000;
-        }
-
-        .price-section {
-          margin: 40px 0 30px 0;
-        }
-
-        .price {
-          font-size: 1.8rem;
-          font-weight: 400;
-          color: #000;
-        }
-
-        .add-to-cart {
-          width: 100%;
-          padding: 18px;
-          background: white;
-          border: 2px solid #000;
-          font-size: 14px;
-          font-weight: 500;
-          letter-spacing: 1px;
-          cursor: pointer;
-          margin-bottom: 20px;
-          transition: all 0.3s;
-          text-transform: uppercase;
-        }
-
-        .add-to-cart:hover {
-          background: #000;
-          color: white;
-        }
-
-        .availability {
-          font-size: 12px;
-          color: #666;
-          text-align: center;
-        }
-
-        .tabs-section {
-          background: white;
-          border-top: 1px solid #eee;
-        }
-
-        .tabs-container {
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        .tabs-nav {
-          display: flex;
-          border-bottom: 1px solid #eee;
-        }
-
-        .tab {
-          padding: 20px 30px;
-          background: none;
-          border: none;
-          font-size: 14px;
-          color: #666;
-          cursor: pointer;
-          transition: color 0.3s;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
-
-        .tab:hover,
-        .tab.active {
-          color: #000;
-          border-bottom: 2px solid #000;
-        }
-
-        .tab-content {
-          padding: 40px 30px;
-          min-height: 200px;
-        }
-
-        .details-content ul {
-          list-style: none;
-          padding: 0;
-        }
-
-        .details-content li {
-          margin-bottom: 10px;
-          color: #666;
-          font-size: 14px;
-        }
-
-        @media (max-width: 1024px) {
-          .product-container {
-            grid-template-columns: 1fr;
-          }
-          
-          .product-info-section {
-            padding: 40px 30px;
-          }
-
-          .size-grid {
-            grid-template-columns: repeat(4, 1fr);
-          }
-        }
-
-        @media (max-width: 768px) {
-          .product-title {
-            font-size: 2rem;
-          }
-
-          .tabs-nav {
-            flex-wrap: wrap;
-          }
-
-          .tab {
-            flex: 1;
-            min-width: 50%;
-            padding: 15px 10px;
-            font-size: 12px;
-          }
-        }
-      `}</style>
     </>
   );
 }
