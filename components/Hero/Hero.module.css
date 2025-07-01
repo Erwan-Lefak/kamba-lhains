@@ -8,7 +8,10 @@
   overflow: hidden;
   margin-left: calc(-50vw + 50%);
   margin-top: 80px;
+  margin-bottom: 0;
+  padding: 0;
   display: inline-block;
+  line-height: 0;
 }
 
 .videoContainer {
@@ -16,6 +19,9 @@
   height: auto;
   position: relative;
   background: #000;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
 }
 
 .heroVideo {
@@ -23,6 +29,9 @@
   height: auto;
   display: block;
   pointer-events: none;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
 }
 
 .posterImage {
