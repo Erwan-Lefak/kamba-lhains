@@ -20,11 +20,47 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+}
+
+/* Dynamic height based on screen size */
+.productImageSection {
+  height: max(100vh, 60vw);
+}
+
+.productInfoSection {
+  height: max(100vh, 60vw);
+}
+
+/* Additional responsive height adjustments for very large screens */
+@media (min-height: 1400px) {
+  .productImageSection {
+    height: max(140vh, 70vw);
+  }
+  .productInfoSection {
+    height: max(140vh, 70vw);
+  }
+}
+
+@media (min-height: 1800px) {
+  .productImageSection {
+    height: max(180vh, 80vw);
+  }
+  .productInfoSection {
+    height: max(180vh, 80vw);
+  }
+}
+
+@media (min-height: 2200px) {
+  .productImageSection {
+    height: max(220vh, 90vw);
+  }
+  .productInfoSection {
+    height: max(220vh, 90vw);
+  }
 }
 
 .navArrow {
@@ -61,12 +97,13 @@
 }
 
 .productImage {
-  width: 100%;
+  width: calc(100% + 140px);
   height: 100%;
   object-fit: contain;
   display: block;
-  margin: 0;
+  margin: 0 -70px;
   padding: 0;
+  max-width: none;
 }
 
 .heartIcon {
@@ -105,7 +142,6 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: auto;
-  height: 100vh;
 }
 
 .productTitle {
