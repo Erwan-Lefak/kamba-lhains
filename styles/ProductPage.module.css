@@ -137,14 +137,12 @@
 
 /* Product Info Section */
 .productInfoSection {
-  padding: 160px 6px 60px 6px;
+  padding: 160px 20px 60px 20px;
   background: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: auto;
-  max-width: 450px;
-  margin: 0 auto;
 }
 
 .productTitle {
@@ -594,8 +592,7 @@
   }
   
   .productInfoSection {
-    padding: 120px 5px 40px 5px;
-    max-width: 500px;
+    padding: 120px 15px 40px 15px;
   }
 
   .sizeGrid {
@@ -622,8 +619,7 @@
   }
 
   .productInfoSection {
-    padding: 100px 4px 30px 4px;
-    max-width: none;
+    padding: 100px 10px 30px 10px;
   }
 
   .tabsNav {
