@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
+import LargeProductCard from '../components/LargeProductCard';
 import { featuredProducts, products } from '../data/products';
 
 export default function Home() {
@@ -36,20 +37,12 @@ export default function Home() {
         {/* Additional Products Section */}
         <section className="additional-products">
           <div className="products-container">
-            <Link href="/produit/7" className="product-item">
-              <img src="/chemise-uriel.png" alt="CHEMISE URIEL" className="product-image-large" />
-              <div className="product-overlay-large">
-                <div className="product-name-large">CHEMISE URIEL</div>
-                <div className="product-price-large">390,00 €</div>
-              </div>
-            </Link>
-            <Link href="/produit/8" className="product-item">
-              <img src="/veste-kmobou.png" alt="VESTE KMOBOU" className="product-image-large" />
-              <div className="product-overlay-large">
-                <div className="product-name-large">VESTE KMOBOU</div>
-                <div className="product-price-large">590,00 €</div>
-              </div>
-            </Link>
+            <LargeProductCard 
+              product={products.find(p => p.id === 7)} 
+            />
+            <LargeProductCard 
+              product={products.find(p => p.id === 8)} 
+            />
           </div>
         </section>
       </main>
@@ -93,77 +86,6 @@ export default function Home() {
           margin-left: calc(-50vw + 50%);
         }
 
-        .product-item {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .product-image-large {
-          width: 100%;
-          height: calc(100vh + 80px);
-          object-fit: cover;
-          display: block;
-          transition: transform 0.3s ease;
-        }
-
-        @media (min-width: 1440px) {
-          .product-image-large {
-            height: calc(120vh + 80px);
-          }
-        }
-
-        @media (min-width: 1920px) {
-          .product-image-large {
-            height: calc(140vh + 80px);
-          }
-        }
-
-        @media (max-width: 1024px) {
-          .product-image-large {
-            height: 90vh;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .product-image-large {
-            height: 80vh;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .product-image-large {
-            height: 70vh;
-          }
-        }
-
-        .product-item:hover .product-image-large {
-          transform: scale(1.02);
-        }
-
-        .product-overlay-large {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          padding: 20px;
-          color: white;
-          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-        }
-
-        .product-name-large {
-          font-size: 14px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .product-price-large {
-          font-size: 14px;
-          font-weight: 500;
-        }
 
         @media (max-width: 768px) {
           .hero-video {
