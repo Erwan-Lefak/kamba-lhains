@@ -176,8 +176,11 @@ export default function ProductDetail() {
 
             {/* Color Selector */}
             <div className={styles.colorSection}>
-              <div className={styles.colorLabel}>
-                {selectedColor === 'Blanc' || selectedColor === 'Beige' ? 'Pale Yellow' : selectedColor}
+              <div className={styles.colorHeader}>
+                <div className={styles.colorLabel}>
+                  {selectedColor === 'Blanc' || selectedColor === 'Beige' ? 'Print Stripes White/Yellow/Black' : selectedColor}
+                </div>
+                <div className={styles.seeAllColors}>Voir les couleurs</div>
               </div>
               <div className={styles.colorOptions}>
                 {product.colors.map((color, index) => (
@@ -192,12 +195,14 @@ export default function ProductDetail() {
                   />
                 ))}
               </div>
-              <div className={styles.seeAllColors}>Voir les couleurs</div>
             </div>
 
             {/* Size Selector */}
             <div className={styles.sizeSection}>
-              <div className={styles.sizeLabel}>Taille</div>
+              <div className={styles.sizeHeader}>
+                <div className={styles.sizeLabel}>Taille</div>
+                <div className={styles.sizeGuide}>Guide des tailles</div>
+              </div>
               <div className={styles.sizeGrid}>
                 {product.sizes.map((size, index) => (
                   <button
@@ -209,14 +214,9 @@ export default function ProductDetail() {
                   </button>
                 ))}
               </div>
-              <div className={styles.sizeGuide}>
+              <div className={styles.calculateSize}>
                 ⓘ Calculez votre taille
               </div>
-            </div>
-
-            {/* Price */}
-            <div className={styles.priceSection}>
-              <div className={styles.price}>{product.price}</div>
             </div>
 
             {/* Add to Cart Button */}

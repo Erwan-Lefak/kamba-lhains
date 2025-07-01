@@ -164,25 +164,43 @@
 
 /* Color Section */
 .colorSection {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.colorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
 }
 
 .colorLabel {
   font-size: 14px;
   color: #000;
-  margin-bottom: 15px;
   font-weight: 400;
+  margin: 0;
+}
+
+.seeAllColors {
+  font-size: 12px;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.seeAllColors:hover {
+  color: #000;
 }
 
 .colorOptions {
   display: flex;
-  gap: 12px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 0;
 }
 
 .colorSwatch {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.3s;
@@ -202,47 +220,55 @@
   background-color: #F4C2C2;
 }
 
-.seeAllColors {
-  font-size: 12px;
-  color: #666;
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 10px;
-  display: inline-block;
-}
-
-.seeAllColors:hover {
-  color: #000;
-}
-
 /* Size Section */
 .sizeSection {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.sizeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
 }
 
 .sizeLabel {
   font-size: 14px;
   color: #000;
-  margin-bottom: 15px;
   font-weight: 400;
+  margin: 0;
+}
+
+.sizeGuide {
+  font-size: 12px;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sizeGuide:hover {
+  color: #000;
 }
 
 .sizeGrid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
   gap: 8px;
   margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .sizeOption {
-  padding: 12px 8px;
+  padding: 8px 12px;
   border: 1px solid #ddd;
   background: white;
   font-size: 13px;
   cursor: pointer;
   transition: all 0.3s;
   text-align: center;
-  min-width: 45px;
+  min-width: 40px;
   color: #333;
 }
 
@@ -256,7 +282,7 @@
   border-color: #000;
 }
 
-.sizeGuide {
+.calculateSize {
   font-size: 12px;
   color: #000;
   text-decoration: underline;
@@ -264,9 +290,10 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-top: 10px;
 }
 
-.sizeGuide:hover {
+.calculateSize:hover {
   color: #666;
 }
 
