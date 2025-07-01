@@ -262,53 +262,30 @@ export default function ProductDetail() {
           <div className={styles.sectionContainer}>
             <h2 className={styles.sectionTitle}>Complétez votre look</h2>
             <div className={styles.recommendedProducts}>
-              {/* T-shirt Mykonos */}
-              <div className={styles.recommendedProduct}>
-                <div className={styles.productImageWrapper}>
-                  <img 
-                    src="/chemise-uriel.png" 
-                    alt="Le t-shirt Mykonos" 
-                    className={styles.recommendedProductImage}
-                  />
-                </div>
-                <div className={styles.productInfo}>
-                  <h3 className={styles.productName}>Le t-shirt Mykonos</h3>
-                  <p className={styles.productPrice}>270 EUR</p>
-                  <button className={styles.favoriteButton}>♡</button>
-                </div>
-              </div>
-
-              {/* Mug Mykonos */}
-              <div className={styles.recommendedProduct}>
-                <div className={styles.productImageWrapper}>
-                  <img 
-                    src="/veste-jane.png" 
-                    alt="Le mug Mykonos" 
-                    className={styles.recommendedProductImage}
-                  />
-                </div>
-                <div className={styles.productInfo}>
-                  <h3 className={styles.productName}>Le mug Mykonos</h3>
-                  <p className={styles.productPrice}>65 EUR</p>
-                  <button className={styles.favoriteButton}>♡</button>
-                </div>
-              </div>
-
-              {/* Casquette Mykonos */}
-              <div className={styles.recommendedProduct}>
-                <div className={styles.productImageWrapper}>
-                  <img 
-                    src="/bombers-itoua.png" 
-                    alt="La casquette Mykonos" 
-                    className={styles.recommendedProductImage}
-                  />
-                </div>
-                <div className={styles.productInfo}>
-                  <h3 className={styles.productName}>La casquette Mykonos</h3>
-                  <p className={styles.productPrice}>150 EUR</p>
-                  <button className={styles.favoriteButton}>♡</button>
-                </div>
-              </div>
+              {/* Get other products excluding current one */}
+              {products
+                .filter(p => p.id !== product.id)
+                .slice(0, 3)
+                .map((recommendedProduct) => (
+                  <Link 
+                    key={recommendedProduct.id} 
+                    href={`/produit/${recommendedProduct.id}`} 
+                    className={styles.recommendedProduct}
+                  >
+                    <div className={styles.productImageWrapper}>
+                      <img 
+                        src={recommendedProduct.image} 
+                        alt={recommendedProduct.name} 
+                        className={styles.recommendedProductImage}
+                      />
+                      <div className={styles.productOverlay}>
+                        <div className={styles.productName}>{recommendedProduct.name}</div>
+                        <div className={styles.productPrice}>{recommendedProduct.price}</div>
+                      </div>
+                    </div>
+                  </Link>
+                ))
+              }
             </div>
           </div>
         </section>
