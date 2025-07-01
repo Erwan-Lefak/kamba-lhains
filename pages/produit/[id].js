@@ -147,21 +147,17 @@ export default function ProductDetail() {
         <div className={styles.productContainer}>
           {/* Image Section - 60% */}
           <div className={styles.productImageSection}>
-            <div className={styles.imageNavigation}>
-              <button className={`${styles.navArrow} ${styles.navPrev}`}>‹</button>
-              <div className={styles.productImageContainer}>
-                <img 
-                  src={product.image}
-                  alt={product.name}
-                  className={styles.productImage}
-                  onError={(e) => {
-                    console.log('Image failed to load:', product.image);
-                    e.target.src = '/logo.png';
-                  }}
-                />
-              </div>
-              <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
-            </div>
+            <img 
+              src={product.image}
+              alt={product.name}
+              className={styles.productImage}
+              onError={(e) => {
+                console.log('Image failed to load:', product.image);
+                e.target.src = '/logo.png';
+              }}
+            />
+            <button className={`${styles.navArrow} ${styles.navPrev}`}>‹</button>
+            <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
             <button 
               className={`${styles.heartIcon} ${isLiked ? styles.liked : ''}`}
               onClick={handleHeartClick}
