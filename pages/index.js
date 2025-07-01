@@ -59,13 +59,16 @@ export default function Home() {
         .main-content {
           font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
           margin-top: 0px;
+          padding: 0;
+          margin: 0;
         }
-
 
         .featured-products {
           background: white;
           position: relative;
           z-index: 1;
+          margin-top: 0;
+          padding-top: 0;
         }
 
         .products-grid {
