@@ -23,6 +23,10 @@ export default function ProductCard({ product }) {
           position: relative;
           cursor: pointer;
           overflow: hidden;
+          width: 100%;
+          height: 100%;
+          display: block;
+          text-decoration: none;
         }
         
         .product-card:hover .product-image {
@@ -32,28 +36,11 @@ export default function ProductCard({ product }) {
         .product-image-container {
           position: relative;
           width: 100%;
-          height: 100vh;
+          height: 100%;
           display: block;
           overflow: hidden;
         }
 
-        @media (max-width: 1024px) {
-          .product-image-container {
-            height: 80vh;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .product-image-container {
-            height: 70vh;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .product-image-container {
-            height: 60vh;
-          }
-        }
         
         .product-image {
           width: 100%;

@@ -22,6 +22,8 @@ export default function LargeProductCard({ product, className = "" }) {
           overflow: hidden;
           text-decoration: none;
           color: inherit;
+          width: 100%;
+          height: 100%;
         }
         
         .large-product-image {

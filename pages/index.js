@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
@@ -8,8 +7,9 @@ import LargeProductCard from '../components/LargeProductCard';
 import { featuredProducts, products } from '../data/products';
 
 export default function Home() {
-  const femmeProducts = products.filter(p => p.category === 'femme');
-  const hommeProducts = products.filter(p => p.category === 'homme');
+  // Get specific products by ID for the large display
+  const largeProduct1 = products.find(p => p.id === 7); // CHEMISE URIEL
+  const largeProduct2 = products.find(p => p.id === 8); // VESTE KMOBOU
 
   return (
     <>
@@ -20,90 +20,132 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Header */}
       <Header />
 
-      <main className="main-content">
-        <Hero />
+      {/* Main Content Structure */}
+      <main className="homepage">
+        {/* Hero Video Section */}
+        <section className="hero-section">
+          <Hero />
+        </section>
 
-        {/* Featured Products Grid */}
-        <section className="featured-products">
-          <div className="products-grid">
+        {/* Three Products Grid Section */}
+        <section className="three-products-section">
+          <div className="three-products-grid">
             {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <div key={product.id} className="product-slot">
+                <ProductCard product={product} />
+              </div>
             ))}
           </div>
         </section>
 
-        {/* Additional Products Section */}
-        <section className="additional-products">
-          <div className="products-container">
-            <LargeProductCard 
-              product={products.find(p => p.id === 7)} 
-            />
-            <LargeProductCard 
-              product={products.find(p => p.id === 8)} 
-            />
+        {/* Two Products Grid Section */}
+        <section className="two-products-section">
+          <div className="two-products-grid">
+            <div className="large-product-slot">
+              <LargeProductCard product={largeProduct1} />
+            </div>
+            <div className="large-product-slot">
+              <LargeProductCard product={largeProduct2} />
+            </div>
           </div>
         </section>
       </main>
 
+      {/* Footer */}
       <Footer />
 
       <style jsx>{`
-        .main-content {
-          font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
-          margin-top: 0px;
-          padding: 0;
+        .homepage {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
           margin: 0;
+          padding: 0;
+          font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
         }
 
-        .featured-products {
-          background: white;
-          position: relative;
-          z-index: 1;
-          margin-top: 0;
-          padding-top: 0;
+        /* Hero Section */
+        .hero-section {
+          width: 100%;
+          margin: 0;
+          padding: 0;
         }
 
-        .products-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0;
-          width: 100vw;
-          margin-left: calc(-50vw + 50%);
-        }
-
-        .additional-products {
+        /* Three Products Section */
+        .three-products-section {
           width: 100%;
           background: white;
+          margin: 0;
+          padding: 0;
         }
 
-        .products-container {
+        .three-products-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0;
+          grid-template-columns: repeat(3, 1fr);
           width: 100vw;
           margin-left: calc(-50vw + 50%);
+          gap: 0;
         }
 
+        .product-slot {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+        }
 
+        /* Two Products Section */
+        .two-products-section {
+          width: 100%;
+          background: white;
+          margin: 0;
+          padding: 0;
+        }
+
+        .two-products-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100vw;
+          margin-left: calc(-50vw + 50%);
+          gap: 0;
+        }
+
+        .large-product-slot {
+          width: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-          .hero-video {
-            height: 60vh;
-          }
-          
-          .products-grid {
-            grid-template-columns: 1fr;
-            gap: 0;
-          }
-
-          .products-container {
+          .three-products-grid {
             grid-template-columns: 1fr;
           }
 
-          .product-image-large {
+          .two-products-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .product-slot {
             height: 80vh;
           }
+        }
+
+        @media (max-width: 1024px) {
+          .product-slot {
+            height: 90vh;
+          }
+        }
+
+        /* Ensure no spacing between sections */
+        .hero-section,
+        .three-products-section,
+        .two-products-section {
+          margin: 0;
+          padding: 0;
+          border: none;
         }
       `}</style>
     </>
