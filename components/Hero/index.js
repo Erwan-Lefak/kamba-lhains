@@ -14,8 +14,6 @@ const Hero = () => {
       <VideoHero
         videoSrc="/0629.mp4"
         posterSrc="/hero-poster.jpg"
-        title={t('hero.title')}
-        subtitle={t('hero.subtitle')}
       />
       
       {/* SEO Schema markup */}
