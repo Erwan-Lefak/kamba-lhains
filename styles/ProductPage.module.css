@@ -8,7 +8,7 @@
 
 .productContainer {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 55% 45%;
   min-height: 100vh;
   background: white;
   gap: 0;
@@ -137,13 +137,13 @@
 
 /* Product Info Section */
 .productInfoSection {
-  padding: 60px 80px;
+  padding: 60px 50px;
   background: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: auto;
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
 }
 
@@ -594,8 +594,8 @@
   }
   
   .productInfoSection {
-    padding: 40px 60px;
-    max-width: 600px;
+    padding: 40px 40px;
+    max-width: 500px;
   }
 
   .sizeGrid {
@@ -622,7 +622,7 @@
   }
 
   .productInfoSection {
-    padding: 30px 40px;
+    padding: 30px 30px;
     max-width: none;
   }
 
