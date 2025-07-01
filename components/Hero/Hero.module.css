@@ -148,6 +148,24 @@
 }
 
 /* Responsive adjustments */
+@media (min-width: 1920px) {
+  .hero {
+    height: 110vh;
+  }
+}
+
+@media (min-width: 2560px) {
+  .hero {
+    height: 120vh;
+  }
+}
+
+@media (min-width: 3440px) {
+  .hero {
+    height: 130vh;
+  }
+}
+
 @media (max-width: 1024px) {
   .hero {
     height: 90vh;
