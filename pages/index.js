@@ -58,7 +58,7 @@ export default function Home() {
       <style jsx>{`
         .main-content {
           font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
-          margin-top: 80px;
+          margin-top: 0px;
         }
 
 
@@ -100,6 +100,18 @@ export default function Home() {
           object-fit: cover;
           display: block;
           transition: transform 0.4s ease;
+        }
+
+        @media (min-width: 1440px) {
+          .product-image-large {
+            height: calc(120vh + 80px);
+          }
+        }
+
+        @media (min-width: 1920px) {
+          .product-image-large {
+            height: calc(140vh + 80px);
+          }
         }
 
         @media (max-width: 1024px) {
