@@ -121,6 +121,14 @@
   color: #000;
 }
 
+.navLinkActive {
+  color: #000 !important;
+}
+
+.navLinkActive::after {
+  width: 100% !important;
+}
+
 /* Actions Section */
 .actionsSection {
   display: flex;

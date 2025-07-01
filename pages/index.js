@@ -103,7 +103,7 @@ export default function Home() {
           height: calc(100vh + 80px);
           object-fit: cover;
           display: block;
-          transition: transform 0.4s ease;
+          transition: transform 0.3s ease;
         }
 
         @media (min-width: 1440px) {
@@ -137,7 +137,7 @@ export default function Home() {
         }
 
         .product-item:hover .product-image-large {
-          transform: scale(1.05);
+          transform: scale(1.02);
         }
 
         .product-overlay-large {
