@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useHeader } from '../../hooks/useHeader';
+import { useCart } from '../../contexts/CartContext';
 import styles from './Header.module.css';
 
 const UserActions = () => {
   const { currentLanguage, changeLanguage, t } = useLanguage();
   const { isLanguageOpen, toggleLanguage } = useHeader();
+  const { getTotalItems } = useCart();
 
   const languages = [
     { code: 'fr', label: 'FR' },
@@ -47,14 +49,14 @@ const UserActions = () => {
       </Link>
 
       {/* Cart Button */}
-      <button className={styles.actionButton} aria-label="Panier">
+      <Link href="/panier" className={styles.actionButton} aria-label="Panier">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <path d="M16 10a4 4 0 01-8 0"></path>
         </svg>
-        <span className={styles.cartCount}>0</span>
-      </button>
+        <span className={styles.cartCount}>{getTotalItems()}</span>
+      </Link>
     </div>
   );
 };

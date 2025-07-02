@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useCart } from '../../contexts/CartContext';
 import styles from './Header.module.css';
 
 const MobileMenu = ({ isOpen }) => {
   const { t } = useLanguage();
+  const { getTotalItems } = useCart();
   
   const mobileMenuItems = [
     { href: '/', label: t('navigation.home') },
     { href: '/boutique', label: t('navigation.shop') },
     { href: '/contact', label: t('navigation.contact') },
     { href: '/kambavers', label: t('navigation.kambavers') },
-    { href: '/connexion', label: t('navigation.connection') }
+    { href: '/connexion', label: t('navigation.connection') },
+    { href: '/panier', label: `Panier (${getTotalItems()})` }
   ];
 
   if (!isOpen) return null;

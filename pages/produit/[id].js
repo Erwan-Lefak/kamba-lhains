@@ -5,11 +5,13 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { products } from '../../data/products';
+import { useCart } from '../../contexts/CartContext';
 import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
   const router = useRouter();
   const { id } = router.query;
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -29,7 +31,13 @@ export default function ProductDetail() {
   }, [id]);
 
   const handleAddToCart = () => {
-    alert(`${product.name} ajouté à la liste d'attente !`);
+    if (!selectedSize || !selectedColor) {
+      alert('Veuillez sélectionner une taille et une couleur');
+      return;
+    }
+    
+    addToCart(product, selectedSize, selectedColor, 1);
+    alert(`${product.name} ajouté au panier !`);
   };
 
   const handleHeartClick = () => {
