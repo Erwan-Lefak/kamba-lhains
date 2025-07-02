@@ -35,26 +35,21 @@ export default function Contact() {
 
       <main className="contact-page">
         <div className="container">
-          <div className="contact-header">
-            <h1>Contact</h1>
-            <p>Nous sommes à votre écoute</p>
-          </div>
-
           <div className="contact-content">
             <div className="contact-info">
               <div className="info-block">
                 <h3>Email</h3>
-                <p>contact@kamba-lhains.com</p>
+                <p>info@kambalahains.net</p>
               </div>
 
               <div className="info-block">
                 <h3>Téléphone</h3>
-                <p>+33 1 23 45 67 89</p>
+                <p>+33 1 58 30 03 84</p>
               </div>
 
               <div className="info-block">
-                <h3>Showroom</h3>
-                <p>123 Rue de la Mode<br />75001 Paris</p>
+                <h3>Adresse</h3>
+                <p>21 avenue George V<br />75008 Paris</p>
               </div>
             </div>
 
@@ -117,30 +112,12 @@ export default function Contact() {
           padding: 0 20px;
         }
 
-        .contact-header {
-          text-align: center;
-          margin-bottom: 80px;
-        }
-
-        .contact-header h1 {
-          font-size: 3.5rem;
-          font-weight: 200;
-          color: #2c2c2c;
-          margin-bottom: 16px;
-          letter-spacing: 1px;
-        }
-
-        .contact-header p {
-          font-size: 1.1rem;
-          color: #888;
-          font-weight: 300;
-        }
-
         .contact-content {
           display: grid;
           grid-template-columns: 1fr 1.5fr;
           gap: 80px;
           align-items: start;
+          margin-top: 40px;
         }
 
         .contact-info {
@@ -236,17 +213,10 @@ export default function Contact() {
             padding-top: 100px;
           }
 
-          .contact-header h1 {
-            font-size: 2.5rem;
-          }
-
-          .contact-header {
-            margin-bottom: 60px;
-          }
-
           .contact-content {
             grid-template-columns: 1fr;
             gap: 50px;
+            margin-top: 20px;
           }
 
           .contact-form-container {
@@ -259,10 +229,6 @@ export default function Contact() {
         }
 
         @media (max-width: 480px) {
-          .contact-header h1 {
-            font-size: 2rem;
-          }
-
           .contact-form-container {
             padding: 30px 20px;
           }
