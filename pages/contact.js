@@ -14,26 +14,85 @@ export default function Contact() {
     message: ''
   });
 
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched({
+      ...touched,
+      [name]: true
+    });
+    validateField(name);
+  };
+
+  const validateField = (fieldName) => {
+    const newErrors = { ...errors };
+    
+    if (fieldName === 'firstName' && !formData.firstName.trim()) {
+      newErrors.firstName = 'Ce champ est requis';
+    }
+    if (fieldName === 'lastName' && !formData.lastName.trim()) {
+      newErrors.lastName = 'Ce champ est requis';
+    }
+    if (fieldName === 'email' && !formData.email.trim()) {
+      newErrors.email = 'Ce champ est requis';
+    }
+    
+    setErrors(newErrors);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      orderType: '',
-      category: '',
-      message: ''
+    
+    // Mark all required fields as touched
+    const requiredFields = ['firstName', 'lastName', 'email'];
+    const newTouched = {};
+    requiredFields.forEach(field => {
+      newTouched[field] = true;
     });
+    setTouched(newTouched);
+    
+    // Validate all required fields
+    const newErrors = {};
+    if (!formData.firstName.trim()) newErrors.firstName = 'Ce champ est requis';
+    if (!formData.lastName.trim()) newErrors.lastName = 'Ce champ est requis';
+    if (!formData.email.trim()) newErrors.email = 'Ce champ est requis';
+    
+    setErrors(newErrors);
+    
+    // If no errors, submit the form
+    if (Object.keys(newErrors).length === 0) {
+      console.log('Form submitted:', formData);
+      alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        orderType: '',
+        category: '',
+        message: ''
+      });
+      setErrors({});
+      setTouched({});
+    }
   };
 
   return (
@@ -49,7 +108,6 @@ export default function Contact() {
         <div className="container">
           <div className="contact-header">
             <h1>Contactez-nous en utilisant le formulaire ci-dessous</h1>
-            <p className="required-text">Du champ est requis</p>
           </div>
 
           <form onSubmit={handleSubmit} className="contact-form">
@@ -61,8 +119,12 @@ export default function Contact() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
+                  onBlur={handleBlur}
+                  className={errors.firstName && touched.firstName ? 'error' : ''}
                 />
+                {errors.firstName && touched.firstName && (
+                  <span className="error-text">{errors.firstName}</span>
+                )}
               </div>
               <div className="form-group">
                 <label>Nom *</label>
@@ -71,21 +133,29 @@ export default function Contact() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  required
+                  onBlur={handleBlur}
+                  className={errors.lastName && touched.lastName ? 'error' : ''}
                 />
+                {errors.lastName && touched.lastName && (
+                  <span className="error-text">{errors.lastName}</span>
+                )}
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group full-width">
-                <label>Ce champ est requis</label>
+                <label>Email *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  onBlur={handleBlur}
+                  className={errors.email && touched.email ? 'error' : ''}
                 />
+                {errors.email && touched.email && (
+                  <span className="error-text">{errors.email}</span>
+                )}
               </div>
             </div>
 
@@ -198,14 +268,8 @@ export default function Contact() {
           font-size: 1.1rem;
           font-weight: 400;
           color: #333;
-          margin-bottom: 8px;
+          margin-bottom: 40px;
           line-height: 1.4;
-        }
-
-        .required-text {
-          font-size: 0.85rem;
-          color: #e74c3c;
-          margin: 0;
         }
 
         .contact-form {
@@ -237,8 +301,7 @@ export default function Contact() {
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group select {
           width: 100%;
           padding: 12px 0;
           border: none;
@@ -251,11 +314,45 @@ export default function Contact() {
           appearance: none;
         }
 
+        .form-group textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ddd;
+          background: transparent;
+          font-size: 1rem;
+          color: #333;
+          font-family: inherit;
+          transition: border-color 0.3s ease;
+          resize: vertical;
+          min-height: 120px;
+        }
+
         .form-group input:focus,
-        .form-group select:focus,
+        .form-group select:focus {
+          outline: none;
+          border-bottom-color: #333;
+        }
+
         .form-group textarea:focus {
           outline: none;
+          border-color: #333;
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+          border-color: #e74c3c;
+        }
+
+        .form-group input.error {
           border-bottom-color: #e74c3c;
+        }
+
+        .error-text {
+          display: block;
+          font-size: 0.8rem;
+          color: #e74c3c;
+          margin-top: 5px;
         }
 
         .form-group input::placeholder,
@@ -277,11 +374,6 @@ export default function Contact() {
           background: none;
         }
 
-        .form-group textarea {
-          resize: vertical;
-          min-height: 120px;
-          font-family: inherit;
-        }
 
         .char-count {
           font-size: 0.8rem;
