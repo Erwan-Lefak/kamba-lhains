@@ -5,6 +5,7 @@ export interface Product {
   image: string;
   description: string[];
   category: string;
+  subCategory?: string;
   colors: string[];
   sizes: string[];
   inStock: boolean;

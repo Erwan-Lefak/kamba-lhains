@@ -14,6 +14,7 @@ export const products: Product[] = [
       "• Doublure en soie naturelle"
     ],
     category: "femme",
+    subCategory: "aube",
     colors: ["Noir", "Kaki"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
@@ -32,6 +33,7 @@ export const products: Product[] = [
       "• Fabrication artisanale"
     ],
     category: "femme",
+    subCategory: "zenith",
     colors: ["Beige", "Terracotta"],
     sizes: ["XS", "S", "M", "L"],
     inStock: true,
@@ -50,6 +52,7 @@ export const products: Product[] = [
       "• Design intemporel"
     ],
     category: "femme",
+    subCategory: "crepuscule",
     colors: ["Blanc", "Écru"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
@@ -68,6 +71,7 @@ export const products: Product[] = [
       "• Repassage facile"
     ],
     category: "homme",
+    subCategory: "aube",
     colors: ["Blanc", "Bleu clair"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     inStock: true,
@@ -86,6 +90,7 @@ export const products: Product[] = [
       "• Fabrication européenne"
     ],
     category: "homme",
+    subCategory: "zenith",
     colors: ["Navy", "Charcoal"],
     sizes: ["46", "48", "50", "52", "54"],
     inStock: true,
@@ -104,6 +109,7 @@ export const products: Product[] = [
       "• Idéal mi-saison"
     ],
     category: "homme",
+    subCategory: "crepuscule",
     colors: ["Beige", "Navy"],
     sizes: ["46", "48", "50", "52"],
     inStock: true,
@@ -122,6 +128,7 @@ export const products: Product[] = [
       "• Style contemporain"
     ],
     category: "homme",
+    subCategory: "aube",
     colors: ["Blanc", "Bleu"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
@@ -140,6 +147,7 @@ export const products: Product[] = [
       "• Parfaite pour toutes saisons"
     ],
     category: "femme",
+    subCategory: "zenith",
     colors: ["Beige", "Kaki"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,

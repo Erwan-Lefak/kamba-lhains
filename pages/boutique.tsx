@@ -2,31 +2,33 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ProductCard from '../components/ProductCard';
 import { products, categories } from '../data/products';
 import { Product } from '../types';
+import Image from 'next/image';
 
 export default function Boutique() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<string>('name');
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string>('all');
 
-  const filteredProducts: Product[] = selectedCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === selectedCategory);
-
-  const sortedProducts: Product[] = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case 'price-low':
-        return parseFloat(a.price.replace(/[^0-9,]/g, '').replace(',', '.')) - 
-               parseFloat(b.price.replace(/[^0-9,]/g, '').replace(',', '.'));
-      case 'price-high':
-        return parseFloat(b.price.replace(/[^0-9,]/g, '').replace(',', '.')) - 
-               parseFloat(a.price.replace(/[^0-9,]/g, '').replace(',', '.'));
-      case 'name':
-      default:
-        return a.name.localeCompare(b.name);
+  const filteredProducts: Product[] = products.filter(product => {
+    if (selectedCategory === 'all') return true;
+    if (selectedCategory === 'masculin' && product.category === 'homme') {
+      if (selectedSubCategory === 'all') return true;
+      return product.subCategory === selectedSubCategory;
     }
+    if (selectedCategory === 'feminin' && product.category === 'femme') {
+      if (selectedSubCategory === 'all') return true;
+      return product.subCategory === selectedSubCategory;
+    }
+    return false;
   });
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setSelectedSubCategory('all');
+  };
+
+  const subCategories = ['all', 'aube', 'zenith', 'crepuscule'];
 
   return (
     <>
@@ -38,51 +40,70 @@ export default function Boutique() {
       <Header />
 
       <main className="boutique-page">
-        <div className="hero-section">
-          <div className="hero-content">
-            <h1>BOUTIQUE</h1>
-            <p>Découvrez notre collection complète</p>
-          </div>
-        </div>
-
         <div className="container">
-          <div className="filters-section">
-            <div className="category-filters">
-              <div className="filter-buttons">
-                {categories.map(category => (
-                  <button
-                    key={category.id}
-                    className={`filter-btn ${selectedCategory === category.id ? 'active' : ''}`}
-                    onClick={() => setSelectedCategory(category.id)}
-                  >
-                    {category.name.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="sort-section">
-              <select 
-                value={sortBy} 
-                onChange={(e) => setSortBy(e.target.value)}
-                className="sort-select"
-              >
-                <option value="name">Trier par nom</option>
-                <option value="price-low">Prix croissant</option>
-                <option value="price-high">Prix décroissant</option>
-              </select>
-            </div>
+          <h1 className="page-title">BOUTIQUE</h1>
+          
+          <div className="categories-navigation">
+            <button
+              className={`category-btn ${selectedCategory === 'all' ? 'active' : ''}`}
+              onClick={() => handleCategoryChange('all')}
+            >
+              TOUS
+            </button>
+            <button
+              className={`category-btn ${selectedCategory === 'masculin' ? 'active' : ''}`}
+              onClick={() => handleCategoryChange('masculin')}
+            >
+              MASCULIN
+            </button>
+            <button
+              className={`category-btn ${selectedCategory === 'feminin' ? 'active' : ''}`}
+              onClick={() => handleCategoryChange('feminin')}
+            >
+              FÉMININ
+            </button>
           </div>
 
-          <div className="products-count">
-            <p>{sortedProducts.length} produit{sortedProducts.length > 1 ? 's' : ''}</p>
-          </div>
+          {(selectedCategory === 'masculin' || selectedCategory === 'feminin') && (
+            <div className="subcategories-navigation">
+              {subCategories.map(subCat => (
+                <button
+                  key={subCat}
+                  className={`subcategory-btn ${selectedSubCategory === subCat ? 'active' : ''}`}
+                  onClick={() => setSelectedSubCategory(subCat)}
+                >
+                  {subCat === 'all' ? 'TOUS' : subCat.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="products-grid">
-            {sortedProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+            {filteredProducts.map(product => (
+              <div key={product.id} className="product-card">
+                <div className="product-image">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={400}
+                    height={500}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div className="product-info">
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-price">{product.price}</p>
+                </div>
+              </div>
             ))}
           </div>
+
+          {filteredProducts.length === 0 && (
+            <div className="no-products">
+              <p>Aucun produit trouvé dans cette catégorie.</p>
+            </div>
+          )}
         </div>
       </main>
 
@@ -91,28 +112,9 @@ export default function Boutique() {
       <style jsx>{`
         .boutique-page {
           padding-top: 80px;
+          min-height: 100vh;
           font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        .hero-section {
-          background: #f5f5f5;
-          padding: 60px 0;
-          text-align: center;
-        }
-
-        .hero-content h1 {
-          font-size: 3rem;
-          margin-bottom: 1rem;
-          color: #000;
-          font-weight: 300;
-          letter-spacing: 2px;
-        }
-
-        .hero-content p {
-          font-size: 1.2rem;
-          color: #666;
-          max-width: 600px;
-          margin: 0 auto;
+          background: #fafafa;
         }
 
         .container {
@@ -121,96 +123,161 @@ export default function Boutique() {
           padding: 60px 20px;
         }
 
-        .filters-section {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 40px;
-          padding-bottom: 20px;
-          border-bottom: 1px solid #eee;
-        }
-
-        .filter-buttons {
-          display: flex;
-          gap: 20px;
-          flex-wrap: wrap;
-        }
-
-        .filter-btn {
-          padding: 12px 24px;
-          border: 1px solid #ddd;
-          background: white;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 500;
-          letter-spacing: 1px;
-          transition: all 0.3s;
-          color: #666;
-        }
-
-        .filter-btn:hover {
-          border-color: #000;
+        .page-title {
+          text-align: center;
+          font-size: 2.5rem;
+          font-weight: 300;
+          letter-spacing: 3px;
+          margin-bottom: 60px;
           color: #000;
         }
 
-        .filter-btn.active {
-          background: #000;
-          color: white;
-          border-color: #000;
+        .categories-navigation {
+          display: flex;
+          justify-content: center;
+          gap: 40px;
+          margin-bottom: 40px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid #e0e0e0;
         }
 
-        .sort-select {
-          padding: 12px 16px;
-          border: 1px solid #ddd;
+        .category-btn {
+          background: none;
+          border: none;
           font-size: 14px;
-          cursor: pointer;
-          background: white;
-          color: #666;
-        }
-
-        .sort-select:focus {
-          outline: none;
-          border-color: #000;
-        }
-
-        .products-count {
-          margin-bottom: 30px;
-          color: #666;
-          font-size: 14px;
-          text-transform: uppercase;
+          font-weight: 500;
           letter-spacing: 1px;
+          padding: 12px 0;
+          cursor: pointer;
+          color: #999;
+          transition: color 0.3s ease;
+          text-transform: uppercase;
+        }
+
+        .category-btn:hover {
+          color: #000;
+        }
+
+        .category-btn.active {
+          color: #000;
+          border-bottom: 2px solid #000;
+        }
+
+        .subcategories-navigation {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          margin-bottom: 50px;
+        }
+
+        .subcategory-btn {
+          background: none;
+          border: none;
+          font-size: 12px;
+          font-weight: 400;
+          letter-spacing: 1px;
+          padding: 8px 16px;
+          cursor: pointer;
+          color: #666;
+          transition: all 0.3s ease;
+          text-transform: uppercase;
+          border: 1px solid transparent;
+        }
+
+        .subcategory-btn:hover {
+          color: #000;
+          border-color: #ddd;
+        }
+
+        .subcategory-btn.active {
+          color: #000;
+          border-color: #000;
         }
 
         .products-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 40px;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 60px;
+          margin-top: 60px;
+        }
+
+        .product-card {
+          background: white;
+          transition: transform 0.3s ease;
+          cursor: pointer;
+        }
+
+        .product-card:hover {
+          transform: translateY(-5px);
+        }
+
+        .product-image {
+          position: relative;
+          width: 100%;
+          height: 450px;
+          overflow: hidden;
+          background: #f5f5f5;
+        }
+
+        .product-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .product-info {
+          padding: 20px 0;
+          text-align: center;
+        }
+
+        .product-name {
+          font-size: 14px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          margin-bottom: 8px;
+          color: #000;
+          text-transform: uppercase;
+        }
+
+        .product-price {
+          font-size: 14px;
+          color: #666;
+          margin: 0;
+        }
+
+        .no-products {
+          text-align: center;
+          padding: 80px 20px;
+          color: #999;
         }
 
         @media (max-width: 768px) {
-          .filters-section {
-            flex-direction: column;
+          .container {
+            padding: 40px 15px;
+          }
+
+          .page-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+          }
+
+          .categories-navigation {
             gap: 20px;
-            align-items: stretch;
+            flex-wrap: wrap;
           }
 
-          .filter-buttons {
-            justify-content: center;
+          .subcategories-navigation {
             gap: 15px;
-          }
-
-          .filter-btn {
-            padding: 10px 20px;
-            font-size: 12px;
+            flex-wrap: wrap;
           }
 
           .products-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
           }
 
-          .hero-content h1 {
-            font-size: 2rem;
+          .product-image {
+            height: 350px;
           }
         }
 
@@ -219,13 +286,16 @@ export default function Boutique() {
             grid-template-columns: 1fr;
           }
 
-          .filter-buttons {
+          .categories-navigation {
             flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            gap: 15px;
           }
 
-          .filter-btn {
-            width: 100%;
+          .subcategories-navigation {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
           }
         }
       `}</style>
