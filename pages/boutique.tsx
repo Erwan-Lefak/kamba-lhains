@@ -4,16 +4,17 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { products, categories } from '../data/products';
+import { Product } from '../types';
 
 export default function Boutique() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sortBy, setSortBy] = useState('name');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<string>('name');
 
-  const filteredProducts = selectedCategory === 'all' 
+  const filteredProducts: Product[] = selectedCategory === 'all' 
     ? products 
     : products.filter(product => product.category === selectedCategory);
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
+  const sortedProducts: Product[] = [...filteredProducts].sort((a, b) => {
     switch (sortBy) {
       case 'price-low':
         return parseFloat(a.price.replace(/[^0-9,]/g, '').replace(',', '.')) - 
