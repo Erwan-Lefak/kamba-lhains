@@ -1,4 +1,6 @@
-export const products = [
+import { Product } from '../types';
+
+export const products: Product[] = [
   {
     id: 1,
     name: "BOMBERS ITOUA",
@@ -13,7 +15,9 @@ export const products = [
     ],
     category: "femme",
     colors: ["Noir", "Kaki"],
-    sizes: ["S", "M", "L", "XL"]
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: true
   },
   {
     id: 2,
@@ -29,7 +33,9 @@ export const products = [
     ],
     category: "femme",
     colors: ["Beige", "Terracotta"],
-    sizes: ["XS", "S", "M", "L"]
+    sizes: ["XS", "S", "M", "L"],
+    inStock: true,
+    featured: true
   },
   {
     id: 3,
@@ -45,7 +51,9 @@ export const products = [
     ],
     category: "femme",
     colors: ["Blanc", "Écru"],
-    sizes: ["S", "M", "L", "XL"]
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: true
   },
   {
     id: 4,
@@ -61,7 +69,9 @@ export const products = [
     ],
     category: "homme",
     colors: ["Blanc", "Bleu clair"],
-    sizes: ["S", "M", "L", "XL", "XXL"]
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    featured: false
   },
   {
     id: 5,
@@ -77,7 +87,9 @@ export const products = [
     ],
     category: "homme",
     colors: ["Navy", "Charcoal"],
-    sizes: ["46", "48", "50", "52", "54"]
+    sizes: ["46", "48", "50", "52", "54"],
+    inStock: true,
+    featured: false
   },
   {
     id: 6,
@@ -93,7 +105,9 @@ export const products = [
     ],
     category: "homme",
     colors: ["Beige", "Navy"],
-    sizes: ["46", "48", "50", "52"]
+    sizes: ["46", "48", "50", "52"],
+    inStock: true,
+    featured: false
   },
   {
     id: 7,
@@ -109,7 +123,9 @@ export const products = [
     ],
     category: "homme",
     colors: ["Blanc", "Bleu"],
-    sizes: ["S", "M", "L", "XL"]
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
   },
   {
     id: 8,
@@ -125,7 +141,9 @@ export const products = [
     ],
     category: "femme",
     colors: ["Beige", "Kaki"],
-    sizes: ["S", "M", "L", "XL"]
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
   }
 ];
 
@@ -137,23 +155,4 @@ export const categories = [
   { id: 'collections', name: 'Collections', slug: 'collections' }
 ];
 
-export const featuredProducts = [
-  {
-    id: 1,
-    name: "BOMBERS ITOUA",
-    price: "1090,00 €",
-    image: "/bombers-itoua.png"
-  },
-  {
-    id: 2,
-    name: "JUPE BINË", 
-    price: "620,00 €",
-    image: "/jupe-bine.png"
-  },
-  {
-    id: 3,
-    name: "VESTE JANÉ",
-    price: "780,00 €", 
-    image: "/veste-jane.png"
-  }
-];
+export const featuredProducts: Product[] = products.filter(product => product.featured);

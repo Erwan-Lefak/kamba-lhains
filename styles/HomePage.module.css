@@ -1,0 +1,89 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+}
+
+/* Hero Section */
+.heroSection {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Three Products Section */
+.threeProductsSection {
+  width: 100%;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+.threeProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  gap: 0;
+}
+
+.productSlot {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+/* Two Products Section */
+.twoProductsSection {
+  width: 100%;
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+.twoProductsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  gap: 0;
+}
+
+.largeProductSlot {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .threeProductsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .twoProductsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .productSlot {
+    height: 80vh;
+  }
+}
+
+@media (max-width: 1024px) {
+  .productSlot {
+    height: 90vh;
+  }
+}
+
+/* Ensure no spacing between sections */
+.heroSection,
+.threeProductsSection,
+.twoProductsSection {
+  margin: 0;
+  padding: 0;
+  border: none;
+}

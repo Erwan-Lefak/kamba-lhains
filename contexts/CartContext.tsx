@@ -1,9 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from 'react';
+import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import { CartContextType, CartItem, Product, CartAction, CartState } from '../types';
 
-const CartContext = createContext();
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 // Cart reducer pour gérer les actions du panier
-const cartReducer = (state, action) => {
+const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_TO_CART':
       const existingItem = state.items.find(
@@ -63,12 +64,16 @@ const cartReducer = (state, action) => {
   }
 };
 
-const initialState = {
+const initialState: CartState = {
   items: [],
   isOpen: false
 };
 
-export const CartProvider = ({ children }) => {
+interface CartProviderProps {
+  children: ReactNode;
+}
+
+export const CartProvider = ({ children }: CartProviderProps) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   // Persistence dans localStorage
@@ -84,7 +89,7 @@ export const CartProvider = ({ children }) => {
   }, [state.items]);
 
   // Actions du panier
-  const addToCart = (product, selectedSize, selectedColor, quantity = 1) => {
+  const addToCart = (product: Product, selectedSize: string, selectedColor: string, quantity: number = 1) => {
     const cartItem = {
       cartId: `${product.id}-${selectedSize}-${selectedColor}-${Date.now()}`,
       id: product.id,
@@ -100,11 +105,11 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'ADD_TO_CART', payload: cartItem });
   };
 
-  const removeFromCart = (cartId) => {
+  const removeFromCart = (cartId: string) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: cartId });
   };
 
-  const updateQuantity = (cartId, quantity) => {
+  const updateQuantity = (cartId: string, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(cartId);
     } else {
@@ -125,7 +130,7 @@ export const CartProvider = ({ children }) => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const getTotalPrice = () => {
+  const getTotalPrice = (): number => {
     return state.items.reduce((total, item) => {
       const price = parseFloat(item.price.replace(/[^\d,]/g, '').replace(',', '.'));
       return total + (price * item.quantity);
@@ -159,7 +164,7 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export const useCart = () => {
+export const useCart = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) {
     throw new Error('useCart must be used within a CartProvider');
