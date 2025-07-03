@@ -189,7 +189,7 @@ export default function Kambavers() {
 
       <style jsx>{`
         .kambavers-page {
-          padding-top: 80px;
+          padding-top: 0;
           min-height: 100vh;
           position: relative;
           background: #fafafa;
@@ -198,15 +198,14 @@ export default function Kambavers() {
 
         .sliding-menu {
           position: fixed;
-          top: 80px;
+          top: 79px;
           left: -300px;
           width: 300px;
-          height: calc(100vh - 80px);
+          height: calc(100vh - 79px);
           background: white;
           box-shadow: 2px 0 10px rgba(0,0,0,0.1);
           transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          z-index: 1000;
-          border-right: 1px solid #e0e0e0;
+          z-index: 1001;
         }
 
         .sliding-menu.open {
@@ -249,6 +248,7 @@ export default function Kambavers() {
 
         .content-area {
           margin-left: 0;
+          margin-top: 80px;
           transition: margin-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           min-height: calc(100vh - 80px);
         }
