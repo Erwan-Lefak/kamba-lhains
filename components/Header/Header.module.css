@@ -146,6 +146,8 @@
   position: relative;
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
+  color: #000000;
+  transition: color 0.3s ease;
 }
 
 .actionButton:focus,
@@ -155,6 +157,7 @@
   border: none !important;
   box-shadow: none !important;
   background: none !important;
+  color: #666;
 }
 
 .languageSelector {
