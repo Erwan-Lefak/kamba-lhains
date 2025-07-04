@@ -71,8 +71,6 @@ const MobileMenu = ({ isOpen }) => {
     }
   ];
 
-  if (!isOpen) return null;
-
   return (
     <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}>
       {/* Search Bar */}
