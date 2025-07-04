@@ -7,13 +7,16 @@ const MobileMenu = ({ isOpen }) => {
   const { t } = useLanguage();
   const { getTotalItems } = useCart();
   
-  const mobileMenuItems = [
+  const mainMenuItems = [
     { href: '/', label: t('navigation.home') },
     { href: '/boutique', label: t('navigation.shop') },
     { href: '/contact', label: t('navigation.contact') },
-    { href: '/kambavers', label: t('navigation.kambavers') },
-    { href: '/connexion', label: t('navigation.connection') },
-    { href: '/panier', label: `Panier (${getTotalItems()})` }
+    { href: '/kambavers', label: t('navigation.kambavers') }
+  ];
+
+  const bottomMenuItems = [
+    { href: '/panier', label: 'Panier', count: getTotalItems() },
+    { href: '/connexion', label: 'Compte' }
   ];
 
   if (!isOpen) return null;
@@ -21,7 +24,7 @@ const MobileMenu = ({ isOpen }) => {
   return (
     <div className={styles.mobileMenu}>
       <ul className={styles.mobileNavigation}>
-        {mobileMenuItems.map((item) => (
+        {mainMenuItems.map((item) => (
           <li key={item.href} className={styles.mobileNavItem}>
             <Link href={item.href} className={styles.mobileNavLink}>
               {item.label}
@@ -29,6 +32,19 @@ const MobileMenu = ({ isOpen }) => {
           </li>
         ))}
       </ul>
+      
+      <div className={styles.mobileBottomSection}>
+        {bottomMenuItems.map((item) => (
+          <div key={item.href} className={styles.mobileBottomItem}>
+            <Link href={item.href} className={styles.mobileBottomLink}>
+              <span>{item.label}</span>
+              {item.count !== undefined && item.count > 0 && (
+                <span>({item.count})</span>
+              )}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
