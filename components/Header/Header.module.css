@@ -36,6 +36,13 @@
   width: 100%;
 }
 
+.logoSectionMobile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -242,6 +249,27 @@
 }
 
 /* Mobile Menu */
+.mobileActions {
+  display: none;
+  align-items: center;
+  gap: 15px;
+}
+
+.mobileActionButton {
+  background: none;
+  border: none;
+  color: #000000;
+  cursor: pointer;
+  outline: none !important;
+  padding: 8px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.mobileActionButton:hover {
+  color: #666;
+}
+
 .mobileMenuButton {
   display: none;
   background: none;
@@ -284,8 +312,8 @@
   color: #000;
   font-weight: 300;
   font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
 
@@ -312,8 +340,8 @@
   color: #000;
   font-weight: 400;
   font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -344,6 +372,40 @@
   letter-spacing: 0;
 }
 
+.mobileLanguageSelector {
+  padding: 15px 30px;
+  border-top: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+.mobileLanguageItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.mobileLanguageItem:hover {
+  opacity: 0.7;
+}
+
+.mobileLanguageFlag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  background-size: cover;
+  background-position: center;
+}
+
+.mobileLanguageText {
+  font-size: 14px;
+  color: #000;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .navigationSection {
@@ -365,12 +427,22 @@
     display: none;
   }
   
+  .mobileActions {
+    display: flex;
+  }
+  
   .mobileMenuButton {
     display: block;
   }
   
   .headerContent {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto 1fr auto;
+    justify-content: space-between;
+  }
+  
+  .logoSection {
+    justify-content: flex-start;
+    width: auto;
   }
 }
 

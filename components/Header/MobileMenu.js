@@ -4,8 +4,14 @@ import { useCart } from '../../contexts/CartContext';
 import styles from './Header.module.css';
 
 const MobileMenu = ({ isOpen }) => {
-  const { t } = useLanguage();
+  const { t, currentLanguage, changeLanguage } = useLanguage();
   const { getTotalItems } = useCart();
+
+  const languages = [
+    { code: 'fr', label: 'France Métropolitaine', flag: '🇫🇷' },
+    { code: 'en', label: 'United Kingdom', flag: '🇬🇧' },
+    { code: 'ko', label: '대한민국', flag: '🇰🇷' }
+  ];
   
   const mainMenuItems = [
     { href: '/', label: t('navigation.home') },
@@ -65,6 +71,19 @@ const MobileMenu = ({ isOpen }) => {
               </div>
               <span>{item.label}</span>
             </Link>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.mobileLanguageSelector}>
+        {languages.map((lang) => (
+          <div 
+            key={lang.code}
+            className={styles.mobileLanguageItem}
+            onClick={() => changeLanguage(lang.code)}
+          >
+            <span className={styles.mobileLanguageFlag}>{lang.flag}</span>
+            <span className={styles.mobileLanguageText}>{lang.label}</span>
           </div>
         ))}
       </div>
