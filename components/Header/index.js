@@ -19,7 +19,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button 
             className={styles.mobileMenuButton}
-            onClick={toggleMenu}
+            onClick={(e) => toggleMenu(e)}
             aria-label="Menu"
           >
             ☰

@@ -19,6 +19,12 @@ export const useHeader = () => {
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Check if the click is on the mobile menu button or inside the mobile menu
+      if (event.target.closest('.mobileMenuButton') || 
+          event.target.closest('.mobileMenu')) {
+        return;
+      }
+      
       if (isLanguageOpen || isMenuOpen) {
         setIsLanguageOpen(false);
         setIsMenuOpen(false);
@@ -29,7 +35,8 @@ export const useHeader = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isLanguageOpen, isMenuOpen]);
 
-  const toggleMenu = () => {
+  const toggleMenu = (event) => {
+    event?.stopPropagation();
     setIsMenuOpen(!isMenuOpen);
     setIsLanguageOpen(false);
   };
