@@ -316,10 +316,49 @@
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 15px;
+}
+
+.mobileBottomIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileCartCount {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #000;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .navigationSection {
+    display: none;
+  }
+  
+  .mobileMenuButton {
+    display: block;
+  }
+  
+  .headerContent {
+    grid-template-columns: 1fr 1fr auto;
+  }
+}
+
 @media (max-width: 768px) {
   .navigationSection,
   .actionsSection {

@@ -15,8 +15,28 @@ const MobileMenu = ({ isOpen }) => {
   ];
 
   const bottomMenuItems = [
-    { href: '/panier', label: 'Panier', count: getTotalItems() },
-    { href: '/connexion', label: 'Compte' }
+    { 
+      href: '/panier', 
+      label: 'Panier', 
+      count: getTotalItems(),
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 01-8 0"></path>
+        </svg>
+      )
+    },
+    { 
+      href: '/connexion', 
+      label: 'Compte',
+      icon: (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      )
+    }
   ];
 
   if (!isOpen) return null;
@@ -37,10 +57,13 @@ const MobileMenu = ({ isOpen }) => {
         {bottomMenuItems.map((item) => (
           <div key={item.href} className={styles.mobileBottomItem}>
             <Link href={item.href} className={styles.mobileBottomLink}>
+              <div className={styles.mobileBottomIcon}>
+                {item.icon}
+                {item.count !== undefined && item.count > 0 && (
+                  <span className={styles.mobileCartCount}>{item.count}</span>
+                )}
+              </div>
               <span>{item.label}</span>
-              {item.count !== undefined && item.count > 0 && (
-                <span>({item.count})</span>
-              )}
             </Link>
           </div>
         ))}
