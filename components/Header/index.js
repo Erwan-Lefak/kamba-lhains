@@ -12,7 +12,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={`${styles.headerContent} ${isMenuOpen ? styles.menuOpen : ''}`}>
-          {!isMenuOpen && <Logo />}
+          <Logo />
           <Navigation />
           <UserActions />
           
@@ -41,7 +41,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button 
-              className={styles.mobileMenuButton}
+              className={`${styles.mobileMenuButton} ${isMenuOpen ? styles.closeButton : ''}`}
               onClick={(e) => toggleMenu(e)}
               aria-label="Menu"
             >
