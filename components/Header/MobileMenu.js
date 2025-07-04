@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useCart } from '../../contexts/CartContext';
 import styles from './Header.module.css';
@@ -8,6 +8,23 @@ const MobileMenu = ({ isOpen }) => {
   const { t, currentLanguage, changeLanguage } = useLanguage();
   const { getTotalItems } = useCart();
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isLanguageDropdownOpen && !event.target.closest('[data-language-dropdown]')) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    if (isLanguageDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isLanguageDropdownOpen]);
 
   const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -87,6 +104,7 @@ const MobileMenu = ({ isOpen }) => {
         <div className={styles.mobileBottomItem}>
           <div 
             className={styles.mobileLanguageDropdown}
+            data-language-dropdown
             onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
           >
             <div className={styles.mobileLanguageSelected}>
