@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { products, categories } from '../data/products';
+import ProductCard from '../components/ProductCard';
+import { products } from '../data/products';
 import { Product } from '../types';
-import Image from 'next/image';
 
 export default function Boutique() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -80,21 +80,8 @@ export default function Boutique() {
 
           <div className="products-grid">
             {filteredProducts.map(product => (
-              <div key={product.id} className="product-card">
-                <div className="product-image">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={400}
-                    height={500}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-                <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-price">{product.price}</p>
-                </div>
+              <div key={product.id} className="product-item">
+                <ProductCard product={product} />
               </div>
             ))}
           </div>
@@ -118,7 +105,7 @@ export default function Boutique() {
         }
 
         .container {
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
           padding: 60px 20px;
         }
@@ -196,59 +183,30 @@ export default function Boutique() {
 
         .products-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 60px;
+          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+          gap: 40px;
           margin-top: 60px;
         }
 
-        .product-card {
-          background: white;
-          transition: transform 0.3s ease;
-          cursor: pointer;
-        }
-
-        .product-card:hover {
-          transform: translateY(-5px);
-        }
-
-        .product-image {
+        .product-item {
+          aspect-ratio: 3/4;
+          width: 100%;
           position: relative;
-          width: 100%;
-          height: 450px;
           overflow: hidden;
-          background: #f5f5f5;
-        }
-
-        .product-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .product-info {
-          padding: 20px 0;
-          text-align: center;
-        }
-
-        .product-name {
-          font-size: 14px;
-          font-weight: 500;
-          letter-spacing: 1px;
-          margin-bottom: 8px;
-          color: #000;
-          text-transform: uppercase;
-        }
-
-        .product-price {
-          font-size: 14px;
-          color: #666;
-          margin: 0;
+          background: #fff;
         }
 
         .no-products {
           text-align: center;
           padding: 80px 20px;
           color: #999;
+        }
+
+        @media (max-width: 1200px) {
+          .products-grid {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+          }
         }
 
         @media (max-width: 768px) {
@@ -273,17 +231,22 @@ export default function Boutique() {
 
           .products-grid {
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            gap: 25px;
           }
 
-          .product-image {
-            height: 350px;
+          .product-item {
+            aspect-ratio: 3/4;
           }
         }
 
         @media (max-width: 480px) {
           .products-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+          }
+
+          .product-item {
+            aspect-ratio: 3/4;
           }
 
           .categories-navigation {
@@ -296,6 +259,12 @@ export default function Boutique() {
             flex-direction: column;
             align-items: center;
             gap: 10px;
+          }
+        }
+
+        @media (max-width: 320px) {
+          .products-grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
