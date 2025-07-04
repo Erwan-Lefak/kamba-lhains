@@ -82,38 +82,39 @@ const MobileMenu = ({ isOpen }) => {
             </Link>
           </div>
         ))}
-      </div>
-
-      <div className={styles.mobileLanguageSelector}>
-        <div 
-          className={styles.mobileLanguageDropdown}
-          onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-        >
-          <div className={styles.mobileLanguageSelected}>
-            <span className={styles.mobileLanguageFlag}>{currentLang.flag}</span>
-            <span className={styles.mobileLanguageText}>{currentLang.label}</span>
-            <span className={styles.mobileLanguageArrow}>
-              {isLanguageDropdownOpen ? '▲' : '▼'}
-            </span>
-          </div>
-          
-          {isLanguageDropdownOpen && (
-            <div className={styles.mobileLanguageOptions}>
-              {languages.filter(lang => lang.code !== currentLanguage).map((lang) => (
-                <div 
-                  key={lang.code}
-                  className={styles.mobileLanguageOption}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleLanguageChange(lang.code);
-                  }}
-                >
-                  <span className={styles.mobileLanguageFlag}>{lang.flag}</span>
-                  <span className={styles.mobileLanguageText}>{lang.label}</span>
-                </div>
-              ))}
+        
+        {/* Language Selector aligned with other bottom items */}
+        <div className={styles.mobileBottomItem}>
+          <div 
+            className={styles.mobileLanguageDropdown}
+            onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+          >
+            <div className={styles.mobileLanguageSelected}>
+              <span className={styles.mobileLanguageFlag}>{currentLang.flag}</span>
+              <span className={styles.mobileLanguageText}>{currentLang.label}</span>
+              <span className={styles.mobileLanguageArrow}>
+                {isLanguageDropdownOpen ? '▲' : '▼'}
+              </span>
             </div>
-          )}
+            
+            {isLanguageDropdownOpen && (
+              <div className={styles.mobileLanguageOptions}>
+                {languages.filter(lang => lang.code !== currentLanguage).map((lang) => (
+                  <div 
+                    key={lang.code}
+                    className={styles.mobileLanguageOption}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLanguageChange(lang.code);
+                    }}
+                  >
+                    <span className={styles.mobileLanguageFlag}>{lang.flag}</span>
+                    <span className={styles.mobileLanguageText}>{lang.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

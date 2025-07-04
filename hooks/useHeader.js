@@ -16,24 +16,18 @@ export const useHeader = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close dropdowns when clicking outside
+  // Close language dropdown when clicking outside (but not the mobile menu)
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if the click is on the mobile menu button or inside the mobile menu
-      if (event.target.closest('.mobileMenuButton') || 
-          event.target.closest('.mobileMenu')) {
-        return;
-      }
-      
-      if (isLanguageOpen || isMenuOpen) {
+      // Only close language dropdown, not the mobile menu
+      if (isLanguageOpen && !event.target.closest('.languageSelector')) {
         setIsLanguageOpen(false);
-        setIsMenuOpen(false);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [isLanguageOpen, isMenuOpen]);
+  }, [isLanguageOpen]);
 
   const toggleMenu = (event) => {
     event?.stopPropagation();

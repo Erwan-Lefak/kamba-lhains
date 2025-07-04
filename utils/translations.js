@@ -1,11 +1,11 @@
 export const translations = {
   fr: {
     navigation: {
-      home: "ACCUEIL",
-      shop: "BOUTIQUE", 
-      contact: "CONTACT",
-      kambavers: "KAMBAVERS",
-      connection: "CONNEXION"
+      home: "Accueil",
+      shop: "Boutique", 
+      contact: "Contact",
+      kambavers: "Kambavers",
+      connection: "Connexion"
     },
     hero: {
       title: "BLACK TO THE BASICS"
@@ -24,11 +24,11 @@ export const translations = {
   },
   en: {
     navigation: {
-      home: "HOME",
-      shop: "SHOP",
-      contact: "CONTACT", 
-      kambavers: "KAMBAVERS",
-      connection: "LOGIN"
+      home: "Home",
+      shop: "Shop",
+      contact: "Contact", 
+      kambavers: "Kambavers",
+      connection: "Login"
     },
     hero: {
       title: "BLACK TO THE BASICS"
