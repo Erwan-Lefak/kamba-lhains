@@ -75,6 +75,21 @@ const MobileMenu = ({ isOpen }) => {
 
   return (
     <div className={styles.mobileMenu}>
+      {/* Search Bar */}
+      <div className={styles.mobileSearchSection}>
+        <div className={styles.mobileSearchBar}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={styles.mobileSearchIcon}>
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input 
+            type="text" 
+            placeholder="Votre recherche.." 
+            className={styles.mobileSearchInput}
+          />
+        </div>
+      </div>
+      
       <ul className={styles.mobileNavigation}>
         {mainMenuItems.map((item) => (
           <li key={item.href} className={styles.mobileNavItem}>
