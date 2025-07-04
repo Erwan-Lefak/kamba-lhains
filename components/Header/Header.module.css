@@ -292,11 +292,17 @@
   z-index: 999;
   display: flex;
   flex-direction: column;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobileMenu.open {
+  transform: translateY(0);
 }
 
 .mobileSearchSection {
   padding: 20px 30px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
 }
 
 .mobileSearchBar {
@@ -340,6 +346,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid #ddd;
 }
 
 .mobileNavItem {

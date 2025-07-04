@@ -74,7 +74,7 @@ const MobileMenu = ({ isOpen }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.mobileMenu}>
+    <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}>
       {/* Search Bar */}
       <div className={styles.mobileSearchSection}>
         <div className={styles.mobileSearchBar}>
