@@ -444,6 +444,10 @@
     justify-content: flex-start;
     width: auto;
   }
+  
+  .mobileActions {
+    justify-self: end;
+  }
 }
 
 /* Remove all outlines globally within header */
