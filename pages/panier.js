@@ -33,8 +33,8 @@ export default function Cart() {
     return (
       <>
         <Head>
-          <title>Panier - KAMBA LHAINS</title>
-          <meta name="description" content="Votre panier KAMBA LHAINS" />
+          <title>Panier - Kamba Lhains</title>
+          <meta name="description" content="Votre panier Kamba Lhains" />
         </Head>
 
         <Header />
@@ -63,8 +63,8 @@ export default function Cart() {
   return (
     <>
       <Head>
-        <title>Panier ({items.length}) - KAMBA LHAINS</title>
-        <meta name="description" content="Votre panier KAMBA LHAINS" />
+        <title>Panier ({items.length}) - Kamba Lhains</title>
+        <meta name="description" content="Votre panier Kamba Lhains" />
       </Head>
 
       <Header />

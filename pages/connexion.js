@@ -115,8 +115,8 @@ export default function Auth() {
   return (
     <>
       <Head>
-        <title>{isLogin ? 'Connexion' : 'Inscription'} - KAMBA LHAINS</title>
-        <meta name="description" content={`${isLogin ? 'Connectez-vous' : 'Inscrivez-vous'} à votre compte KAMBA LHAINS`} />
+        <title>{isLogin ? 'Connexion' : 'Inscription'} - Kamba Lhains</title>
+        <meta name="description" content={`${isLogin ? 'Connectez-vous' : 'Inscrivez-vous'} à votre compte Kamba Lhains`} />
       </Head>
 
       <Header />

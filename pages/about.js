@@ -6,8 +6,8 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>Notre Histoire - KAMBA LHAINS</title>
-        <meta name="description" content="Découvrez l'histoire de KAMBA LHAINS, marque de mode alliant tradition artisanale et design contemporain." />
+        <title>Notre Histoire - Kamba Lhains</title>
+        <meta name="description" content="Découvrez l'histoire de Kamba Lhains, marque de mode alliant tradition artisanale et design contemporain." />
       </Head>
 
       <Header />

@@ -145,8 +145,8 @@ export default function ProductDetail() {
   return (
     <>
       <Head>
-        <title>{product.name} - KAMBA LHAINS</title>
-        <meta name="description" content={`Découvrez ${product.name} de KAMBA LHAINS. ${product.description[0]}`} />
+        <title>{product.name} - Kamba Lhains</title>
+        <meta name="description" content={`Découvrez ${product.name} de Kamba Lhains. ${product.description[0]}`} />
       </Head>
 
       <Header />

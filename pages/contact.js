@@ -98,8 +98,8 @@ export default function Contact() {
   return (
     <>
       <Head>
-        <title>Contact - KAMBA LHAINS</title>
-        <meta name="description" content="Contactez KAMBA LHAINS pour toute question sur nos collections." />
+        <title>Contact - Kamba Lhains</title>
+        <meta name="description" content="Contactez Kamba Lhains pour toute question sur nos collections." />
       </Head>
 
       <Header />

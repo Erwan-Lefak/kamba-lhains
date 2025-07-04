@@ -16,8 +16,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>KAMBA LHAINS - Mode Contemporaine</title>
-        <meta name="description" content="KAMBA LHAINS - Marque de mode contemporaine alliant élégance et modernité. Découvrez nos collections femme et homme." />
+        <title>Kamba Lhains</title>
+        <meta name="description" content="Kamba Lhains - Marque de mode alliant élégance et modernité. Découvrez nos collections femme et homme." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

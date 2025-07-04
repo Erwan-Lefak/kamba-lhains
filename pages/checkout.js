@@ -138,8 +138,8 @@ export default function Checkout() {
   return (
     <>
       <Head>
-        <title>Checkout - KAMBA LHAINS</title>
-        <meta name="description" content="Finaliser votre commande KAMBA LHAINS" />
+        <title>Checkout - Kamba Lhains</title>
+        <meta name="description" content="Finaliser votre commande Kamba Lhains" />
       </Head>
 
       <Header />

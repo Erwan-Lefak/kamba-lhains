@@ -140,8 +140,8 @@ export default function Kambavers() {
   return (
     <>
       <Head>
-        <title>Kambavers - KAMBA LHAINS</title>
-        <meta name="description" content="Découvrez l'univers Kambavers de KAMBA LHAINS" />
+        <title>Kambavers - Kamba Lhains</title>
+        <meta name="description" content="Découvrez l'univers Kambavers de Kamba Lhains" />
       </Head>
 
       <Header />

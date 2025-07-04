@@ -33,8 +33,8 @@ export default function Boutique() {
   return (
     <>
       <Head>
-        <title>Boutique - KAMBA LHAINS</title>
-        <meta name="description" content="Découvrez toute la collection KAMBA LHAINS : vêtements contemporains pour femme et homme." />
+        <title>Boutique - Kamba Lhains</title>
+        <meta name="description" content="Découvrez toute la collection Kamba Lhains : vêtements contemporains pour femme et homme." />
       </Head>
 
       <Header />

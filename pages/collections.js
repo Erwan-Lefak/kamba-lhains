@@ -28,8 +28,8 @@ export default function Collections() {
   return (
     <>
       <Head>
-        <title>Collections - KAMBA LHAINS</title>
-        <meta name="description" content="Découvrez toutes les collections KAMBA LHAINS : Traditionnelle, Contemporaine, Denim et Accessoires." />
+        <title>Collections - Kamba Lhains</title>
+        <meta name="description" content="Découvrez toutes les collections Kamba Lhains : Traditionnelle, Contemporaine, Denim et Accessoires." />
       </Head>
 
       <Header />

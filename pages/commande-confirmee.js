@@ -19,8 +19,8 @@ export default function OrderConfirmation() {
   return (
     <>
       <Head>
-        <title>Commande confirmée - KAMBA LHAINS</title>
-        <meta name="description" content="Votre commande KAMBA LHAINS a été confirmée" />
+        <title>Commande confirmée - Kamba Lhains</title>
+        <meta name="description" content="Votre commande Kamba Lhains a été confirmée" />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
