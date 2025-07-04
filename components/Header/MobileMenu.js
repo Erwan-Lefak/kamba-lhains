@@ -10,9 +10,9 @@ const MobileMenu = ({ isOpen }) => {
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
 
   const languages = [
-    { code: 'fr', label: 'France Métropolitaine', flag: '🇫🇷' },
-    { code: 'en', label: 'United Kingdom', flag: '🇬🇧' },
-    { code: 'ko', label: '대한민국', flag: '🇰🇷' }
+    { code: 'fr', label: 'Français', flag: '🇫🇷' },
+    { code: 'en', label: 'English', flag: '🇬🇧' },
+    { code: 'ko', label: '한국어', flag: '🇰🇷' }
   ];
 
   const currentLang = languages.find(lang => lang.code === currentLanguage) || languages[0];
