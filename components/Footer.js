@@ -1,6 +1,16 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Footer() {
+  const [openSections, setOpenSections] = useState({});
+
+  const toggleSection = (section) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -16,64 +26,64 @@ export default function Footer() {
           
           <div className="footer-links">
             <div className="link-section">
-              <h4>Collections</h4>
-              <ul>
-                <li><Link href="/boutique/femme">Femme</Link></li>
-                <li><Link href="/boutique/homme">Homme</Link></li>
-                <li><Link href="/boutique/accessoires">Accessoires</Link></li>
-                <li><Link href="/boutique/nouveautes">Nouveautés</Link></li>
-              </ul>
-            </div>
-            
-            <div className="link-section">
-              <h4>Service Client</h4>
-              <ul>
-                <li><Link href="/contact">Contact</Link></li>
-                <li><Link href="/livraison">Livraison</Link></li>
-                <li><Link href="/retours">Retours</Link></li>
-                <li><Link href="/guide-tailles">Guide des tailles</Link></li>
-                <li><Link href="/faq">FAQ</Link></li>
-              </ul>
-            </div>
-            
-            <div className="link-section">
-              <h4>À Propos</h4>
-              <ul>
-                <li><Link href="/about">Notre Histoire</Link></li>
-                <li><Link href="/kambayers">Kambayers</Link></li>
-                <li><Link href="/durabilite">Durabilité</Link></li>
-                <li><Link href="/presse">Presse</Link></li>
-              </ul>
-            </div>
-            
-            <div className="link-section">
-              <h4>Adresse</h4>
-              <div className="address">
-                <p>KAMBA LHAINS</p>
-                <p>123 Rue de la Mode</p>
-                <p>75001 Paris, France</p>
-                <p>+33 1 23 45 67 89</p>
+              <div className="section-header" onClick={() => toggleSection('legal')}>
+                <h4>Mentions légales et cookies</h4>
+                <span className={`arrow ${openSections.legal ? 'open' : ''}`}>^</span>
               </div>
+              <ul className={`section-content ${openSections.legal ? 'open' : ''}`}>
+                <li><Link href="/mentions-legales">Mentions légales</Link></li>
+                <li><Link href="/conditions-vente">Conditions de vente</Link></li>
+                <li><Link href="/politique-confidentialite">Politique de confidentialité</Link></li>
+                <li><Link href="/conditions-utilisation">Conditions générales d'utilisation</Link></li>
+                <li><Link href="/accessibilite">Accessibilité</Link></li>
+              </ul>
             </div>
-          </div>
-        </div>
-        
-        <div className="footer-social">
-          <div className="social-links">
-            <a href="#" aria-label="Instagram">Instagram</a>
-            <a href="#" aria-label="Facebook">Facebook</a>
-            <a href="#" aria-label="YouTube">YouTube</a>
-            <a href="#" aria-label="Twitter">Twitter</a>
+            
+            <div className="link-section">
+              <div className="section-header" onClick={() => toggleSection('faq')}>
+                <h4>FAQ</h4>
+                <span className={`arrow ${openSections.faq ? 'open' : ''}`}>^</span>
+              </div>
+              <ul className={`section-content ${openSections.faq ? 'open' : ''}`}>
+                <li><Link href="/compte">Compte</Link></li>
+                <li><Link href="/livraison">Informations de livraison</Link></li>
+                <li><Link href="/commandes">Commandes</Link></li>
+                <li><Link href="/paiements">Paiements</Link></li>
+                <li><Link href="/retours">Retours & échanges</Link></li>
+                <li><Link href="/guide-tailles">Guide des tailles</Link></li>
+                <li><Link href="/carte-cadeau">Carte Cadeau</Link></li>
+              </ul>
+            </div>
+            
+            <div className="link-section">
+              <div className="section-header" onClick={() => toggleSection('entreprise')}>
+                <h4>Entreprise</h4>
+                <span className={`arrow ${openSections.entreprise ? 'open' : ''}`}>^</span>
+              </div>
+              <ul className={`section-content ${openSections.entreprise ? 'open' : ''}`}>
+                <li><Link href="/contact">Nous contacter</Link></li>
+                <li><Link href="/boutiques">Nos boutiques</Link></li>
+                <li><Link href="/rendez-vous">Prendre un rendez-vous en boutique</Link></li>
+                <li><Link href="/carriere">Carrière</Link></li>
+              </ul>
+            </div>
+            
+            <div className="link-section">
+              <div className="section-header" onClick={() => toggleSection('suivre')}>
+                <h4>Nous suivre</h4>
+                <span className={`arrow ${openSections.suivre ? 'open' : ''}`}>^</span>
+              </div>
+              <ul className={`section-content ${openSections.suivre ? 'open' : ''}`}>
+                <li><a href="#" aria-label="Instagram">Instagram</a></li>
+                <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                <li><a href="#" aria-label="TikTok">TikTok</a></li>
+                <li><a href="#" aria-label="X">X</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <div className="legal-links">
-            <Link href="/mentions-legales">Mentions légales</Link>
-            <Link href="/confidentialite">Confidentialité</Link>
-            <Link href="/cookies">Cookies</Link>
-            <Link href="/cgv">CGV</Link>
-          </div>
           <p className="copyright">
             © 2025 KAMBA LHAINS. Tous droits réservés.
           </p>
@@ -122,87 +132,70 @@ export default function Footer() {
           gap: 40px;
         }
         
-        .link-section h4 {
+        .link-section {
+          position: relative;
+        }
+        
+        .section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          padding: 15px 0;
+          border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .section-header h4 {
           font-size: 16px;
           font-weight: 600;
-          margin-bottom: 20px;
+          margin: 0;
           color: black;
         }
         
-        .link-section ul {
+        .arrow {
+          font-size: 16px;
+          color: #666;
+          transform: rotate(180deg);
+          transition: transform 0.3s ease;
+        }
+        
+        .arrow.open {
+          transform: rotate(0deg);
+        }
+        
+        .section-content {
           list-style: none;
           margin: 0;
           padding: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
         }
         
-        .link-section ul li {
+        .section-content.open {
+          max-height: 500px;
+          padding: 15px 0;
+        }
+        
+        .section-content li {
           margin-bottom: 12px;
         }
         
-        .link-section ul li a {
+        .section-content li a {
           color: #666;
           text-decoration: none;
           font-size: 14px;
           transition: color 0.3s;
         }
         
-        .link-section ul li a:hover {
-          color: black;
-        }
-        
-        .address p {
-          color: #666;
-          font-size: 14px;
-          margin-bottom: 8px;
-        }
-        
-        .footer-social {
-          text-align: center;
-          margin-bottom: 40px;
-          padding: 20px 0;
-          border-top: 1px solid #ccc;
-          border-bottom: 1px solid #ccc;
-        }
-        
-        .social-links {
-          display: flex;
-          justify-content: center;
-          gap: 30px;
-        }
-        
-        .social-links a {
-          color: #666;
-          text-decoration: none;
-          font-size: 14px;
-          transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
+        .section-content li a:hover {
           color: black;
         }
         
         .footer-bottom {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 20px;
-        }
-        
-        .legal-links {
-          display: flex;
-          gap: 30px;
-        }
-        
-        .legal-links a {
-          color: #666;
-          text-decoration: none;
-          font-size: 12px;
-          transition: color 0.3s;
-        }
-        
-        .legal-links a:hover {
-          color: black;
+          text-align: center;
+          padding: 20px 0;
+          border-top: 1px solid #e0e0e0;
         }
         
         .copyright {
@@ -211,42 +204,37 @@ export default function Footer() {
           margin: 0;
         }
         
-        @media (max-width: 768px) {
-          .footer-content {
-            grid-template-columns: 1fr;
-            gap: 40px;
+        @media (min-width: 769px) {
+          .section-header {
+            cursor: default;
+            border-bottom: none;
+            padding: 0 0 20px 0;
           }
           
-          .footer-links {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+          .arrow {
+            display: none;
           }
           
-          .social-links {
-            flex-wrap: wrap;
-            gap: 20px;
-          }
-          
-          .footer-bottom {
-            flex-direction: column;
-            text-align: center;
-          }
-          
-          .legal-links {
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+          .section-content {
+            max-height: none;
+            overflow: visible;
+            padding: 0;
           }
         }
         
-        @media (max-width: 480px) {
-          .footer-links {
+        @media (max-width: 768px) {
+          .footer-content {
             grid-template-columns: 1fr;
+            gap: 0;
           }
           
-          .legal-links {
-            flex-direction: column;
-            gap: 10px;
+          .footer-brand {
+            display: none;
+          }
+          
+          .footer-links {
+            grid-template-columns: 1fr;
+            gap: 0;
           }
         }
       `}</style>
