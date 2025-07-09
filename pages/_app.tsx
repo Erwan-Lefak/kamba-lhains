@@ -4,6 +4,7 @@ import { Session } from 'next-auth';
 import '../styles/globals.css';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { CartProvider } from '../contexts/CartContext';
+import { FavoritesProvider } from '../contexts/FavoritesContext';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 interface MyAppProps extends AppProps {
@@ -18,7 +19,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
       <SessionProvider session={session}>
         <LanguageProvider>
           <CartProvider>
-            <Component {...pageProps} />
+            <FavoritesProvider>
+              <Component {...pageProps} />
+            </FavoritesProvider>
           </CartProvider>
         </LanguageProvider>
       </SessionProvider>

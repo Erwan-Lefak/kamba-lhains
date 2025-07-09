@@ -2,12 +2,14 @@ import Link from 'next/link';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useHeader } from '../../hooks/useHeader';
 import { useCart } from '../../contexts/CartContext';
+import { useFavorites } from '../../contexts/FavoritesContext';
 import styles from './Header.module.css';
 
 const UserActions = () => {
   const { currentLanguage, changeLanguage, t } = useLanguage();
   const { isLanguageOpen, toggleLanguage } = useHeader();
   const { getTotalItems } = useCart();
+  const { favorites } = useFavorites();
 
   const languages = [
     { code: 'fr', label: 'FR' },
@@ -49,6 +51,16 @@ const UserActions = () => {
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
+      </Link>
+
+      {/* Favorites Button */}
+      <Link href="/favoris" className={styles.actionButton} aria-label="Favoris">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        {favorites.length > 0 && (
+          <span className={styles.cartCount}>{favorites.length}</span>
+        )}
       </Link>
 
       {/* Cart Button */}
