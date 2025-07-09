@@ -42,11 +42,12 @@
   background: white;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 .collectionGrid {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   gap: 0;
@@ -66,13 +67,17 @@
   height: 100%;
 }
 
-.collectionContentSlot {
+.collectionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 40px;
-  background: transparent;
-  min-width: 300px;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .collectionContent {
@@ -81,37 +86,40 @@
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  pointer-events: all;
 }
 
 .collectionTitle {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 300;
   color: white;
   margin: 0;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .boutiqueButton {
   background: rgba(128, 128, 128, 0.9);
   color: white;
-  padding: 15px 30px;
+  padding: 18px 40px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 300;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
   display: inline-block;
+  backdrop-filter: blur(2px);
 }
 
 .boutiqueButton:hover {
   background: rgba(100, 100, 100, 0.9);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Design */
@@ -128,18 +136,15 @@
     height: 60vh;
   }
 
-  .collectionContentSlot {
-    padding: 40px 20px;
-    min-width: auto;
-  }
-
   .collectionTitle {
-    font-size: 18px;
+    font-size: 24px;
+    letter-spacing: 2px;
   }
 
   .boutiqueButton {
-    padding: 12px 24px;
-    font-size: 12px;
+    padding: 15px 30px;
+    font-size: 14px;
+    letter-spacing: 1px;
   }
 
   .productSlot {

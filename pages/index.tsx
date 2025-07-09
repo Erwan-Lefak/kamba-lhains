@@ -53,14 +53,6 @@ export default function Home() {
                 priority
               />
             </div>
-            <div className={styles.collectionContentSlot}>
-              <div className={styles.collectionContent}>
-                <h2 className={styles.collectionTitle}>NOUVELLE COLLECTION</h2>
-                <Link href="/boutique" className={styles.boutiqueButton}>
-                  BOUTIQUE
-                </Link>
-              </div>
-            </div>
             <div className={styles.collectionImageSlot}>
               <Image 
                 src="/IMG_3475.jpg"
@@ -70,6 +62,14 @@ export default function Home() {
                 className={styles.collectionImage}
                 priority
               />
+            </div>
+          </div>
+          <div className={styles.collectionOverlay}>
+            <div className={styles.collectionContent}>
+              <h2 className={styles.collectionTitle}>NOUVELLE COLLECTION</h2>
+              <Link href="/boutique" className={styles.boutiqueButton}>
+                BOUTIQUE
+              </Link>
             </div>
           </div>
         </section>
