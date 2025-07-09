@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Footer() {
   const [openSections, setOpenSections] = useState({});
@@ -10,6 +11,14 @@ export default function Footer() {
     name: 'France Métropolitaine',
     currency: 'EUR'
   });
+  
+  const { currentLanguage, changeLanguage } = useLanguage();
+  
+  const languages = [
+    { code: 'fr', label: 'Français', flag: '🇫🇷' },
+    { code: 'en', label: 'English', flag: '🇬🇧' },
+    { code: 'ko', label: '한국어', flag: '🇰🇷' }
+  ];
 
   const toggleSection = (section) => {
     setOpenSections(prev => ({
@@ -80,6 +89,20 @@ export default function Footer() {
               <div className="country-selector" onClick={() => setShowCountryModal(true)}>
                 <span className="flag">{selectedCountry.flag}</span>
                 <span>{selectedCountry.name} ({selectedCountry.currency})</span>
+              </div>
+              
+              <h4 style={{ marginTop: '20px' }}>Langue</h4>
+              <div className="language-selector-footer">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => changeLanguage(lang.code)}
+                    className={`language-option-footer ${currentLanguage === lang.code ? 'active' : ''}`}
+                  >
+                    <span className="flag">{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -311,6 +334,43 @@ export default function Footer() {
         
         .country-selector:hover {
           border-bottom-color: #ccc;
+        }
+        
+        .language-selector-footer {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 10px;
+        }
+        
+        .language-option-footer {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 0;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 300;
+          color: #666;
+          transition: all 0.3s ease;
+          border-bottom: 1px solid transparent;
+        }
+        
+        .language-option-footer:hover {
+          color: black;
+          border-bottom-color: #ccc;
+        }
+        
+        .language-option-footer.active {
+          color: black;
+          font-weight: 400;
+          border-bottom-color: black;
+        }
+        
+        .language-option-footer .flag {
+          font-size: 16px;
         }
         
         /* Modal Styles */
