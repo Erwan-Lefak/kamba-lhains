@@ -227,8 +227,8 @@ export default function Footer() {
         }
         
         .container {
-          max-width: 1200px;
-          margin: 0 auto;
+          max-width: 100%;
+          margin: 0;
           padding: 0 20px;
         }
         
