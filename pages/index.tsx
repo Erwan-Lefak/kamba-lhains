@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
+import MobileCarousel from '../components/MobileCarousel';
 import { featuredProducts } from '../data/products';
 import { useLanguage } from '../contexts/LanguageContext';
 import styles from '../styles/HomePage.module.css';
@@ -33,6 +34,7 @@ export default function Home() {
 
         {/* Three Products Grid Section */}
         <section className={styles.threeProductsSection}>
+          {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
             {featuredProducts.map(product => (
               <div key={product.id} className={styles.productSlot}>
@@ -40,6 +42,9 @@ export default function Home() {
               </div>
             ))}
           </div>
+          
+          {/* Mobile Carousel */}
+          <MobileCarousel products={featuredProducts} />
         </section>
 
         {/* New Collection Section */}
