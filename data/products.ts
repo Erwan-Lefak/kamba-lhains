@@ -3,15 +3,15 @@ import { Product } from '../types';
 export const products: Product[] = [
   {
     id: 1,
-    name: "BOMBERS ITOUA",
-    price: "1090,00 €",
-    image: "/bombers-itoua.png",
+    name: "BLOUSON EFFET CIRE",
+    price: "890,00 €",
+    image: "/IMG_2864.jpeg",
     description: [
-      "• Bomber en coton biologique certifié GOTS",
+      "• Blouson en coton effet ciré",
       "• Coupe moderne et ajustée",
-      "• Fermeture éclair dorée",
-      "• Détails brodés traditionnels",
-      "• Doublure en soie naturelle"
+      "• Fermeture éclair contrastante",
+      "• Poches fonctionnelles",
+      "• Finitions soignées"
     ],
     category: "femme",
     subCategory: "aube",
@@ -22,38 +22,38 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: "JUPE BINË",
-    price: "620,00 €",
-    image: "/jupe-bine.png",
+    name: "JEAN TRF MOM FIT",
+    price: "450,00 €",
+    image: "/IMG_2885.jpeg",
     description: [
-      "• Jupe midi en lin biologue",
-      "• Taille haute ajustable",
-      "• Coupe évasée élégante",
-      "• Motifs géométriques traditionnels",
-      "• Fabrication artisanale"
+      "• Jean mom fit en denim premium",
+      "• Taille haute confortable",
+      "• Coupe décontractée moderne",
+      "• Finitions vintage authentiques",
+      "• Fabrication européenne"
     ],
     category: "femme",
     subCategory: "zenith",
-    colors: ["Beige", "Terracotta"],
+    colors: ["Bleu denim", "Noir"],
     sizes: ["XS", "S", "M", "L"],
     inStock: true,
     featured: true
   },
   {
     id: 3,
-    name: "VESTE JANÉ",
-    price: "780,00 €",
-    image: "/veste-jane.png",
+    name: "BOXY FIT SHIRT",
+    price: "320,00 €",
+    image: "/IMG_2797.jpeg",
     description: [
-      "• Veste structurée en coton premium",
-      "• Col châle sophistiqué",
-      "• Poches passepoilées",
-      "• Finitions main exceptionnelles",
-      "• Design intemporel"
+      "• Chemise coupe boxy en coton",
+      "• Col classique moderne",
+      "• Manches longues ajustables",
+      "• Finitions soignées",
+      "• Style contemporain décontracté"
     ],
     category: "femme",
     subCategory: "crepuscule",
-    colors: ["Blanc", "Écru"],
+    colors: ["Blanc", "Beige"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: true
