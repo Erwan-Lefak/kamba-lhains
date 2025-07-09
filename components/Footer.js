@@ -220,10 +220,10 @@ export default function Footer() {
         .footer {
           background: white;
           color: black;
-          padding: 60px 0 20px;
+          padding: 30px 0 15px;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
           font-weight: 300;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.3px;
         }
         
         .container {
@@ -235,40 +235,40 @@ export default function Footer() {
         .footer-top {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 60px;
-          margin-bottom: 60px;
-          padding-bottom: 60px;
+          gap: 30px;
+          margin-bottom: 30px;
+          padding-bottom: 30px;
           border-bottom: 1px solid #e0e0e0;
         }
         
         .newsletter-section h3 {
-          font-size: 18px;
+          font-size: 14px;
           font-weight: 400;
-          margin-bottom: 20px;
+          margin-bottom: 15px;
           color: black;
         }
         
         .newsletter-section p {
-          line-height: 1.6;
+          line-height: 1.4;
           color: #666;
-          font-size: 14px;
-          margin-bottom: 20px;
+          font-size: 12px;
+          margin-bottom: 15px;
           font-weight: 300;
         }
         
         .newsletter-form {
           display: flex;
           flex-direction: column;
-          gap: 15px;
-          margin-bottom: 20px;
+          gap: 10px;
+          margin-bottom: 15px;
         }
         
         .newsletter-form input {
-          padding: 15px;
+          padding: 10px;
           border: none;
           border-bottom: 1px solid #ccc;
           background: transparent;
-          font-size: 14px;
+          font-size: 12px;
           outline: none;
           font-weight: 300;
           font-family: inherit;
@@ -280,12 +280,12 @@ export default function Footer() {
         
         .newsletter-form button {
           align-self: flex-start;
-          padding: 12px 24px;
+          padding: 8px 16px;
           background: black;
           color: white;
           border: none;
           cursor: pointer;
-          font-size: 14px;
+          font-size: 12px;
           transition: background-color 0.3s;
         }
         
@@ -294,23 +294,23 @@ export default function Footer() {
         }
         
         .newsletter-disclaimer {
-          font-size: 12px;
+          font-size: 10px;
           color: #999;
-          line-height: 1.4;
+          line-height: 1.3;
           font-weight: 300;
         }
         
         .footer-right {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 40px;
+          gap: 20px;
         }
         
         .service-client h4,
         .pays-region h4 {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 400;
-          margin-bottom: 20px;
+          margin-bottom: 15px;
           color: black;
         }
         
@@ -321,13 +321,13 @@ export default function Footer() {
         }
         
         .service-client li {
-          margin-bottom: 12px;
+          margin-bottom: 8px;
         }
         
         .service-client a {
           color: #666;
           text-decoration: none;
-          font-size: 14px;
+          font-size: 12px;
           transition: color 0.3s;
           font-weight: 300;
         }
@@ -339,11 +339,11 @@ export default function Footer() {
         .country-selector {
           display: flex;
           align-items: center;
-          gap: 10px;
-          font-size: 14px;
+          gap: 8px;
+          font-size: 12px;
           font-weight: 300;
           cursor: pointer;
-          padding: 10px 0;
+          padding: 8px 0;
           border-bottom: 1px solid transparent;
           transition: all 0.3s ease;
         }
@@ -360,10 +360,10 @@ export default function Footer() {
         .language-selected-footer {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 10px 0;
+          gap: 8px;
+          padding: 8px 0;
           cursor: pointer;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 300;
           color: #666;
           border-bottom: 1px solid transparent;
@@ -376,12 +376,12 @@ export default function Footer() {
         }
         
         .language-selected-footer .flag {
-          font-size: 16px;
+          font-size: 14px;
         }
         
         .language-selected-footer .arrow {
           margin-left: auto;
-          font-size: 12px;
+          font-size: 10px;
           transition: transform 0.3s ease;
         }
         
@@ -401,12 +401,12 @@ export default function Footer() {
         .language-option-footer {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 12px 15px;
+          gap: 8px;
+          padding: 8px 12px;
           background: none;
           border: none;
           cursor: pointer;
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 300;
           color: #666;
           transition: all 0.3s ease;
@@ -420,7 +420,7 @@ export default function Footer() {
         }
         
         .language-option-footer .flag {
-          font-size: 16px;
+          font-size: 14px;
         }
         
         /* Modal Styles */
@@ -525,8 +525,8 @@ export default function Footer() {
         .footer-links {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 40px;
-          margin-bottom: 40px;
+          gap: 20px;
+          margin-bottom: 20px;
         }
         
         .link-section {
@@ -538,12 +538,12 @@ export default function Footer() {
           justify-content: space-between;
           align-items: center;
           cursor: pointer;
-          padding: 15px 0;
+          padding: 10px 0;
           border-bottom: 1px solid #e0e0e0;
         }
         
         .section-header h4 {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 400;
           margin: 0;
           color: black;
@@ -571,17 +571,17 @@ export default function Footer() {
         
         .section-content.open {
           max-height: 500px;
-          padding: 15px 0;
+          padding: 10px 0;
         }
         
         .section-content li {
-          margin-bottom: 12px;
+          margin-bottom: 8px;
         }
         
         .section-content li a {
           color: #666;
           text-decoration: none;
-          font-size: 14px;
+          font-size: 12px;
           transition: color 0.3s;
           font-weight: 300;
         }
@@ -592,13 +592,13 @@ export default function Footer() {
         
         .footer-bottom {
           text-align: center;
-          padding: 20px 0;
+          padding: 15px 0;
           border-top: 1px solid #e0e0e0;
         }
         
         .copyright {
           color: #666;
-          font-size: 12px;
+          font-size: 10px;
           margin: 0;
           font-weight: 300;
         }
@@ -607,7 +607,7 @@ export default function Footer() {
           .section-header {
             cursor: default;
             border-bottom: none;
-            padding: 0 0 20px 0;
+            padding: 0 0 15px 0;
           }
           
           .arrow {
