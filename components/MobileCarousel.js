@@ -72,14 +72,14 @@ const MobileCarousel = ({ products }) => {
       <div 
         className={styles.mobileCarouselContainer}
         style={{
-          transform: `translateY(-${currentIndex * 100}%)`,
+          transform: `translateY(-${currentIndex * 100}vh)`,
         }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         {products.map((product, index) => (
-          <div key={product.id} className={styles.mobileProductSlot}>
+          <div key={`mobile-${product.id}`} className={styles.mobileProductSlot}>
             <ProductCard product={product} />
           </div>
         ))}

@@ -10,6 +10,7 @@
   display: block;
   text-decoration: none;
   color: inherit;
+  min-height: 100vh;
 }
 
 .productImageContainer {
@@ -151,11 +152,27 @@
   .largeProductImage {
     height: 80vh;
   }
+  
+  .productCard {
+    min-height: 100vh;
+  }
+  
+  .productImageContainer {
+    height: 100vh;
+  }
 }
 
 @media (max-width: 480px) {
   .largeProductImage {
     height: 70vh;
+  }
+  
+  .productCard {
+    min-height: 100vh;
+  }
+  
+  .productImageContainer {
+    height: 100vh;
   }
 }
 
