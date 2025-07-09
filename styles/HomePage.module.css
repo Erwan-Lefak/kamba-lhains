@@ -32,7 +32,7 @@
 
 .productSlot {
   width: 100%;
-  height: 70vh;
+  height: 100vh;
   position: relative;
 }
 
@@ -149,13 +149,13 @@
   }
 
   .productSlot {
-    height: 60vh;
+    height: 80vh;
   }
 }
 
 @media (max-width: 1024px) {
   .productSlot {
-    height: 65vh;
+    height: 90vh;
   }
 }
 
