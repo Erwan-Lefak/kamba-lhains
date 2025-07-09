@@ -70,6 +70,12 @@
   width: auto;
 }
 
+@media (max-width: 768px) {
+  .logoImage {
+    height: 45px;
+  }
+}
+
 /* Navigation Section */
 .navigationSection {
   display: flex;
