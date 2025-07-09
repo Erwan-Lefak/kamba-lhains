@@ -4,6 +4,12 @@ import { useState } from 'react';
 export default function Footer() {
   const [openSections, setOpenSections] = useState({});
   const [email, setEmail] = useState('');
+  const [showCountryModal, setShowCountryModal] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState({
+    flag: '🇫🇷',
+    name: 'France Métropolitaine',
+    currency: 'EUR'
+  });
 
   const toggleSection = (section) => {
     setOpenSections(prev => ({
@@ -17,6 +23,24 @@ export default function Footer() {
     // Handle newsletter subscription
     console.log('Newsletter subscription:', email);
     setEmail('');
+  };
+
+  const countries = [
+    { flag: '🇫🇷', name: 'France Métropolitaine', currency: 'EUR' },
+    { flag: '🇺🇸', name: 'États-Unis', currency: 'USD' },
+    { flag: '🇬🇧', name: 'Royaume-Uni', currency: 'GBP' },
+    { flag: '🇰🇷', name: 'Corée du Sud', currency: 'KRW' },
+    { flag: '🇯🇵', name: 'Japon', currency: 'JPY' },
+    { flag: '🇨🇦', name: 'Canada', currency: 'CAD' },
+    { flag: '🇦🇺', name: 'Australie', currency: 'AUD' },
+    { flag: '🇩🇪', name: 'Allemagne', currency: 'EUR' },
+    { flag: '🇮🇹', name: 'Italie', currency: 'EUR' },
+    { flag: '🇪🇸', name: 'Espagne', currency: 'EUR' }
+  ];
+
+  const handleCountrySelect = (country) => {
+    setSelectedCountry(country);
+    setShowCountryModal(false);
   };
 
   return (
@@ -53,13 +77,9 @@ export default function Footer() {
             
             <div className="pays-region">
               <h4>Pays/Région</h4>
-              <div className="country-selector">
-                <span className="flag">🇫🇷</span>
-                <span>France Métropolitaine (EUR)</span>
-                <select>
-                  <option>français</option>
-                  <option>english</option>
-                </select>
+              <div className="country-selector" onClick={() => setShowCountryModal(true)}>
+                <span className="flag">{selectedCountry.flag}</span>
+                <span>{selectedCountry.name} ({selectedCountry.currency})</span>
               </div>
             </div>
           </div>
@@ -130,6 +150,32 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      {/* Country Selection Modal */}
+      {showCountryModal && (
+        <>
+          <div className="modal-overlay" onClick={() => setShowCountryModal(false)} />
+          <div className="country-modal">
+            <div className="modal-header">
+              <h3>Sélectionner un pays</h3>
+              <button className="close-btn" onClick={() => setShowCountryModal(false)}>×</button>
+            </div>
+            <div className="countries-list">
+              {countries.map((country, index) => (
+                <div 
+                  key={index}
+                  className={`country-option ${selectedCountry.name === country.name ? 'selected' : ''}`}
+                  onClick={() => handleCountrySelect(country)}
+                >
+                  <span className="flag">{country.flag}</span>
+                  <span className="country-name">{country.name}</span>
+                  <span className="currency">({country.currency})</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
       
       <style jsx>{`
         .footer {
@@ -257,13 +303,113 @@ export default function Footer() {
           gap: 10px;
           font-size: 14px;
           font-weight: 300;
+          cursor: pointer;
+          padding: 10px 0;
+          border-bottom: 1px solid transparent;
+          transition: all 0.3s ease;
         }
         
-        .country-selector select {
+        .country-selector:hover {
+          border-bottom-color: #ccc;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 1000;
+        }
+        
+        .country-modal {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: white;
+          border-radius: 20px 20px 0 0;
+          z-index: 1001;
+          max-height: 80vh;
+          animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+          from {
+            transform: translateY(100%);
+          }
+          to {
+            transform: translateY(0);
+          }
+        }
+        
+        .modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 30px;
+          border-bottom: 1px solid #eee;
+        }
+        
+        .modal-header h3 {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 400;
+        }
+        
+        .close-btn {
+          background: none;
           border: none;
-          background: transparent;
-          font-size: 14px;
+          font-size: 24px;
           cursor: pointer;
+          color: #666;
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .countries-list {
+          padding: 20px 0;
+          max-height: 60vh;
+          overflow-y: auto;
+        }
+        
+        .country-option {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 15px 30px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+        
+        .country-option:hover {
+          background-color: #f5f5f5;
+        }
+        
+        .country-option.selected {
+          background-color: #f0f0f0;
+          font-weight: 500;
+        }
+        
+        .country-option .flag {
+          font-size: 18px;
+          width: 25px;
+        }
+        
+        .country-option .country-name {
+          flex: 1;
+          font-size: 14px;
+        }
+        
+        .country-option .currency {
+          font-size: 14px;
+          color: #666;
         }
         
         .footer-links {
