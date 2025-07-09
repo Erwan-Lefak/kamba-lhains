@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import styles from './Hero.module.css';
 
-const VideoHero = ({ videoSrc = '/0629.mp4' }) => {
+const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
