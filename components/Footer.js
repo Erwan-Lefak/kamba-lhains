@@ -327,7 +327,7 @@ export default function Footer() {
         .service-client a {
           color: #666;
           text-decoration: none;
-          font-size: 12px;
+          font-size: 10px;
           transition: color 0.3s;
           font-weight: 300;
         }
