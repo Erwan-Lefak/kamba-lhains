@@ -31,16 +31,14 @@ export default function Home() {
           <Hero />
         </section>
 
-        {/* Three Products Carousel Section */}
+        {/* Three Products Grid Section */}
         <section className={styles.threeProductsSection}>
-          <div className={styles.productCarousel}>
-            <div className={styles.productCarouselTrack}>
-              {featuredProducts.map(product => (
-                <div key={product.id} className={styles.productSlot}>
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
+          <div className={styles.threeProductsGrid}>
+            {featuredProducts.map(product => (
+              <div key={product.id} className={styles.productSlot}>
+                <ProductCard product={product} />
+              </div>
+            ))}
           </div>
         </section>
 
