@@ -235,7 +235,7 @@ export default function Footer() {
         .footer-top {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 30px;
+          gap: 60px;
           margin-bottom: 30px;
           padding-bottom: 30px;
           border-bottom: 1px solid #e0e0e0;
@@ -303,7 +303,7 @@ export default function Footer() {
         .footer-right {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 20px;
+          gap: 40px;
         }
         
         .service-client h4,
@@ -525,7 +525,7 @@ export default function Footer() {
         .footer-links {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+          gap: 40px;
           margin-bottom: 20px;
         }
         
@@ -622,29 +622,122 @@ export default function Footer() {
         }
         
         @media (max-width: 768px) {
+          .footer {
+            padding: 25px 0 10px;
+          }
+          
           .footer-top {
             grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-            padding-bottom: 40px;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+          }
+          
+          .newsletter-section h3 {
+            font-size: 12px;
+            margin-bottom: 10px;
+          }
+          
+          .newsletter-section p {
+            font-size: 10px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+          }
+          
+          .newsletter-form {
+            gap: 8px;
+            margin-bottom: 10px;
+          }
+          
+          .newsletter-form input {
+            padding: 8px 0;
+            font-size: 11px;
+          }
+          
+          .newsletter-form button {
+            padding: 6px 12px;
+            font-size: 11px;
+          }
+          
+          .newsletter-disclaimer {
+            font-size: 9px;
+            line-height: 1.2;
           }
           
           .footer-right {
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 15px;
+          }
+          
+          .service-client h4,
+          .pays-region h4 {
+            font-size: 12px;
+            margin-bottom: 10px;
+          }
+          
+          .service-client a {
+            font-size: 10px;
+          }
+          
+          .service-client li {
+            margin-bottom: 6px;
+          }
+          
+          .country-selector {
+            font-size: 10px;
+            padding: 6px 0;
+          }
+          
+          .language-selected-footer {
+            font-size: 10px;
+            padding: 6px 0;
+          }
+          
+          .language-selected-footer .flag {
+            font-size: 12px;
+          }
+          
+          .language-option-footer {
+            font-size: 10px;
+            padding: 6px 8px;
+          }
+          
+          .language-option-footer .flag {
+            font-size: 12px;
           }
           
           .footer-links {
             grid-template-columns: 1fr;
             gap: 0;
+            margin-bottom: 15px;
           }
           
-          .newsletter-form {
-            gap: 10px;
+          .section-header {
+            padding: 8px 0;
           }
           
-          .newsletter-form input {
-            padding: 12px 0;
+          .section-header h4 {
+            font-size: 12px;
+          }
+          
+          .section-content.open {
+            padding: 8px 0;
+          }
+          
+          .section-content li {
+            margin-bottom: 6px;
+          }
+          
+          .section-content li a {
+            font-size: 10px;
+          }
+          
+          .footer-bottom {
+            padding: 10px 0;
+          }
+          
+          .copyright {
+            font-size: 9px;
           }
         }
       `}</style>
