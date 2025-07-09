@@ -186,7 +186,10 @@ export default function ProductDetail() {
 
           {/* Product Info Section - 40% */}
           <div className={styles.productInfoSection}>
-            <h1 className={styles.productTitle}>{product.name}</h1>
+            <div className={styles.productTitleLine}>
+              <h1 className={styles.productTitle}>{product.name}</h1>
+              <span className={styles.productPrice}>{product.price}</span>
+            </div>
             
             <p className={styles.productDescription}>
               {product.category === 'femme' ? 'Robe boutonnée en maille' : 'Veste non doublée en lin'}
@@ -232,23 +235,13 @@ export default function ProductDetail() {
                   </button>
                 ))}
               </div>
-              <div className={styles.calculateSize}>
-                ⓘ Calculez votre taille
-              </div>
             </div>
 
             {/* Add to Cart Button */}
             <div className={styles.addToCartSection}>
               <button className={styles.addToCartButton} onClick={handleAddToCart}>
-                <span className={styles.buttonLeft}>
-                  <span className={styles.cartIcon}>🛒</span>
-                  <span>AJOUTER AU PANIER</span>
-                </span>
-                <span className={styles.buttonPrice}>{product.price}</span>
+                <span>AJOUTER AU PANIER</span>
               </button>
-              <div className={styles.availabilityLink}>
-                Voir la disponibilité et prendre un rendez-vous en boutique
-              </div>
             </div>
 
             {/* Tabs Section */}

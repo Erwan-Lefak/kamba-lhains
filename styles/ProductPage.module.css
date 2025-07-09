@@ -143,13 +143,27 @@
   overflow-y: auto;
 }
 
+.productTitleLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .productTitle {
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: 1px;
-  margin-bottom: 20px;
   color: #000;
   line-height: 1.2;
+  margin: 0;
+}
+
+.productPrice {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
 }
 
 .productDescription {
@@ -280,20 +294,6 @@
   border-color: #000;
 }
 
-.calculateSize {
-  font-size: 12px;
-  color: #000;
-  text-decoration: underline;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.calculateSize:hover {
-  color: #666;
-}
 
 /* Price Section */
 .priceSection {
@@ -324,7 +324,7 @@
   color: #000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   text-transform: none;
 }
 
@@ -332,35 +332,6 @@
   background: #f8f8f8;
 }
 
-.buttonLeft {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cartIcon {
-  font-size: 14px;
-}
-
-.buttonPrice {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 1px;
-}
-
-.availabilityLink {
-  font-size: 12px;
-  color: #000;
-  text-decoration: underline;
-  cursor: pointer;
-  text-align: center;
-  display: block;
-  margin-top: 15px;
-}
-
-.availabilityLink:hover {
-  color: #666;
-}
 
 /* Tabs Section */
 .tabsSection {
@@ -612,8 +583,18 @@
 }
 
 @media (max-width: 768px) {
+  .productTitleLine {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
   .productTitle {
     font-size: 1.7rem;
+  }
+
+  .productPrice {
+    font-size: 1.3rem;
   }
 
   .productInfoSection {
