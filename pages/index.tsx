@@ -1,17 +1,14 @@
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
-import LargeProductCard from '../components/LargeProductCard';
-import { featuredProducts, products } from '../data/products';
-import { Product } from '../types';
+import { featuredProducts } from '../data/products';
 import styles from '../styles/HomePage.module.css';
 
 export default function Home() {
-  // Get specific products by ID for the large display
-  const largeProduct1: Product | undefined = products.find(p => p.id === 7); // CHEMISE URIEL
-  const largeProduct2: Product | undefined = products.find(p => p.id === 8); // VESTE KMOBOU
 
   return (
     <>
@@ -43,19 +40,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Two Products Grid Section */}
-        <section className={styles.twoProductsSection}>
-          <div className={styles.twoProductsGrid}>
-            {largeProduct1 && (
-              <div className={styles.largeProductSlot}>
-                <LargeProductCard product={largeProduct1} />
+        {/* New Collection Section */}
+        <section className={styles.newCollectionSection}>
+          <div className={styles.collectionGrid}>
+            <div className={styles.collectionImageSlot}>
+              <Image 
+                src="/IMG_2758.jpg"
+                alt="Nouvelle Collection 1"
+                fill
+                sizes="50vw"
+                className={styles.collectionImage}
+                priority
+              />
+            </div>
+            <div className={styles.collectionContentSlot}>
+              <div className={styles.collectionContent}>
+                <h2 className={styles.collectionTitle}>NOUVELLE COLLECTION</h2>
+                <Link href="/boutique" className={styles.boutiqueButton}>
+                  BOUTIQUE
+                </Link>
               </div>
-            )}
-            {largeProduct2 && (
-              <div className={styles.largeProductSlot}>
-                <LargeProductCard product={largeProduct2} />
-              </div>
-            )}
+            </div>
+            <div className={styles.collectionImageSlot}>
+              <Image 
+                src="/IMG_3475.jpg"
+                alt="Nouvelle Collection 2"
+                fill
+                sizes="50vw"
+                className={styles.collectionImage}
+                priority
+              />
+            </div>
           </div>
         </section>
       </main>
