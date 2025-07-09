@@ -126,11 +126,11 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .threeProductsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .collectionGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .collectionImageSlot {
@@ -138,18 +138,18 @@
   }
 
   .collectionTitle {
-    font-size: 24px;
-    letter-spacing: 2px;
+    font-size: 20px;
+    letter-spacing: 1px;
   }
 
   .boutiqueButton {
-    padding: 15px 30px;
-    font-size: 14px;
+    padding: 12px 24px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
 
   .productSlot {
-    height: 80vh;
+    height: 50vh;
   }
 }
 
