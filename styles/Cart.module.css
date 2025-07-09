@@ -1,8 +1,8 @@
 /* Cart Page Styles - Luxury E-commerce */
 
 .cartPage {
-  margin-top: 80px;
-  min-height: calc(100vh - 80px);
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
   background: #fafafa;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
@@ -63,7 +63,7 @@
   margin: 0 auto;
   padding: 60px 40px;
   background: white;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - var(--header-height));
 }
 
 .cartHeader {

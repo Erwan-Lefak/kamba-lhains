@@ -162,7 +162,7 @@
 /* Favorites page styles */
 .favoritesPage {
   min-height: 100vh;
-  padding: 100px 0 50px;
+  padding: calc(var(--header-height) + 20px) 0 50px;
 }
 
 .container {

@@ -1,8 +1,8 @@
 /* Checkout Page Styles - Luxury E-commerce */
 
 .checkoutPage {
-  margin-top: 80px;
-  min-height: calc(100vh - 80px);
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
   background: #fafafa;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
