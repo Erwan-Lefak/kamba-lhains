@@ -46,23 +46,23 @@ const MobileCarousel = ({ products }) => {
 
   const onTouchStart = (e) => {
     setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStart(e.targetTouches[0].clientY);
   };
 
   const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientY);
   };
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
     
     const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    const isUpSwipe = distance > minSwipeDistance;
+    const isDownSwipe = distance < -minSwipeDistance;
 
-    if (isLeftSwipe) {
+    if (isUpSwipe) {
       goToNext();
-    } else if (isRightSwipe) {
+    } else if (isDownSwipe) {
       goToPrevious();
     }
   };
@@ -72,7 +72,7 @@ const MobileCarousel = ({ products }) => {
       <div 
         className={styles.mobileCarouselContainer}
         style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
+          transform: `translateY(-${currentIndex * 100}%)`,
         }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
@@ -92,14 +92,14 @@ const MobileCarousel = ({ products }) => {
           onClick={goToPrevious}
           aria-label="Produit précédent"
         >
-          ‹
+          ▲
         </button>
         <button 
           className={styles.carouselArrow}
           onClick={goToNext}
           aria-label="Produit suivant"
         >
-          ›
+          ▼
         </button>
       </div>
 
