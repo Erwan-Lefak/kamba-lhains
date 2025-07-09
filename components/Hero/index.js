@@ -8,7 +8,7 @@ const Hero = () => {
       aria-label="Hero section"
       role="banner"
     >
-      <VideoHero videoSrc="/0629.mp4" />
+      <VideoHero videoSrc="/ACCUEIL.mp4" />
     </section>
   );
 };
