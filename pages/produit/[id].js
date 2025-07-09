@@ -186,10 +186,8 @@ export default function ProductDetail() {
 
           {/* Product Info Section - 40% */}
           <div className={styles.productInfoSection}>
-            <div className={styles.productTitleLine}>
-              <h1 className={styles.productTitle}>{product.name}</h1>
-              <span className={styles.productPrice}>{product.price}</span>
-            </div>
+            <h1 className={styles.productTitle}>{product.name}</h1>
+            <span className={styles.productPrice}>{product.price}</span>
             
             <p className={styles.productDescription}>
               {product.category === 'femme' ? 'Robe boutonnée en maille' : 'Veste non doublée en lin'}

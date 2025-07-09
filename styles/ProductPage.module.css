@@ -143,27 +143,21 @@
   overflow-y: auto;
 }
 
-.productTitleLine {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
 .productTitle {
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: 1px;
   color: #000;
   line-height: 1.2;
-  margin: 0;
+  margin: 0 0 10px 0;
 }
 
 .productPrice {
   font-size: 1.5rem;
   font-weight: 400;
   color: #000;
-  margin: 0;
+  margin: 0 0 20px 0;
+  display: block;
 }
 
 .productDescription {
@@ -583,12 +577,6 @@
 }
 
 @media (max-width: 768px) {
-  .productTitleLine {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
   .productTitle {
     font-size: 1.7rem;
   }
