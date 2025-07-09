@@ -136,7 +136,9 @@ export default function Footer() {
           background: white;
           color: black;
           padding: 60px 0 20px;
-          font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          font-weight: 300;
+          letter-spacing: 0.5px;
         }
         
         .container {
@@ -156,7 +158,7 @@ export default function Footer() {
         
         .newsletter-section h3 {
           font-size: 18px;
-          font-weight: 600;
+          font-weight: 400;
           margin-bottom: 20px;
           color: black;
         }
@@ -166,6 +168,7 @@ export default function Footer() {
           color: #666;
           font-size: 14px;
           margin-bottom: 20px;
+          font-weight: 300;
         }
         
         .newsletter-form {
@@ -182,6 +185,8 @@ export default function Footer() {
           background: transparent;
           font-size: 14px;
           outline: none;
+          font-weight: 300;
+          font-family: inherit;
         }
         
         .newsletter-form input:focus {
@@ -207,6 +212,7 @@ export default function Footer() {
           font-size: 12px;
           color: #999;
           line-height: 1.4;
+          font-weight: 300;
         }
         
         .footer-right {
@@ -218,7 +224,7 @@ export default function Footer() {
         .service-client h4,
         .pays-region h4 {
           font-size: 16px;
-          font-weight: 600;
+          font-weight: 400;
           margin-bottom: 20px;
           color: black;
         }
@@ -238,6 +244,7 @@ export default function Footer() {
           text-decoration: none;
           font-size: 14px;
           transition: color 0.3s;
+          font-weight: 300;
         }
         
         .service-client a:hover {
@@ -249,6 +256,7 @@ export default function Footer() {
           align-items: center;
           gap: 10px;
           font-size: 14px;
+          font-weight: 300;
         }
         
         .country-selector select {
@@ -280,7 +288,7 @@ export default function Footer() {
         
         .section-header h4 {
           font-size: 16px;
-          font-weight: 600;
+          font-weight: 400;
           margin: 0;
           color: black;
         }
@@ -319,6 +327,7 @@ export default function Footer() {
           text-decoration: none;
           font-size: 14px;
           transition: color 0.3s;
+          font-weight: 300;
         }
         
         .section-content li a:hover {
@@ -335,6 +344,7 @@ export default function Footer() {
           color: #666;
           font-size: 12px;
           margin: 0;
+          font-weight: 300;
         }
         
         @media (min-width: 769px) {
