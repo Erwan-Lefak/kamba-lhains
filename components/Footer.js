@@ -79,9 +79,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact">Formulaire de contact</Link></li>
-                <li><Link href="/suivi-commande">Suivre une commande</Link></li>
-                <li><Link href="/retour">Enregistrer un retour</Link></li>
+                <li><Link href="/contact">{t('footer.customerServiceLinks.contactForm')}</Link></li>
+                <li><Link href="/suivi-commande">{t('footer.customerServiceLinks.trackOrder')}</Link></li>
+                <li><Link href="/retour">{t('footer.customerServiceLinks.registerReturn')}</Link></li>
               </ul>
             </div>
             
@@ -127,50 +127,50 @@ export default function Footer() {
         <div className="footer-links">
           <div className="link-section">
             <div className="section-header" onClick={() => toggleSection('legal')}>
-              <h4>Mentions légales et cookies</h4>
+              <h4>{t('footer.links.legal')}</h4>
               <span className={`arrow ${openSections.legal ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.legal ? 'open' : ''}`}>
-              <li><Link href="/mentions-legales">Mentions légales</Link></li>
-              <li><Link href="/conditions-vente">Conditions de vente</Link></li>
-              <li><Link href="/politique-confidentialite">Politique de confidentialité</Link></li>
-              <li><Link href="/conditions-utilisation">Conditions générales d'utilisation</Link></li>
-              <li><Link href="/accessibilite">Accessibilité</Link></li>
+              <li><Link href="/mentions-legales">{t('footer.links.legalNotices')}</Link></li>
+              <li><Link href="/conditions-vente">{t('footer.links.salesConditions')}</Link></li>
+              <li><Link href="/politique-confidentialite">{t('footer.links.privacyPolicy')}</Link></li>
+              <li><Link href="/conditions-utilisation">{t('footer.links.termsOfUse')}</Link></li>
+              <li><Link href="/accessibilite">{t('footer.links.accessibility')}</Link></li>
             </ul>
           </div>
           
           <div className="link-section">
             <div className="section-header" onClick={() => toggleSection('faq')}>
-              <h4>FAQ</h4>
+              <h4>{t('footer.links.faq')}</h4>
               <span className={`arrow ${openSections.faq ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.faq ? 'open' : ''}`}>
-              <li><Link href="/compte">Compte</Link></li>
-              <li><Link href="/livraison">Informations de livraison</Link></li>
-              <li><Link href="/commandes">Commandes</Link></li>
-              <li><Link href="/paiements">Paiements</Link></li>
-              <li><Link href="/retours">Retours & échanges</Link></li>
-              <li><Link href="/guide-tailles">Guide des tailles</Link></li>
-              <li><Link href="/carte-cadeau">Carte Cadeau</Link></li>
+              <li><Link href="/compte">{t('footer.links.account')}</Link></li>
+              <li><Link href="/livraison">{t('footer.links.deliveryInfo')}</Link></li>
+              <li><Link href="/commandes">{t('footer.links.orders')}</Link></li>
+              <li><Link href="/paiements">{t('footer.links.payments')}</Link></li>
+              <li><Link href="/retours">{t('footer.links.returns')}</Link></li>
+              <li><Link href="/guide-tailles">{t('footer.links.sizeGuide')}</Link></li>
+              <li><Link href="/carte-cadeau">{t('footer.links.giftCard')}</Link></li>
             </ul>
           </div>
           
           <div className="link-section">
             <div className="section-header" onClick={() => toggleSection('entreprise')}>
-              <h4>Entreprise</h4>
+              <h4>{t('footer.links.company')}</h4>
               <span className={`arrow ${openSections.entreprise ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.entreprise ? 'open' : ''}`}>
-              <li><Link href="/contact">Nous contacter</Link></li>
-              <li><Link href="/boutiques">Nos boutiques</Link></li>
-              <li><Link href="/rendez-vous">Prendre un rendez-vous en boutique</Link></li>
-              <li><Link href="/carriere">Carrière</Link></li>
+              <li><Link href="/contact">{t('footer.links.contactUs')}</Link></li>
+              <li><Link href="/boutiques">{t('footer.links.stores')}</Link></li>
+              <li><Link href="/rendez-vous">{t('footer.links.appointment')}</Link></li>
+              <li><Link href="/carriere">{t('footer.links.career')}</Link></li>
             </ul>
           </div>
           
           <div className="link-section">
             <div className="section-header" onClick={() => toggleSection('suivre')}>
-              <h4>Nous suivre</h4>
+              <h4>{t('footer.links.follow')}</h4>
               <span className={`arrow ${openSections.suivre ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.suivre ? 'open' : ''}`}>
@@ -387,15 +387,15 @@ export default function Footer() {
         
         .language-options-footer {
           position: absolute;
-          bottom: 100%;
+          top: 100%;
           left: 0;
           right: 0;
           background: white;
           border: 1px solid #eee;
           border-radius: 4px;
-          box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
           z-index: 1000;
-          margin-bottom: 5px;
+          margin-top: 5px;
         }
         
         .language-option-footer {

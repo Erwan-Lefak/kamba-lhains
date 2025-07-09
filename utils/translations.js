@@ -30,13 +30,34 @@ export const translations = {
         disclaimer: "J'accepte de recevoir la newsletter de KAMBA LHAINS pour être informé(e) en avant-première des nouvelles collections, des événements de la marque et des offres spéciales. En m'abonnant, j'accepte la Politique de confidentialité de KAMBA LHAINS."
       },
       customerService: "Service Client",
+      customerServiceLinks: {
+        contactForm: "Formulaire de contact",
+        trackOrder: "Suivre une commande",
+        registerReturn: "Enregistrer un retour"
+      },
       countryRegion: "Pays/Région",
       language: "Langue",
       links: {
         legal: "Mentions légales et cookies",
         faq: "FAQ",
         company: "Entreprise",
-        follow: "Nous suivre"
+        follow: "Nous suivre",
+        legalNotices: "Mentions légales",
+        salesConditions: "Conditions de vente",
+        privacyPolicy: "Politique de confidentialité",
+        termsOfUse: "Conditions générales d'utilisation",
+        accessibility: "Accessibilité",
+        account: "Compte",
+        deliveryInfo: "Informations de livraison",
+        orders: "Commandes",
+        payments: "Paiements",
+        returns: "Retours & échanges",
+        sizeGuide: "Guide des tailles",
+        giftCard: "Carte Cadeau",
+        contactUs: "Nous contacter",
+        stores: "Nos boutiques",
+        appointment: "Prendre un rendez-vous en boutique",
+        career: "Carrière"
       }
     },
     products: {
@@ -96,13 +117,34 @@ export const translations = {
         disclaimer: "I accept to receive the KAMBA LHAINS newsletter to be informed in advance of new collections, brand events and special offers. By subscribing, I accept the KAMBA LHAINS Privacy Policy."
       },
       customerService: "Customer Service",
+      customerServiceLinks: {
+        contactForm: "Contact form",
+        trackOrder: "Track an order",
+        registerReturn: "Register a return"
+      },
       countryRegion: "Country/Region",
       language: "Language",
       links: {
         legal: "Legal notices and cookies",
         faq: "FAQ",
         company: "Company",
-        follow: "Follow us"
+        follow: "Follow us",
+        legalNotices: "Legal notices",
+        salesConditions: "Terms of sale",
+        privacyPolicy: "Privacy policy",
+        termsOfUse: "Terms of use",
+        accessibility: "Accessibility",
+        account: "Account",
+        deliveryInfo: "Delivery information",
+        orders: "Orders",
+        payments: "Payments",
+        returns: "Returns & exchanges",
+        sizeGuide: "Size guide",
+        giftCard: "Gift Card",
+        contactUs: "Contact us",
+        stores: "Our stores",
+        appointment: "Book an appointment in store",
+        career: "Career"
       }
     },
     products: {
@@ -162,13 +204,34 @@ export const translations = {
         disclaimer: "저는 새로운 컬렉션, 브랜드 이벤트 및 특별 혜택에 대한 사전 정보를 받기 위해 KAMBA LHAINS 뉴스레터를 받는 것에 동의합니다. 구독함으로써 KAMBA LHAINS 개인정보 보호정책에 동의합니다."
       },
       customerService: "고객 서비스",
+      customerServiceLinks: {
+        contactForm: "문의 양식",
+        trackOrder: "주문 추적",
+        registerReturn: "반품 등록"
+      },
       countryRegion: "국가/지역",
       language: "언어",
       links: {
         legal: "법적 고지 및 쿠키",
         faq: "자주 묻는 질문",
         company: "회사",
-        follow: "팔로우"
+        follow: "팔로우",
+        legalNotices: "법적 고지",
+        salesConditions: "판매 조건",
+        privacyPolicy: "개인정보 보호정책",
+        termsOfUse: "이용 약관",
+        accessibility: "접근성",
+        account: "계정",
+        deliveryInfo: "배송 정보",
+        orders: "주문",
+        payments: "결제",
+        returns: "반품 및 교환",
+        sizeGuide: "사이즈 가이드",
+        giftCard: "기프트 카드",
+        contactUs: "문의하기",
+        stores: "매장",
+        appointment: "매장 예약하기",
+        career: "채용"
       }
     },
     products: {
