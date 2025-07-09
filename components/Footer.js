@@ -12,7 +12,8 @@ export default function Footer() {
     currency: 'EUR'
   });
   
-  const { currentLanguage, changeLanguage } = useLanguage();
+  const { currentLanguage, changeLanguage, t } = useLanguage();
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   
   const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -57,26 +58,26 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="newsletter-section">
-            <h3>S'abonner à la newsletter</h3>
-            <p>Inscrivez-vous pour recevoir par e-mail toutes les informations sur nos dernières collections, nos produits, nos défilés de mode et nos projets.</p>
+            <h3>{t('footer.newsletter.title')}</h3>
+            <p>{t('footer.newsletter.description')}</p>
             <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
               <input
                 type="email"
-                placeholder="Email"
+                placeholder={t('footer.newsletter.placeholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit">S'inscrire</button>
+              <button type="submit">{t('footer.newsletter.subscribe')}</button>
             </form>
             <p className="newsletter-disclaimer">
-              J'accepte de recevoir la newsletter de KAMBA LHAINS pour être informé(e) en avant-première des nouvelles collections, des événements de la marque et des offres spéciales. En m'abonnant, j'accepte la Politique de confidentialité de KAMBA LHAINS.
+              {t('footer.newsletter.disclaimer')}
             </p>
           </div>
           
           <div className="footer-right">
             <div className="service-client">
-              <h4>Service Client</h4>
+              <h4>{t('footer.customerService')}</h4>
               <ul>
                 <li><Link href="/contact">Formulaire de contact</Link></li>
                 <li><Link href="/suivi-commande">Suivre une commande</Link></li>
@@ -85,24 +86,39 @@ export default function Footer() {
             </div>
             
             <div className="pays-region">
-              <h4>Pays/Région</h4>
+              <h4>{t('footer.countryRegion')}</h4>
               <div className="country-selector" onClick={() => setShowCountryModal(true)}>
                 <span className="flag">{selectedCountry.flag}</span>
                 <span>{selectedCountry.name} ({selectedCountry.currency})</span>
               </div>
               
-              <h4 style={{ marginTop: '20px' }}>Langue</h4>
-              <div className="language-selector-footer">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => changeLanguage(lang.code)}
-                    className={`language-option-footer ${currentLanguage === lang.code ? 'active' : ''}`}
-                  >
-                    <span className="flag">{lang.flag}</span>
-                    <span>{lang.label}</span>
-                  </button>
-                ))}
+              <h4 style={{ marginTop: '20px' }}>{t('footer.language')}</h4>
+              <div className="language-dropdown-footer">
+                <div 
+                  className="language-selected-footer" 
+                  onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                >
+                  <span className="flag">{languages.find(lang => lang.code === currentLanguage)?.flag}</span>
+                  <span>{languages.find(lang => lang.code === currentLanguage)?.label}</span>
+                  <span className="arrow">{showLanguageDropdown ? '▲' : '▼'}</span>
+                </div>
+                {showLanguageDropdown && (
+                  <div className="language-options-footer">
+                    {languages.filter(lang => lang.code !== currentLanguage).map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => {
+                          changeLanguage(lang.code);
+                          setShowLanguageDropdown(false);
+                        }}
+                        className="language-option-footer"
+                      >
+                        <span className="flag">{lang.flag}</span>
+                        <span>{lang.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -336,18 +352,57 @@ export default function Footer() {
           border-bottom-color: #ccc;
         }
         
-        .language-selector-footer {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
+        .language-dropdown-footer {
+          position: relative;
           margin-top: 10px;
+        }
+        
+        .language-selected-footer {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 0;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 300;
+          color: #666;
+          border-bottom: 1px solid transparent;
+          transition: all 0.3s ease;
+        }
+        
+        .language-selected-footer:hover {
+          color: black;
+          border-bottom-color: #ccc;
+        }
+        
+        .language-selected-footer .flag {
+          font-size: 16px;
+        }
+        
+        .language-selected-footer .arrow {
+          margin-left: auto;
+          font-size: 12px;
+          transition: transform 0.3s ease;
+        }
+        
+        .language-options-footer {
+          position: absolute;
+          bottom: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          border: 1px solid #eee;
+          border-radius: 4px;
+          box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+          z-index: 1000;
+          margin-bottom: 5px;
         }
         
         .language-option-footer {
           display: flex;
           align-items: center;
           gap: 10px;
-          padding: 8px 0;
+          padding: 12px 15px;
           background: none;
           border: none;
           cursor: pointer;
@@ -355,18 +410,13 @@ export default function Footer() {
           font-weight: 300;
           color: #666;
           transition: all 0.3s ease;
-          border-bottom: 1px solid transparent;
+          width: 100%;
+          text-align: left;
         }
         
         .language-option-footer:hover {
+          background: #f5f5f5;
           color: black;
-          border-bottom-color: #ccc;
-        }
-        
-        .language-option-footer.active {
-          color: black;
-          font-weight: 400;
-          border-bottom-color: black;
         }
         
         .language-option-footer .flag {

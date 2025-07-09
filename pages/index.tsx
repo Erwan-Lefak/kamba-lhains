@@ -6,9 +6,11 @@ import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { featuredProducts } from '../data/products';
+import { useLanguage } from '../contexts/LanguageContext';
 import styles from '../styles/HomePage.module.css';
 
 export default function Home() {
+  const { t } = useLanguage();
 
   return (
     <>
@@ -66,9 +68,9 @@ export default function Home() {
           </div>
           <div className={styles.collectionOverlay}>
             <div className={styles.collectionContent}>
-              <h2 className={styles.collectionTitle}>NOUVELLE COLLECTION</h2>
+              <h2 className={styles.collectionTitle}>{t('sections.newCollection')}</h2>
               <Link href="/boutique" className={styles.boutiqueButton}>
-                BOUTIQUE
+                {t('sections.shop')}
               </Link>
             </div>
           </div>

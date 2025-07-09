@@ -3,15 +3,17 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import { useFavorites } from '../contexts/FavoritesContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import styles from '../styles/Products.module.css';
 
 export default function Favoris() {
   const { favorites } = useFavorites();
+  const { t } = useLanguage();
 
   return (
     <>
       <Head>
-        <title>Favoris - Kamba Lhains</title>
+        <title>{t('favorites.title')} - Kamba Lhains</title>
         <meta name="description" content="Vos produits favoris Kamba Lhains" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
