@@ -149,7 +149,8 @@
   }
 
   .productSlot {
-    height: 50vh;
+    height: 35vh;
+    max-height: 400px;
   }
 }
 
