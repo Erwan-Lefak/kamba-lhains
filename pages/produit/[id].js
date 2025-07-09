@@ -6,16 +6,17 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
+import { useFavorites } from '../../contexts/FavoritesContext';
 import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
   const router = useRouter();
   const { id } = router.query;
   const { addToCart } = useCart();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
-  const [isLiked, setIsLiked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
 
@@ -41,7 +42,13 @@ export default function ProductDetail() {
   };
 
   const handleHeartClick = () => {
-    setIsLiked(!isLiked);
+    if (product) {
+      if (isFavorite(product.id)) {
+        removeFromFavorites(product.id);
+      } else {
+        addToFavorites(product);
+      }
+    }
   };
 
   const openModal = (content) => {
@@ -167,10 +174,13 @@ export default function ProductDetail() {
             <button className={`${styles.navArrow} ${styles.navPrev}`}>‹</button>
             <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
             <button 
-              className={`${styles.heartIcon} ${isLiked ? styles.liked : ''}`}
+              className={`${styles.heartIcon} ${product && isFavorite(product.id) ? styles.liked : ''}`}
               onClick={handleHeartClick}
+              aria-label={product && isFavorite(product.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
             >
-              ♡
+              <svg viewBox="0 0 24 24" fill={product && isFavorite(product.id) ? "black" : "none"} stroke="black" strokeWidth="1.5" width="24" height="24">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
             </button>
           </div>
 

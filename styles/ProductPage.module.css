@@ -112,27 +112,25 @@
   top: 30px;
   right: 30px;
   background: transparent;
-  border: 2px solid #000;
-  font-size: 1.5rem;
-  color: transparent;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0;
+  z-index: 10;
 }
 
 .heartIcon:hover {
   transform: scale(1.1);
 }
 
-.heartIcon.liked {
-  background: #000;
-  color: #000;
-  border-color: #000;
+.heartIcon svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Product Info Section */
