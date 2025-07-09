@@ -40,18 +40,18 @@
 
 .productName {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  color: black;
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 }
 
 .productPrice {
   font-size: 14px;
-  font-weight: 300;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 200;
+  color: black;
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 }
 
 /* Large Product Card Component */
@@ -92,18 +92,18 @@
 
 .largeProductName {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  color: black;
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 }
 
 .largeProductPrice {
   font-size: 14px;
-  font-weight: 300;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 200;
+  color: black;
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 }
 
 /* Favorites heart icon */
