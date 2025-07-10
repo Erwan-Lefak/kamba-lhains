@@ -675,7 +675,7 @@ export default function Footer() {
             margin-bottom: 10px;
           }
           
-          .service-client a {
+          .footer .service-client ul li a {
             font-size: 6px !important;
             color: red !important;
           }
