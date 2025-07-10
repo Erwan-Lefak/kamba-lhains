@@ -676,7 +676,7 @@ export default function Footer() {
           }
           
           .service-client a {
-            font-size: 10px;
+            font-size: 5px;
           }
           
           .service-client li {
