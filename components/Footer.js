@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Footer() {
@@ -14,6 +14,18 @@ export default function Footer() {
   
   const { currentLanguage, changeLanguage, t } = useLanguage();
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
@@ -79,9 +91,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact" style={{fontSize: '6px', color: 'red'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
-                <li><Link href="/suivi-commande" style={{fontSize: '6px', color: 'red'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
-                <li><Link href="/retour" style={{fontSize: '6px', color: 'red'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
+                <li><Link href="/contact" style={{fontSize: isMobile ? '5px' : '10px'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '5px' : '10px'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
+                <li><Link href="/retour" style={{fontSize: isMobile ? '5px' : '10px'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
               </ul>
             </div>
             
@@ -675,10 +687,6 @@ export default function Footer() {
             margin-bottom: 10px;
           }
           
-          .footer .service-client ul li a {
-            font-size: 6px !important;
-            color: red !important;
-          }
           
           .service-client li {
             margin-bottom: 6px;
