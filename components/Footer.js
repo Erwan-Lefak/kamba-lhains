@@ -91,9 +91,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact" style={{fontSize: isMobile ? '5px' : '10px'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
-                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '5px' : '10px'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
-                <li><Link href="/retour" style={{fontSize: isMobile ? '5px' : '10px'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
+                <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
+                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
               </ul>
             </div>
             
