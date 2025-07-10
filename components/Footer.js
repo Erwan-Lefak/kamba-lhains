@@ -677,6 +677,7 @@ export default function Footer() {
           
           .service-client a {
             font-size: 6px !important;
+            color: red !important;
           }
           
           .service-client li {
