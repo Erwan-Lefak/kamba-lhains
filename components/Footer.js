@@ -79,9 +79,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact">{t('footer.customerServiceLinks.contactForm')}</Link></li>
-                <li><Link href="/suivi-commande">{t('footer.customerServiceLinks.trackOrder')}</Link></li>
-                <li><Link href="/retour">{t('footer.customerServiceLinks.registerReturn')}</Link></li>
+                <li><Link href="/contact" style={{fontSize: '6px', color: 'red'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: '6px', color: 'red'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
+                <li><Link href="/retour" style={{fontSize: '6px', color: 'red'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
               </ul>
             </div>
             
