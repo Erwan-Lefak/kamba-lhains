@@ -100,7 +100,7 @@ export default function Boutique() {
         .boutique-page {
           padding-top: 80px;
           min-height: 100vh;
-          font-family: 'Helvetica Neue', Arial, sans-serif;
+          font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
           background: #fafafa;
         }
 

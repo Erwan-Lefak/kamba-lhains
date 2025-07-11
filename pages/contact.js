@@ -251,7 +251,7 @@ export default function Contact() {
           padding-top: 120px;
           min-height: 100vh;
           background: #fafafa;
-          font-family: 'Helvetica Neue', Arial, sans-serif;
+          font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
         }
 
         .container {
