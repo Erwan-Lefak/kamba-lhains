@@ -80,6 +80,8 @@
 .navigationSection {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .navigation {
@@ -88,13 +90,15 @@
   gap: 25px;
   margin: 0;
   padding: 0;
+  align-items: center;
+  height: 100%;
 }
 
 .navLink {
   text-decoration: none !important;
   color: #000000 !important;
   font-family: 'Manrope', 'Helvetica', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -104,6 +108,9 @@
   border: none !important;
   background: none !important;
   -webkit-tap-highlight-color: transparent !important;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .navLink:focus,
@@ -153,13 +160,17 @@
   background: none !important;
   border: none !important;
   cursor: pointer;
-  padding: 5px 5px 0 5px;
+  padding: 5px;
   position: relative;
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
   color: #000000;
   transition: color 0.3s ease;
   font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .actionButton:focus,
@@ -182,6 +193,11 @@
   position: relative;
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5px;
   transform: translateY(1px);
 }
 
