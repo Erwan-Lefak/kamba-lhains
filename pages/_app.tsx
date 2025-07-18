@@ -23,6 +23,16 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
           rel="stylesheet"
         />
       </Head>
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <symbol id="icon-heart-kamba" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="black"/>
+          </symbol>
+          <symbol id="icon-heart-kamba-plain" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="none" stroke="black" strokeWidth="1.5"/>
+          </symbol>
+        </defs>
+      </svg>
       <ErrorBoundary>
         <SessionProvider session={session}>
           <LanguageProvider>

@@ -178,9 +178,16 @@ export default function ProductDetail() {
               onClick={handleHeartClick}
               aria-label={product && isFavorite(product.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
             >
-              <svg viewBox="0 0 24 24" fill={product && isFavorite(product.id) ? "black" : "none"} stroke="black" strokeWidth="1.5" width="24" height="24">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
+              <span className={`u-w-full ${product && isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
+                <svg className="c-icon" data-size="sm">
+                  <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                </svg>
+              </span>
+              <span className={`u-w-full ${product && !isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                <svg className="c-icon" data-size="sm">
+                  <use xlinkHref="#icon-heart-kamba" x="0" y="0"></use>
+                </svg>
+              </span>
             </button>
           </div>
 

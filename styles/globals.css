@@ -48,6 +48,26 @@ input, select, textarea {
   outline: none;
 }
 
+/* Utility Classes */
+.u-hidden {
+  display: none !important;
+}
+
+.u-w-full {
+  width: 100% !important;
+}
+
+.c-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.c-icon[data-size="sm"] {
+  width: 16px;
+  height: 16px;
+}
+
 /* Container */
 .container {
   max-width: 100%;
