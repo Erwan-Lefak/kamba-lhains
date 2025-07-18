@@ -293,6 +293,15 @@
   font-size: 18px;
 }
 
+/* Cross-platform video control icons */
+.playButton svg,
+.skipButton svg,
+.fullscreenButton svg {
+  shape-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .soundIcon {
   display: flex;
   align-items: center;
@@ -324,6 +333,14 @@
   
   .skipButton {
     font-size: 10px;
+  }
+  
+  /* Ensure video control icons are consistent on mobile */
+  .playButton svg,
+  .skipButton svg,
+  .fullscreenButton svg {
+    width: 14px;
+    height: 14px;
   }
 }
 

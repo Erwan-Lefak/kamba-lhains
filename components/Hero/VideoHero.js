@@ -96,7 +96,16 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
           onClick={handlePlayPause}
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
-          {isPlaying ? '⏸' : '▶'}
+          {isPlaying ? (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
+          )}
         </button>
         
         <div 
@@ -115,7 +124,10 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
             onClick={handleSkip}
             aria-label="Avancer de 5 secondes"
           >
-            ⏭
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="5,4 15,12 5,20"></polygon>
+              <line x1="19" y1="5" x2="19" y2="19"></line>
+            </svg>
           </button>
           
           <button 
@@ -123,7 +135,9 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
             onClick={handleFullscreen}
             aria-label="Plein écran"
           >
-            ⛶
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+            </svg>
           </button>
           
           <button 
