@@ -185,7 +185,7 @@ export default function ProductDetail() {
               </span>
               <span className={`u-w-full ${product && !isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
                 <svg className="c-icon" data-size="sm">
-                  <use xlinkHref="#icon-heart-kamba" x="0" y="0"></use>
+                  <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
                 </svg>
               </span>
             </button>
