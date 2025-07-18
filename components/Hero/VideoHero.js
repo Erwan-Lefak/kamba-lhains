@@ -131,13 +131,13 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
             onClick={handleMute}
             aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
           >
-            {isMuted ? (
-              <div className={styles.mutedIcon}>🔇</div>
-            ) : (
-              <div className={styles.soundIcon}>
-                <img src="/sound.svg" alt="Sound" width="24" height="24" />
-              </div>
-            )}
+            <img 
+              src="https://www.jacquemus.com/on/demandware.static/Sites-Jacquemus-Site/-/default/dw74ee98d3/images/sound.svg" 
+              alt="mute video" 
+              title="mute video" 
+              width="14" 
+              height="14" 
+            />
           </button>
         </div>
       </div>
