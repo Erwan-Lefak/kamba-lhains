@@ -131,16 +131,13 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
             onClick={handleMute}
             aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
           >
-            <div className={styles.soundIcon}>
-              <span className={styles.speaker}>🔊</span>
-              {!isMuted && (
-                <>
-                  <span className={`${styles.soundWave} ${styles.wave1}`}></span>
-                  <span className={`${styles.soundWave} ${styles.wave2}`}></span>
-                  <span className={`${styles.soundWave} ${styles.wave3}`}></span>
-                </>
-              )}
-            </div>
+            {isMuted ? (
+              <div className={styles.mutedIcon}>🔇</div>
+            ) : (
+              <div className={styles.soundIcon}>
+                <img src="/sound.svg" alt="Sound" width="24" height="24" />
+              </div>
+            )}
           </button>
         </div>
       </div>
