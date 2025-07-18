@@ -34,6 +34,7 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  padding-left: 10px;
 }
 
 .logoSectionMobile {
@@ -85,15 +86,15 @@
 .navigation {
   display: flex;
   list-style: none;
-  gap: 40px;
+  gap: 25px;
   margin: 0;
   padding: 0;
 }
 
 .navLink {
   text-decoration: none !important;
-  color: #000000 !important;
-  font-family: 'Futura PT Book', 'Futura', 'Helvetica', sans-serif;
+  color: #3C3C3C !important;
+  font-family: 'Manrope', 'Helvetica', sans-serif;
   font-weight: 300;
   font-size: 10px;
   letter-spacing: 1px;
@@ -132,11 +133,11 @@
 }
 
 .navLink:hover {
-  color: #dc2626;
+  color: #b91c1c;
 }
 
 .navLinkActive {
-  color: #dc2626 !important;
+  color: #b91c1c !important;
 }
 
 .navLinkActive::after {
