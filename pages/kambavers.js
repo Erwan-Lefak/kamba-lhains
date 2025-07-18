@@ -26,12 +26,8 @@ export default function Kambavers() {
   ];
 
   useEffect(() => {
-    // Open menu automatically when page loads
-    const timer = setTimeout(() => {
-      setIsMenuOpen(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
+    // Open menu automatically when page loads (no animation)
+    setIsMenuOpen(true);
   }, []);
 
   useEffect(() => {
@@ -199,17 +195,11 @@ export default function Kambavers() {
         .sliding-menu {
           position: fixed;
           top: 79px;
-          left: -300px;
+          left: 0;
           width: 300px;
           height: calc(100vh - 79px);
           background: white;
-          box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-          transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: 1001;
-        }
-
-        .sliding-menu.open {
-          left: 0;
         }
 
         .menu-nav {
@@ -247,41 +237,29 @@ export default function Kambavers() {
         }
 
         .content-area {
-          margin-left: 0;
-          margin-top: 80px;
-          transition: margin-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          min-height: calc(100vh - 80px);
-        }
-
-        .sliding-menu.open ~ .content-area {
           margin-left: 300px;
+          margin-top: 80px;
+          min-height: calc(100vh - 80px);
         }
 
         .image-container {
           display: flex;
           height: calc(100vh - 80px);
-          padding: 0 40px;
-          gap: 20px;
-          align-items: center;
+          padding: 0;
+          gap: 0;
+          align-items: stretch;
         }
 
         .image-half {
           flex: 1;
-          height: 80%;
+          height: 100%;
           overflow: hidden;
-          border-radius: 4px;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .main-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.3s ease;
-        }
-
-        .main-image:hover {
-          transform: scale(1.02);
         }
 
         /* Collections Content */
@@ -374,10 +352,9 @@ export default function Kambavers() {
         @media (max-width: 1024px) {
           .sliding-menu {
             width: 250px;
-            left: -250px;
           }
 
-          .sliding-menu.open ~ .content-area {
+          .content-area {
             margin-left: 250px;
           }
 
@@ -393,12 +370,10 @@ export default function Kambavers() {
         @media (max-width: 768px) {
           .sliding-menu {
             width: 100vw;
-            left: -100vw;
           }
 
-          .sliding-menu.open ~ .content-area {
+          .content-area {
             margin-left: 0;
-            opacity: 0.3;
           }
 
           .masonry-grid {
