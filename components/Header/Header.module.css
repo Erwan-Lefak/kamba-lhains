@@ -163,7 +163,7 @@
   -webkit-tap-highlight-color: transparent !important;
   color: #000000;
   transition: color 0.3s ease;
-  font-size: 16px;
+  font-size: 11px;
 }
 
 .actionButton:focus,
@@ -177,7 +177,7 @@
 }
 
 .languageSelector {
-  font-size: 14px;
+  font-size: 11px;
   color: #000000;
   font-weight: 400;
   letter-spacing: 0.5px;
