@@ -71,14 +71,6 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className={styles.collectionOverlay}>
-            <div className={styles.collectionContent}>
-              <h2 className={styles.collectionTitle}>{t('sections.newCollection')}</h2>
-              <Link href="/boutique" className={styles.boutiqueButton}>
-                {t('sections.shop')}
-              </Link>
-            </div>
-          </div>
         </section>
       </main>
 
