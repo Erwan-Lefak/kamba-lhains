@@ -38,6 +38,7 @@ const UserActions = () => {
                 onClick={(e) => {
                   e.stopPropagation();
                   changeLanguage(lang.code);
+                  toggleLanguage(e);
                 }}
               >
                 {lang.label}
