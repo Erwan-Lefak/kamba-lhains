@@ -20,7 +20,7 @@ export const useHeader = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       // Only close language dropdown, not the mobile menu
-      if (isLanguageOpen && !event.target.closest('.languageSelector')) {
+      if (isLanguageOpen && !event.target.closest('[data-language-selector]')) {
         setIsLanguageOpen(false);
       }
     };

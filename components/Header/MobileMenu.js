@@ -30,8 +30,7 @@ const MobileMenu = ({ isOpen }) => {
 
   const languages = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'en', label: 'English', flag: '🇬🇧' },
-    { code: 'ko', label: '한국어', flag: '🇰🇷' }
+    { code: 'en', label: 'English', flag: '🇬🇧' }
   ];
 
   const currentLang = languages.find(lang => lang.code === currentLanguage) || languages[0];

@@ -13,8 +13,7 @@ const UserActions = () => {
 
   const languages = [
     { code: 'fr', label: 'FR' },
-    { code: 'en', label: 'EN' },
-    { code: 'ko', label: 'KO' }
+    { code: 'en', label: 'EN' }
   ];
 
   return (
@@ -28,7 +27,7 @@ const UserActions = () => {
       </button>
 
       {/* Language Selector */}
-      <div className={styles.languageSelector} onClick={toggleLanguage}>
+      <div className={styles.languageSelector} onClick={toggleLanguage} data-language-selector>
         <span>{currentLanguage.toUpperCase()}</span>
         {isLanguageOpen && (
           <div className={styles.languageDropdown}>
@@ -36,7 +35,10 @@ const UserActions = () => {
               <div 
                 key={lang.code}
                 className={styles.languageOption}
-                onClick={() => changeLanguage(lang.code)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeLanguage(lang.code);
+                }}
               >
                 {lang.label}
               </div>
