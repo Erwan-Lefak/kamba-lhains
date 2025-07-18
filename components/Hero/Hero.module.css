@@ -244,10 +244,8 @@
   align-items: center;
   gap: 15px;
   z-index: 4;
-  background: rgba(0, 0, 0, 0.3);
+  background: none;
   padding: 10px 15px;
-  border-radius: 25px;
-  backdrop-filter: blur(10px);
   opacity: 1;
 }
 
