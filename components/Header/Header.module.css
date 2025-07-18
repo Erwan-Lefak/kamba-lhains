@@ -171,6 +171,8 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .actionButton:focus,
@@ -181,6 +183,14 @@
   box-shadow: none !important;
   background: none !important;
   color: #666;
+}
+
+/* Cross-platform icon consistency */
+.actionButton svg,
+.mobileActionButton svg {
+  shape-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .languageSelector {
@@ -258,7 +268,7 @@
 .cartCount {
   position: absolute;
   top: 50%;
-  right: -8px;
+  right: -10px;
   background: #000;
   color: white;
   border-radius: 50%;
@@ -432,7 +442,7 @@
 .mobileCartCount {
   position: absolute;
   top: 50%;
-  right: -8px;
+  right: -10px;
   background: #000;
   color: white;
   border-radius: 50%;
