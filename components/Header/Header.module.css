@@ -66,13 +66,13 @@
 }
 
 .logoImage {
-  height: 60px;
+  height: 40px;
   width: auto;
 }
 
 @media (max-width: 768px) {
   .logoImage {
-    height: 45px;
+    height: 30px;
   }
 }
 
@@ -95,7 +95,7 @@
   color: #000000 !important;
   font-family: 'Manrope', sans-serif;
   font-weight: 200;
-  font-size: 12px;
+  font-size: 8px;
   letter-spacing: 1px;
   text-transform: uppercase;
   position: relative;
@@ -136,11 +136,11 @@
 }
 
 .navLinkActive {
-  color: #dc2626 !important;
+  color: #000 !important;
 }
 
 .navLinkActive::after {
-  width: 100% !important;
+  width: 0 !important;
 }
 
 /* Actions Section */
@@ -148,7 +148,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 10px;
   margin-right: 20px;
 }
 
@@ -156,12 +156,13 @@
   background: none !important;
   border: none !important;
   cursor: pointer;
-  padding: 8px;
+  padding: 5px;
   position: relative;
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
   color: #000000;
   transition: color 0.3s ease;
+  font-size: 16px;
 }
 
 .actionButton:focus,
@@ -175,7 +176,7 @@
 }
 
 .languageSelector {
-  font-size: 10px;
+  font-size: 7px;
   color: #000000;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -218,7 +219,7 @@
 .connectionLink {
   text-decoration: none !important;
   color: #000000 !important;
-  font-size: 10px;
+  font-size: 7px;
   font-weight: 400;
   letter-spacing: 0.3px;
   text-transform: uppercase;
