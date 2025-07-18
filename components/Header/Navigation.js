@@ -8,7 +8,7 @@ const Navigation = () => {
   const router = useRouter();
   
   const navigationItems = [
-    { href: '/nouvelles-collections', label: 'Nouvelles Collections' },
+    { href: '/nouvelle-collection', label: 'Nouvelle Collection' },
     { href: '/aube', label: 'Aube' },
     { href: '/zenith', label: 'Zenith' },
     { href: '/crepuscule', label: 'Crépuscule' },
