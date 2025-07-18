@@ -302,6 +302,54 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Custom fullscreen mode */
+.fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  background: #000 !important;
+  transition: all 0.3s ease !important;
+}
+
+.fullscreen .heroVideo {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+}
+
+.fullscreen .videoControls {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+/* iOS specific fullscreen improvements */
+@supports (-webkit-touch-callout: none) {
+  .fullscreen {
+    /* iOS Safari specific styles */
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .fullscreen .heroVideo {
+    /* Prevent iOS video controls from appearing */
+    -webkit-playsinline: true !important;
+  }
+}
+
+/* Mobile fullscreen adjustments */
+@media (max-width: 768px) {
+  .fullscreen .videoControls {
+    bottom: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+  }
+}
+
 .soundIcon {
   display: flex;
   align-items: center;

@@ -7,12 +7,34 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
   const [isMuted, setIsMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play().catch(console.error);
     }
   }, []);
+
+  // Handle escape key to exit fullscreen
+  useEffect(() => {
+    const handleEscKey = (event) => {
+      if (event.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+
+    if (isFullscreen) {
+      document.addEventListener('keydown', handleEscKey);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreen]);
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -39,15 +61,7 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
   };
 
   const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      } else if (videoRef.current.webkitRequestFullscreen) {
-        videoRef.current.webkitRequestFullscreen();
-      } else if (videoRef.current.msRequestFullscreen) {
-        videoRef.current.msRequestFullscreen();
-      }
-    }
+    setIsFullscreen(!isFullscreen);
   };
 
   const handleTimeUpdate = () => {
@@ -75,7 +89,7 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={styles.videoContainer}>
+    <div className={`${styles.videoContainer} ${isFullscreen ? styles.fullscreen : ''}`}>
       <video
         ref={videoRef}
         className={styles.heroVideo}
