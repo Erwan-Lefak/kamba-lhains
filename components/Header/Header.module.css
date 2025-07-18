@@ -127,10 +127,6 @@
   transition: width 0.3s ease;
 }
 
-.navLink:hover::after {
-  width: 100%;
-}
-
 .navLink:hover {
   color: #b91c1c;
 }
@@ -186,6 +182,7 @@
   position: relative;
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
+  transform: translateY(1px);
 }
 
 .languageSelector:focus,
