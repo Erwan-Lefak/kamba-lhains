@@ -295,16 +295,49 @@
   font-size: 18px;
 }
 
-.muteButton {
-  animation: soundPulse 2s ease-in-out infinite;
+.soundIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes soundPulse {
+.speaker {
+  font-size: 16px;
+}
+
+.soundWave {
+  position: absolute;
+  left: 20px;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.wave1 {
+  animation: soundWaveAnimation 1.5s ease-in-out infinite;
+}
+
+.wave2 {
+  left: 25px;
+  animation: soundWaveAnimation 1.5s ease-in-out infinite 0.2s;
+}
+
+.wave3 {
+  left: 30px;
+  animation: soundWaveAnimation 1.5s ease-in-out infinite 0.4s;
+}
+
+@keyframes soundWaveAnimation {
   0%, 100% {
+    opacity: 0;
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    opacity: 1;
+    transform: scale(1.5);
   }
 }
 
