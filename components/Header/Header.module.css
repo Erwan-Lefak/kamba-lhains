@@ -157,7 +157,7 @@
   background: none !important;
   border: none !important;
   cursor: pointer;
-  padding: 5px;
+  padding: 5px 5px 0 5px;
   position: relative;
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
