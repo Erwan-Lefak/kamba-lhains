@@ -111,6 +111,7 @@
   display: flex;
   align-items: center;
   height: 100%;
+  white-space: nowrap;
 }
 
 .navLink:focus,
