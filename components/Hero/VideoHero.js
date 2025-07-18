@@ -115,7 +115,7 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
             onClick={handleSkip}
             aria-label="Avancer de 5 secondes"
           >
-            +5s
+            ⏭
           </button>
           
           <button 
@@ -131,7 +131,7 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
             onClick={handleMute}
             aria-label={isMuted ? 'Activer le son' : 'Couper le son'}
           >
-            {isMuted ? '🔇' : '🔊'}
+            {isMuted ? '🔈' : '🔉'}
           </button>
         </div>
       </div>
