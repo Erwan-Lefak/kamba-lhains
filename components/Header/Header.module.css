@@ -179,6 +179,7 @@
 .languageSelector {
   font-size: 11px;
   color: #000000;
+  font-family: 'Manrope', 'Helvetica', sans-serif;
   font-weight: 400;
   letter-spacing: 0.5px;
   cursor: pointer;
