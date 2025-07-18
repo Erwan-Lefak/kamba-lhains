@@ -11,6 +11,7 @@
   text-decoration: none;
   color: inherit;
   min-height: 100vh;
+  transform-origin: center;
 }
 
 .productImageContainer {
@@ -51,6 +52,7 @@
   background: transparent;
   z-index: 2;
   pointer-events: none;
+  transform-origin: bottom left;
 }
 
 .productName {
@@ -132,6 +134,7 @@
   cursor: pointer;
   pointer-events: all;
   transition: all 0.2s ease;
+  transform-origin: center;
 }
 
 .favoriteIcon:hover {
