@@ -95,7 +95,7 @@
   color: #000000 !important;
   font-family: 'Futura PT Book', 'Futura', 'Helvetica', sans-serif;
   font-weight: 300;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
   position: relative;
@@ -150,6 +150,7 @@
   justify-content: flex-end;
   gap: 10px;
   margin-right: 20px;
+  height: 100%;
 }
 
 .actionButton {
