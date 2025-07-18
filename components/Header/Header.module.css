@@ -123,7 +123,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background-color: #000;
+  background-color: #dc2626;
   transition: width 0.3s ease;
 }
 
@@ -136,7 +136,7 @@
 }
 
 .navLinkActive {
-  color: #000 !important;
+  color: #dc2626 !important;
 }
 
 .navLinkActive::after {
