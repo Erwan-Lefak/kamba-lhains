@@ -36,9 +36,8 @@
 
 .productSlot {
   width: 100%;
-  height: calc(100vw * 1.5 / 3);
+  height: 100vh;
   position: relative;
-  aspect-ratio: 2/3;
 }
 
 /* New Collection Section */
@@ -158,12 +157,11 @@
 
   .mobileProductSlot {
     width: 100vw;
-    height: calc(100vw * 1.5);
+    height: 100vh;
     position: relative;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    aspect-ratio: 2/3;
   }
 
   .carouselDots {
@@ -251,16 +249,13 @@
   }
 
   .productSlot {
-    height: calc(100vw * 1.5 / 3);
-    aspect-ratio: 2/3;
-    max-height: 400px;
+    height: 100vh;
   }
 }
 
 @media (max-width: 1024px) {
   .productSlot {
-    height: calc(100vw * 1.5 / 3);
-    aspect-ratio: 2/3;
+    height: 100vh;
   }
 }
 
