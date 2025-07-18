@@ -25,7 +25,7 @@
   height: var(--header-height);
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 0px 0 20px;
 }
 
 /* Logo Section */
@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  padding-left: 10px;
+  padding-left: 0px;
 }
 
 .logoSectionMobile {
