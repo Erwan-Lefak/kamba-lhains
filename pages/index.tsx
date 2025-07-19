@@ -54,8 +54,7 @@ export default function Home() {
               <Image 
                 src="/images/collection/IMG_2758.jpg"
                 alt="Nouvelle Collection 1"
-                width={800}
-                height={1200}
+                fill
                 sizes="50vw"
                 className={styles.collectionImage}
                 priority
@@ -65,12 +64,17 @@ export default function Home() {
               <Image 
                 src="/images/collection/IMG_3475.jpg"
                 alt="Nouvelle Collection 2"
-                width={800}
-                height={1200}
+                fill
                 sizes="50vw"
                 className={styles.collectionImage}
                 priority
               />
+            </div>
+            <div className={styles.collectionCenterOverlay}>
+              <h2 className={styles.collectionMainTitle}>Nouvelle Collection</h2>
+              <Link href="/boutique" className={styles.collectionButton}>
+                Découvrir
+              </Link>
             </div>
           </div>
         </section>
