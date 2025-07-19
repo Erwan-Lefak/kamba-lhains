@@ -2,36 +2,32 @@
 
 .hero {
   width: 100vw;
-  height: 100vh;
+  height: auto;
   position: relative;
   background: #000;
-  overflow: hidden;
+  overflow: visible;
   margin-left: calc(-50vw + 50%);
   margin-top: var(--header-height);
   margin-bottom: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 
 .videoContainer {
   width: 100%;
-  height: 100%;
+  height: auto;
   position: relative;
   background: #000;
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 
 .heroVideo {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
   display: block;
   pointer-events: none;
   margin: 0;
@@ -44,7 +40,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 1;
   opacity: 1;
   transition: opacity 0.5s ease;
@@ -150,54 +146,60 @@
 /* Responsive adjustments */
 @media (min-width: 1920px) {
   .hero {
-    height: 110vh;
+    width: 100vw;
+    height: auto;
   }
 }
 
 @media (min-width: 2560px) {
   .hero {
-    height: 120vh;
+    width: 100vw;
+    height: auto;
   }
 }
 
 @media (min-width: 3440px) {
   .hero {
-    height: 130vh;
+    width: 100vw;
+    height: auto;
   }
 }
 
 @media (max-width: 1024px) {
   .hero {
-    height: 90vh;
+    width: 100vw;
+    height: auto;
   }
 }
 
 @media (max-width: 768px) {
   .hero {
-    height: 80vh;
+    width: 100vw;
+    height: auto;
   }
 }
 
 @media (max-width: 480px) {
   .hero {
-    height: 70vh;
+    width: 100vw;
+    height: auto;
   }
 }
 
 /* Aspect ratio support for better video adaptation */
 @media (min-aspect-ratio: 16/9) {
   .heroVideo {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 }
 
 @media (max-aspect-ratio: 16/9) {
   .heroVideo {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 }
 
@@ -316,8 +318,10 @@
 
 .fullscreen .heroVideo {
   width: 100vw !important;
-  height: 100vh !important;
-  object-fit: cover !important;
+  height: auto !important;
+  object-fit: contain !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
 }
 
 .fullscreen .videoControls {
