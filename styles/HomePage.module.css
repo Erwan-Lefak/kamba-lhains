@@ -205,10 +205,10 @@
 
   .mobileCarouselContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 300vh;
-    width: 100vw;
+    height: 100vh;
+    width: 300vw;
   }
 
   .mobileProductSlot {
@@ -220,70 +220,6 @@
     flex-direction: column;
   }
 
-  .carouselDots {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 10;
-    margin-left: 100px;
-  }
-
-  .carouselDot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    padding: 0;
-  }
-
-  .carouselDot.active {
-    background: white;
-    transform: scale(1.2);
-  }
-
-  .carouselArrows {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .carouselArrow {
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    pointer-events: all;
-    font-size: 18px;
-  }
-
-  .carouselArrow:hover {
-    background: rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
-  }
-
-  .carouselArrow:active {
-    transform: scale(0.95);
-  }
 
   .collectionGrid {
     grid-template-columns: 1fr 1fr;

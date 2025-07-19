@@ -38,7 +38,7 @@ const MobileCarousel = ({ products }) => {
     setTimeout(() => setIsAutoPlaying(true), 8000);
   };
 
-  // Touch handling for swipe gestures
+  // Touch handling for horizontal swipe gestures
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
@@ -46,23 +46,23 @@ const MobileCarousel = ({ products }) => {
 
   const onTouchStart = (e) => {
     setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientY);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
   const onTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientY);
+    setTouchEnd(e.targetTouches[0].clientX);
   };
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
     
     const distance = touchStart - touchEnd;
-    const isUpSwipe = distance > minSwipeDistance;
-    const isDownSwipe = distance < -minSwipeDistance;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
 
-    if (isUpSwipe) {
+    if (isLeftSwipe) {
       goToNext();
-    } else if (isDownSwipe) {
+    } else if (isRightSwipe) {
       goToPrevious();
     }
   };
@@ -72,7 +72,7 @@ const MobileCarousel = ({ products }) => {
       <div 
         className={styles.mobileCarouselContainer}
         style={{
-          transform: `translateY(-${currentIndex * 100}vh)`,
+          transform: `translateX(-${currentIndex * 100}vw)`,
         }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
@@ -85,35 +85,6 @@ const MobileCarousel = ({ products }) => {
         ))}
       </div>
 
-      {/* Navigation Arrows */}
-      <div className={styles.carouselArrows}>
-        <button 
-          className={styles.carouselArrow}
-          onClick={goToPrevious}
-          aria-label="Produit précédent"
-        >
-          ▲
-        </button>
-        <button 
-          className={styles.carouselArrow}
-          onClick={goToNext}
-          aria-label="Produit suivant"
-        >
-          ▼
-        </button>
-      </div>
-
-      {/* Dots Navigation */}
-      <div className={styles.carouselDots}>
-        {products.map((_, index) => (
-          <button
-            key={index}
-            className={`${styles.carouselDot} ${index === currentIndex ? styles.active : ''}`}
-            onClick={() => goToSlide(index)}
-            aria-label={`Aller au produit ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   );
 };
