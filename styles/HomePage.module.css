@@ -113,7 +113,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  height: calc(80vh + 70px);
+  height: calc(80vh + 100px);
   display: block;
 }
 
@@ -290,7 +290,7 @@
   }
 
   .collectionImageSlot {
-    height: calc(60vh + 70px);
+    height: calc(60vh + 100px);
   }
   
   .collectionMainTitle {
