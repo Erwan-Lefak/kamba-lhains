@@ -30,7 +30,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Image 
             src={product.image}
             alt={product.name}
-            fill
+            width={800}
+            height={1200}
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className={styles.productImage}
             priority={product.featured}

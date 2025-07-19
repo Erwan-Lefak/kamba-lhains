@@ -54,7 +54,8 @@ export default function Home() {
               <Image 
                 src="/IMG_2758.jpg"
                 alt="Nouvelle Collection 1"
-                fill
+                width={800}
+                height={1200}
                 sizes="50vw"
                 className={styles.collectionImage}
                 priority
@@ -64,7 +65,8 @@ export default function Home() {
               <Image 
                 src="/IMG_3475.jpg"
                 alt="Nouvelle Collection 2"
-                fill
+                width={800}
+                height={1200}
                 sizes="50vw"
                 className={styles.collectionImage}
                 priority
