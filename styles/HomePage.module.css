@@ -196,9 +196,10 @@
 
   .mobileCarousel {
     display: block;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     margin: 0;
+    padding: 0;
     overflow: hidden;
     position: relative;
   }
@@ -209,6 +210,8 @@
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100vh;
     width: 300vw;
+    margin: 0;
+    padding: 0;
   }
 
   .mobileProductSlot {
@@ -216,8 +219,24 @@
     height: 100vh;
     position: relative;
     flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .mobileProductSlot .productCard {
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .mobileProductSlot .productImageContainer {
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
 
