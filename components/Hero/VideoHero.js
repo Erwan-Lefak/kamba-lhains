@@ -102,20 +102,14 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
         loop
         playsInline
         autoPlay
-        preload="auto"
+        preload="metadata"
+        poster={`${videoSrc}#t=0.1`}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onCanPlay={handleCanPlay}
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
-      
-      {isLoading && (
-        <div className={styles.loadingOverlay}>
-          <div className={styles.loadingSpinner}></div>
-          <div className={styles.loadingText}>Chargement...</div>
-        </div>
-      )}
       
       <div className={styles.videoControls}>
         <button 
