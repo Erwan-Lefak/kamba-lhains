@@ -52,7 +52,7 @@ export default function Home() {
           <div className={styles.collectionGrid}>
             <div className={styles.collectionImageSlot}>
               <Image 
-                src="/IMG_2758.jpg"
+                src="/images/collection/IMG_2758.jpg"
                 alt="Nouvelle Collection 1"
                 width={800}
                 height={1200}
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
             <div className={styles.collectionImageSlot}>
               <Image 
-                src="/IMG_3475.jpg"
+                src="/images/collection/IMG_3475.jpg"
                 alt="Nouvelle Collection 2"
                 width={800}
                 height={1200}
