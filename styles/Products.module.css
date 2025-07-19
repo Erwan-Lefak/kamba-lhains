@@ -5,9 +5,8 @@
   position: relative;
   cursor: pointer;
   overflow: visible;
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
   display: block;
   text-decoration: none;
   color: inherit;
@@ -16,27 +15,24 @@
 
 .productImageContainer {
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
   display: block;
   overflow: visible;
 }
 
 .imageWrapper {
   position: relative;
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
   display: block;
 }
 
 .productImage {
-  object-fit: none;
+  object-fit: contain;
   object-position: center;
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
   display: block;
 }
 
