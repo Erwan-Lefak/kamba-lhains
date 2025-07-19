@@ -192,7 +192,7 @@
 
   .threeProductsSection {
     position: relative;
-    height: calc(100vh + 5px);
+    height: 100dvh;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -201,7 +201,7 @@
   .mobileCarousel {
     display: block;
     width: 100vw;
-    height: calc(100vh + 5px);
+    height: 100dvh;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -212,7 +212,7 @@
     display: flex;
     flex-direction: row;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    height: calc(100vh + 5px);
+    height: 100dvh;
     width: 300vw;
     margin: 0;
     padding: 0;
@@ -220,7 +220,7 @@
 
   .mobileProductSlot {
     width: 100vw;
-    height: calc(100vh + 5px);
+    height: 100dvh;
     position: relative;
     flex-shrink: 0;
     display: block;
@@ -231,14 +231,14 @@
 
   .mobileProductSlot .productCard {
     width: 100% !important;
-    height: calc(100vh + 5px) !important;
+    height: 100dvh !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
   .mobileProductSlot .productImageContainer {
     width: 100% !important;
-    height: calc(100vh + 5px) !important;
+    height: 100dvh !important;
     margin: 0 !important;
     padding: 0 !important;
   }
