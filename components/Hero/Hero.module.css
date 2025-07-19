@@ -10,9 +10,7 @@
   margin-top: var(--header-height);
   margin-bottom: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
 }
 
 .videoContainer {
@@ -26,11 +24,9 @@
 }
 
 .heroVideo {
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: none;
+  object-fit: contain;
   object-position: center;
   display: block;
   pointer-events: none;
