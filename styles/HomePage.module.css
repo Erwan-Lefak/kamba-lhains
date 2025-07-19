@@ -125,6 +125,10 @@
   display: block;
 }
 
+.collectionImageSlot:first-child .collectionImage {
+  object-position: center 15%;
+}
+
 .collectionOverlay {
   position: absolute;
   top: 0;
