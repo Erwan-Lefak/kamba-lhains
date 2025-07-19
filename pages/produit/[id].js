@@ -193,63 +193,66 @@ export default function ProductDetail() {
 
           {/* Product Info Section - 40% */}
           <div className={styles.productInfoSection}>
-            <h1 className={styles.productTitle}>{product.name}</h1>
-            <span className={styles.productPrice}>{product.price}</span>
-            
-            <p className={styles.productDescription}>
-              {product.category === 'femme' ? 'Robe boutonnée en maille' : 'Veste non doublée en lin'}
-            </p>
+            {/* Main Content - Centered */}
+            <div className={styles.productMainContent}>
+              <h1 className={styles.productTitle}>{product.name}</h1>
+              <span className={styles.productPrice}>{product.price}</span>
+              
+              <p className={styles.productDescription}>
+                {product.category === 'femme' ? 'Robe boutonnée en maille' : 'Veste non doublée en lin'}
+              </p>
 
-            {/* Color Selector */}
-            <div className={styles.colorSection}>
-              <div className={styles.colorHeader}>
-                <div className={styles.colorLabel}>
-                  {selectedColor === 'Blanc' || selectedColor === 'Beige' ? 'Print Stripes White/Yellow/Black' : selectedColor}
+              {/* Color Selector */}
+              <div className={styles.colorSection}>
+                <div className={styles.colorHeader}>
+                  <div className={styles.colorLabel}>
+                    {selectedColor === 'Blanc' || selectedColor === 'Beige' ? 'Print Stripes White/Yellow/Black' : selectedColor}
+                  </div>
+                  <div className={styles.seeAllColors}>Voir les couleurs</div>
                 </div>
-                <div className={styles.seeAllColors}>Voir les couleurs</div>
+                <div className={styles.colorOptions}>
+                  {product.colors.map((color, index) => (
+                    <div
+                      key={index}
+                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''} ${
+                        color.toLowerCase().includes('jaune') || color.toLowerCase().includes('beige') || color.toLowerCase().includes('blanc') 
+                          ? styles.colorSwatchYellow 
+                          : styles.colorSwatchPink
+                      }`}
+                      onClick={() => setSelectedColor(color)}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className={styles.colorOptions}>
-                {product.colors.map((color, index) => (
-                  <div
-                    key={index}
-                    className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''} ${
-                      color.toLowerCase().includes('jaune') || color.toLowerCase().includes('beige') || color.toLowerCase().includes('blanc') 
-                        ? styles.colorSwatchYellow 
-                        : styles.colorSwatchPink
-                    }`}
-                    onClick={() => setSelectedColor(color)}
-                  />
-                ))}
+
+              {/* Size Selector */}
+              <div className={styles.sizeSection}>
+                <div className={styles.sizeHeader}>
+                  <div className={styles.sizeLabel}>Taille</div>
+                  <div className={styles.sizeGuide}>Guide des tailles</div>
+                </div>
+                <div className={styles.sizeGrid}>
+                  {product.sizes.map((size, index) => (
+                    <button
+                      key={index}
+                      className={`${styles.sizeOption} ${selectedSize === size ? styles.active : ''}`}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Add to Cart Button */}
+              <div className={styles.addToCartSection}>
+                <button className={styles.addToCartButton} onClick={handleAddToCart}>
+                  <span>AJOUTER AU PANIER</span>
+                </button>
               </div>
             </div>
 
-            {/* Size Selector */}
-            <div className={styles.sizeSection}>
-              <div className={styles.sizeHeader}>
-                <div className={styles.sizeLabel}>Taille</div>
-                <div className={styles.sizeGuide}>Guide des tailles</div>
-              </div>
-              <div className={styles.sizeGrid}>
-                {product.sizes.map((size, index) => (
-                  <button
-                    key={index}
-                    className={`${styles.sizeOption} ${selectedSize === size ? styles.active : ''}`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Add to Cart Button */}
-            <div className={styles.addToCartSection}>
-              <button className={styles.addToCartButton} onClick={handleAddToCart}>
-                <span>AJOUTER AU PANIER</span>
-              </button>
-            </div>
-
-            {/* Tabs Section */}
+            {/* Tabs Section - Fixed at Bottom */}
             <div className={styles.tabsSection}>
               <div className={styles.tabsContainer}>
                 <div className={styles.tabsNav}>
