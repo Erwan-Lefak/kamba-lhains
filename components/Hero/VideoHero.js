@@ -8,6 +8,7 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -76,6 +77,10 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
     }
   };
 
+  const handleCanPlay = () => {
+    setIsLoading(false);
+  };
+
   const handleTimelineClick = (e) => {
     if (videoRef.current) {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -100,9 +105,17 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
         preload="auto"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
+        onCanPlay={handleCanPlay}
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
+      
+      {isLoading && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner}></div>
+          <div className={styles.loadingText}>Chargement...</div>
+        </div>
+      )}
       
       <div className={styles.videoControls}>
         <button 
