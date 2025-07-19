@@ -9,6 +9,7 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [showPoster, setShowPoster] = useState(true);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -79,6 +80,15 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
 
   const handleCanPlay = () => {
     setIsLoading(false);
+    setShowPoster(false);
+  };
+
+  const handleLoadStart = () => {
+    setShowPoster(true);
+  };
+
+  const handlePlaying = () => {
+    setShowPoster(false);
   };
 
   const handleTimelineClick = (e) => {
@@ -95,6 +105,13 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
 
   return (
     <div className={`${styles.videoContainer} ${isFullscreen ? styles.fullscreen : ''}`}>
+      {showPoster && (
+        <img
+          src="/images/ui/video-poster.jpg"
+          alt="Video loading"
+          className={styles.videoPoster}
+        />
+      )}
       <video
         ref={videoRef}
         className={styles.heroVideo}
@@ -103,10 +120,13 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
         playsInline
         autoPlay
         preload="metadata"
-        poster={`${videoSrc}#t=0.1`}
+        poster="/images/ui/video-poster.jpg"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onCanPlay={handleCanPlay}
+        onLoadStart={handleLoadStart}
+        onPlaying={handlePlaying}
+        style={{ opacity: showPoster ? 0 : 1 }}
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
