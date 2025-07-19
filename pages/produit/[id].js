@@ -171,8 +171,6 @@ export default function ProductDetail() {
                 e.target.src = '/logo.png';
               }}
             />
-            <button className={`${styles.navArrow} ${styles.navPrev}`}>‹</button>
-            <button className={`${styles.navArrow} ${styles.navNext}`}>›</button>
             <button 
               className={`${styles.heartIcon} ${product && isFavorite(product.id) ? styles.liked : ''}`}
               onClick={handleHeartClick}
