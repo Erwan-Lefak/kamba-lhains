@@ -113,13 +113,13 @@
   width: 100%;
   position: relative;
   overflow: hidden;
-  height: 80vh;
+  height: calc(80vh + 20px);
   display: block;
 }
 
 .collectionImage {
   object-fit: cover;
-  object-position: 0 20px;
+  object-position: top;
   width: 100%;
   height: 100%;
   display: block;
@@ -286,7 +286,7 @@
   }
 
   .collectionImageSlot {
-    height: 60vh;
+    height: calc(60vh + 20px);
   }
   
   .collectionMainTitle {
