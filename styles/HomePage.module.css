@@ -40,8 +40,10 @@
   width: 100%;
   height: auto;
   position: relative;
-  overflow: hidden;
-  display: block;
+  overflow: visible;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 /* New Collection Section */
