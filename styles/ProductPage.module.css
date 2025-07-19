@@ -8,7 +8,7 @@
 
 .productContainer {
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 60% 40%;
   min-height: 100vh;
   background: white;
   gap: 0;
@@ -549,13 +549,13 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 769px) {
   .productContainer {
-    grid-template-columns: 1fr;
+    grid-template-columns: 60% 40%;
   }
   
   .productInfoSection {
-    padding: 120px 120px 40px 120px;
+    padding: 80px 40px 40px 40px;
   }
 
   .sizeGrid {
@@ -577,6 +577,10 @@
 }
 
 @media (max-width: 768px) {
+  .productContainer {
+    grid-template-columns: 1fr;
+  }
+
   .productTitle {
     font-size: 1.7rem;
   }
