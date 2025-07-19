@@ -149,8 +149,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   flex: 1;
   min-height: 0;
 }
@@ -214,7 +214,7 @@
   display: flex;
   gap: 8px;
   margin-bottom: 0;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .colorSwatch {
@@ -277,7 +277,7 @@
   gap: 8px;
   margin-bottom: 15px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .sizeOption {
