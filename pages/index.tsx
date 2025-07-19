@@ -70,12 +70,6 @@ export default function Home() {
                 priority
               />
             </div>
-            <div className={styles.collectionCenterOverlay}>
-              <h2 className={styles.collectionMainTitle}>Nouvelle Collection</h2>
-              <Link href="/boutique" className={styles.collectionButton}>
-                Découvrir
-              </Link>
-            </div>
           </div>
         </section>
       </main>
