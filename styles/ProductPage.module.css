@@ -2,7 +2,7 @@
 
 .productPage {
   margin-top: var(--header-height);
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   background: white;
 }
 
@@ -130,6 +130,7 @@
   color: #000;
   line-height: 1.2;
   margin: 0 0 8px 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .productPrice {
@@ -138,6 +139,7 @@
   color: #000;
   margin: 0 0 15px 0;
   display: block;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .productDescription {
@@ -146,6 +148,7 @@
   margin-bottom: 25px;
   line-height: 1.4;
   font-weight: 300;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Color Section */
@@ -165,6 +168,7 @@
   color: #000;
   font-weight: 400;
   margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .seeAllColors {
@@ -172,6 +176,7 @@
   color: #666;
   text-decoration: underline;
   cursor: pointer;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .seeAllColors:hover {
@@ -224,6 +229,7 @@
   color: #000;
   font-weight: 400;
   margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .sizeGuide {
@@ -234,6 +240,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .sizeGuide:hover {
@@ -258,6 +265,7 @@
   text-align: center;
   min-width: 40px;
   color: #333;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .sizeOption:hover {
@@ -302,6 +310,7 @@
   align-items: center;
   justify-content: center;
   text-transform: none;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .addToCartButton:hover {
@@ -341,6 +350,7 @@
   font-weight: 400;
   flex: 1;
   text-align: center;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .tab:hover {
@@ -399,6 +409,7 @@
   font-weight: 300;
   color: #000;
   margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .closeButton {
@@ -422,6 +433,7 @@
   font-size: 15px;
   color: #333;
   line-height: 1.6;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .modalContent h3 {
@@ -465,6 +477,7 @@
   margin-bottom: 50px;
   text-align: left;
   letter-spacing: 1px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .recommendedProducts {
@@ -526,11 +539,13 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .productPrice {
   font-size: 14px;
   font-weight: 500;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Responsive Design */
