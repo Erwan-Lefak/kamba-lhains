@@ -192,16 +192,20 @@
 
   .threeProductsSection {
     position: relative;
-    height: 100dvh;
+    height: auto;
+    min-height: 100dvh;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobileCarousel {
     display: block;
     width: 100vw;
-    height: 100dvh;
+    height: auto;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -212,7 +216,7 @@
     display: flex;
     flex-direction: row;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100dvh;
+    height: auto;
     width: 300vw;
     margin: 0;
     padding: 0;
@@ -220,27 +224,41 @@
 
   .mobileProductSlot {
     width: 100vw;
-    height: 100dvh;
+    height: auto;
     position: relative;
     flex-shrink: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .mobileProductSlot .productCard {
-    width: 100% !important;
-    height: 100dvh !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
   .mobileProductSlot .productImageContainer {
-    width: 100% !important;
-    height: 100dvh !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  .mobileProductSlot .productImage {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100vw !important;
+    max-height: 100dvh !important;
+    object-fit: contain !important;
   }
 
 
