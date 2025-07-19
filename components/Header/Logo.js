@@ -6,7 +6,7 @@ const Logo = () => {
     <div className={styles.logoSection}>
       <Link href="/" className={styles.logo}>
         <img 
-          src="/logo.png" 
+          src="/images/products/logo.png" 
           alt="KAMBA LHAINS" 
           className={styles.logoImage}
         />

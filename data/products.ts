@@ -5,7 +5,7 @@ export const products: Product[] = [
     id: 1,
     name: "BLOUSON EFFET CIRE",
     price: "890,00 €",
-    image: "/IMG_2864.jpeg",
+    image: "/images/collection/IMG_2864.jpeg",
     description: [
       "• Blouson en coton effet ciré",
       "• Coupe moderne et ajustée",
@@ -24,7 +24,7 @@ export const products: Product[] = [
     id: 2,
     name: "JEAN TRF MOM FIT",
     price: "450,00 €",
-    image: "/IMG_2885.jpeg",
+    image: "/images/collection/IMG_2885.jpeg",
     description: [
       "• Jean mom fit en denim premium",
       "• Taille haute confortable",
@@ -43,7 +43,7 @@ export const products: Product[] = [
     id: 3,
     name: "BOXY FIT SHIRT",
     price: "320,00 €",
-    image: "/IMG_2797.jpeg",
+    image: "/images/collection/IMG_2797.jpeg",
     description: [
       "• Chemise coupe boxy en coton",
       "• Col classique moderne",
@@ -62,7 +62,7 @@ export const products: Product[] = [
     id: 4,
     name: "CHEMISE NGOZI",
     price: "450,00 €",
-    image: "/chemise-ngozi.png",
+    image: "/images/products/chemise-ngozi.png",
     description: [
       "• Chemise en popeline de coton",
       "• Col classique français",
@@ -81,7 +81,7 @@ export const products: Product[] = [
     id: 5,
     name: "PANTALON KOFFI",
     price: "580,00 €",
-    image: "/pantalon-koffi.png",
+    image: "/images/products/pantalon-koffi.png",
     description: [
       "• Pantalon droit en laine mérinos",
       "• Taille mi-haute confortable",
@@ -100,7 +100,7 @@ export const products: Product[] = [
     id: 6,
     name: "BLAZER AMARA",
     price: "890,00 €",
-    image: "/blazer-amara.png",
+    image: "/images/products/blazer-amara.png",
     description: [
       "• Blazer non doublé en lin",
       "• Coupe déstructurée moderne",
@@ -119,7 +119,7 @@ export const products: Product[] = [
     id: 7,
     name: "CHEMISE URIEL",
     price: "390,00 €",
-    image: "/chemise-uriel.png",
+    image: "/images/products/chemise-uriel.png",
     description: [
       "• Chemise coupe droite en coton",
       "• Col boutonné moderne",
@@ -138,7 +138,7 @@ export const products: Product[] = [
     id: 8,
     name: "VESTE KMOBOU",
     price: "590,00 €",
-    image: "/veste-kmobou.png",
+    image: "/images/products/veste-kmobou.png",
     description: [
       "• Veste légère en coton mélangé",
       "• Coupe moderne décontractée",
@@ -150,6 +150,63 @@ export const products: Product[] = [
     subCategory: "zenith",
     colors: ["Beige", "Kaki"],
     sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 9,
+    name: "VESTE JANE",
+    price: "720,00 €",
+    image: "/images/products/veste-jane.png",
+    description: [
+      "• Veste structurée en laine mélangée",
+      "• Coupe moderne et élégante",
+      "• Doublure soie premium",
+      "• Fermeture boutonnée dorée",
+      "• Style contemporain raffiné"
+    ],
+    category: "femme",
+    subCategory: "crepuscule",
+    colors: ["Noir", "Navy"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 10,
+    name: "BOMBERS ITOUA",
+    price: "650,00 €",
+    image: "/images/products/bombers-itoua.png",
+    description: [
+      "• Bombers moderne en nylon technique",
+      "• Coupe oversize tendance",
+      "• Fermeture éclair YKK",
+      "• Poches cargo fonctionnelles",
+      "• Style streetwear premium"
+    ],
+    category: "homme",
+    subCategory: "aube",
+    colors: ["Noir", "Kaki olive"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: 11,
+    name: "JUPE BINE",
+    price: "420,00 €",
+    image: "/images/products/jupe-bine.png",
+    description: [
+      "• Jupe midi en crêpe fluide",
+      "• Taille haute confortable",
+      "• Coupe évasée moderne",
+      "• Fermeture invisible",
+      "• Style féminin intemporel"
+    ],
+    category: "femme",
+    subCategory: "zenith",
+    colors: ["Noir", "Bordeaux"],
+    sizes: ["XS", "S", "M", "L", "XL"],
     inStock: true,
     featured: false
   }

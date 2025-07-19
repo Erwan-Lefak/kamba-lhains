@@ -11,18 +11,18 @@ export default function Kambavers() {
 
   // Collection images for masonry layout
   const collectionImages = [
-    { src: '/blazer-amara.png', id: 1, height: 400 },
-    { src: '/veste-jane.png', id: 2, height: 500 },
-    { src: '/bombers-itoua.png', id: 3, height: 350 },
-    { src: '/jupe-bine.png', id: 4, height: 450 },
-    { src: '/chemise-ngozi.png', id: 5, height: 380 },
-    { src: '/pantalon-koffi.png', id: 6, height: 420 },
-    { src: '/veste-kmobou.png', id: 7, height: 390 },
-    { src: '/chemise-uriel.png', id: 8, height: 460 },
-    { src: '/blazer-amara.png', id: 9, height: 340 },
-    { src: '/veste-jane.png', id: 10, height: 480 },
-    { src: '/bombers-itoua.png', id: 11, height: 360 },
-    { src: '/jupe-bine.png', id: 12, height: 440 }
+    { src: '/images/products/blazer-amara.png', id: 1, height: 400 },
+    { src: '/images/products/veste-jane.png', id: 2, height: 500 },
+    { src: '/images/products/bombers-itoua.png', id: 3, height: 350 },
+    { src: '/images/products/jupe-bine.png', id: 4, height: 450 },
+    { src: '/images/products/chemise-ngozi.png', id: 5, height: 380 },
+    { src: '/images/products/pantalon-koffi.png', id: 6, height: 420 },
+    { src: '/images/products/veste-kmobou.png', id: 7, height: 390 },
+    { src: '/images/products/chemise-uriel.png', id: 8, height: 460 },
+    { src: '/images/products/blazer-amara.png', id: 9, height: 340 },
+    { src: '/images/products/veste-jane.png', id: 10, height: 480 },
+    { src: '/images/products/bombers-itoua.png', id: 11, height: 360 },
+    { src: '/images/products/jupe-bine.png', id: 12, height: 440 }
   ];
 
   useEffect(() => {
@@ -116,14 +116,14 @@ export default function Kambavers() {
           <div className="image-container">
             <div className="image-half">
               <img 
-                src="/blazer-amara.png" 
+                src="/images/products/blazer-amara.png" 
                 alt="Kambavers Collection 1"
                 className="main-image"
               />
             </div>
             <div className="image-half">
               <img 
-                src="/veste-jane.png" 
+                src="/images/products/veste-jane.png" 
                 alt="Kambavers Collection 2"
                 className="main-image"
               />
