@@ -108,9 +108,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/contact') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/contact')}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
-                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/suivi-commande') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/suivi-commande')}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
-                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/retour') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retour')}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/suivi-commande') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/suivi-commande')}>Suivre une commande</Link></li>
+                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/retour') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retour')}>Faire un retour</Link></li>
+                <li><Link href="/reclamation" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/reclamation') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/reclamation')}>Réclamation</Link></li>
               </ul>
             </div>
             
