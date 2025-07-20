@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Footer() {
@@ -15,6 +16,7 @@ export default function Footer() {
   const { currentLanguage, changeLanguage, t } = useLanguage();
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -65,6 +67,18 @@ export default function Footer() {
     setShowCountryModal(false);
   };
 
+  const isActiveLink = (href) => {
+    return router.pathname === href;
+  };
+
+  const handleMouseEnter = (e) => {
+    e.target.style.color = 'red';
+  };
+
+  const handleMouseLeave = (e, href) => {
+    e.target.style.color = isActiveLink(href) ? 'red' : '#888';
+  };
+
   return (
     <footer className="footer">
       <div className="container">
@@ -94,9 +108,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
-                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
-                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
+                <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/contact') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/contact')}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/suivi-commande') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/suivi-commande')}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
+                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/retour') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retour')}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
               </ul>
             </div>
             
@@ -146,11 +160,11 @@ export default function Footer() {
               <span className={`arrow ${openSections.legal ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.legal ? 'open' : ''}`}>
-              <li><Link href="/mentions-legales" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.legalNotices')}</Link></li>
-              <li><Link href="/conditions-vente" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.salesConditions')}</Link></li>
-              <li><Link href="/politique-confidentialite" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.privacyPolicy')}</Link></li>
-              <li><Link href="/conditions-utilisation" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.termsOfUse')}</Link></li>
-              <li><Link href="/accessibilite" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.accessibility')}</Link></li>
+              <li><Link href="/mentions-legales" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/mentions-legales') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/mentions-legales')}>{t('footer.links.legalNotices')}</Link></li>
+              <li><Link href="/conditions-vente" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/conditions-vente') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/conditions-vente')}>{t('footer.links.salesConditions')}</Link></li>
+              <li><Link href="/politique-confidentialite" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/politique-confidentialite') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/politique-confidentialite')}>{t('footer.links.privacyPolicy')}</Link></li>
+              <li><Link href="/conditions-utilisation" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/conditions-utilisation') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/conditions-utilisation')}>{t('footer.links.termsOfUse')}</Link></li>
+              <li><Link href="/accessibilite" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/accessibilite') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/accessibilite')}>{t('footer.links.accessibility')}</Link></li>
             </ul>
           </div>
           
@@ -160,13 +174,13 @@ export default function Footer() {
               <span className={`arrow ${openSections.faq ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.faq ? 'open' : ''}`}>
-              <li><Link href="/compte" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.account')}</Link></li>
-              <li><Link href="/livraison" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.deliveryInfo')}</Link></li>
-              <li><Link href="/commandes" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.orders')}</Link></li>
-              <li><Link href="/paiements" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.payments')}</Link></li>
-              <li><Link href="/retours" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.returns')}</Link></li>
-              <li><Link href="/guide-tailles" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.sizeGuide')}</Link></li>
-              <li><Link href="/carte-cadeau" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.giftCard')}</Link></li>
+              <li><Link href="/compte" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/compte') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/compte')}>{t('footer.links.account')}</Link></li>
+              <li><Link href="/livraison" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/livraison') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/livraison')}>{t('footer.links.deliveryInfo')}</Link></li>
+              <li><Link href="/commandes" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/commandes') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/commandes')}>{t('footer.links.orders')}</Link></li>
+              <li><Link href="/paiements" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/paiements') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/paiements')}>{t('footer.links.payments')}</Link></li>
+              <li><Link href="/retours" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/retours') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retours')}>{t('footer.links.returns')}</Link></li>
+              <li><Link href="/guide-tailles" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/guide-tailles') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/guide-tailles')}>{t('footer.links.sizeGuide')}</Link></li>
+              <li><Link href="/carte-cadeau" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/carte-cadeau') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carte-cadeau')}>{t('footer.links.giftCard')}</Link></li>
             </ul>
           </div>
           
@@ -176,10 +190,10 @@ export default function Footer() {
               <span className={`arrow ${openSections.entreprise ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.entreprise ? 'open' : ''}`}>
-              <li><Link href="/about" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>A propos</Link></li>
-              <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Nous contacter</Link></li>
-              <li><Link href="/charte" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Charte</Link></li>
-              <li><Link href="/carriere" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Carrière</Link></li>
+              <li><Link href="/about" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/about') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/about')}>A propos</Link></li>
+              <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/contact') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/contact')}>Nous contacter</Link></li>
+              <li><Link href="/charte" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/charte') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/charte')}>Charte</Link></li>
+              <li><Link href="/carriere" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: isActiveLink('/carriere') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carriere')}>Carrière</Link></li>
             </ul>
           </div>
           
@@ -189,11 +203,11 @@ export default function Footer() {
               <span className={`arrow ${openSections.suivre ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.suivre ? 'open' : ''}`}>
-              <li><a href="#" aria-label="Instagram" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Instagram</a></li>
-              <li><a href="#" aria-label="Facebook" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Facebook</a></li>
-              <li><a href="#" aria-label="TikTok" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>TikTok</a></li>
-              <li><a href="#" aria-label="X" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>X</a></li>
-              <li><a href="#" aria-label="Pinterest" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Pinterest</a></li>
+              <li><a href="#" aria-label="Instagram" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Instagram</a></li>
+              <li><a href="#" aria-label="Facebook" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Facebook</a></li>
+              <li><a href="#" aria-label="TikTok" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>TikTok</a></li>
+              <li><a href="#" aria-label="X" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>X</a></li>
+              <li><a href="#" aria-label="Pinterest" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Pinterest</a></li>
             </ul>
           </div>
         </div>
@@ -369,7 +383,11 @@ export default function Footer() {
         }
         
         .service-client a:hover {
-          color: black;
+          color: red !important;
+        }
+        
+        .service-client li:hover a {
+          color: red !important;
         }
         
         .country-selector {
@@ -633,7 +651,19 @@ export default function Footer() {
         }
         
         .section-content li a:hover {
-          color: black;
+          color: red !important;
+        }
+        
+        .section-content li:hover a {
+          color: red !important;
+        }
+        
+        .service-client li a:hover {
+          color: red !important;
+        }
+        
+        .footer-link-active {
+          color: red !important;
         }
         
         .footer-bottom {
