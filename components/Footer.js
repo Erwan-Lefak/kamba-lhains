@@ -360,7 +360,7 @@ export default function Footer() {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-size: 12px;
+          font-size: 10px;
           font-weight: 300;
           cursor: pointer;
           padding: 8px 0;
@@ -384,7 +384,7 @@ export default function Footer() {
           gap: 8px;
           padding: 8px 0;
           cursor: pointer;
-          font-size: 12px;
+          font-size: 10px;
           font-weight: 300;
           color: #888;
           border-bottom: 1px solid transparent;
@@ -711,12 +711,12 @@ export default function Footer() {
           }
           
           .country-selector {
-            font-size: 10px;
+            font-size: 9px;
             padding: 6px 0;
           }
           
           .language-selected-footer {
-            font-size: 10px;
+            font-size: 9px;
             padding: 6px 0;
           }
           
