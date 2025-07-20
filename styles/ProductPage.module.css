@@ -311,7 +311,7 @@
   color: #000;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-transform: none;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   min-height: 50px;
