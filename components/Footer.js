@@ -339,7 +339,7 @@ export default function Footer() {
         }
         
         .newsletter-disclaimer {
-          font-size: 9px;
+          font-size: 9px !important;
           color: #aaa;
           line-height: 1.3;
           font-weight: 300;
@@ -407,7 +407,7 @@ export default function Footer() {
         }
         
         .country-selector:hover {
-          border-bottom-color: #ccc;
+          color: red !important;
         }
         
         .language-dropdown-footer {
@@ -431,8 +431,7 @@ export default function Footer() {
         }
         
         .language-selected-footer:hover {
-          color: black;
-          border-bottom-color: #ccc;
+          color: red !important;
         }
         
         .language-selected-footer .flag {
@@ -745,7 +744,7 @@ export default function Footer() {
           }
           
           .newsletter-disclaimer {
-            font-size: 9px;
+            font-size: 9px !important;
             line-height: 1.2;
           }
           
