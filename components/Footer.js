@@ -316,13 +316,14 @@ export default function Footer() {
           color: white;
           border: none;
           cursor: pointer;
-          font-size: 12px;
+          font-size: 9px;
           transition: background-color 0.3s;
           font-family: 'Manrope', sans-serif;
           text-align: left;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          text-transform: uppercase;
         }
         
         .newsletter-form button:hover {
@@ -338,11 +339,12 @@ export default function Footer() {
         }
         
         .newsletter-disclaimer {
-          font-size: 10px;
+          font-size: 9px;
           color: #aaa;
           line-height: 1.3;
           font-weight: 300;
           font-family: 'Manrope', sans-serif;
+          text-transform: uppercase;
         }
         
         .footer-right {
