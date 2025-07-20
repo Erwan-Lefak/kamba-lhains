@@ -79,7 +79,10 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit">S'abonner</button>
+              <button type="submit">
+                <span>S'abonner</span>
+                <span className="arrow-right">⟶</span>
+              </button>
             </form>
             <p>{t('footer.newsletter.description')}</p>
             <p className="newsletter-disclaimer">
@@ -91,9 +94,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
-                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
-                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
+                <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.customerServiceLinks.contactForm')}</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.customerServiceLinks.trackOrder')}</Link></li>
+                <li><Link href="/retour" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.customerServiceLinks.registerReturn')}</Link></li>
               </ul>
             </div>
             
@@ -143,11 +146,11 @@ export default function Footer() {
               <span className={`arrow ${openSections.legal ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.legal ? 'open' : ''}`}>
-              <li><Link href="/mentions-legales" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.legalNotices')}</Link></li>
-              <li><Link href="/conditions-vente" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.salesConditions')}</Link></li>
-              <li><Link href="/politique-confidentialite" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.privacyPolicy')}</Link></li>
-              <li><Link href="/conditions-utilisation" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.termsOfUse')}</Link></li>
-              <li><Link href="/accessibilite" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.accessibility')}</Link></li>
+              <li><Link href="/mentions-legales" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.legalNotices')}</Link></li>
+              <li><Link href="/conditions-vente" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.salesConditions')}</Link></li>
+              <li><Link href="/politique-confidentialite" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.privacyPolicy')}</Link></li>
+              <li><Link href="/conditions-utilisation" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.termsOfUse')}</Link></li>
+              <li><Link href="/accessibilite" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.accessibility')}</Link></li>
             </ul>
           </div>
           
@@ -157,13 +160,13 @@ export default function Footer() {
               <span className={`arrow ${openSections.faq ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.faq ? 'open' : ''}`}>
-              <li><Link href="/compte" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.account')}</Link></li>
-              <li><Link href="/livraison" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.deliveryInfo')}</Link></li>
-              <li><Link href="/commandes" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.orders')}</Link></li>
-              <li><Link href="/paiements" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.payments')}</Link></li>
-              <li><Link href="/retours" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.returns')}</Link></li>
-              <li><Link href="/guide-tailles" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.sizeGuide')}</Link></li>
-              <li><Link href="/carte-cadeau" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.giftCard')}</Link></li>
+              <li><Link href="/compte" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.account')}</Link></li>
+              <li><Link href="/livraison" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.deliveryInfo')}</Link></li>
+              <li><Link href="/commandes" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.orders')}</Link></li>
+              <li><Link href="/paiements" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.payments')}</Link></li>
+              <li><Link href="/retours" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.returns')}</Link></li>
+              <li><Link href="/guide-tailles" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.sizeGuide')}</Link></li>
+              <li><Link href="/carte-cadeau" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>{t('footer.links.giftCard')}</Link></li>
             </ul>
           </div>
           
@@ -173,10 +176,10 @@ export default function Footer() {
               <span className={`arrow ${openSections.entreprise ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.entreprise ? 'open' : ''}`}>
-              <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.contactUs')}</Link></li>
-              <li><Link href="/boutiques" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.stores')}</Link></li>
-              <li><Link href="/rendez-vous" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.appointment')}</Link></li>
-              <li><Link href="/carriere" style={{fontSize: isMobile ? '9px' : '10px'}}>{t('footer.links.career')}</Link></li>
+              <li><Link href="/about" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>A propos</Link></li>
+              <li><Link href="/contact" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Nous contacter</Link></li>
+              <li><Link href="/charte" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Charte</Link></li>
+              <li><Link href="/carriere" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Carrière</Link></li>
             </ul>
           </div>
           
@@ -186,11 +189,11 @@ export default function Footer() {
               <span className={`arrow ${openSections.suivre ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.suivre ? 'open' : ''}`}>
-              <li><a href="#" aria-label="Instagram" style={{fontSize: isMobile ? '9px' : '10px'}}>Instagram</a></li>
-              <li><a href="#" aria-label="Facebook" style={{fontSize: isMobile ? '9px' : '10px'}}>Facebook</a></li>
-              <li><a href="#" aria-label="TikTok" style={{fontSize: isMobile ? '9px' : '10px'}}>TikTok</a></li>
-              <li><a href="#" aria-label="X" style={{fontSize: isMobile ? '9px' : '10px'}}>X</a></li>
-              <li><a href="#" aria-label="Pinterest" style={{fontSize: isMobile ? '9px' : '10px'}}>Pinterest</a></li>
+              <li><a href="#" aria-label="Instagram" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Instagram</a></li>
+              <li><a href="#" aria-label="Facebook" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Facebook</a></li>
+              <li><a href="#" aria-label="TikTok" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>TikTok</a></li>
+              <li><a href="#" aria-label="X" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>X</a></li>
+              <li><a href="#" aria-label="Pinterest" style={{fontSize: isMobile ? '9px' : '10px', textTransform: 'uppercase'}}>Pinterest</a></li>
             </ul>
           </div>
         </div>
@@ -294,7 +297,7 @@ export default function Footer() {
         }
         
         .newsletter-form button {
-          align-self: flex-start;
+          width: 100%;
           padding: 8px 16px;
           background: black;
           color: white;
@@ -303,10 +306,22 @@ export default function Footer() {
           font-size: 12px;
           transition: background-color 0.3s;
           font-family: 'Manrope', sans-serif;
+          text-align: left;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
         
         .newsletter-form button:hover {
           background: #333;
+        }
+        
+        .arrow-right {
+          font-size: 14px;
+          line-height: 1;
+          display: flex;
+          align-items: center;
+          font-weight: normal;
         }
         
         .newsletter-disclaimer {
@@ -350,6 +365,7 @@ export default function Footer() {
           transition: color 0.3s;
           font-weight: 300;
           font-family: 'Manrope', sans-serif;
+          text-transform: uppercase;
         }
         
         .service-client a:hover {
@@ -613,6 +629,7 @@ export default function Footer() {
           transition: color 0.3s;
           font-weight: 300;
           font-family: 'Manrope', sans-serif;
+          text-transform: uppercase;
         }
         
         .section-content li a:hover {
