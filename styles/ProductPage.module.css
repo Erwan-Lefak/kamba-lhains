@@ -322,10 +322,9 @@
 .tabsSection {
   background: white;
   border-top: 1px solid #eee;
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  width: 40%;
-  right: 0;
+  width: 100%;
   z-index: 10;
 }
 
@@ -560,7 +559,7 @@
   }
 
   .tabsSection {
-    width: 40%;
+    width: 100%;
   }
 
   .sizeGrid {
