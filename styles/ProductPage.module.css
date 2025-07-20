@@ -23,8 +23,17 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+}
+
+.mainImageContainer {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Dynamic height based on screen size */
@@ -73,6 +82,42 @@
   margin: 0 -10px;
   padding: 0;
   max-width: none;
+}
+
+/* Image Gallery */
+.imageGallery {
+  display: flex;
+  gap: 8px;
+  padding: 20px;
+  background: white;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.thumbnailContainer {
+  min-width: 80px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.thumbnailContainer:hover {
+  border-color: #ccc;
+}
+
+.thumbnailContainer.active {
+  border-color: #000;
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .heartIcon {

@@ -6,6 +6,17 @@ export const products: Product[] = [
     name: "BLOUSON EFFET CIRE",
     price: "890,00 €",
     image: "/images/collection/IMG_2864.jpeg",
+    images: [
+      "/images/collection/IMG_2864.jpeg",
+      "/images/collection/IMG_2865.jpeg",
+      "/images/collection/IMG_2871.jpeg",
+      "/images/collection/IMG_2866.jpeg",
+      "/images/collection/IMG_2868.jpeg",
+      "/images/collection/IMG_2872.jpeg",
+      "/images/collection/IMG_2870.jpeg",
+      "/images/collection/IMG_2867.jpeg",
+      "/images/collection/IMG_2869.jpeg"
+    ],
     description: [
       "• Blouson en coton effet ciré",
       "• Coupe moderne et ajustée",
