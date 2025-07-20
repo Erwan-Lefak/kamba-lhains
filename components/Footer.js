@@ -70,8 +70,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="newsletter-section">
-            <h3>{t('footer.newsletter.title')}</h3>
-            <p>{t('footer.newsletter.description')}</p>
+            <h3>Newsletter</h3>
             <form onSubmit={handleNewsletterSubmit} className="newsletter-form">
               <input
                 type="email"
@@ -80,8 +79,9 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit">{t('footer.newsletter.subscribe')}</button>
+              <button type="submit">S'abonner</button>
             </form>
+            <p>{t('footer.newsletter.description')}</p>
             <p className="newsletter-disclaimer">
               {t('footer.newsletter.disclaimer')}
             </p>
@@ -254,18 +254,21 @@ export default function Footer() {
         }
         
         .newsletter-section h3 {
-          font-size: 14px;
+          font-size: 11px;
           font-weight: 400;
           margin-bottom: 15px;
           color: black;
+          text-transform: uppercase;
+          font-family: 'Manrope', sans-serif;
         }
         
         .newsletter-section p {
           line-height: 1.4;
-          color: #666;
+          color: #888;
           font-size: 12px;
           margin-bottom: 15px;
           font-weight: 300;
+          font-family: 'Manrope', sans-serif;
         }
         
         .newsletter-form {
@@ -283,7 +286,7 @@ export default function Footer() {
           font-size: 12px;
           outline: none;
           font-weight: 300;
-          font-family: inherit;
+          font-family: 'Manrope', sans-serif;
         }
         
         .newsletter-form input:focus {
@@ -299,6 +302,7 @@ export default function Footer() {
           cursor: pointer;
           font-size: 12px;
           transition: background-color 0.3s;
+          font-family: 'Manrope', sans-serif;
         }
         
         .newsletter-form button:hover {
@@ -307,9 +311,10 @@ export default function Footer() {
         
         .newsletter-disclaimer {
           font-size: 10px;
-          color: #999;
+          color: #aaa;
           line-height: 1.3;
           font-weight: 300;
+          font-family: 'Manrope', sans-serif;
         }
         
         .footer-right {
@@ -320,10 +325,12 @@ export default function Footer() {
         
         .service-client h4,
         .pays-region h4 {
-          font-size: 14px;
+          font-size: 11px;
           font-weight: 400;
           margin-bottom: 15px;
           color: black;
+          text-transform: uppercase;
+          font-family: 'Manrope', sans-serif;
         }
         
         .service-client ul {
@@ -337,11 +344,12 @@ export default function Footer() {
         }
         
         .service-client a {
-          color: #666;
+          color: #888;
           text-decoration: none;
           font-size: 10px;
           transition: color 0.3s;
           font-weight: 300;
+          font-family: 'Manrope', sans-serif;
         }
         
         .service-client a:hover {
@@ -358,6 +366,7 @@ export default function Footer() {
           padding: 8px 0;
           border-bottom: 1px solid transparent;
           transition: all 0.3s ease;
+          font-family: 'Manrope', sans-serif;
         }
         
         .country-selector:hover {
@@ -377,9 +386,10 @@ export default function Footer() {
           cursor: pointer;
           font-size: 12px;
           font-weight: 300;
-          color: #666;
+          color: #888;
           border-bottom: 1px solid transparent;
           transition: all 0.3s ease;
+          font-family: 'Manrope', sans-serif;
         }
         
         .language-selected-footer:hover {
@@ -420,10 +430,11 @@ export default function Footer() {
           cursor: pointer;
           font-size: 12px;
           font-weight: 300;
-          color: #666;
+          color: #888;
           transition: all 0.3s ease;
           width: 100%;
           text-align: left;
+          font-family: 'Manrope', sans-serif;
         }
         
         .language-option-footer:hover {
@@ -479,6 +490,7 @@ export default function Footer() {
           margin: 0;
           font-size: 18px;
           font-weight: 400;
+          font-family: 'Manrope', sans-serif;
         }
         
         .close-btn {
@@ -527,11 +539,13 @@ export default function Footer() {
         .country-option .country-name {
           flex: 1;
           font-size: 14px;
+          font-family: 'Manrope', sans-serif;
         }
         
         .country-option .currency {
           font-size: 14px;
           color: #666;
+          font-family: 'Manrope', sans-serif;
         }
         
         .footer-links {
@@ -555,15 +569,17 @@ export default function Footer() {
         }
         
         .section-header h4 {
-          font-size: 14px;
+          font-size: 11px;
           font-weight: 400;
           margin: 0;
           color: black;
+          text-transform: uppercase;
+          font-family: 'Manrope', sans-serif;
         }
         
         .arrow {
           font-size: 16px;
-          color: #666;
+          color: #888;
           transform: rotate(180deg);
           transition: transform 0.3s ease;
         }
@@ -591,11 +607,12 @@ export default function Footer() {
         }
         
         .section-content li a {
-          color: #666;
+          color: #888;
           text-decoration: none;
           font-size: 12px;
           transition: color 0.3s;
           font-weight: 300;
+          font-family: 'Manrope', sans-serif;
         }
         
         .section-content li a:hover {
@@ -609,10 +626,11 @@ export default function Footer() {
         }
         
         .copyright {
-          color: #666;
+          color: #888;
           font-size: 10px;
           margin: 0;
           font-weight: 300;
+          font-family: 'Manrope', sans-serif;
         }
         
         @media (min-width: 769px) {
