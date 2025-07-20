@@ -71,20 +71,20 @@ export const products: Product[] = [
   },
   {
     id: 4,
-    name: "CHEMISE NGOZI",
-    price: "450,00 €",
-    image: "/images/products/chemise-ngozi.png",
+    name: "VESTE AVEC COL EN CONTRASTE",
+    price: "460,00 €",
+    image: "/images/collection/IMG_2877.jpeg",
     description: [
-      "• Chemise en popeline de coton",
-      "• Col classique français",
-      "• Coupe moderne cintrée",
-      "• Boutons nacre véritable",
-      "• Repassage facile"
+      "• Veste élégante avec col contrastant",
+      "• Coupe moderne et sophistiquée",
+      "• Finitions soignées",
+      "• Style contemporain raffiné",
+      "• Parfaite pour toutes occasions"
     ],
-    category: "homme",
+    category: "femme",
     subCategory: "aube",
-    colors: ["Blanc", "Bleu clair"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["Noir", "Beige"],
+    sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: false
   },

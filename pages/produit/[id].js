@@ -307,23 +307,45 @@ export default function ProductDetail() {
                 .filter(p => p.id !== product.id)
                 .slice(0, 3)
                 .map((recommendedProduct) => (
-                  <Link 
-                    key={recommendedProduct.id} 
-                    href={`/produit/${recommendedProduct.id}`} 
-                    className={styles.recommendedProduct}
-                  >
-                    <div className={styles.productImageWrapper}>
-                      <img 
-                        src={recommendedProduct.image} 
-                        alt={recommendedProduct.name} 
-                        className={styles.recommendedProductImage}
-                      />
-                      <div className={styles.productOverlay}>
-                        <div className={styles.productName}>{recommendedProduct.name}</div>
-                        <div className={styles.productPrice}>{recommendedProduct.price}</div>
+                  <div key={recommendedProduct.id} className={styles.recommendedProduct}>
+                    <Link href={`/produit/${recommendedProduct.id}`}>
+                      <div className={styles.productImageWrapper}>
+                        <img 
+                          src={recommendedProduct.image} 
+                          alt={recommendedProduct.name} 
+                          className={styles.recommendedProductImage}
+                        />
+                        <button 
+                          className={styles.recommendedFavoriteIcon}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (isFavorite(recommendedProduct.id)) {
+                              removeFromFavorites(recommendedProduct.id);
+                            } else {
+                              addToFavorites(recommendedProduct);
+                            }
+                          }}
+                          aria-label={isFavorite(recommendedProduct.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                        >
+                          <span className={`u-w-full ${isFavorite(recommendedProduct.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
+                            <svg className="c-icon" data-size="sm">
+                              <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                            </svg>
+                          </span>
+                          <span className={`u-w-full ${!isFavorite(recommendedProduct.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                            <svg className="c-icon" data-size="sm">
+                              <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                            </svg>
+                          </span>
+                        </button>
+                        <div className={styles.productOverlay}>
+                          <div className={styles.productName}>{recommendedProduct.name}</div>
+                          <div className={styles.productPrice}>{recommendedProduct.price}</div>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                 ))
               }
             </div>

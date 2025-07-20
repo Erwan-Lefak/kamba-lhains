@@ -443,8 +443,8 @@
 
 .sectionContainer {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
+  margin: 0;
+  padding: 0 0 0 40px;
 }
 
 .sectionTitle {
@@ -461,39 +461,35 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
+  width: fit-content;
 }
 
 .recommendedProduct {
   position: relative;
   display: block;
-  overflow: hidden;
+  overflow: visible;
   text-decoration: none;
   color: inherit;
   width: 100%;
-  aspect-ratio: 1;
+  height: auto;
   cursor: pointer;
 }
 
 .productImageWrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .recommendedProductImage {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
   display: block;
   background: white;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-.recommendedProduct:hover .recommendedProductImage {
-  transform: scale(1.05);
 }
 
 .productOverlay {
@@ -503,26 +499,58 @@
   right: 0;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 20px;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  align-items: baseline;
+  padding: 0px 20px 2px 20px;
+  background: transparent;
   z-index: 2;
   pointer-events: none;
 }
 
 .productName {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: black;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-align: left;
+  flex: 1;
+  line-height: 1;
 }
 
 .productPrice {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 200;
+  color: black;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-align: right;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Favorite Icon for recommended products */
+.recommendedFavoriteIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  z-index: 10;
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.recommendedFavoriteIcon:hover {
+  transform: scale(1.1);
+}
+
+.recommendedFavoriteIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* Responsive Design */
@@ -554,11 +582,11 @@
 
   .recommendedProducts {
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 0;
   }
 
   .sectionContainer {
-    padding: 0 30px;
+    padding: 0 0 0 30px;
   }
 }
 
@@ -622,11 +650,11 @@
 
   .recommendedProducts {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 0;
   }
 
   .sectionContainer {
-    padding: 0 20px;
+    padding: 0 0 0 20px;
   }
 
   .completeYourLook {
