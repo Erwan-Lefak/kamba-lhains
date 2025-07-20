@@ -19,7 +19,6 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (id) {
@@ -163,53 +162,50 @@ export default function ProductDetail() {
         <div className={styles.productContainer}>
           {/* Image Section - 60% */}
           <div className={styles.productImageSection}>
-            {/* Main Image */}
-            <div className={styles.mainImageContainer}>
-              <img 
-                src={product.images && product.images.length > 0 ? product.images[currentImageIndex] : product.image}
-                alt={product.name}
-                className={styles.productImage}
-                onError={(e) => {
-                  console.log('Image failed to load:', product.image);
-                  e.target.src = '/logo.png';
-                }}
-              />
-              <button 
-                className={`${styles.heartIcon} ${product && isFavorite(product.id) ? styles.liked : ''}`}
-                onClick={handleHeartClick}
-                aria-label={product && isFavorite(product.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
-              >
-                <span className={`u-w-full ${product && isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
-                  <svg className="c-icon" data-size="sm">
-                    <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
-                  </svg>
-                </span>
-                <span className={`u-w-full ${product && !isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
-                  <svg className="c-icon" data-size="sm">
-                    <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
-                  </svg>
-                </span>
-              </button>
-            </div>
+            <button 
+              className={`${styles.heartIcon} ${product && isFavorite(product.id) ? styles.liked : ''}`}
+              onClick={handleHeartClick}
+              aria-label={product && isFavorite(product.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+            >
+              <span className={`u-w-full ${product && isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
+                <svg className="c-icon" data-size="sm">
+                  <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                </svg>
+              </span>
+              <span className={`u-w-full ${product && !isFavorite(product.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                <svg className="c-icon" data-size="sm">
+                  <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                </svg>
+              </span>
+            </button>
 
-            {/* Image Gallery */}
-            {product.images && product.images.length > 1 && (
-              <div className={styles.imageGallery}>
-                {product.images.map((image, index) => (
-                  <div 
-                    key={index} 
-                    className={`${styles.thumbnailContainer} ${currentImageIndex === index ? styles.active : ''}`}
-                    onClick={() => setCurrentImageIndex(index)}
-                  >
-                    <img 
-                      src={image} 
-                      alt={`${product.name} ${index + 1}`}
-                      className={styles.thumbnailImage}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
+            {/* Vertical Image Stack */}
+            <div className={styles.imageStack}>
+              {product.images && product.images.length > 0 ? (
+                product.images.map((image, index) => (
+                  <img 
+                    key={index}
+                    src={image}
+                    alt={`${product.name} ${index + 1}`}
+                    className={styles.stackedImage}
+                    onError={(e) => {
+                      console.log('Image failed to load:', image);
+                      e.target.src = '/logo.png';
+                    }}
+                  />
+                ))
+              ) : (
+                <img 
+                  src={product.image}
+                  alt={product.name}
+                  className={styles.stackedImage}
+                  onError={(e) => {
+                    console.log('Image failed to load:', product.image);
+                    e.target.src = '/logo.png';
+                  }}
+                />
+              )}
+            </div>
           </div>
 
           {/* Product Info Section - 40% */}
