@@ -451,7 +451,7 @@ export default function Footer() {
           background: white;
           border: 1px solid #eee;
           border-radius: 4px;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 10px rgba(0,0,0,0.05);
           z-index: 1000;
           margin-top: 5px;
         }
@@ -500,7 +500,7 @@ export default function Footer() {
           left: 0;
           right: 0;
           background: white;
-          border-radius: 20px 20px 0 0;
+          border-radius: 0;
           z-index: 1001;
           max-height: 80vh;
           animation: slideUp 0.3s ease-out;
@@ -525,9 +525,10 @@ export default function Footer() {
         
         .modal-header h3 {
           margin: 0;
-          font-size: 18px;
-          font-weight: 400;
+          font-size: 12px;
+          font-weight: 700;
           font-family: 'Manrope', sans-serif;
+          text-transform: uppercase;
         }
         
         .close-btn {
@@ -575,14 +576,16 @@ export default function Footer() {
         
         .country-option .country-name {
           flex: 1;
-          font-size: 14px;
+          font-size: 11px;
           font-family: 'Manrope', sans-serif;
+          text-transform: uppercase;
         }
         
         .country-option .currency {
-          font-size: 14px;
+          font-size: 11px;
           color: #666;
           font-family: 'Manrope', sans-serif;
+          text-transform: uppercase;
         }
         
         .footer-links {
