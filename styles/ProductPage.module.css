@@ -82,7 +82,7 @@
 }
 
 .productMainContent {
-  padding: 40px 200px;
+  padding: 40px clamp(40px, 12vw, 200px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,6 +95,7 @@
   max-height: 80vh;
   z-index: 5;
 }
+
 
 .productTitle {
   font-size: 1.875rem;
@@ -127,6 +128,7 @@
 /* Color Section */
 .colorSection {
   margin-bottom: 25px;
+  width: 100%;
 }
 
 .colorHeader {
@@ -188,6 +190,7 @@
 /* Size Section */
 .sizeSection {
   margin-bottom: 25px;
+  width: 100%;
 }
 
 .sizeHeader {
@@ -222,23 +225,24 @@
 
 .sizeGrid {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 15px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-start;
 }
 
 .sizeOption {
-  padding: 8px 12px;
+  padding: 8px 10px;
   border: 1px solid #ddd;
   background: white;
   font-size: 11px;
   cursor: pointer;
   transition: all 0.3s;
   text-align: center;
-  min-width: 40px;
+  min-width: 32px;
   color: #333;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  flex-shrink: 0;
 }
 
 .sizeOption:hover {
@@ -267,7 +271,6 @@
 .addToCartSection {
   margin-bottom: 15px;
   width: 100%;
-  align-self: stretch;
 }
 
 .addToCartButton {
@@ -560,13 +563,14 @@
   }
   
   .productMainContent {
-    padding: 40px 40px;
+    padding: 40px clamp(30px, 8vw, 100px);
     position: sticky;
     top: 50%;
     transform: translateY(-50%);
     height: fit-content;
     max-height: 80vh;
   }
+
 
   .tabsSection {
     width: 100%;
@@ -610,6 +614,10 @@
     transform: none;
     height: auto;
     max-height: none;
+  }
+
+  .sizeGrid {
+    flex-wrap: wrap;
   }
   
   .tabsSection {

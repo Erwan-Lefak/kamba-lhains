@@ -538,18 +538,37 @@
   letter-spacing: 0.3px;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+/* Desktop Navigation */
+@media (min-width: 1025px) {
   .navigationSection {
-    display: none;
+    display: flex;
   }
   
   .mobileMenuButton {
-    display: block;
+    display: none;
+  }
+}
+
+/* Tablet Navigation */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .navigationSection {
+    display: flex;
+  }
+  
+  .navigation {
+    gap: 15px;
+  }
+  
+  .navLink {
+    font-size: 10px;
   }
   
   .headerContent {
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .mobileMenuButton {
+    display: none;
   }
 }
 
