@@ -107,9 +107,10 @@
   background: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow-y: auto;
+  justify-content: flex-start;
+  overflow-y: visible;
   position: relative;
+  min-height: 100vh;
 }
 
 .productMainContent {
@@ -120,7 +121,7 @@
   align-items: flex-start;
   text-align: left;
   flex: 1;
-  min-height: 0;
+  min-height: calc(100vh - 120px);
 }
 
 .productTitle {
@@ -326,6 +327,7 @@
   bottom: 0;
   width: 100%;
   z-index: 10;
+  margin-top: auto;
 }
 
 .tabsContainer {
@@ -556,6 +558,7 @@
   
   .productMainContent {
     padding: 80px 40px 40px 40px;
+    min-height: calc(100vh - 120px);
   }
 
   .tabsSection {
@@ -595,6 +598,7 @@
 
   .productMainContent {
     padding: 60px 40px 30px 40px;
+    min-height: calc(100vh - 120px);
   }
   
   .tabsSection {
