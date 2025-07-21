@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '../types';
 import { useFavorites } from '../contexts/FavoritesContext';
 import styles from '../styles/Products.module.css';
@@ -17,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
+  const [direction, setDirection] = useState(0);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
@@ -42,29 +43,21 @@ export default function ProductCard({ product }: ProductCardProps) {
   const handlePrevImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (slideDirection) return;
     
-    setSlideDirection('left');
-    setTimeout(() => {
-      setCurrentImageIndex(prev => 
-        prev === 0 ? availableImages.length - 1 : prev - 1
-      );
-      setSlideDirection(null);
-    }, 250);
+    setDirection(-1);
+    setCurrentImageIndex(prev => 
+      prev === 0 ? availableImages.length - 1 : prev - 1
+    );
   };
 
   const handleNextImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (slideDirection) return;
     
-    setSlideDirection('right');
-    setTimeout(() => {
-      setCurrentImageIndex(prev => 
-        prev === availableImages.length - 1 ? 0 : prev + 1
-      );
-      setSlideDirection(null);
-    }, 250);
+    setDirection(1);
+    setCurrentImageIndex(prev => 
+      prev === availableImages.length - 1 ? 0 : prev + 1
+    );
   };
 
   return (
@@ -75,73 +68,45 @@ export default function ProductCard({ product }: ProductCardProps) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className={styles.imageWrapper}>
-          <div className={`${styles.imageCarousel} ${
-            slideDirection ? `${styles.sliding} ${slideDirection === 'left' ? styles.slidingLeft : styles.slidingRight}` : ''
-          }`}>
-            {slideDirection === 'left' ? (
-              <>
-                {/* Image précédente arrive de la gauche */}
-                <Image 
-                  src={availableImages[currentImageIndex === 0 ? availableImages.length - 1 : currentImageIndex - 1]}
-                  alt={`${product.name} précédente`}
-                  width={800}
-                  height={1200}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={styles.productImage}
-                  quality={95}
-                />
-                {/* Image courante glisse à droite */}
-                <Image 
-                  src={availableImages[currentImageIndex]}
-                  alt={product.name}
-                  width={800}
-                  height={1200}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={styles.productImage}
-                  priority={product.featured}
-                  quality={95}
-                />
-              </>
-            ) : slideDirection === 'right' ? (
-              <>
-                {/* Image courante glisse à gauche */}
-                <Image 
-                  src={availableImages[currentImageIndex]}
-                  alt={product.name}
-                  width={800}
-                  height={1200}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={styles.productImage}
-                  priority={product.featured}
-                  quality={95}
-                />
-                {/* Image suivante arrive de la droite */}
-                <Image 
-                  src={availableImages[currentImageIndex === availableImages.length - 1 ? 0 : currentImageIndex + 1]}
-                  alt={`${product.name} suivante`}
-                  width={800}
-                  height={1200}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={styles.productImage}
-                  quality={95}
-                />
-              </>
-            ) : (
-              <>
-                {/* Image au repos */}
-                <Image 
-                  src={availableImages[currentImageIndex]}
-                  alt={product.name}
-                  width={800}
-                  height={1200}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className={styles.productImage}
-                  priority={product.featured}
-                  quality={95}
-                />
-              </>
-            )}
-          </div>
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentImageIndex}
+              custom={direction}
+              variants={{
+                enter: (direction: number) => ({
+                  x: direction > 0 ? '100%' : '-100%',
+                  opacity: 0
+                }),
+                center: {
+                  x: 0,
+                  opacity: 1
+                },
+                exit: (direction: number) => ({
+                  x: direction < 0 ? '100%' : '-100%',
+                  opacity: 0
+                })
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+              }}
+              className={styles.motionImageContainer}
+            >
+              <Image 
+                src={availableImages[currentImageIndex]}
+                alt={product.name}
+                width={800}
+                height={1200}
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={styles.productImage}
+                priority={product.featured}
+                quality={95}
+              />
+            </motion.div>
+          </AnimatePresence>
           
           {/* Navigation Arrows */}
           {hasMultipleImages && isHovered && (

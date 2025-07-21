@@ -29,14 +29,10 @@
   overflow: hidden;
 }
 
-.imageCarousel {
-  display: flex;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+.motionImageContainer {
+  position: relative;
   width: 100%;
-}
-
-.imageCarousel.sliding {
-  width: 200%;
+  height: auto;
 }
 
 .productImage {
@@ -45,19 +41,6 @@
   width: 100%;
   height: auto;
   display: block;
-  flex-shrink: 0;
-}
-
-.imageCarousel.sliding .productImage {
-  width: 50%;
-}
-
-.imageCarousel.slidingLeft {
-  transform: translateX(50%);
-}
-
-.imageCarousel.slidingRight {
-  transform: translateX(-50%);
 }
 
 .productOverlay {
