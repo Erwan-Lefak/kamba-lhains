@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 import { Product } from '../types';
 import { useFavorites } from '../contexts/FavoritesContext';
 import styles from '../styles/Products.module.css';
@@ -11,6 +12,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const isProductFavorite = isFavorite(product.id);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -25,7 +27,11 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/produit/${product.id}`} className={styles.productCard}>
-      <div className={styles.productImageContainer}>
+      <div 
+        className={styles.productImageContainer}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <div className={styles.imageWrapper}>
           <Image 
             src={product.image}
@@ -52,6 +58,19 @@ export default function ProductCard({ product }: ProductCardProps) {
               </svg>
             </span>
           </button>
+          {/* Color Swatches - appear on hover */}
+          {isHovered && product.colors && product.colors.length > 0 && (
+            <div className={styles.colorSwatches}>
+              {product.colors.map((color, index) => (
+                <div 
+                  key={index}
+                  className={styles.colorSwatch}
+                  style={{ backgroundColor: color.toLowerCase() }}
+                  title={color}
+                />
+              ))}
+            </div>
+          )}
           <div className={styles.productOverlay}>
             <div className={styles.productName}>{product.name}</div>
             <div className={styles.productPrice}>{product.price}</div>
