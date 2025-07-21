@@ -16,9 +16,9 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const stickyTexts = document.querySelectorAll(`.${styles.stickyText}:not([id])`); // Textes originaux sans id
-      const stickyTextsPhase1 = document.querySelectorAll(`.${styles.stickyText}[id]`); // Textes avec id pour phase1
-      const stickyContainers = document.querySelectorAll(`.${styles.stickyTextContainer}`);
+      const stickyTexts = document.querySelectorAll(`.${styles.stickyText}:not([id])`) as NodeListOf<HTMLElement>; // Textes originaux sans id
+      const stickyTextsPhase1 = document.querySelectorAll(`.${styles.stickyText}[id]`) as NodeListOf<HTMLElement>; // Textes avec id pour phase1
+      const stickyContainers = document.querySelectorAll(`.${styles.stickyTextContainer}`) as NodeListOf<HTMLElement>;
       const section = document.querySelector(`.${styles.newCollectionSection}`);
       const images = document.querySelectorAll(`.${styles.collectionImageSlot}`);
       
@@ -88,7 +88,7 @@ export default function Home() {
           const sectionTop = sectionRect.top;
           const viewportCenter = viewportHeight / 2;
           const isMobile = window.innerWidth <= 768;
-          const container = text.parentElement; // Le conteneur parent
+          const container = text.parentElement as HTMLElement; // Le conteneur parent
           
           if (sectionTop > viewportCenter - 50) {
             // Phase 1: Texte dupliqué visible (se termine un peu après)
