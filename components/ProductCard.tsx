@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '../types';
 import { useFavorites } from '../contexts/FavoritesContext';
@@ -17,17 +17,26 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [selectedColor, setSelectedColor] = useState<string | null>(
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
-  const [currentImageIndex, setCurrentImageIndex] = useState(1); // Commence à 1 (première vraie image)
-  const [containerX, setContainerX] = useState(-100); // Position sur la première vraie image
-  const [isTransitioning, setIsTransitioning] = useState(true);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
+  
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [containerX, setContainerX] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
   
   // Créer un tableau infini : [dernière, ...images, première]
   const infiniteImages = hasMultipleImages 
     ? [availableImages[availableImages.length - 1], ...availableImages, availableImages[0]]
     : availableImages;
+
+  // Initialiser la position correcte pour l'infini
+  useEffect(() => {
+    if (hasMultipleImages) {
+      setCurrentImageIndex(1); // Commencer sur la vraie première image
+      setContainerX(-100); // Position -100% pour la vraie première image
+    }
+  }, [hasMultipleImages]);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -47,6 +56,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const paginate = (direction: number) => {
+    if (!hasMultipleImages) return; // Ne fait rien si une seule image
+    
     const newIndex = currentImageIndex + direction;
     const newX = -newIndex * 100;
     
