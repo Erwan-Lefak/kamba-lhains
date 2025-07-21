@@ -17,11 +17,17 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [selectedColor, setSelectedColor] = useState<string | null>(
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [containerX, setContainerX] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(1); // Commence à 1 (première vraie image)
+  const [containerX, setContainerX] = useState(-100); // Position sur la première vraie image
+  const [isTransitioning, setIsTransitioning] = useState(true);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
+  
+  // Créer un tableau infini : [dernière, ...images, première]
+  const infiniteImages = hasMultipleImages 
+    ? [availableImages[availableImages.length - 1], ...availableImages, availableImages[0]]
+    : availableImages;
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,12 +47,28 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const paginate = (direction: number) => {
-    const newIndex = direction > 0 
-      ? (currentImageIndex === availableImages.length - 1 ? 0 : currentImageIndex + 1)
-      : (currentImageIndex === 0 ? availableImages.length - 1 : currentImageIndex - 1);
+    const newIndex = currentImageIndex + direction;
+    const newX = -newIndex * 100;
     
     setCurrentImageIndex(newIndex);
-    setContainerX(-newIndex * 100); // Déplace le container de 100% par image
+    setContainerX(newX);
+    
+    // Logique de reset invisible pour l'infini
+    setTimeout(() => {
+      if (newIndex >= availableImages.length + 1) {
+        // Si on dépasse la dernière image, reset à la première vraie image
+        setIsTransitioning(false);
+        setCurrentImageIndex(1);
+        setContainerX(-100);
+        setTimeout(() => setIsTransitioning(true), 10);
+      } else if (newIndex <= 0) {
+        // Si on va avant la première image, reset à la dernière vraie image
+        setIsTransitioning(false);
+        setCurrentImageIndex(availableImages.length);
+        setContainerX(-availableImages.length * 100);
+        setTimeout(() => setIsTransitioning(true), 10);
+      }
+    }, 350); // Après la transition
   };
 
   return (
@@ -65,7 +87,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.2}
                 animate={{ x: `${containerX}%` }}
-                transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
+                transition={isTransitioning ? { type: "tween", ease: "easeOut", duration: 0.3 } : { duration: 0 }}
                 onDragEnd={(e, { offset, velocity }) => {
                   const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
                   
@@ -78,7 +100,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   }
                 }}
               >
-                {availableImages.map((image, index) => (
+                {infiniteImages.map((image, index) => (
                   <div key={index} className={styles.imageSlide}>
                     <Image 
                       src={image}
