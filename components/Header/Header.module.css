@@ -136,11 +136,11 @@
 }
 
 .navLink:hover {
-  color: #b91c1c;
+  color: red !important;
 }
 
 .navLinkActive {
-  color: #b91c1c !important;
+  color: red !important;
 }
 
 .navLinkActive::after {
@@ -405,7 +405,7 @@
 }
 
 .mobileNavLink:hover {
-  color: #666;
+  color: red !important;
 }
 
 .mobileBottomSection {
