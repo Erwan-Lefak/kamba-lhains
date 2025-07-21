@@ -159,7 +159,7 @@ export default function Home() {
                 priority
               />
               <div className={styles.stickyTextContainer}>
-                <div className={styles.stickyText}>NON EXCLUSIVITÉ</div>
+                <div className={styles.stickyText}>EXCLUSIVITÉ</div>
               </div>
               <div className={styles.stickyTextContainer}>
                 <div className={styles.stickyText} id="exclusivite-phase1">EXCLUSIVITÉ</div>

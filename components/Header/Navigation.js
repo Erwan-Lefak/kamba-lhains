@@ -9,7 +9,7 @@ const Navigation = () => {
   
   const navigationItems = [
     { href: '/nouvelle-collection', label: 'Nouvelle Collection' },
-    { href: '/exclusivites', label: 'Non Exclusivités' },
+    { href: '/exclusivites', label: 'Exclusivités' },
     { href: '/aube', label: 'Aube' },
     { href: '/zenith', label: 'Zenith' },
     { href: '/crepuscule', label: 'Crépuscule' },
