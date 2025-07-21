@@ -13,6 +13,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const isProductFavorite = isFavorite(product.id);
   const [isHovered, setIsHovered] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -23,6 +24,12 @@ export default function ProductCard({ product }: ProductCardProps) {
     } else {
       addToFavorites(product);
     }
+  };
+
+  const handleColorClick = (e: React.MouseEvent, color: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedColor(selectedColor === color ? null : color);
   };
 
   return (
@@ -64,9 +71,10 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.colors.map((color, index) => (
                 <div 
                   key={index}
-                  className={styles.colorSwatch}
+                  className={`${styles.colorSwatch} ${selectedColor === color ? styles.selected : ''}`}
                   style={{ backgroundColor: color.toLowerCase() }}
                   title={color}
+                  onClick={(e) => handleColorClick(e, color)}
                 />
               ))}
             </div>

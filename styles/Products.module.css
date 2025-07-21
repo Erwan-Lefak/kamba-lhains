@@ -139,7 +139,7 @@
   top: 15px;
   left: 15px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 6px;
   z-index: 10;
   opacity: 0;
@@ -149,8 +149,8 @@
 .colorSwatch {
   width: 24px;
   height: 24px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 0;
+  border: none;
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -158,8 +158,11 @@
 
 .colorSwatch:hover {
   transform: scale(1.1);
-  border-color: rgba(255, 255, 255, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.colorSwatch.selected {
+  border: 2px solid black;
 }
 
 @keyframes fadeInSwatches {
@@ -222,6 +225,10 @@
   .colorSwatch {
     width: 20px;
     height: 20px;
+  }
+  
+  .colorSwatch.selected {
+    border: 1px solid black;
   }
 }
 
