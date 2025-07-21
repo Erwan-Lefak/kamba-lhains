@@ -183,7 +183,7 @@
   border: none !important;
   box-shadow: none !important;
   background: none !important;
-  color: #666;
+  color: red !important;
 }
 
 /* Cross-platform icon consistency */
@@ -213,10 +213,12 @@
 }
 
 .languageSelector:focus,
-.languageSelector:active {
+.languageSelector:active,
+.languageSelector:hover {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
+  color: red !important;
 }
 
 .languageDropdown {
@@ -258,13 +260,21 @@
 
 .connectionLink:focus,
 .connectionLink:active,
-.connectionLink:hover,
 .connectionLink:visited {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
   background: none !important;
   text-decoration: none !important;
+}
+
+.connectionLink:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  text-decoration: none !important;
+  color: red !important;
 }
 
 .cartCount {
@@ -303,7 +313,7 @@
 }
 
 .mobileActionButton:hover {
-  color: #666;
+  color: red !important;
 }
 
 .mobileMenuButton {
