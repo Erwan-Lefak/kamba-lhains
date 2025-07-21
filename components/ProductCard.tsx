@@ -149,17 +149,35 @@ export default function ProductCard({ product }: ProductCardProps) {
           </button>
           {/* Color Swatches - appear on hover */}
           {isHovered && product.colors && product.colors.length > 0 && (
-            <div className={styles.colorSwatches}>
+            <motion.div 
+              className={styles.colorSwatches}
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30,
+                staggerChildren: 0.1
+              }}
+            >
               {product.colors.map((color, index) => (
-                <div 
+                <motion.div 
                   key={index}
                   className={`${styles.colorSwatch} ${selectedColor === color ? styles.selected : ''}`}
                   style={{ backgroundColor: color.toLowerCase() }}
                   title={color}
                   onClick={(e) => handleColorClick(e, color)}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ 
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25,
+                    delay: index * 0.05
+                  }}
                 />
               ))}
-            </div>
+            </motion.div>
           )}
           <div className={styles.productOverlay}>
             <div className={styles.productName}>{product.name}</div>
