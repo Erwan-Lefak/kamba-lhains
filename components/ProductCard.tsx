@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [dragX, setDragX] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
@@ -41,13 +41,22 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const paginate = (direction: number) => {
-    setCurrentImageIndex(prev => {
-      if (direction > 0) {
-        return prev === availableImages.length - 1 ? 0 : prev + 1;
-      } else {
-        return prev === 0 ? availableImages.length - 1 : prev - 1;
-      }
-    });
+    if (slideDirection) return; // Empêche les clics multiples
+    
+    // Déclenche l'animation de glissement
+    setSlideDirection(direction > 0 ? 'right' : 'left');
+    
+    // Après l'animation, changer l'image et réinitialiser
+    setTimeout(() => {
+      setCurrentImageIndex(prev => {
+        if (direction > 0) {
+          return prev === availableImages.length - 1 ? 0 : prev + 1;
+        } else {
+          return prev === 0 ? availableImages.length - 1 : prev - 1;
+        }
+      });
+      setSlideDirection(null);
+    }, 300);
   };
 
   return (
@@ -64,9 +73,6 @@ export default function ProductCard({ product }: ProductCardProps) {
               drag="x"
               dragConstraints={{ left: -100, right: 100 }}
               dragElastic={0.2}
-              onDrag={(event, info) => {
-                setDragX(info.offset.x);
-              }}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
                 
@@ -77,10 +83,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                     paginate(1);
                   }
                 }
-                setDragX(0);
               }}
-              animate={{ x: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              animate={{ 
+                x: slideDirection === 'left' ? 100 : slideDirection === 'right' ? -100 : 0
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30, duration: 0.3 }}
             >
               <div className={styles.imageContainer}>
                 {/* Image précédente */}
