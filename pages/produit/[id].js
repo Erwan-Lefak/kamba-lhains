@@ -223,7 +223,7 @@ export default function ProductDetail() {
               <div className={styles.colorSection}>
                 <div className={styles.colorHeader}>
                   <div className={styles.colorLabel}>
-                    {selectedColor === 'Blanc' || selectedColor === 'Beige' ? 'Print Stripes White/Yellow/Black' : selectedColor}
+                    Couleur sélectionnée
                   </div>
                   <div className={styles.seeAllColors}>Voir les couleurs</div>
                 </div>
@@ -231,11 +231,8 @@ export default function ProductDetail() {
                   {product.colors.map((color, index) => (
                     <div
                       key={index}
-                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''} ${
-                        color.toLowerCase().includes('jaune') || color.toLowerCase().includes('beige') || color.toLowerCase().includes('blanc') 
-                          ? styles.colorSwatchYellow 
-                          : styles.colorSwatchPink
-                      }`}
+                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
+                      style={{ backgroundColor: color }}
                       onClick={() => setSelectedColor(color)}
                     />
                   ))}

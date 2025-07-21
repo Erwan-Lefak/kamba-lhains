@@ -26,7 +26,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "aube",
-    colors: ["Noir", "Kaki"],
+    colors: ["#000000", "#8B7355"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: true
@@ -45,7 +45,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "zenith",
-    colors: ["Bleu denim", "Noir"],
+    colors: ["#1E3A8A", "#000000"],
     sizes: ["XS", "S", "M", "L"],
     inStock: true,
     featured: true
@@ -64,7 +64,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "crepuscule",
-    colors: ["Blanc", "Beige"],
+    colors: ["#FFFFFF", "#F5F5DC"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: true
@@ -83,7 +83,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "aube",
-    colors: ["Noir", "Beige"],
+    colors: ["#000000", "#F5F5DC"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: false
@@ -102,7 +102,7 @@ export const products: Product[] = [
     ],
     category: "homme",
     subCategory: "zenith",
-    colors: ["Navy", "Charcoal"],
+    colors: ["#1E3A8A", "#36454F"],
     sizes: ["46", "48", "50", "52", "54"],
     inStock: true,
     featured: false
@@ -121,7 +121,7 @@ export const products: Product[] = [
     ],
     category: "homme",
     subCategory: "crepuscule",
-    colors: ["Beige", "Navy"],
+    colors: ["#F5F5DC", "#1E3A8A"],
     sizes: ["46", "48", "50", "52"],
     inStock: true,
     featured: false
@@ -140,7 +140,7 @@ export const products: Product[] = [
     ],
     category: "homme",
     subCategory: "aube",
-    colors: ["Blanc", "Bleu"],
+    colors: ["#FFFFFF", "#0EA5E9"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: false
@@ -159,7 +159,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "zenith",
-    colors: ["Beige", "Kaki"],
+    colors: ["#F5F5DC", "#8B7355"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: false
@@ -178,7 +178,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "crepuscule",
-    colors: ["Noir", "Navy"],
+    colors: ["#000000", "#1E3A8A"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: false
@@ -197,7 +197,7 @@ export const products: Product[] = [
     ],
     category: "homme",
     subCategory: "aube",
-    colors: ["Noir", "Kaki olive"],
+    colors: ["#000000", "#556B2F"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: false
@@ -216,7 +216,7 @@ export const products: Product[] = [
     ],
     category: "femme",
     subCategory: "zenith",
-    colors: ["Noir", "Bordeaux"],
+    colors: ["#000000", "#800020"],
     sizes: ["XS", "S", "M", "L", "XL"],
     inStock: true,
     featured: false
