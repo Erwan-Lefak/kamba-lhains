@@ -18,6 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [dragX, setDragX] = useState(0);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
@@ -61,10 +62,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             <motion.div
               className={styles.carousel}
               drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
+              dragConstraints={{ left: -100, right: 100 }}
               dragElastic={0.2}
+              onDrag={(event, info) => {
+                setDragX(info.offset.x);
+              }}
               onDragEnd={(e, { offset, velocity }) => {
-                const swipe = Math.abs(offset.x) > 150 || Math.abs(velocity.x) > 1000;
+                const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
                 
                 if (swipe) {
                   if (offset.x > 0) {
@@ -73,20 +77,30 @@ export default function ProductCard({ product }: ProductCardProps) {
                     paginate(1);
                   }
                 }
+                setDragX(0);
               }}
+              animate={{ x: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <AnimatePresence mode="wait" custom={currentImageIndex}>
-                <motion.div
-                  key={currentImageIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className={styles.motionImageContainer}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                >
+              <div className={styles.imageContainer}>
+                {/* Image précédente */}
+                {availableImages.length > 1 && (
+                  <div className={`${styles.imageSlide} ${styles.prevSlide}`}>
+                    <Image 
+                      src={availableImages[currentImageIndex === 0 ? availableImages.length - 1 : currentImageIndex - 1]}
+                      alt={`${product.name} précédente`}
+                      width={800}
+                      height={1200}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={styles.productImage}
+                      quality={95}
+                      draggable={false}
+                    />
+                  </div>
+                )}
+                
+                {/* Image courante */}
+                <div className={`${styles.imageSlide} ${styles.currentSlide}`}>
                   <Image 
                     src={availableImages[currentImageIndex]}
                     alt={product.name}
@@ -98,8 +112,24 @@ export default function ProductCard({ product }: ProductCardProps) {
                     quality={95}
                     draggable={false}
                   />
-                </motion.div>
-              </AnimatePresence>
+                </div>
+                
+                {/* Image suivante */}
+                {availableImages.length > 1 && (
+                  <div className={`${styles.imageSlide} ${styles.nextSlide}`}>
+                    <Image 
+                      src={availableImages[currentImageIndex === availableImages.length - 1 ? 0 : currentImageIndex + 1]}
+                      alt={`${product.name} suivante`}
+                      width={800}
+                      height={1200}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={styles.productImage}
+                      quality={95}
+                      draggable={false}
+                    />
+                  </div>
+                )}
+              </div>
             </motion.div>
           ) : (
             <Image 
