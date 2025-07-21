@@ -43,28 +43,14 @@
 
 .imageContainer {
   display: flex;
-  width: 300%;
   height: 100%;
   position: relative;
-  transform: translateX(-33.333%);
 }
 
 .imageSlide {
-  width: 33.333%;
+  width: 100%;
   flex-shrink: 0;
   position: relative;
-}
-
-.prevSlide {
-  transform: translateX(0%);
-}
-
-.currentSlide {
-  transform: translateX(0%);
-}
-
-.nextSlide {
-  transform: translateX(0%);
 }
 
 .motionImageContainer {

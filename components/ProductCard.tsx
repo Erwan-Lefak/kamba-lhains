@@ -18,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
+  const [containerX, setContainerX] = useState(0);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
@@ -41,22 +41,12 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const paginate = (direction: number) => {
-    if (slideDirection) return; // Empêche les clics multiples
+    const newIndex = direction > 0 
+      ? (currentImageIndex === availableImages.length - 1 ? 0 : currentImageIndex + 1)
+      : (currentImageIndex === 0 ? availableImages.length - 1 : currentImageIndex - 1);
     
-    // Déclenche l'animation de glissement
-    setSlideDirection(direction > 0 ? 'right' : 'left');
-    
-    // Après l'animation, changer l'image et réinitialiser
-    setTimeout(() => {
-      setCurrentImageIndex(prev => {
-        if (direction > 0) {
-          return prev === availableImages.length - 1 ? 0 : prev + 1;
-        } else {
-          return prev === 0 ? availableImages.length - 1 : prev - 1;
-        }
-      });
-      setSlideDirection(null);
-    }, 300);
+    setCurrentImageIndex(newIndex);
+    setContainerX(-newIndex * 100); // Déplace le container de 100% par image
   };
 
   return (
@@ -68,76 +58,43 @@ export default function ProductCard({ product }: ProductCardProps) {
       >
         <div className={styles.imageWrapper}>
           {hasMultipleImages ? (
-            <motion.div
-              className={styles.carousel}
-              drag="x"
-              dragConstraints={{ left: -100, right: 100 }}
-              dragElastic={0.2}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
-                
-                if (swipe) {
-                  if (offset.x > 0) {
-                    paginate(-1);
-                  } else {
-                    paginate(1);
+            <div className={styles.carousel}>
+              <motion.div 
+                className={styles.imageContainer}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                animate={{ x: `${containerX}%` }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                  
+                  if (swipe) {
+                    if (offset.x > 0) {
+                      paginate(-1);
+                    } else {
+                      paginate(1);
+                    }
                   }
-                }
-              }}
-              animate={{ 
-                x: slideDirection === 'left' ? 100 : slideDirection === 'right' ? -100 : 0
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30, duration: 0.3 }}
-            >
-              <div className={styles.imageContainer}>
-                {/* Image précédente */}
-                {availableImages.length > 1 && (
-                  <div className={`${styles.imageSlide} ${styles.prevSlide}`}>
+                }}
+              >
+                {availableImages.map((image, index) => (
+                  <div key={index} className={styles.imageSlide}>
                     <Image 
-                      src={availableImages[currentImageIndex === 0 ? availableImages.length - 1 : currentImageIndex - 1]}
-                      alt={`${product.name} précédente`}
+                      src={image}
+                      alt={`${product.name} ${index + 1}`}
                       width={800}
                       height={1200}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className={styles.productImage}
+                      priority={product.featured && index === 0}
                       quality={95}
                       draggable={false}
                     />
                   </div>
-                )}
-                
-                {/* Image courante */}
-                <div className={`${styles.imageSlide} ${styles.currentSlide}`}>
-                  <Image 
-                    src={availableImages[currentImageIndex]}
-                    alt={product.name}
-                    width={800}
-                    height={1200}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={styles.productImage}
-                    priority={product.featured}
-                    quality={95}
-                    draggable={false}
-                  />
-                </div>
-                
-                {/* Image suivante */}
-                {availableImages.length > 1 && (
-                  <div className={`${styles.imageSlide} ${styles.nextSlide}`}>
-                    <Image 
-                      src={availableImages[currentImageIndex === availableImages.length - 1 ? 0 : currentImageIndex + 1]}
-                      alt={`${product.name} suivante`}
-                      width={800}
-                      height={1200}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={styles.productImage}
-                      quality={95}
-                      draggable={false}
-                    />
-                  </div>
-                )}
-              </div>
-            </motion.div>
+                ))}
+              </motion.div>
+            </div>
           ) : (
             <Image 
               src={availableImages[currentImageIndex]}
