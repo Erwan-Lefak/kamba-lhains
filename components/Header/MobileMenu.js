@@ -42,7 +42,7 @@ const MobileMenu = ({ isOpen }) => {
   
   const mainMenuItems = [
     { href: '/nouvelle-collection', label: 'Nouvelle Collection' },
-    { href: '/exclusivites', label: 'Exclusivités' },
+    { href: '/exclusivites', label: 'Non Exclusivités' },
     { href: '/aube', label: 'Aube' },
     { href: '/zenith', label: 'Zenith' },
     { href: '/crepuscule', label: 'Crépuscule' },
