@@ -65,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.2}
                 animate={{ x: `${containerX}%` }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
                 onDragEnd={(e, { offset, velocity }) => {
                   const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
                   
