@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import Footer from '../components/Footer';
@@ -12,6 +13,104 @@ import styles from '../styles/HomePage.module.css';
 
 export default function Home() {
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const stickyTexts = document.querySelectorAll(`.${styles.stickyText}:not([id])`); // Textes originaux sans id
+      const stickyTextsPhase1 = document.querySelectorAll(`.${styles.stickyText}[id]`); // Textes avec id pour phase1
+      const stickyContainers = document.querySelectorAll(`.${styles.stickyTextContainer}`);
+      const section = document.querySelector(`.${styles.newCollectionSection}`);
+      const images = document.querySelectorAll(`.${styles.collectionImageSlot}`);
+      
+      if (section) {
+        const sectionRect = section.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        stickyTexts.forEach((text, index) => {
+          const container = stickyContainers[index];
+          const imageRect = images[index]?.getBoundingClientRect();
+          if (!imageRect || !container) return;
+          
+          // Calculer les positions clés
+          const sectionTop = sectionRect.top;
+          const sectionBottom = sectionRect.bottom;
+          const viewportCenter = viewportHeight / 2;
+          const isMobile = window.innerWidth <= 768;
+          
+          // Position du texte pour les phases 0 et 1
+          const textPositionPhase0 = imageRect.top + 30;
+          const textPositionPhase1 = imageRect.top + 150;
+          
+          if (sectionTop > viewportHeight) {
+            // Avant la section : texte invisible
+            text.style.opacity = '0';
+          } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter) {
+            // Phase 2: FIXE - texte fixé au milieu de l'écran (transition plus fluide)
+            container.className = styles.stickyTextContainer;
+            text.style.position = 'fixed';
+            text.style.top = 'unset';
+            text.style.bottom = `${viewportCenter}px`;
+            text.style.left = `${imageRect.left + 20}px`;
+            text.style.opacity = '1';
+          } else {
+            // Phase 3: SCROLL FINAL - texte en bas de l'image
+            container.className = styles.stickyTextContainer;
+            text.style.position = 'absolute';
+            text.style.left = isMobile ? '10px' : '0px';
+            text.style.top = 'unset';
+            text.style.bottom = isMobile ? '-50px' : '-60px';
+            text.style.opacity = '1';
+          }
+          
+          // Masquer si section pas visible
+          if (sectionRect.bottom < 0 || sectionRect.top > viewportHeight) {
+            text.style.opacity = '0';
+          }
+          
+          // Contraindre le texte dans les limites de la section
+          if (sectionRect.top > 0 && sectionRect.bottom < viewportHeight) {
+            // Section entièrement visible - pas de contrainte
+          } else if (sectionRect.top < 0) {
+            // Section partiellement sortie par le haut - contraindre le texte
+            if (text.style.position === 'fixed') {
+              const maxTop = Math.max(0, sectionRect.bottom - 50); // 50px pour la hauteur du texte
+              const currentBottom = parseInt(text.style.bottom) || 0;
+              const calculatedTop = viewportHeight - currentBottom;
+              if (calculatedTop < 0) {
+                text.style.bottom = `${viewportHeight}px`;
+              }
+            }
+          }
+        });
+        
+        // Gestion spécifique des textes Phase 1 (dupliqués) - Phase 0
+        stickyTextsPhase1.forEach((text, index) => {
+          const sectionTop = sectionRect.top;
+          const viewportCenter = viewportHeight / 2;
+          const isMobile = window.innerWidth <= 768;
+          const container = text.parentElement; // Le conteneur parent
+          
+          if (sectionTop > viewportCenter - 50) {
+            // Phase 1: Texte dupliqué visible (se termine un peu après)
+            container.style.setProperty('position', 'absolute', 'important');
+            container.style.setProperty('left', '20px', 'important');
+            container.style.setProperty('top', isMobile ? '10px' : '5px', 'important');
+            container.style.setProperty('bottom', 'unset', 'important');
+            text.style.setProperty('color', 'white', 'important'); // Blanc
+            text.style.opacity = '1';
+          } else {
+            // Masquer les textes dupliqués dans les autres phases
+            text.style.opacity = '0';
+          }
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -59,6 +158,12 @@ export default function Home() {
                 className={styles.collectionImage}
                 priority
               />
+              <div className={styles.stickyTextContainer}>
+                <div className={styles.stickyText}>EXCLUSIVITÉ</div>
+              </div>
+              <div className={styles.stickyTextContainer}>
+                <div className={styles.stickyText} id="exclusivite-phase1">EXCLUSIVITÉ</div>
+              </div>
             </div>
             <div className={styles.collectionImageSlot}>
               <Image 
@@ -69,6 +174,12 @@ export default function Home() {
                 className={styles.collectionImage}
                 priority
               />
+              <div className={styles.stickyTextContainer}>
+                <div className={styles.stickyText}>ACCESSOIRES</div>
+              </div>
+              <div className={styles.stickyTextContainer}>
+                <div className={styles.stickyText} id="accessoires-phase1">ACCESSOIRES</div>
+              </div>
             </div>
           </div>
         </section>

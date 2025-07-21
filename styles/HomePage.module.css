@@ -112,7 +112,7 @@
 .collectionImageSlot {
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   height: calc(80vh + 100px);
   display: block;
 }
@@ -182,6 +182,62 @@
   background: rgba(100, 100, 100, 0.9);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Scroll-Pinned Text Styles */
+.stickyTextContainer {
+  position: absolute;
+  left: 20px;
+  bottom: 80px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stickyTextContainerPhase0 {
+  position: absolute !important;
+  left: 0px !important;
+  top: 10px !important;
+  bottom: unset !important;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stickyTextContainerPhase0Mobile {
+  position: absolute !important;
+  left: 10px !important;
+  top: 10px !important;
+  bottom: unset !important;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stickyTextContainerPhase2 {
+  position: absolute !important;
+  left: 0px !important;
+  top: -60px !important;
+  bottom: unset !important;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stickyTextContainerPhase2Mobile {
+  position: absolute !important;
+  left: 10px !important;
+  top: -60px !important;
+  bottom: unset !important;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stickyText {
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  z-index: 1000;
 }
 
 /* Responsive Design */
@@ -293,6 +349,16 @@
     min-height: unset;
     max-height: unset;
     aspect-ratio: unset;
+  }
+
+  .stickyTextContainer {
+    left: 10px;
+    bottom: 60px;
+  }
+
+  .stickyText {
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 }
 
