@@ -26,6 +26,17 @@
   width: 100%;
   height: auto;
   display: block;
+  overflow: hidden;
+}
+
+.imageCarousel {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.imageCarousel.sliding {
+  width: 200%;
 }
 
 .productImage {
@@ -34,6 +45,19 @@
   width: 100%;
   height: auto;
   display: block;
+  flex-shrink: 0;
+}
+
+.imageCarousel.sliding .productImage {
+  width: 50%;
+}
+
+.imageCarousel.slidingLeft {
+  transform: translateX(-50%);
+}
+
+.imageCarousel.slidingRight {
+  transform: translateX(-50%);
 }
 
 .productOverlay {
@@ -178,6 +202,8 @@
   align-items: center;
   justify-content: center;
   z-index: 5;
+  opacity: 0;
+  animation: fadeInArrows 1.5s ease forwards;
   transition: opacity 0.2s ease;
 }
 
@@ -194,6 +220,15 @@
 }
 
 @keyframes fadeInSwatches {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInArrows {
   from {
     opacity: 0;
   }

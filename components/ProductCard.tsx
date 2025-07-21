@@ -17,6 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     product.colors && product.colors.length > 0 ? product.colors[0] : null
   );
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right' | null>(null);
   
   const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
   const hasMultipleImages = availableImages.length > 1;
@@ -41,17 +42,29 @@ export default function ProductCard({ product }: ProductCardProps) {
   const handlePrevImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex(prev => 
-      prev === 0 ? availableImages.length - 1 : prev - 1
-    );
+    if (slideDirection) return;
+    
+    setSlideDirection('left');
+    setTimeout(() => {
+      setCurrentImageIndex(prev => 
+        prev === 0 ? availableImages.length - 1 : prev - 1
+      );
+      setSlideDirection(null);
+    }, 250);
   };
 
   const handleNextImage = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setCurrentImageIndex(prev => 
-      prev === availableImages.length - 1 ? 0 : prev + 1
-    );
+    if (slideDirection) return;
+    
+    setSlideDirection('right');
+    setTimeout(() => {
+      setCurrentImageIndex(prev => 
+        prev === availableImages.length - 1 ? 0 : prev + 1
+      );
+      setSlideDirection(null);
+    }, 250);
   };
 
   return (
@@ -62,15 +75,73 @@ export default function ProductCard({ product }: ProductCardProps) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className={styles.imageWrapper}>
-          <Image 
-            src={availableImages[currentImageIndex]}
-            alt={product.name}
-            width={800}
-            height={1200}
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className={styles.productImage}
-            priority={product.featured}
-          />
+          <div className={`${styles.imageCarousel} ${
+            slideDirection ? `${styles.sliding} ${slideDirection === 'left' ? styles.slidingLeft : styles.slidingRight}` : ''
+          }`}>
+            {slideDirection === 'left' ? (
+              <>
+                {/* Image précédente arrive de la gauche */}
+                <Image 
+                  src={availableImages[currentImageIndex === 0 ? availableImages.length - 1 : currentImageIndex - 1]}
+                  alt={`${product.name} précédente`}
+                  width={800}
+                  height={1200}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.productImage}
+                  quality={95}
+                />
+                {/* Image courante glisse à droite */}
+                <Image 
+                  src={availableImages[currentImageIndex]}
+                  alt={product.name}
+                  width={800}
+                  height={1200}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.productImage}
+                  priority={product.featured}
+                  quality={95}
+                />
+              </>
+            ) : slideDirection === 'right' ? (
+              <>
+                {/* Image courante glisse à gauche */}
+                <Image 
+                  src={availableImages[currentImageIndex]}
+                  alt={product.name}
+                  width={800}
+                  height={1200}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.productImage}
+                  priority={product.featured}
+                  quality={95}
+                />
+                {/* Image suivante arrive de la droite */}
+                <Image 
+                  src={availableImages[currentImageIndex === availableImages.length - 1 ? 0 : currentImageIndex + 1]}
+                  alt={`${product.name} suivante`}
+                  width={800}
+                  height={1200}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.productImage}
+                  quality={95}
+                />
+              </>
+            ) : (
+              <>
+                {/* Image au repos */}
+                <Image 
+                  src={availableImages[currentImageIndex]}
+                  alt={product.name}
+                  width={800}
+                  height={1200}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={styles.productImage}
+                  priority={product.featured}
+                  quality={95}
+                />
+              </>
+            )}
+          </div>
           
           {/* Navigation Arrows */}
           {hasMultipleImages && isHovered && (
