@@ -13,7 +13,13 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const isProductFavorite = isFavorite(product.id);
   const [isHovered, setIsHovered] = useState(false);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string | null>(
+    product.colors && product.colors.length > 0 ? product.colors[0] : null
+  );
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const availableImages = product.images && product.images.length > 0 ? product.images : [product.image];
+  const hasMultipleImages = availableImages.length > 1;
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -32,6 +38,22 @@ export default function ProductCard({ product }: ProductCardProps) {
     setSelectedColor(selectedColor === color ? null : color);
   };
 
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImageIndex(prev => 
+      prev === 0 ? availableImages.length - 1 : prev - 1
+    );
+  };
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImageIndex(prev => 
+      prev === availableImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
   return (
     <Link href={`/produit/${product.id}`} className={styles.productCard}>
       <div 
@@ -41,7 +63,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       >
         <div className={styles.imageWrapper}>
           <Image 
-            src={product.image}
+            src={availableImages[currentImageIndex]}
             alt={product.name}
             width={800}
             height={1200}
@@ -49,6 +71,30 @@ export default function ProductCard({ product }: ProductCardProps) {
             className={styles.productImage}
             priority={product.featured}
           />
+          
+          {/* Navigation Arrows */}
+          {hasMultipleImages && isHovered && (
+            <>
+              <button 
+                className={`${styles.imageNavButton} ${styles.prevButton}`}
+                onClick={handlePrevImage}
+                aria-label="Image précédente"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18l-6-6 6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button 
+                className={`${styles.imageNavButton} ${styles.nextButton}`}
+                onClick={handleNextImage}
+                aria-label="Image suivante"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18l6-6-6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </>
+          )}
           <button 
             className={styles.favoriteIcon}
             onClick={handleFavoriteClick}
