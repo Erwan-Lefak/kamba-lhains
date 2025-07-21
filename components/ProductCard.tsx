@@ -154,10 +154,10 @@ export default function ProductCard({ product }: ProductCardProps) {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 30,
-                staggerChildren: 0.1
+                type: "tween",
+                ease: "easeOut",
+                duration: 0.3,
+                staggerChildren: 0.05
               }}
             >
               {product.colors.map((color, index) => (
@@ -170,9 +170,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ 
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
+                    type: "tween",
+                    ease: "easeOut",
+                    duration: 0.2,
                     delay: index * 0.05
                   }}
                 />
