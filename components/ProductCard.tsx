@@ -113,6 +113,39 @@ export default function ProductCard({ product }: ProductCardProps) {
               quality={95}
             />
           )}
+          
+          {/* Navigation Arrows */}
+          {hasMultipleImages && isHovered && (
+            <>
+              <button 
+                className={`${styles.imageNavButton} ${styles.prevButton}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  paginate(-1);
+                }}
+                aria-label="Image précédente"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M15 18l-6-6 6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button 
+                className={`${styles.imageNavButton} ${styles.nextButton}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  paginate(1);
+                }}
+                aria-label="Image suivante"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 18l6-6-6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </>
+          )}
+          
           <button 
             className={styles.favoriteIcon}
             onClick={handleFavoriteClick}
