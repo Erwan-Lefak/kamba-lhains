@@ -17,7 +17,7 @@
   width: 100%;
   height: auto;
   position: relative;
-  background: #000;
+  background: transparent;
   margin: 0;
   padding: 0;
   display: block;
@@ -419,6 +419,40 @@
   .fullscreenButton svg {
     width: 14px;
     height: 14px;
+  }
+}
+
+/* Sticky Text Styles for Hero Section */
+.stickyTextContainer {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.stickyText {
+  color: white;
+  font-family: 'Manrope', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+/* Mobile adjustments for sticky text */
+@media (max-width: 768px) {
+  .stickyTextContainer {
+    left: 10px;
+    top: 10px;
+  }
+
+  .stickyText {
+    font-size: 18px;
+    letter-spacing: 1px;
   }
 }
 

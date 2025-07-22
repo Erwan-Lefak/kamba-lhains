@@ -16,11 +16,81 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Elements for collection section
       const stickyTexts = document.querySelectorAll(`.${styles.stickyText}:not([id])`) as NodeListOf<HTMLElement>; // Textes originaux sans id
       const stickyTextsPhase1 = document.querySelectorAll(`.${styles.stickyText}[id]`) as NodeListOf<HTMLElement>; // Textes avec id pour phase1
       const stickyContainers = document.querySelectorAll(`.${styles.stickyTextContainer}`) as NodeListOf<HTMLElement>;
       const section = document.querySelector(`.${styles.newCollectionSection}`);
+      
+      // Elements for hero section
+      const heroSection = document.querySelector(`.${styles.heroSection}`);
+      const heroStickyTexts = document.querySelectorAll('[class*="Hero_stickyText"]:not([id])') as NodeListOf<HTMLElement>;
+      const heroStickyTextsPhase1 = document.querySelectorAll('[class*="Hero_stickyText"][id]') as NodeListOf<HTMLElement>;
+      const heroStickyContainers = document.querySelectorAll('[class*="Hero_stickyTextContainer"]') as NodeListOf<HTMLElement>;
       const images = document.querySelectorAll(`.${styles.collectionImageSlot}`);
+      
+      // Hero section scroll logic
+      if (heroSection) {
+        const heroSectionRect = heroSection.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        heroStickyTexts.forEach((text, index) => {
+          const container = heroStickyContainers[index];
+          if (!container) return;
+          
+          // Calculate key positions
+          const sectionTop = heroSectionRect.top;
+          const sectionBottom = heroSectionRect.bottom;
+          const viewportCenter = viewportHeight / 2;
+          const isMobile = window.innerWidth <= 768;
+          
+          if (sectionTop > viewportHeight) {
+            // Before section: text invisible
+            text.style.opacity = '0';
+          } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 100) {
+            // Phase 2: FIXED - text fixed in middle of screen
+            text.style.position = 'fixed';
+            text.style.top = 'unset';
+            text.style.bottom = `${viewportCenter}px`;
+            text.style.left = isMobile ? '10px' : '20px';
+            text.style.opacity = '1';
+          } else {
+            // Phase 3: FINAL SCROLL - text at bottom of video
+            text.style.position = 'absolute';
+            text.style.left = isMobile ? '14px' : '14px';
+            text.style.right = 'unset';
+            text.style.top = 'unset';
+            text.style.bottom = isMobile ? '40px' : '60px';
+            text.style.opacity = '1';
+          }
+          
+          // Hide if section not visible
+          if (heroSectionRect.bottom < 0 || heroSectionRect.top > viewportHeight) {
+            text.style.opacity = '0';
+          }
+        });
+        
+        // Phase 1 text management for hero section
+        heroStickyTextsPhase1.forEach((text, index) => {
+          const sectionTop = heroSectionRect.top;
+          const viewportCenter = viewportHeight / 2;
+          const isMobile = window.innerWidth <= 768;
+          const container = text.parentElement as HTMLElement;
+          
+          if (sectionTop > viewportCenter - 50) {
+            // Phase 1: Duplicate text visible
+            container.style.setProperty('position', 'absolute', 'important');
+            container.style.setProperty('left', isMobile ? '10px' : '20px', 'important');
+            container.style.setProperty('top', isMobile ? '10px' : '20px', 'important');
+            container.style.setProperty('bottom', 'unset', 'important');
+            text.style.setProperty('color', 'white', 'important');
+            text.style.opacity = '1';
+          } else {
+            // Hide duplicate texts in other phases
+            text.style.opacity = '0';
+          }
+        });
+      }
       
       if (section) {
         const sectionRect = section.getBoundingClientRect();

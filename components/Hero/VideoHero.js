@@ -131,6 +131,14 @@ const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
         <source src={videoSrc} type="video/mp4" />
       </video>
       
+      {/* Sticky Text for Nouvelle Collection */}
+      <div className={styles.stickyTextContainer}>
+        <div className={styles.stickyText}>NOUVELLE COLLECTION</div>
+      </div>
+      <div className={styles.stickyTextContainer}>
+        <div className={styles.stickyText} id="nouvelle-collection-phase1">NOUVELLE COLLECTION</div>
+      </div>
+      
       <div className={styles.videoControls}>
         <button 
           className={styles.playButton}

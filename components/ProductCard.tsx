@@ -154,7 +154,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 aria-label="Image précédente"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M15 18l-6-6 6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M15 18l-6-6 6-6" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
               <button 
@@ -167,7 +167,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 aria-label="Image suivante"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M9 18l6-6-6-6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M9 18l6-6-6-6" stroke="black" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
             </>
@@ -190,36 +190,43 @@ export default function ProductCard({ product }: ProductCardProps) {
             </span>
           </button>
           {/* Color Swatches - appear on hover */}
-          {isHovered && product.colors && product.colors.length > 0 && (
-            <motion.div 
-              className={styles.colorSwatches}
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ 
-                type: "tween",
-                ease: "easeOut",
-                duration: 0.3,
-                staggerChildren: 0.05
-              }}
-            >
-              {product.colors.map((color, index) => (
+          {product.colors && product.colors.length > 0 && (
+            <AnimatePresence>
+              {isHovered && (
                 <motion.div 
-                  key={index}
-                  className={`${styles.colorSwatch} ${selectedColor === color ? styles.selected : ''}`}
-                  style={{ backgroundColor: color.toLowerCase() }}
-                  title={color}
-                  onClick={(e) => handleColorClick(e, color)}
+                  className={styles.colorSwatches}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -20, opacity: 0 }}
                   transition={{ 
                     type: "tween",
                     ease: "easeOut",
-                    duration: 0.2,
-                    delay: index * 0.05
+                    duration: 0.3,
+                    staggerChildren: 0.05,
+                    staggerDirection: -1
                   }}
-                />
-              ))}
-            </motion.div>
+                >
+                  {product.colors.map((color, index) => (
+                    <motion.div 
+                      key={index}
+                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.selected : ''}`}
+                      style={{ backgroundColor: color.toLowerCase() }}
+                      title={color}
+                      onClick={(e) => handleColorClick(e, color)}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      exit={{ x: -20, opacity: 0 }}
+                      transition={{ 
+                        type: "tween",
+                        ease: "easeOut",
+                        duration: 0.2,
+                        delay: (product.colors.length - 1 - index) * 0.05
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           )}
           <div className={styles.productOverlay}>
             <div className={styles.productName}>{product.name}</div>
