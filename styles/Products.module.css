@@ -189,7 +189,11 @@
 }
 
 .colorSwatch.active {
-  border-color: #ff0000;
+  border-color: #000;
+}
+
+.colorSwatch.active[style*="#000"] {
+  border-color: #fff !important;
 }
 
 

@@ -58,11 +58,11 @@ export default function Home() {
               text.style.top = `${viewportCenter}px`;
               text.style.bottom = 'unset';
               text.style.left = '20px';
-              text.style.opacity = phase2Opacity.toString();
+              text.style.opacity = '1';
             } else {
               // Phase 3: FINAL SCROLL - text at bottom of video
               text.style.position = 'absolute';
-              text.style.left = '14px';
+              text.style.left = '10px';
               text.style.right = 'unset';
               text.style.top = 'unset';
               text.style.bottom = '43px';
@@ -85,11 +85,11 @@ export default function Home() {
               text.style.top = `${viewportCenter}px`;
               text.style.bottom = 'unset';
               text.style.left = '20px';
-              text.style.opacity = phase2Opacity.toString();
+              text.style.opacity = '1';
             } else {
               // Phase 3: FINAL SCROLL - text at bottom of video
               text.style.position = 'absolute';
-              text.style.left = '18px';
+              text.style.left = '14px';
               text.style.right = 'unset';
               text.style.top = 'unset';
               text.style.bottom = '60px';

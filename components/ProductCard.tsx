@@ -214,7 +214,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                       style={{ 
                         backgroundColor: color.toLowerCase(),
                         ...(selectedColor === color && { 
-                          borderColor: '#ff0000' 
+                          borderColor: color.toLowerCase() === '#000000' || color.toLowerCase() === 'black' ? '#fff' : '#000' 
                         })
                       }}
                       title={color}
