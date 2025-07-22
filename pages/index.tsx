@@ -45,29 +45,51 @@ export default function Home() {
           const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           
           if (isMobile) {
-            // Mobile: Only phase 3, always visible when section is visible
-            text.style.position = 'absolute';
-            text.style.left = '14px';
-            text.style.right = 'unset';
-            text.style.top = 'unset';
-            text.style.bottom = '40px';
-            text.style.opacity = '1';
+            // Mobile: Phase 2 and 3 behavior
+            if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 150) {
+              // Phase 2: FIXED - text fixed in middle of viewport with scroll fade
+              const phase2Start = viewportCenter - 50;
+              const phase2End = viewportCenter + 150;
+              
+              const phase2Distance = phase2Start - (phase2End - sectionBottom);
+              const phase2Progress = (phase2Start - sectionTop) / (phase2Distance * 2); // 2x plus longtemps transparent
+              const phase2Opacity = Math.max(0, Math.min(1, phase2Progress));
+              text.style.position = 'fixed';
+              text.style.top = `${viewportCenter}px`;
+              text.style.bottom = 'unset';
+              text.style.left = '20px';
+              text.style.opacity = phase2Opacity.toString();
+            } else {
+              // Phase 3: FINAL SCROLL - text at bottom of video
+              text.style.position = 'absolute';
+              text.style.left = '14px';
+              text.style.right = 'unset';
+              text.style.top = 'unset';
+              text.style.bottom = '43px';
+              text.style.opacity = '1';
+            }
           } else {
             // Desktop: Full phase behavior
             if (sectionTop > viewportHeight) {
               // Before section: text invisible
               text.style.opacity = '0';
-            } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 100) {
-              // Phase 2: FIXED - text fixed in middle of screen
+            } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 150) {
+              // Phase 2: FIXED - text fixed in middle of viewport with scroll fade
+              const phase2Start = viewportCenter - 50;
+              const phase2End = viewportCenter + 150;
+              
+              const phase2Distance = phase2Start - (phase2End - sectionBottom);
+              const phase2Progress = (phase2Start - sectionTop) / (phase2Distance * 2); // 2x plus longtemps transparent
+              const phase2Opacity = Math.max(0, Math.min(1, phase2Progress));
               text.style.position = 'fixed';
-              text.style.top = 'unset';
-              text.style.bottom = `${viewportCenter}px`;
+              text.style.top = `${viewportCenter}px`;
+              text.style.bottom = 'unset';
               text.style.left = '20px';
-              text.style.opacity = '1';
+              text.style.opacity = phase2Opacity.toString();
             } else {
               // Phase 3: FINAL SCROLL - text at bottom of video
               text.style.position = 'absolute';
-              text.style.left = '14px';
+              text.style.left = '18px';
               text.style.right = 'unset';
               text.style.top = 'unset';
               text.style.bottom = '60px';
@@ -126,26 +148,58 @@ export default function Home() {
             // Avant la section : texte invisible
             text.style.opacity = '0';
           } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 14) {
-            // Phase 2: FIXE - texte fixé au milieu de l'écran (transition plus fluide)
+            // Phase 2: FIXE - texte fixé au milieu de l'écran avec fade selon scroll
+            // Ajuster le diviseur selon la hauteur de l'écran pour que ça fonctionne sur tous les écrans
+            const baseDivisor = 800;
+            const screenHeightFactor = Math.max(0.3, Math.min(1.0, viewportHeight / 800)); // Factor entre 0.3 et 1.0 pour atteindre 1 plus tôt sur petit écran
+            const adaptiveDivisor = baseDivisor * screenHeightFactor;
+            const phase2Progress = ((sectionBottom - viewportCenter - 14) / adaptiveDivisor);
+            const linearProgress = Math.max(0, Math.min(1, phase2Progress));
+            // Effet exponentiel : lent au début, moins brutal à la fin
+            const phase2Opacity = linearProgress * linearProgress * linearProgress; // Puissance 3 pour effet moins brutal
+            
+            // Reset transition et marquer qu'on n'est pas en phase 3
+            text.style.transition = '';
+            text.dataset.justEnteredPhase3 = '';
+            
             container.className = styles.stickyTextContainer;
             text.style.position = 'fixed';
-            text.style.top = 'unset';
-            text.style.bottom = `${viewportCenter - 10}px`;
+            text.style.top = `${viewportCenter - 30}px`;
+            text.style.bottom = 'unset';
             text.style.left = `${imageRect.left + 20}px`;
-            text.style.opacity = '1';
+            
+            text.style.opacity = phase2Opacity.toString();
           } else {
             // Phase 3: SCROLL FINAL - texte en bas de l'image
             container.className = styles.stickyTextContainer;
             text.style.position = 'absolute';
             text.style.left = isMobile ? '10px' : '0px';
             text.style.top = 'unset';
-            text.style.bottom = isMobile ? '-50px' : '-60px';
-            text.style.opacity = '1';
+            text.style.bottom = isMobile ? '-35px' : '-60px';
+            
+            // Vérifier si on vient juste d'entrer en phase 3
+            if (!text.dataset.justEnteredPhase3) {
+              // Première fois qu'on arrive en phase 3 dans cette session de scroll
+              text.dataset.justEnteredPhase3 = 'true';
+              text.style.opacity = '0';
+              text.style.transition = 'opacity 1s ease-out';
+              
+              // Forcer l'animation
+              requestAnimationFrame(() => {
+                text.style.opacity = '1';
+              });
+            } else {
+              // Déjà en phase 3, garder visible
+              text.style.opacity = '1';
+            }
           }
           
-          // Masquer si section pas visible
+          // Masquer si section pas visible (sauf en phase 3)
           if (sectionRect.bottom < 0 || sectionRect.top > viewportHeight) {
-            text.style.opacity = '0';
+            // Ne pas masquer en phase 3, laisser le texte visible
+            if (!(sectionBottom < viewportCenter + 14)) {
+              text.style.opacity = '0';
+            }
           }
           
           // Contraindre le texte dans les limites de la section
