@@ -162,7 +162,7 @@ export default function Home() {
                 <div className={styles.stickyText}>EXCLUSIVITÉS</div>
               </div>
               <div className={styles.stickyTextContainer}>
-                <div className={styles.stickyText} id="exclusivite-phase1">EXCLUSIVITÉ</div>
+                <div className={styles.stickyText} id="exclusivite-phase1">EXCLUSIVITÉS</div>
               </div>
             </div>
             <div className={styles.collectionImageSlot}>
