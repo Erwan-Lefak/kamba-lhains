@@ -77,16 +77,16 @@ export default function Home() {
           const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           const container = text.parentElement as HTMLElement;
           
-          if (sectionTop > viewportCenter - 50) {
-            // Phase 1: Duplicate text visible
+          if (!isMobile && sectionTop > viewportCenter - 50) {
+            // Phase 1: Duplicate text visible (desktop only)
             container.style.setProperty('position', 'absolute', 'important');
-            container.style.setProperty('left', isMobile ? '10px' : '20px', 'important');
-            container.style.setProperty('top', isMobile ? '10px' : '20px', 'important');
+            container.style.setProperty('left', '20px', 'important');
+            container.style.setProperty('top', '20px', 'important');
             container.style.setProperty('bottom', 'unset', 'important');
             text.style.setProperty('color', 'white', 'important');
             text.style.opacity = '1';
           } else {
-            // Hide duplicate texts in other phases
+            // Hide duplicate texts in other phases or on mobile
             text.style.opacity = '0';
           }
         });
@@ -114,12 +114,12 @@ export default function Home() {
           if (sectionTop > viewportHeight) {
             // Avant la section : texte invisible
             text.style.opacity = '0';
-          } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter) {
+          } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 14) {
             // Phase 2: FIXE - texte fixé au milieu de l'écran (transition plus fluide)
             container.className = styles.stickyTextContainer;
             text.style.position = 'fixed';
             text.style.top = 'unset';
-            text.style.bottom = `${viewportCenter}px`;
+            text.style.bottom = `${viewportCenter - 10}px`;
             text.style.left = `${imageRect.left + 20}px`;
             text.style.opacity = '1';
           } else {
@@ -164,7 +164,7 @@ export default function Home() {
             // Phase 1: Texte dupliqué visible (se termine un peu après)
             container.style.setProperty('position', 'absolute', 'important');
             container.style.setProperty('left', '20px', 'important');
-            container.style.setProperty('top', isMobile ? '10px' : '5px', 'important');
+            container.style.setProperty('top', isMobile ? '25px' : '20px', 'important');
             container.style.setProperty('bottom', 'unset', 'important');
             text.style.setProperty('color', 'white', 'important'); // Blanc
             text.style.opacity = '1';
