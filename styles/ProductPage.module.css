@@ -231,6 +231,9 @@
   align-items: center;
   gap: 5px;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .sizeGuide:hover {
@@ -268,7 +271,7 @@
 }
 
 .sizeOption.active {
-  background: #ff0000;
+  background: #9f0909;
   color: white;
 }
 
@@ -476,6 +479,153 @@
   color: #666;
 }
 
+/* Size Guide Modal Specific Styles */
+.sizeGuideContent {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sizeGuideHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sizeGuideHeader h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #000;
+  margin: 0;
+}
+
+.unitToggle {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-left: 5px;
+}
+
+.unitOption {
+  font-size: 11px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  position: relative;
+}
+
+.unitOption:first-child {
+  color: #000;
+}
+
+.unitOption:first-child::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #000;
+}
+
+.sizeTable {
+  margin-bottom: 30px;
+  overflow-x: auto;
+}
+
+.sizeTable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.sizeTable th {
+  background: #f8f8f8;
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #333;
+  border: 1px solid #e5e5e5;
+}
+
+.sizeTable td {
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  color: #333;
+  font-weight: 400;
+}
+
+.sizeTable tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.sizeRow {
+  transition: all 0.2s ease;
+}
+
+.availableSize {
+  cursor: pointer;
+}
+
+.availableSize:hover {
+  font-weight: 600;
+  background: #f0f0f0 !important;
+}
+
+.availableSize:hover td {
+  color: #000;
+}
+
+.measurementGuide {
+  margin-bottom: 25px;
+}
+
+.measurementGuide h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.measurementGuide p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.measurementNote {
+  font-style: italic;
+  margin-top: 15px !important;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.customerService {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.customerService h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.customerService p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 8px;
+}
+
 /* Complete Your Look Section */
 .completeYourLook {
   background: white;
@@ -615,11 +765,14 @@
   
   .productMainContent {
     padding: 40px clamp(30px, 8vw, 100px);
-    position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    height: fit-content;
-    max-height: 80vh;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    width: max-content;
+    min-width: 100%;
   }
 
 

@@ -65,11 +65,17 @@ export default function ProductDetail() {
     document.body.style.overflow = 'unset';
   };
 
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+    closeModal();
+  };
+
   const getModalTitle = () => {
     switch (modalContent) {
       case 'details': return 'Détails du produit';
       case 'delivery': return 'Livraison et retours';
       case 'help': return 'Aide';
+      case 'sizeGuide': return 'Guide des tailles';
       default: return '';
     }
   };
@@ -132,6 +138,75 @@ export default function ProductDetail() {
             <h3>Boutiques</h3>
             <p>Retrouvez nos boutiques à Paris, Lyon, et Marseille</p>
             <p>Prendre rendez-vous en boutique pour un essayage personnalisé</p>
+          </div>
+        );
+      case 'sizeGuide':
+        return (
+          <div className={styles.sizeGuideContent}>
+            <div className={styles.sizeGuideHeader}>
+              <h3>GUIDE DES TAILLES</h3>
+            </div>
+            
+            <div className={styles.unitToggle}>
+              <span className={styles.unitOption}>CM</span>
+              <span className={styles.unitOption}>IN</span>
+            </div>
+
+            <div className={styles.sizeTable}>
+              <table>
+                <thead>
+                  <tr>
+                    <th>CÉLINE TAILLES</th>
+                    <th>FR/EU</th>
+                    <th>POITRINE</th>
+                    <th>TAILLE</th>
+                    <th>HANCHES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { size: 'XS', frEu: '44', bust: '88', waist: '72', hips: '88' },
+                    { size: 'S', frEu: '46', bust: '92', waist: '76', hips: '92' },
+                    { size: 'M', frEu: '48-50', bust: '96', waist: '80', hips: '96' },
+                    { size: 'L', frEu: '52', bust: '100', waist: '84', hips: '100' },
+                    { size: 'XL', frEu: '54', bust: '104', waist: '88', hips: '104' },
+                    { size: 'XXL', frEu: '56', bust: '108', waist: '92', hips: '108' }
+                  ].map((sizeData, index) => {
+                    const isAvailable = product.sizes.includes(sizeData.size);
+                    return (
+                      <tr 
+                        key={index}
+                        className={`${styles.sizeRow} ${isAvailable ? styles.availableSize : ''}`}
+                        onClick={() => isAvailable && handleSizeSelect(sizeData.size)}
+                      >
+                        <td>{sizeData.size}</td>
+                        <td>{sizeData.frEu}</td>
+                        <td>{sizeData.bust}</td>
+                        <td>{sizeData.waist}</td>
+                        <td>{sizeData.hips}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <div className={styles.measurementGuide}>
+              <h4>COMMENT PRENDRE LES MESURES ?</h4>
+              <p><strong>POITRINE :</strong> PASSER LE RUBAN DANS LE DOS, SOUS LES BRAS ET SUR LA PARTIE LA PLUS LARGE DE LA POITRINE.</p>
+              <p><strong>TAILLE :</strong> MESURER AUTOUR DE LA PARTIE LA PLUS ÉTROITE DE LA TAILLE, LE RUBAN DOIT ÊTRE AJUSTÉ SANS ÊTRE TROP SERRÉ.</p>
+              <p><strong>HANCHES :</strong> MESURER AUTOUR DE LA PARTIE LA PLUS FORTE DES HANCHES.</p>
+              
+              <p className={styles.measurementNote}>
+                SELON LES COUPES, DE LÉGÈRES DIFFÉRENCES DE MESURES POURRAIENT SE VÉRIFIER.
+              </p>
+            </div>
+
+            <div className={styles.customerService}>
+              <h4>BESOIN DE CONSEIL ?</h4>
+              <p>LE SERVICE CLIENT EST OUVERT DU LUNDI AU SAMEDI, DE 10H À 18H, HEURE DE PARIS.</p>
+              <p>NOTRE ÉQUIPE DE CONSEILLERS EST JOIGNABLE AU NUMÉRO SUIVANT POUR VOUS ASSISTER : <strong>+33 1 23 45 67 89</strong></p>
+            </div>
           </div>
         );
       default:
@@ -252,6 +327,12 @@ export default function ProductDetail() {
               <div className={styles.sizeSection}>
                 <div className={styles.sizeHeader}>
                   <div className={styles.sizeLabel}>Taille</div>
+                  <button 
+                    className={styles.sizeGuide}
+                    onClick={() => openModal('sizeGuide')}
+                  >
+                    Guide des tailles
+                  </button>
                 </div>
                 <div className={styles.sizeGrid}>
                   {product.sizes.map((size, index) => (
