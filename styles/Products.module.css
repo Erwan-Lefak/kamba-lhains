@@ -303,6 +303,19 @@
   .nextButton {
     right: 5px;
   }
+
+  .productOverlay {
+    padding: 10px 15px 5px 15px;
+  }
+
+  .productName {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .productPrice {
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 480px) {

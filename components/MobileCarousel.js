@@ -4,38 +4,20 @@ import styles from '../styles/HomePage.module.css';
 
 const MobileCarousel = ({ products }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % products.length);
-    }, 4000); // Change slide every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying, products.length]);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false); // Disabled auto-play for better UX
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
-    setIsAutoPlaying(false);
-    // Resume auto-play after 8 seconds
-    setTimeout(() => setIsAutoPlaying(true), 8000);
   };
 
   const goToPrevious = () => {
     const newIndex = currentIndex === 0 ? products.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 8000);
   };
 
   const goToNext = () => {
     const newIndex = (currentIndex + 1) % products.length;
     setCurrentIndex(newIndex);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 8000);
   };
 
   // Touch handling for horizontal swipe gestures
@@ -72,7 +54,7 @@ const MobileCarousel = ({ products }) => {
       <div 
         className={styles.mobileCarouselContainer}
         style={{
-          transform: `translateX(-${currentIndex * 100}vw)`,
+          transform: `translateX(-${currentIndex * 40}vw)`,
         }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
@@ -84,7 +66,6 @@ const MobileCarousel = ({ products }) => {
           </div>
         ))}
       </div>
-
     </div>
   );
 };

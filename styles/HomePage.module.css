@@ -301,26 +301,27 @@
   .mobileCarouselContainer {
     display: flex;
     flex-direction: row;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     height: fit-content;
-    width: 300vw;
+    width: 120vw;
     margin: 0;
     padding: 0;
+    gap: 0;
   }
 
   .mobileProductSlot {
-    width: 100vw;
+    width: 40vw;
     height: fit-content;
     position: relative;
     flex-shrink: 0;
     display: flex;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .mobileProductSlot .productCard {
-    width: 100vw !important;
+    width: 40vw !important;
     height: fit-content !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -328,7 +329,7 @@
   }
 
   .mobileProductSlot .productImageContainer {
-    width: 100vw !important;
+    width: 40vw !important;
     height: fit-content !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -336,7 +337,7 @@
   }
 
   .mobileProductSlot .productImage {
-    width: 100vw !important;
+    width: 40vw !important;
     height: auto !important;
     object-fit: contain !important;
     display: block !important;
