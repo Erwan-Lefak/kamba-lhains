@@ -22,6 +22,7 @@ export default function ProductDetail() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [selectedUnit, setSelectedUnit] = useState('cm');
 
   useEffect(() => {
     if (id) {
@@ -68,6 +69,14 @@ export default function ProductDetail() {
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
     closeModal();
+  };
+
+  const convertToInches = (cm) => {
+    return Math.round((cm / 2.54) * 10) / 10;
+  };
+
+  const handleUnitChange = (unit) => {
+    setSelectedUnit(unit);
   };
 
   const getModalTitle = () => {
@@ -143,13 +152,20 @@ export default function ProductDetail() {
       case 'sizeGuide':
         return (
           <div className={styles.sizeGuideContent}>
-            <div className={styles.sizeGuideHeader}>
-              <h3>GUIDE DES TAILLES</h3>
-            </div>
             
             <div className={styles.unitToggle}>
-              <span className={styles.unitOption}>CM</span>
-              <span className={styles.unitOption}>IN</span>
+              <button 
+                className={`${styles.unitOption} ${selectedUnit === 'cm' ? styles.activeUnit : ''}`}
+                onClick={() => handleUnitChange('cm')}
+              >
+                CM
+              </button>
+              <button 
+                className={`${styles.unitOption} ${selectedUnit === 'in' ? styles.activeUnit : ''}`}
+                onClick={() => handleUnitChange('in')}
+              >
+                IN
+              </button>
             </div>
 
             <div className={styles.sizeTable}>
@@ -173,6 +189,10 @@ export default function ProductDetail() {
                     { size: 'XXL', frEu: '56', bust: '108', waist: '92', hips: '108' }
                   ].map((sizeData, index) => {
                     const isAvailable = product.sizes.includes(sizeData.size);
+                    const displayBust = selectedUnit === 'in' ? convertToInches(parseInt(sizeData.bust)) : sizeData.bust;
+                    const displayWaist = selectedUnit === 'in' ? convertToInches(parseInt(sizeData.waist)) : sizeData.waist;
+                    const displayHips = selectedUnit === 'in' ? convertToInches(parseInt(sizeData.hips)) : sizeData.hips;
+                    
                     return (
                       <tr 
                         key={index}
@@ -181,9 +201,9 @@ export default function ProductDetail() {
                       >
                         <td>{sizeData.size}</td>
                         <td>{sizeData.frEu}</td>
-                        <td>{sizeData.bust}</td>
-                        <td>{sizeData.waist}</td>
-                        <td>{sizeData.hips}</td>
+                        <td>{displayBust}</td>
+                        <td>{displayWaist}</td>
+                        <td>{displayHips}</td>
                       </tr>
                     );
                   })}

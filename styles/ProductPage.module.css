@@ -330,7 +330,7 @@
   justify-content: space-between;
   text-transform: none;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
-  min-height: 24px;
+  max-height: 40px;
   position: relative;
 }
 
@@ -513,13 +513,21 @@
   color: #333;
   cursor: pointer;
   position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease;
 }
 
-.unitOption:first-child {
+.unitOption:hover {
   color: #000;
 }
 
-.unitOption:first-child::after {
+.activeUnit {
+  color: #000;
+}
+
+.activeUnit::after {
   content: '';
   position: absolute;
   bottom: -2px;
