@@ -128,7 +128,7 @@ const PaymentForm = ({ orderData, totals, onBack, onSuccess }) => {
         )}
 
         <div className={styles.orderTotal}>
-          <h3>Total à payer: {totals.total.toFixed(2)} €</h3>
+          <h3>Total à payer: {totals.total.toFixed(2)} EUR</h3>
         </div>
 
         {error && (
@@ -152,7 +152,7 @@ const PaymentForm = ({ orderData, totals, onBack, onSuccess }) => {
             disabled={!stripe || isProcessing}
             className={styles.payButton}
           >
-            {isProcessing ? 'Traitement...' : `Payer ${totals.total.toFixed(2)} €`}
+            {isProcessing ? 'Traitement...' : `Payer ${totals.total.toFixed(2)} EUR`}
           </button>
         </div>
       </form>

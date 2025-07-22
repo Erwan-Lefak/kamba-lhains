@@ -426,7 +426,7 @@ export default function Checkout() {
                   
                   <div className={styles.summaryRow}>
                     <span>Livraison</span>
-                    <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} €`}</span>
+                    <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} EUR`}</span>
                   </div>
                   
                   <div className={styles.summaryDivider}></div>

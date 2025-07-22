@@ -137,7 +137,7 @@ export default function Cart() {
                 
                 <div className={styles.summaryRow}>
                   <span>Livraison</span>
-                  <span>{getTotalPrice() >= 150 ? 'Gratuite' : '9,90 €'}</span>
+                  <span>{getTotalPrice() >= 150 ? 'Gratuite' : '9,90 EUR'}</span>
                 </div>
                 
                 <div className={styles.summaryDivider}></div>

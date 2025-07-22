@@ -19,10 +19,10 @@ export default function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [selectedUnit, setSelectedUnit] = useState('cm');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   useEffect(() => {
     if (id) {
@@ -81,17 +81,16 @@ export default function ProductDetail() {
 
   const getModalTitle = () => {
     switch (modalContent) {
-      case 'details': return 'Détails du produit';
-      case 'delivery': return 'Livraison et retours';
-      case 'help': return 'Aide';
+      case 'description': return 'Description';
       case 'sizeGuide': return 'Guide des tailles';
+      case 'careGuide': return 'Guide d\'entretien';
       default: return '';
     }
   };
 
   const renderModalContent = () => {
     switch (modalContent) {
-      case 'details':
+      case 'description':
         return (
           <div>
             <h3>Composition et entretien</h3>
@@ -100,59 +99,13 @@ export default function ProductDetail() {
                 <li key={index}>{item}</li>
               ))}
             </ul>
-            <h3>Conseils d'entretien</h3>
-            <p>Lavage à la main recommandé</p>
-            <p>Séchage à plat, à l'abri de la lumière directe</p>
-            <p>Repassage à température moyenne</p>
             <h3>Modèle</h3>
             <p>Le modèle mesure 1m75 et porte une taille {product.sizes[1] || product.sizes[0]}</p>
-          </div>
-        );
-      case 'delivery':
-        return (
-          <div>
-            <h3>Livraison</h3>
-            <p><strong>Livraison standard (3-5 jours ouvrés) :</strong> Gratuite à partir de 150€, sinon 9,90€</p>
-            <p><strong>Livraison express (24-48h) :</strong> 19,90€</p>
-            <p><strong>Livraison même jour (Paris) :</strong> 29,90€</p>
-            
-            <h3>Retours</h3>
-            <p>Retours gratuits sous 30 jours</p>
-            <p>Les articles doivent être dans leur état d'origine avec toutes les étiquettes</p>
-            <p>Remboursement sous 5-7 jours ouvrés après réception</p>
-            
-            <h3>Échanges</h3>
-            <p>Échanges gratuits en boutique ou par correspondance</p>
-            <p>Service client disponible pour vous accompagner</p>
-          </div>
-        );
-      case 'help':
-        return (
-          <div>
-            <h3>Service client</h3>
-            <p><strong>Email :</strong> service@kambalahins.com</p>
-            <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
-            <p><strong>Horaires :</strong> Lundi au vendredi, 9h-18h</p>
-            
-            <h3>FAQ</h3>
-            <p><strong>Comment connaître ma taille ?</strong><br/>
-            Utilisez notre guide des tailles disponible sur chaque fiche produit.</p>
-            
-            <p><strong>Puis-je modifier ma commande ?</strong><br/>
-            Contactez-nous dans les 2h suivant votre commande.</p>
-            
-            <p><strong>Les produits sont-ils authentiques ?</strong><br/>
-            Tous nos produits sont 100% authentiques et proviennent directement du créateur.</p>
-            
-            <h3>Boutiques</h3>
-            <p>Retrouvez nos boutiques à Paris, Lyon, et Marseille</p>
-            <p>Prendre rendez-vous en boutique pour un essayage personnalisé</p>
           </div>
         );
       case 'sizeGuide':
         return (
           <div className={styles.sizeGuideContent}>
-            
             <div className={styles.unitToggle}>
               <button 
                 className={`${styles.unitOption} ${selectedUnit === 'cm' ? styles.activeUnit : ''}`}
@@ -172,7 +125,7 @@ export default function ProductDetail() {
               <table>
                 <thead>
                   <tr>
-                    <th>CÉLINE TAILLES</th>
+                    <th>TAILLES</th>
                     <th>FR/EU</th>
                     <th>POITRINE</th>
                     <th>TAILLE</th>
@@ -229,10 +182,20 @@ export default function ProductDetail() {
             </div>
           </div>
         );
+      case 'careGuide':
+        return (
+          <div>
+            <h3>Conseils d'entretien</h3>
+            <p>Lavage à la main recommandé</p>
+            <p>Séchage à plat, à l'abri de la lumière directe</p>
+            <p>Repassage à température moyenne</p>
+          </div>
+        );
       default:
         return null;
     }
   };
+
 
 
   if (!product) {
@@ -347,12 +310,6 @@ export default function ProductDetail() {
               <div className={styles.sizeSection}>
                 <div className={styles.sizeHeader}>
                   <div className={styles.sizeLabel}>Taille</div>
-                  <button 
-                    className={styles.sizeGuide}
-                    onClick={() => openModal('sizeGuide')}
-                  >
-                    Guide des tailles
-                  </button>
                 </div>
                 <div className={styles.sizeGrid}>
                   {product.sizes.map((size, index) => (
@@ -391,31 +348,27 @@ export default function ProductDetail() {
                   </button>
                 </button>
               </div>
-            </div>
 
-            {/* Tabs Section - Fixed at Bottom */}
-            <div className={styles.tabsSection}>
-              <div className={styles.tabsContainer}>
-                <div className={styles.tabsNav}>
-                  <button 
-                    className={styles.tab}
-                    onClick={() => openModal('details')}
-                  >
-                    Détails
-                  </button>
-                  <button 
-                    className={styles.tab}
-                    onClick={() => openModal('delivery')}
-                  >
-                    Livraison et retours
-                  </button>
-                  <button 
-                    className={styles.tab}
-                    onClick={() => openModal('help')}
-                  >
-                    Aide
-                  </button>
-                </div>
+              {/* Info Links */}
+              <div className={styles.infoLinksSection}>
+                <button 
+                  className={styles.infoLink}
+                  onClick={() => openModal('description')}
+                >
+                  Description
+                </button>
+                <button 
+                  className={styles.infoLink}
+                  onClick={() => openModal('sizeGuide')}
+                >
+                  Guide des tailles
+                </button>
+                <button 
+                  className={styles.infoLink}
+                  onClick={() => openModal('careGuide')}
+                >
+                  Guide d'entretien
+                </button>
               </div>
             </div>
           </div>
@@ -467,6 +420,7 @@ export default function ProductDetail() {
             {renderModalContent()}
           </div>
         </div>
+
       </main>
 
       <Footer />

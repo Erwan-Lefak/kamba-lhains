@@ -72,11 +72,11 @@ export default function Footer() {
   };
 
   const handleMouseEnter = (e) => {
-    e.target.style.color = 'red';
+    e.target.style.color = '#9f0909';
   };
 
   const handleMouseLeave = (e, href) => {
-    e.target.style.color = isActiveLink(href) ? 'red' : '#888';
+    e.target.style.color = isActiveLink(href) ? '#9f0909' : '#888';
   };
 
   return (
@@ -107,9 +107,9 @@ export default function Footer() {
             <div className="service-client">
               <h4>{t('footer.customerService')}</h4>
               <ul>
-                <li><Link href="/suivi-commande" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/suivi-commande') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/suivi-commande')}>Suivre une commande</Link></li>
-                <li><Link href="/retour" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/retour') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retour')}>Faire un retour</Link></li>
-                <li><Link href="/reclamation" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/reclamation') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/reclamation')}>Réclamation</Link></li>
+                <li><Link href="/suivi-commande" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/suivi-commande') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/suivi-commande')}>Suivre une commande</Link></li>
+                <li><Link href="/retour" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/retour') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retour')}>Faire un retour</Link></li>
+                <li><Link href="/reclamation" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/reclamation') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/reclamation')}>Réclamation</Link></li>
               </ul>
             </div>
             
@@ -159,11 +159,11 @@ export default function Footer() {
               <span className={`arrow ${openSections.legal ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.legal ? 'open' : ''}`}>
-              <li><Link href="/mentions-legales" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/mentions-legales') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/mentions-legales')}>{t('footer.links.legalNotices')}</Link></li>
-              <li><Link href="/conditions-vente" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/conditions-vente') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/conditions-vente')}>{t('footer.links.salesConditions')}</Link></li>
-              <li><Link href="/politique-confidentialite" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/politique-confidentialite') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/politique-confidentialite')}>{t('footer.links.privacyPolicy')}</Link></li>
-              <li><Link href="/conditions-utilisation" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/conditions-utilisation') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/conditions-utilisation')}>{t('footer.links.termsOfUse')}</Link></li>
-              <li><Link href="/accessibilite" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/accessibilite') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/accessibilite')}>{t('footer.links.accessibility')}</Link></li>
+              <li><Link href="/mentions-legales" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/mentions-legales') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/mentions-legales')}>{t('footer.links.legalNotices')}</Link></li>
+              <li><Link href="/conditions-vente" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/conditions-vente') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/conditions-vente')}>{t('footer.links.salesConditions')}</Link></li>
+              <li><Link href="/politique-confidentialite" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/politique-confidentialite') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/politique-confidentialite')}>{t('footer.links.privacyPolicy')}</Link></li>
+              <li><Link href="/conditions-utilisation" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/conditions-utilisation') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/conditions-utilisation')}>{t('footer.links.termsOfUse')}</Link></li>
+              <li><Link href="/accessibilite" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/accessibilite') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/accessibilite')}>{t('footer.links.accessibility')}</Link></li>
             </ul>
           </div>
           
@@ -173,13 +173,13 @@ export default function Footer() {
               <span className={`arrow ${openSections.faq ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.faq ? 'open' : ''}`}>
-              <li><Link href="/compte" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/compte') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/compte')}>{t('footer.links.account')}</Link></li>
-              <li><Link href="/livraison" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/livraison') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/livraison')}>{t('footer.links.deliveryInfo')}</Link></li>
-              <li><Link href="/commandes" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/commandes') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/commandes')}>{t('footer.links.orders')}</Link></li>
-              <li><Link href="/paiements" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/paiements') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/paiements')}>{t('footer.links.payments')}</Link></li>
-              <li><Link href="/retours" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/retours') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retours')}>{t('footer.links.returns')}</Link></li>
-              <li><Link href="/guide-tailles" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/guide-tailles') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/guide-tailles')}>{t('footer.links.sizeGuide')}</Link></li>
-              <li><Link href="/carte-cadeau" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/carte-cadeau') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carte-cadeau')}>{t('footer.links.giftCard')}</Link></li>
+              <li><Link href="/compte" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/compte') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/compte')}>{t('footer.links.account')}</Link></li>
+              <li><Link href="/livraison" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/livraison') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/livraison')}>{t('footer.links.deliveryInfo')}</Link></li>
+              <li><Link href="/commandes" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/commandes') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/commandes')}>{t('footer.links.orders')}</Link></li>
+              <li><Link href="/paiements" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/paiements') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/paiements')}>{t('footer.links.payments')}</Link></li>
+              <li><Link href="/retours" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/retours') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/retours')}>{t('footer.links.returns')}</Link></li>
+              <li><Link href="/guide-tailles" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/guide-tailles') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/guide-tailles')}>{t('footer.links.sizeGuide')}</Link></li>
+              <li><Link href="/carte-cadeau" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/carte-cadeau') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carte-cadeau')}>{t('footer.links.giftCard')}</Link></li>
             </ul>
           </div>
           
@@ -189,10 +189,10 @@ export default function Footer() {
               <span className={`arrow ${openSections.entreprise ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.entreprise ? 'open' : ''}`}>
-              <li><Link href="/about" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/about') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/about')}>A propos</Link></li>
-              <li><Link href="/contact" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/contact') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/contact')}>Nous contacter</Link></li>
-              <li><Link href="/charte" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/charte') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/charte')}>Charte</Link></li>
-              <li><Link href="/carriere" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/carriere') ? 'red' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carriere')}>Carrière</Link></li>
+              <li><Link href="/about" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/about') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/about')}>A propos</Link></li>
+              <li><Link href="/contact" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/contact') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/contact')}>Nous contacter</Link></li>
+              <li><Link href="/charte" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/charte') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/charte')}>Charte</Link></li>
+              <li><Link href="/carriere" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/carriere') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carriere')}>Carrière</Link></li>
             </ul>
           </div>
           
@@ -384,11 +384,11 @@ export default function Footer() {
         }
         
         .service-client a:hover {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .service-client li:hover a {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .country-selector {
@@ -407,7 +407,7 @@ export default function Footer() {
         }
         
         .country-selector:hover {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .language-dropdown-footer {
@@ -431,7 +431,7 @@ export default function Footer() {
         }
         
         .language-selected-footer:hover {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .language-selected-footer .flag {
@@ -658,19 +658,19 @@ export default function Footer() {
         }
         
         .section-content li a:hover {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .section-content li:hover a {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .service-client li a:hover {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .footer-link-active {
-          color: red !important;
+          color: #9f0909 !important;
         }
         
         .footer-bottom {

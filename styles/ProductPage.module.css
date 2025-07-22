@@ -106,7 +106,7 @@
 
 
 .productTitle {
-  font-size: clamp(0.8rem, 5vw, 1.5rem);
+  font-size: 11px;
   font-weight: 300;
   letter-spacing: 1px;
   color: #000;
@@ -121,7 +121,7 @@
 }
 
 .productPrice {
-  font-size: 1.375rem;
+  font-size: 10px;
   font-weight: 400;
   color: #000;
   margin: 0 0 15px 0;
@@ -152,7 +152,7 @@
 }
 
 .colorLabel {
-  font-size: 12px;
+  font-size: 10px;
   color: #000;
   font-weight: 400;
   margin: 0;
@@ -179,8 +179,8 @@
 }
 
 .colorSwatch {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -189,8 +189,8 @@
 }
 
 .colorSwatch.active {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
 
 .colorSwatchYellow {
@@ -215,7 +215,7 @@
 }
 
 .sizeLabel {
-  font-size: 12px;
+  font-size: 10px;
   color: #000;
   font-weight: 400;
   margin: 0;
@@ -269,6 +269,11 @@
   line-height: 1;
 }
 
+.sizeOption:hover:not(.active) {
+  background: transparent;
+  color: #9f0909;
+}
+
 .sizeOption.active {
   background: #9f0909;
   color: white;
@@ -298,7 +303,7 @@
   background: none;
   border: none;
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 100;
   cursor: pointer;
   padding: 8px 12px;
   color: #000;
@@ -320,7 +325,7 @@
   padding: 4px 20px;
   background: white;
   border: 1px solid #000;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 1px;
   cursor: pointer;
@@ -340,44 +345,33 @@
 }
 
 
-/* Tabs Section */
-.tabsSection {
-  background: white;
-  border-top: 1px solid #eee;
-  position: sticky;
-  bottom: 0;
+/* Info Links Section */
+.infoLinksSection {
+  margin-top: 20px;
   width: 100%;
-  z-index: 10;
-  margin-top: auto;
-}
-
-.tabsContainer {
-  max-width: 100%;
-}
-
-.tabsNav {
   display: flex;
-  border-bottom: 1px solid #eee;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.tab {
-  padding: 20px 25px;
+.infoLink {
   background: none;
   border: none;
+  color: #000;
   font-size: 11px;
-  color: #666;
-  cursor: pointer;
-  transition: color 0.3s;
-  text-transform: none;
-  letter-spacing: 0;
   font-weight: 400;
-  flex: 1;
-  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
 }
 
-.tab:hover {
-  color: #000;
+.infoLink:hover {
+  color: #9f0909;
 }
 
 /* Modal Overlay */
@@ -433,6 +427,8 @@
   color: #000;
   margin: 0;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .closeButton {
@@ -457,6 +453,7 @@
   color: #333;
   line-height: 1.6;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
 }
 
 .modalContent h3 {
@@ -464,6 +461,9 @@
   font-weight: 500;
   color: #000;
   margin-bottom: 20px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .modalContent p {
@@ -478,6 +478,12 @@
 .modalContent li {
   margin-bottom: 12px;
   color: #666;
+}
+
+.modalContent h4 {
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Size Guide Modal Specific Styles */
@@ -599,6 +605,8 @@
   color: #000;
   margin-bottom: 15px;
   letter-spacing: 0.5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
 }
 
 .measurementGuide p {
@@ -626,6 +634,8 @@
   color: #000;
   margin-bottom: 12px;
   letter-spacing: 0.5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
 }
 
 .customerService p {
@@ -642,19 +652,21 @@
 }
 
 .sectionContainer {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0;
-  padding: 80px 0 40px 40px;
+  padding: 80px 0 40px 0;
+  width: 100%;
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
+  font-size: 12px;
   font-weight: 300;
   color: #000;
   margin-bottom: 0;
-  text-align: left;
+  text-align: center;
   letter-spacing: 1px;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
 }
 
 /* Three Products Section - Matching Homepage Style */
@@ -707,9 +719,6 @@
   }
 
 
-  .tabsSection {
-    width: 100%;
-  }
 
   .sizeGrid {
     grid-template-columns: repeat(4, 1fr);
@@ -753,22 +762,6 @@
 
   .sizeGrid {
     flex-wrap: wrap;
-  }
-  
-  .tabsSection {
-    position: relative;
-    width: 100%;
-  }
-
-  .tabsNav {
-    flex-wrap: wrap;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 15px 10px;
-    font-size: 12px;
-    text-align: center;
   }
 
   .sizeGrid {

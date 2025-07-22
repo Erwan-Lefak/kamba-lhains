@@ -11,7 +11,7 @@ const CartSummary = ({ items, onItemUpdate, onItemRemove }) => {
     return total + (parseFloat(item.product.price) * item.quantity)
   }, 0)
 
-  const shippingCost = subtotal > 100 ? 0 : 15 // Free shipping over €100
+  const shippingCost = subtotal > 100 ? 0 : 15 // Free shipping over EUR100
   const taxAmount = (subtotal + shippingCost) * 0.20 // 20% VAT
   const total = subtotal + shippingCost + taxAmount
 
@@ -89,7 +89,7 @@ const CartSummary = ({ items, onItemUpdate, onItemRemove }) => {
               <h3>{item.product.name}</h3>
               {item.size && <p className={styles.variant}>Taille: {item.size}</p>}
               {item.color && <p className={styles.variant}>Couleur: {item.color}</p>}
-              <p className={styles.price}>{parseFloat(item.product.price).toFixed(2)} €</p>
+              <p className={styles.price}>{parseFloat(item.product.price).toFixed(2)} EUR</p>
             </div>
             
             <div className={styles.itemControls}>
@@ -121,7 +121,7 @@ const CartSummary = ({ items, onItemUpdate, onItemRemove }) => {
             </div>
             
             <div className={styles.itemTotal}>
-              {(parseFloat(item.product.price) * item.quantity).toFixed(2)} €
+              {(parseFloat(item.product.price) * item.quantity).toFixed(2)} EUR
             </div>
           </div>
         ))}
@@ -132,27 +132,27 @@ const CartSummary = ({ items, onItemUpdate, onItemRemove }) => {
         
         <div className={styles.summaryLine}>
           <span>Sous-total</span>
-          <span>{subtotal.toFixed(2)} €</span>
+          <span>{subtotal.toFixed(2)} EUR</span>
         </div>
         
         <div className={styles.summaryLine}>
           <span>Livraison</span>
-          <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} €`}</span>
+          <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} EUR`}</span>
         </div>
         
         <div className={styles.summaryLine}>
           <span>TVA (20%)</span>
-          <span>{taxAmount.toFixed(2)} €</span>
+          <span>{taxAmount.toFixed(2)} EUR</span>
         </div>
         
         <div className={styles.summaryTotal}>
           <span>Total</span>
-          <span>{total.toFixed(2)} €</span>
+          <span>{total.toFixed(2)} EUR</span>
         </div>
         
         {subtotal < 100 && (
           <p className={styles.shippingNote}>
-            Livraison gratuite dès 100€ d'achat
+            Livraison gratuite dès 100EUR d'achat
           </p>
         )}
         

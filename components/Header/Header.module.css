@@ -136,11 +136,11 @@
 }
 
 .navLink:hover {
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 .navLinkActive {
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 .navLinkActive::after {
@@ -183,7 +183,7 @@
   border: none !important;
   box-shadow: none !important;
   background: none !important;
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 /* Cross-platform icon consistency */
@@ -218,7 +218,7 @@
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 .languageDropdown {
@@ -274,7 +274,7 @@
   box-shadow: none !important;
   background: none !important;
   text-decoration: none !important;
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 .cartCount {
@@ -313,7 +313,7 @@
 }
 
 .mobileActionButton:hover {
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 .mobileMenuButton {
@@ -415,7 +415,7 @@
 }
 
 .mobileNavLink:hover {
-  color: red !important;
+  color: #9f0909 !important;
 }
 
 .mobileBottomSection {

@@ -232,7 +232,7 @@ const CheckoutForm = () => {
                     <strong>Livraison standard</strong>
                     <p>3-5 jours ouvrables - Gratuite</p>
                   </div>
-                  <span>0,00 €</span>
+                  <span>0,00 EUR</span>
                 </label>
               </div>
               
@@ -250,7 +250,7 @@ const CheckoutForm = () => {
                     <strong>Livraison express</strong>
                     <p>1-2 jours ouvrables</p>
                   </div>
-                  <span>15,00 €</span>
+                  <span>15,00 EUR</span>
                 </label>
               </div>
             </div>
@@ -299,7 +299,7 @@ const CheckoutForm = () => {
                 {item.color && <p>Couleur: {item.color}</p>}
                 <p>Quantité: {item.quantity}</p>
               </div>
-              <span>{(parseFloat(item.product.price) * item.quantity).toFixed(2)} €</span>
+              <span>{(parseFloat(item.product.price) * item.quantity).toFixed(2)} EUR</span>
             </div>
           ))}
         </div>
@@ -307,19 +307,19 @@ const CheckoutForm = () => {
         <div className={styles.summaryTotals}>
           <div className={styles.summaryLine}>
             <span>Sous-total</span>
-            <span>{subtotal.toFixed(2)} €</span>
+            <span>{subtotal.toFixed(2)} EUR</span>
           </div>
           <div className={styles.summaryLine}>
             <span>Livraison</span>
-            <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} €`}</span>
+            <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} EUR`}</span>
           </div>
           <div className={styles.summaryLine}>
             <span>TVA (20%)</span>
-            <span>{taxAmount.toFixed(2)} €</span>
+            <span>{taxAmount.toFixed(2)} EUR</span>
           </div>
           <div className={styles.summaryTotal}>
             <span>Total</span>
-            <span>{total.toFixed(2)} €</span>
+            <span>{total.toFixed(2)} EUR</span>
           </div>
         </div>
       </div>
