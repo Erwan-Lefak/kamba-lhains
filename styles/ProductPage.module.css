@@ -256,13 +256,13 @@
   cursor: pointer;
   transition: all 0.3s;
   text-align: center;
-  min-width: 26px;
+  min-width: 20px;
   color: #333;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   flex-shrink: 0;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,6 +272,8 @@
 .sizeOption.active {
   background: #9f0909;
   color: white;
+  width: 18px;
+  height: 18px;
 }
 
 
