@@ -3,7 +3,7 @@ import { Product } from '../types';
 export const products: Product[] = [
   {
     id: 1,
-    name: "BLOUSON EFFET CIRE",
+    name: "VESTE JANÉ",
     price: "890,00 EUR",
     image: "/images/collection/IMG_2864.jpeg",
     images: [

@@ -166,19 +166,19 @@ export default function ProductDetail() {
 
             <div className={styles.measurementGuide}>
               <h4>COMMENT PRENDRE LES MESURES ?</h4>
-              <p><strong>POITRINE :</strong> PASSER LE RUBAN DANS LE DOS, SOUS LES BRAS ET SUR LA PARTIE LA PLUS LARGE DE LA POITRINE.</p>
-              <p><strong>TAILLE :</strong> MESURER AUTOUR DE LA PARTIE LA PLUS ÉTROITE DE LA TAILLE, LE RUBAN DOIT ÊTRE AJUSTÉ SANS ÊTRE TROP SERRÉ.</p>
-              <p><strong>HANCHES :</strong> MESURER AUTOUR DE LA PARTIE LA PLUS FORTE DES HANCHES.</p>
+              <p><strong>Poitrine :</strong> Passer le ruban dans le dos, sous les bras et sur la partie la plus large de la poitrine.</p>
+              <p><strong>Taille :</strong> Mesurer autour de la partie la plus étroite de la taille, le ruban doit être ajusté sans être trop serré.</p>
+              <p><strong>Hanches :</strong> Mesurer autour de la partie la plus forte des hanches.</p>
               
               <p className={styles.measurementNote}>
-                SELON LES COUPES, DE LÉGÈRES DIFFÉRENCES DE MESURES POURRAIENT SE VÉRIFIER.
+                Selon les coupes, de légères différences de mesures pourraient se vérifier.
               </p>
             </div>
 
             <div className={styles.customerService}>
               <h4>BESOIN DE CONSEIL ?</h4>
-              <p>LE SERVICE CLIENT EST OUVERT DU LUNDI AU SAMEDI, DE 10H À 18H, HEURE DE PARIS.</p>
-              <p>NOTRE ÉQUIPE DE CONSEILLERS EST JOIGNABLE AU NUMÉRO SUIVANT POUR VOUS ASSISTER : <strong>+33 1 23 45 67 89</strong></p>
+              <p>Le service client est ouvert du lundi au samedi, de 10h à 18h, heure de Paris.</p>
+              <p>Notre équipe de conseillers est joignable au numéro suivant pour vous assister : <strong>+33 1 23 45 67 89</strong></p>
             </div>
           </div>
         );
