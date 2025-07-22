@@ -98,13 +98,16 @@
 
 
 .productTitle {
-  font-size: 1.875rem;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
   font-weight: 300;
   letter-spacing: 1px;
   color: #000;
   line-height: 1.2;
   margin: 0 0 8px 0;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .productPrice {
@@ -166,8 +169,8 @@
 }
 
 .colorSwatch {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border: 1px solid transparent;
   border-radius: 50%;
   cursor: pointer;
@@ -176,7 +179,11 @@
 }
 
 .colorSwatch.active {
-  border-color: #ff0000;
+  border-color: #000;
+}
+
+.colorSwatch.active[style*="#000"] {
+  border-color: #fff !important;
 }
 
 .colorSwatchYellow {
@@ -239,13 +246,13 @@
   cursor: pointer;
   transition: all 0.3s;
   text-align: center;
-  min-width: 32px;
+  min-width: 26px;
   color: #333;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   flex-shrink: 0;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -303,7 +310,7 @@
 
 .addToCartButton {
   width: 100%;
-  padding: 6px 20px;
+  padding: 4px 20px;
   background: white;
   border: 1px solid #000;
   font-size: 11px;
@@ -317,7 +324,7 @@
   justify-content: space-between;
   text-transform: none;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
-  min-height: 28px;
+  min-height: 24px;
   position: relative;
 }
 

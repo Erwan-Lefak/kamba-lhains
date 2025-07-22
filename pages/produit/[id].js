@@ -227,7 +227,14 @@ export default function ProductDetail() {
               <div className={styles.colorSection}>
                 <div className={styles.colorHeader}>
                   <div className={styles.colorLabel}>
-                    Couleur sélectionnée
+                    Couleur : {selectedColor === '#000000' ? 'Noir' : 
+                               selectedColor === '#FFFFFF' || selectedColor === '#ffffff' ? 'Blanc' : 
+                               selectedColor === '#8B7355' ? 'Beige' :
+                               selectedColor === '#F5E6A3' ? 'Jaune' :
+                               selectedColor === '#F4C2C2' ? 'Rose' :
+                               selectedColor === '#1E3A8A' ? 'Bleu' :
+                               selectedColor === '#F5F5DC' ? 'Crème' :
+                               selectedColor}
                   </div>
                   <div className={styles.seeAllColors}>Voir les couleurs</div>
                 </div>
@@ -239,7 +246,7 @@ export default function ProductDetail() {
                       style={{ 
                         backgroundColor: color,
                         ...(selectedColor === color && { 
-                          borderColor: '#ff0000' 
+                          borderColor: color.toLowerCase() === '#000000' || color.toLowerCase() === 'black' ? '#fff' : '#000' 
                         })
                       }}
                       onClick={() => setSelectedColor(color)}
@@ -279,7 +286,7 @@ export default function ProductDetail() {
                   >
                     -
                   </button>
-                  <span>AJOUTER AU PANIER{quantity > 1 ? ` (${quantity})` : ''}</span>
+                  <span>AJOUTER AU PANIER</span>
                   <button 
                     className={styles.quantityButtonInside}
                     onClick={(e) => {
@@ -287,7 +294,7 @@ export default function ProductDetail() {
                       setQuantity(quantity + 1);
                     }}
                   >
-                    +
+                    {quantity === 1 ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                   </button>
                 </button>
               </div>
