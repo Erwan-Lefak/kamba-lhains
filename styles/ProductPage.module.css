@@ -422,6 +422,8 @@
   height: var(--header-height);
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .modalTitle {
@@ -453,7 +455,7 @@
 
 .modalContent {
   padding: 40px;
-  font-size: 9px;
+  font-size: 10px;
   color: #333;
   line-height: 1.6;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
@@ -525,7 +527,7 @@
 }
 
 .unitOption {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
   color: #333;
   cursor: pointer;
@@ -562,7 +564,7 @@
 .sizeTable table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .sizeTable th {
@@ -570,7 +572,7 @@
   padding: 12px 8px;
   text-align: center;
   font-weight: 400;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.5px;
   color: #333;
   border: 1px solid #e5e5e5;
@@ -620,7 +622,7 @@
 }
 
 .measurementGuide p {
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.5;
   color: #333;
   margin-bottom: 10px;
@@ -651,7 +653,7 @@
 }
 
 .customerService p {
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.5;
   color: #333;
   margin-bottom: 8px;
