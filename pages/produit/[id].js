@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ProductCard from '../../components/ProductCard';
+import MobileCarousel from '../../components/MobileCarousel';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
 import { useFavorites } from '../../contexts/FavoritesContext';
@@ -323,53 +325,22 @@ export default function ProductDetail() {
         <section className={styles.completeYourLook}>
           <div className={styles.sectionContainer}>
             <h2 className={styles.sectionTitle}>Complétez votre look</h2>
+            {/* Desktop Grid */}
             <div className={styles.recommendedProducts}>
-              {/* Get other products excluding current one */}
               {products
                 .filter(p => p.id !== product.id)
                 .slice(0, 3)
                 .map((recommendedProduct) => (
-                  <div key={recommendedProduct.id} className={styles.recommendedProduct}>
-                    <Link href={`/produit/${recommendedProduct.id}`}>
-                      <div className={styles.productImageWrapper}>
-                        <img 
-                          src={recommendedProduct.image} 
-                          alt={recommendedProduct.name} 
-                          className={styles.recommendedProductImage}
-                        />
-                        <button 
-                          className={styles.recommendedFavoriteIcon}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (isFavorite(recommendedProduct.id)) {
-                              removeFromFavorites(recommendedProduct.id);
-                            } else {
-                              addToFavorites(recommendedProduct);
-                            }
-                          }}
-                          aria-label={isFavorite(recommendedProduct.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
-                        >
-                          <span className={`u-w-full ${isFavorite(recommendedProduct.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
-                            <svg className="c-icon" data-size="sm">
-                              <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
-                            </svg>
-                          </span>
-                          <span className={`u-w-full ${!isFavorite(recommendedProduct.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
-                            <svg className="c-icon" data-size="sm">
-                              <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
-                            </svg>
-                          </span>
-                        </button>
-                        <div className={styles.productOverlay}>
-                          <div className={styles.productName}>{recommendedProduct.name}</div>
-                          <div className={styles.productPrice}>{recommendedProduct.price}</div>
-                        </div>
-                      </div>
-                    </Link>
+                  <div key={recommendedProduct.id} className={styles.productSlot}>
+                    <ProductCard product={recommendedProduct} />
                   </div>
                 ))
               }
+            </div>
+            
+            {/* Mobile Carousel */}
+            <div className={styles.mobileRecommendedCarousel}>
+              <MobileCarousel products={products.filter(p => p.id !== product.id).slice(0, 3)} />
             </div>
           </div>
         </section>

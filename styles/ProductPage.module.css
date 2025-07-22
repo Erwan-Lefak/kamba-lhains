@@ -496,6 +496,18 @@
   width: fit-content;
 }
 
+.mobileRecommendedCarousel {
+  display: none;
+}
+
+.productSlot {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
 .recommendedProduct {
   position: relative;
   display: block;
@@ -659,9 +671,10 @@
   }
 
   .tab {
-    min-width: 50%;
+    flex: 1;
     padding: 15px 10px;
     font-size: 12px;
+    text-align: center;
   }
 
   .sizeGrid {
@@ -686,8 +699,11 @@
   }
 
   .recommendedProducts {
-    grid-template-columns: 1fr;
-    gap: 0;
+    display: none;
+  }
+
+  .mobileRecommendedCarousel {
+    display: block;
   }
 
   .sectionContainer {
