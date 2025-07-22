@@ -380,7 +380,7 @@ export default function ProductDetail() {
         {/* Complete Your Look Section */}
         <section className={styles.completeYourLook}>
           <div className={styles.sectionContainer}>
-            <h2 className={styles.sectionTitle}>Complétez votre look</h2>
+            <h2 className={styles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
           </div>
           
           {/* Three Products Grid Section - Using Homepage Style */}
