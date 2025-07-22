@@ -23,7 +23,15 @@
   margin: 0;
   width: 100%;
   display: block;
-  overflow: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - var(--header-height));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.productImageSection::-webkit-scrollbar {
+  display: none;
 }
 
 .imageStack {
@@ -77,8 +85,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
+  height: calc(100vh - var(--header-height));
 }
 
 .productMainContent {
@@ -88,17 +98,15 @@
   justify-content: center;
   align-items: flex-start;
   text-align: left;
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
-  height: fit-content;
-  max-height: 80vh;
-  z-index: 5;
+  position: static;
+  width: max-content;
+  min-width: 100%;
+  flex-grow: 1;
 }
 
 
 .productTitle {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-size: clamp(0.8rem, 5vw, 1.5rem);
   font-weight: 300;
   letter-spacing: 1px;
   color: #000;
@@ -106,8 +114,10 @@
   margin: 0 0 8px 0;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  width: max-content;
+  min-width: 100%;
+  display: block;
 }
 
 .productPrice {
@@ -171,7 +181,7 @@
 .colorSwatch {
   width: 20px;
   height: 20px;
-  border: 1px solid transparent;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
@@ -179,11 +189,8 @@
 }
 
 .colorSwatch.active {
-  border-color: #000;
-}
-
-.colorSwatch.active[style*="#000"] {
-  border-color: #fff !important;
+  width: 18px;
+  height: 18px;
 }
 
 .colorSwatchYellow {
@@ -240,7 +247,7 @@
 
 .sizeOption {
   padding: 0;
-  border: 1px solid #ddd;
+  border: none;
   background: white;
   font-size: 11px;
   cursor: pointer;
@@ -260,14 +267,9 @@
   padding-bottom: 2px;
 }
 
-.sizeOption:hover {
-  border-color: #000;
-}
-
 .sizeOption.active {
   background: #ff0000;
   color: white;
-  border-color: #ff0000;
 }
 
 
@@ -309,7 +311,8 @@
 }
 
 .addToCartButton {
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   padding: 4px 20px;
   background: white;
   border: 1px solid #000;

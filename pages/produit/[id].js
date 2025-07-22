@@ -219,9 +219,6 @@ export default function ProductDetail() {
               <h1 className={styles.productTitle}>{product.name}</h1>
               <span className={styles.productPrice}>{product.price}</span>
               
-              <p className={styles.productDescription}>
-                {product.category === 'femme' ? 'Robe boutonnée en maille' : 'Veste non doublée en lin'}
-              </p>
 
               {/* Color Selector */}
               <div className={styles.colorSection}>
@@ -236,7 +233,6 @@ export default function ProductDetail() {
                                selectedColor === '#F5F5DC' ? 'Crème' :
                                selectedColor}
                   </div>
-                  <div className={styles.seeAllColors}>Voir les couleurs</div>
                 </div>
                 <div className={styles.colorOptions}>
                   {product.colors.map((color, index) => (
@@ -244,10 +240,7 @@ export default function ProductDetail() {
                       key={index}
                       className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
                       style={{ 
-                        backgroundColor: color,
-                        ...(selectedColor === color && { 
-                          borderColor: color.toLowerCase() === '#000000' || color.toLowerCase() === 'black' ? '#fff' : '#000' 
-                        })
+                        backgroundColor: color
                       }}
                       onClick={() => setSelectedColor(color)}
                     />
@@ -259,7 +252,6 @@ export default function ProductDetail() {
               <div className={styles.sizeSection}>
                 <div className={styles.sizeHeader}>
                   <div className={styles.sizeLabel}>Taille</div>
-                  <div className={styles.sizeGuide}>Guide des tailles</div>
                 </div>
                 <div className={styles.sizeGrid}>
                   {product.sizes.map((size, index) => (

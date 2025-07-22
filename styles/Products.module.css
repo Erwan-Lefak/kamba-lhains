@@ -179,9 +179,9 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  border: 1px solid transparent;
+  border: none;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .colorSwatch:hover {
@@ -189,11 +189,8 @@
 }
 
 .colorSwatch.active {
-  border-color: #000;
-}
-
-.colorSwatch.active[style*="#000"] {
-  border-color: #fff !important;
+  width: 12px;
+  height: 12px;
 }
 
 

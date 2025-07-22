@@ -213,9 +213,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                       className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
                       style={{ 
                         backgroundColor: color.toLowerCase(),
-                        ...(selectedColor === color && { 
-                          borderColor: color.toLowerCase() === '#000000' || color.toLowerCase() === 'black' ? '#fff' : '#000' 
-                        })
                       }}
                       title={color}
                       onClick={(e) => handleColorClick(e, color)}
