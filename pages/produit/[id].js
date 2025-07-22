@@ -23,6 +23,7 @@ export default function ProductDetail() {
   const [selectedUnit, setSelectedUnit] = useState('cm');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [openCategories, setOpenCategories] = useState({});
 
   useEffect(() => {
     if (id) {
@@ -79,11 +80,35 @@ export default function ProductDetail() {
     setSelectedUnit(unit);
   };
 
+  const getCategoryName = (subCategory) => {
+    switch(subCategory) {
+      case 'aube': return 'Aube';
+      case 'zenith': return 'Zénith';
+      case 'crepuscule': return 'Crépuscule';
+      default: return subCategory;
+    }
+  };
+
+  const getSubCategoryName = (productName) => {
+    if (productName.toLowerCase().includes('veste')) return 'Veste';
+    if (productName.toLowerCase().includes('jean')) return 'Jean';
+    if (productName.toLowerCase().includes('chemise')) return 'Chemise';
+    return 'Produit';
+  };
+
+  const toggleCategory = (categoryName) => {
+    setOpenCategories(prev => ({
+      ...prev,
+      [categoryName]: !prev[categoryName]
+    }));
+  };
+
   const getModalTitle = () => {
     switch (modalContent) {
       case 'description': return 'Description';
       case 'sizeGuide': return 'Guide des tailles';
       case 'careGuide': return 'Guide d\'entretien';
+      case 'categories': return 'Catégories';
       default: return '';
     }
   };
@@ -194,6 +219,35 @@ export default function ProductDetail() {
             </ul>
           </div>
         );
+      case 'categories':
+        const categories = ['Aube', 'Zénith', 'Crépuscule'];
+        const subCategories = ['T-Shirt', 'Pull', 'Pantalon', 'Jean', 'Short', 'Veste', 'Chemise'];
+        
+        return (
+          <div>
+            <div className={styles.categoriesList}>
+              {categories.map((category, index) => (
+                <div key={category} className={styles.categoryItem}>
+                  <div 
+                    className={styles.categoryHeader}
+                    onClick={() => toggleCategory(category)}
+                  >
+                    <h4>{category}</h4>
+                  </div>
+                  {openCategories[category] && (
+                    <div className={styles.subcategoriesList}>
+                      {subCategories.map((subcategory) => (
+                        <div key={subcategory} className={styles.subcategoryItem}>
+                          {subcategory}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
       default:
         return null;
     }
@@ -224,9 +278,19 @@ export default function ProductDetail() {
       <Header />
 
       <main className={styles.productPage}>
-        <div className={styles.productContainer}>
-          {/* Image Section - 60% */}
-          <div className={styles.productImageSection}>
+        {/* Fixed overlay elements */}
+        {product && (
+          <>
+            {/* Breadcrumb */}
+            <div className={styles.breadcrumb}>
+              <span onClick={() => openModal('categories')}>{getCategoryName(product.subCategory)}</span>
+              <span> - </span>
+              <span>{getSubCategoryName(product.name)}</span>
+              <span> - </span>
+              <span>{product.name}</span>
+            </div>
+            
+            {/* Heart Icon */}
             <button 
               className={`${styles.heartIcon} ${product && isFavorite(product.id) ? styles.liked : ''}`}
               onClick={handleHeartClick}
@@ -243,7 +307,12 @@ export default function ProductDetail() {
                 </svg>
               </span>
             </button>
+          </>
+        )}
 
+        <div className={styles.productContainer}>
+          {/* Image Section - 60% */}
+          <div className={styles.productImageSection}>
             {/* Vertical Image Stack */}
             <div className={styles.imageStack}>
               {product.images && product.images.length > 0 ? (
