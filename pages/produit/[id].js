@@ -58,12 +58,12 @@ export default function ProductDetail() {
   const openModal = (content) => {
     setModalContent(content);
     setModalOpen(true);
-    document.body.style.overflow = 'hidden';
+    // Pas de modification d'overflow pour éviter le shift de layout
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    document.body.style.overflow = 'unset';
+    // Pas de modification d'overflow pour éviter le shift de layout
   };
 
   const handleSizeSelect = (size) => {
