@@ -44,29 +44,40 @@ export default function Home() {
           const viewportCenter = viewportHeight / 2;
           const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           
-          if (sectionTop > viewportHeight) {
-            // Before section: text invisible
-            text.style.opacity = '0';
-          } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 100) {
-            // Phase 2: FIXED - text fixed in middle of screen
-            text.style.position = 'fixed';
-            text.style.top = 'unset';
-            text.style.bottom = `${viewportCenter}px`;
-            text.style.left = '20px';
-            text.style.opacity = '1';
-          } else {
-            // Phase 3: FINAL SCROLL - text at bottom of video
+          if (isMobile) {
+            // Mobile: Only phase 3, always visible when section is visible
             text.style.position = 'absolute';
             text.style.left = '14px';
             text.style.right = 'unset';
             text.style.top = 'unset';
-            text.style.bottom = isMobile ? '40px' : '60px';
+            text.style.bottom = '40px';
             text.style.opacity = '1';
-          }
-          
-          // Hide if section not visible
-          if (heroSectionRect.bottom < 0 || heroSectionRect.top > viewportHeight) {
-            text.style.opacity = '0';
+          } else {
+            // Desktop: Full phase behavior
+            if (sectionTop > viewportHeight) {
+              // Before section: text invisible
+              text.style.opacity = '0';
+            } else if (sectionTop <= viewportCenter - 50 && sectionBottom >= viewportCenter + 100) {
+              // Phase 2: FIXED - text fixed in middle of screen
+              text.style.position = 'fixed';
+              text.style.top = 'unset';
+              text.style.bottom = `${viewportCenter}px`;
+              text.style.left = '20px';
+              text.style.opacity = '1';
+            } else {
+              // Phase 3: FINAL SCROLL - text at bottom of video
+              text.style.position = 'absolute';
+              text.style.left = '14px';
+              text.style.right = 'unset';
+              text.style.top = 'unset';
+              text.style.bottom = '60px';
+              text.style.opacity = '1';
+            }
+            
+            // Hide if section not visible
+            if (heroSectionRect.bottom < 0 || heroSectionRect.top > viewportHeight) {
+              text.style.opacity = '0';
+            }
           }
         });
         
