@@ -425,8 +425,12 @@ export default function ProductDetail() {
         <section className={styles.completeYourLook}>
           <div className={styles.sectionContainer}>
             <h2 className={styles.sectionTitle}>Complétez votre look</h2>
+          </div>
+          
+          {/* Three Products Grid Section - Using Homepage Style */}
+          <section className={styles.threeProductsSection}>
             {/* Desktop Grid */}
-            <div className={styles.recommendedProducts}>
+            <div className={styles.threeProductsGrid}>
               {products
                 .filter(p => p.id !== product.id)
                 .slice(0, 3)
@@ -439,10 +443,10 @@ export default function ProductDetail() {
             </div>
             
             {/* Mobile Carousel */}
-            <div className={styles.mobileRecommendedCarousel}>
+            <div className={styles.mobileCarousel}>
               <MobileCarousel products={products.filter(p => p.id !== product.id).slice(0, 3)} />
             </div>
-          </div>
+          </section>
         </section>
 
         {/* Modal Overlay */}
