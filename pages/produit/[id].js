@@ -93,14 +93,12 @@ export default function ProductDetail() {
       case 'description':
         return (
           <div>
-            <h3>Composition et entretien</h3>
+            <h3>Composition</h3>
             <ul>
               {product.description.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
-            <h3>Modèle</h3>
-            <p>Le modèle mesure 1m75 et porte une taille {product.sizes[1] || product.sizes[0]}</p>
           </div>
         );
       case 'sizeGuide':
@@ -185,10 +183,15 @@ export default function ProductDetail() {
       case 'careGuide':
         return (
           <div>
-            <h3>Conseils d'entretien</h3>
-            <p>Lavage à la main recommandé</p>
-            <p>Séchage à plat, à l'abri de la lumière directe</p>
-            <p>Repassage à température moyenne</p>
+            <h3>Composition et entretien</h3>
+            <ul>
+              <li>100% coton recyclé.</li>
+              <li>Lavage délicat à 30°C.</li>
+              <li>Pas de blanchiment.</li>
+              <li>Repassage à basse température sans vapeur.</li>
+              <li>Nettoyage à sec possible.</li>
+              <li>Ne pas sécher en machine.</li>
+            </ul>
           </div>
         );
       default:

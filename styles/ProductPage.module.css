@@ -475,8 +475,8 @@
 }
 
 .modalContent ul {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding-left: 20px;
 }
 
 .modalContent li {

@@ -18,11 +18,12 @@ export const products: Product[] = [
       "/images/collection/IMG_2869.jpeg"
     ],
     description: [
-      "• Blouson en coton effet ciré",
-      "• Coupe moderne et ajustée",
-      "• Fermeture éclair contrastante",
-      "• Poches fonctionnelles",
-      "• Finitions soignées"
+      "Veste en coton recyclé à coupe classique",
+      "Col chemise sans pied, fermeture à 6 boutons clous",
+      "Manches longues, poignets fendus avec boutons clous",
+      "Quatre poches plissées doublées à rabats, huit boutons pressions sur le devant",
+      "Empiècement vertical et plis au dos",
+      "Confection française"
     ],
     category: "femme",
     subCategory: "aube",
