@@ -168,15 +168,15 @@
 .colorSwatch {
   width: 30px;
   height: 30px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
 }
 
 .colorSwatch.active {
-  border-color: #000;
-  box-shadow: 0 0 0 1px #000;
+  border-color: #ff0000;
 }
 
 .colorSwatchYellow {
@@ -232,7 +232,7 @@
 }
 
 .sizeOption {
-  padding: 8px 10px;
+  padding: 0;
   border: 1px solid #ddd;
   background: white;
   font-size: 11px;
@@ -243,6 +243,14 @@
   color: #333;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
   flex-shrink: 0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding-bottom: 2px;
 }
 
 .sizeOption:hover {
@@ -250,9 +258,9 @@
 }
 
 .sizeOption.active {
-  background: #000;
+  background: #ff0000;
   color: white;
-  border-color: #000;
+  border-color: #ff0000;
 }
 
 
@@ -273,9 +281,29 @@
   width: 100%;
 }
 
+.quantityButtonInside {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  padding: 8px 12px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  box-shadow: none;
+  position: relative;
+}
+
+.quantityButtonInside:hover {
+  opacity: 0.7;
+}
+
 .addToCartButton {
   width: 100%;
-  padding: 16px 20px;
+  padding: 6px 20px;
   background: white;
   border: 1px solid #000;
   font-size: 11px;
@@ -286,10 +314,11 @@
   color: #000;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-transform: none;
   font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
-  min-height: 50px;
+  min-height: 28px;
+  position: relative;
 }
 
 .addToCartButton:hover {

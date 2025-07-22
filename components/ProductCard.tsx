@@ -25,6 +25,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [containerX, setContainerX] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   
+  
   // Créer un tableau infini : [dernière, ...images, première]
   const infiniteImages = hasMultipleImages 
     ? [availableImages[availableImages.length - 1], ...availableImages, availableImages[0]]
@@ -209,8 +210,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                   {product.colors.map((color, index) => (
                     <motion.div 
                       key={index}
-                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.selected : ''}`}
-                      style={{ backgroundColor: color.toLowerCase() }}
+                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
+                      style={{ 
+                        backgroundColor: color.toLowerCase(),
+                        ...(selectedColor === color && { 
+                          borderColor: '#ff0000' 
+                        })
+                      }}
                       title={color}
                       onClick={(e) => handleColorClick(e, color)}
                       initial={{ x: -20, opacity: 0 }}

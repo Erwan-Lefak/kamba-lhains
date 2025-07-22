@@ -19,6 +19,7 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (id) {
@@ -37,7 +38,7 @@ export default function ProductDetail() {
       return;
     }
     
-    addToCart(product, selectedSize, selectedColor, 1);
+    addToCart(product, selectedSize, selectedColor, quantity);
     alert(`${product.name} ajouté au panier !`);
   };
 
@@ -136,6 +137,7 @@ export default function ProductDetail() {
     }
   };
 
+
   if (!product) {
     return (
       <>
@@ -232,7 +234,12 @@ export default function ProductDetail() {
                     <div
                       key={index}
                       className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
-                      style={{ backgroundColor: color }}
+                      style={{ 
+                        backgroundColor: color,
+                        ...(selectedColor === color && { 
+                          borderColor: '#ff0000' 
+                        })
+                      }}
                       onClick={() => setSelectedColor(color)}
                     />
                   ))}
@@ -258,10 +265,28 @@ export default function ProductDetail() {
                 </div>
               </div>
 
-              {/* Add to Cart Button */}
+              {/* Add to Cart Button with Quantity */}
               <div className={styles.addToCartSection}>
                 <button className={styles.addToCartButton} onClick={handleAddToCart}>
-                  <span>AJOUTER AU PANIER</span>
+                  <button 
+                    className={styles.quantityButtonInside}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setQuantity(Math.max(1, quantity - 1));
+                    }}
+                  >
+                    -
+                  </button>
+                  <span>AJOUTER AU PANIER{quantity > 1 ? ` (${quantity})` : ''}</span>
+                  <button 
+                    className={styles.quantityButtonInside}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setQuantity(quantity + 1);
+                    }}
+                  >
+                    +
+                  </button>
                 </button>
               </div>
             </div>
