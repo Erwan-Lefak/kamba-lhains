@@ -42,7 +42,7 @@ export default function Home() {
           const sectionTop = heroSectionRect.top;
           const sectionBottom = heroSectionRect.bottom;
           const viewportCenter = viewportHeight / 2;
-          const isMobile = window.innerWidth <= 768;
+          const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           
           if (sectionTop > viewportHeight) {
             // Before section: text invisible
@@ -52,12 +52,12 @@ export default function Home() {
             text.style.position = 'fixed';
             text.style.top = 'unset';
             text.style.bottom = `${viewportCenter}px`;
-            text.style.left = isMobile ? '10px' : '20px';
+            text.style.left = '20px';
             text.style.opacity = '1';
           } else {
             // Phase 3: FINAL SCROLL - text at bottom of video
             text.style.position = 'absolute';
-            text.style.left = isMobile ? '14px' : '14px';
+            text.style.left = '14px';
             text.style.right = 'unset';
             text.style.top = 'unset';
             text.style.bottom = isMobile ? '40px' : '60px';
@@ -74,7 +74,7 @@ export default function Home() {
         heroStickyTextsPhase1.forEach((text, index) => {
           const sectionTop = heroSectionRect.top;
           const viewportCenter = viewportHeight / 2;
-          const isMobile = window.innerWidth <= 768;
+          const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           const container = text.parentElement as HTMLElement;
           
           if (sectionTop > viewportCenter - 50) {
@@ -105,7 +105,7 @@ export default function Home() {
           const sectionTop = sectionRect.top;
           const sectionBottom = sectionRect.bottom;
           const viewportCenter = viewportHeight / 2;
-          const isMobile = window.innerWidth <= 768;
+          const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           
           // Position du texte pour les phases 0 et 1
           const textPositionPhase0 = imageRect.top + 30;
@@ -157,7 +157,7 @@ export default function Home() {
         stickyTextsPhase1.forEach((text, index) => {
           const sectionTop = sectionRect.top;
           const viewportCenter = viewportHeight / 2;
-          const isMobile = window.innerWidth <= 768;
+          const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
           const container = text.parentElement as HTMLElement; // Le conteneur parent
           
           if (sectionTop > viewportCenter - 50) {
