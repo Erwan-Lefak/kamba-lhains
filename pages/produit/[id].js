@@ -30,7 +30,7 @@ export default function ProductDetail() {
       if (foundProduct) {
         setProduct(foundProduct);
         setSelectedColor(foundProduct.colors[0]);
-        setSelectedSize(foundProduct.sizes[0]);
+        // Pas de sélection automatique de taille - l'utilisateur doit choisir
       }
     }
   }, [id]);
