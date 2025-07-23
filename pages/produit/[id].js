@@ -21,7 +21,8 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [selectedUnit, setSelectedUnit] = useState('cm');
-  const [modalOpen, setModalOpen] = useState(false);
+  const [leftModalOpen, setLeftModalOpen] = useState(false);
+  const [rightModalOpen, setRightModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
   const [openCategories, setOpenCategories] = useState({});
 
@@ -58,12 +59,21 @@ export default function ProductDetail() {
 
   const openModal = (content) => {
     setModalContent(content);
-    setModalOpen(true);
+    
+    // Fermer l'autre modal d'abord
+    if (content === 'categories') {
+      setRightModalOpen(false);
+      setLeftModalOpen(true);
+    } else {
+      setLeftModalOpen(false);
+      setRightModalOpen(true);
+    }
     // Pas de modification d'overflow pour éviter le shift de layout
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    setLeftModalOpen(false);
+    setRightModalOpen(false);
     // Pas de modification d'overflow pour éviter le shift de layout
   };
 
@@ -220,19 +230,32 @@ export default function ProductDetail() {
           </div>
         );
       case 'categories':
-        const categories = ['Aube', 'Zénith', 'Crépuscule'];
-        const subCategories = ['T-Shirt', 'Pull', 'Pantalon', 'Jean', 'Short', 'Veste', 'Chemise'];
+        const mainCategories = ['Aube', 'Zénith', 'Crépuscule'];
+        const subCategories = ['Denim', 'T-Shirt', 'Sweat-shirt', 'Sweatpants', 'Baggy Jeans', 'Short', 'Pantalon Cargo', 'Veste en Jeans', 'Underwear'];
         
         return (
           <div>
             <div className={styles.categoriesList}>
-              {categories.map((category, index) => (
+              {/* Lien "Tous" simple */}
+              <div className={styles.categoryItem}>
+                <Link href="/tous-les-produits" className={styles.allProductsLink}>
+                  <h4>Tous</h4>
+                </Link>
+              </div>
+
+              {/* Catégories principales avec sous-catégories */}
+              {mainCategories.map((category, index) => (
                 <div key={category} className={styles.categoryItem}>
                   <div 
                     className={styles.categoryHeader}
                     onClick={() => toggleCategory(category)}
                   >
                     <h4>{category}</h4>
+                    <span className={`${styles.categoryArrow} ${openCategories[category] ? styles.open : ''}`}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </span>
                   </div>
                   {openCategories[category] && (
                     <div className={styles.subcategoriesList}>
@@ -283,11 +306,11 @@ export default function ProductDetail() {
           <>
             {/* Breadcrumb */}
             <div className={styles.breadcrumb}>
-              <span onClick={() => openModal('categories')}>{getCategoryName(product.subCategory)}</span>
+              <span onClick={() => openModal('categories')}>Aube</span>
               <span> - </span>
-              <span>{getSubCategoryName(product.name)}</span>
+              <span>Denim</span>
               <span> - </span>
-              <span>{product.name}</span>
+              <span>Veste</span>
             </div>
             
             {/* Heart Icon */}
@@ -476,12 +499,25 @@ export default function ProductDetail() {
 
         {/* Modal Overlay */}
         <div 
-          className={`${styles.modalOverlay} ${modalOpen ? styles.open : ''}`}
+          className={`${styles.modalOverlay} ${(leftModalOpen || rightModalOpen) ? styles.open : ''}`}
           onClick={closeModal}
         />
 
-        {/* Sliding Modal */}
-        <div className={`${styles.slidingModal} ${modalOpen ? styles.open : ''}`}>
+        {/* Left Modal (Categories) */}
+        <div className={`${styles.slidingModal} ${leftModalOpen ? styles.open : ''}`}>
+          <div className={styles.modalHeader}>
+            <h2 className={styles.modalTitle}>{getModalTitle()}</h2>
+            <button className={styles.closeButton} onClick={closeModal}>
+              ×
+            </button>
+          </div>
+          <div className={styles.modalContent}>
+            {renderModalContent()}
+          </div>
+        </div>
+
+        {/* Right Modal (Description, Size Guide, Care Guide) */}
+        <div className={`${styles.slidingModal} ${styles.rightModal} ${rightModalOpen ? styles.open : ''}`}>
           <div className={styles.modalHeader}>
             <h2 className={styles.modalTitle}>{getModalTitle()}</h2>
             <button className={styles.closeButton} onClick={closeModal}>
