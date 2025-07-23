@@ -6,6 +6,8 @@ import '../styles/globals.css';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { CartProvider } from '../contexts/CartContext';
 import { FavoritesProvider } from '../contexts/FavoritesContext';
+import { CategoriesModalProvider } from '../contexts/CategoriesModalContext';
+import GlobalCategoriesModal from '../components/GlobalCategoriesModal';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 interface MyAppProps extends AppProps {
@@ -41,7 +43,10 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
           <LanguageProvider>
             <CartProvider>
               <FavoritesProvider>
-                <Component {...pageProps} />
+                <CategoriesModalProvider>
+                  <Component {...pageProps} />
+                  <GlobalCategoriesModal />
+                </CategoriesModalProvider>
               </FavoritesProvider>
             </CartProvider>
           </LanguageProvider>

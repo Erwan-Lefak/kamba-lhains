@@ -84,6 +84,20 @@
   color: #9f0909;
 }
 
+.breadcrumbLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumbLink span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbLink:hover span {
+  color: #9f0909;
+}
+
 .heartIcon {
   position: fixed;
   top: calc(var(--header-height) + 30px);
@@ -826,6 +840,8 @@
   cursor: pointer;
   transition: color 0.3s ease;
   text-transform: none !important;
+  text-decoration: none;
+  display: block;
 }
 
 .subcategoryItem:hover {

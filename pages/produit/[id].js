@@ -9,6 +9,7 @@ import MobileCarousel from '../../components/MobileCarousel';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
 import { useFavorites } from '../../contexts/FavoritesContext';
+import { useCategoriesModal } from '../../contexts/CategoriesModalContext';
 import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
@@ -16,15 +17,14 @@ export default function ProductDetail() {
   const { id } = router.query;
   const { addToCart } = useCart();
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const { openModal: openCategoriesModal } = useCategoriesModal();
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [selectedUnit, setSelectedUnit] = useState('cm');
-  const [leftModalOpen, setLeftModalOpen] = useState(false);
   const [rightModalOpen, setRightModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
-  const [openCategories, setOpenCategories] = useState({});
 
   useEffect(() => {
     if (id) {
@@ -58,21 +58,16 @@ export default function ProductDetail() {
   };
 
   const openModal = (content) => {
-    setModalContent(content);
-    
-    // Fermer l'autre modal d'abord
     if (content === 'categories') {
-      setRightModalOpen(false);
-      setLeftModalOpen(true);
+      openCategoriesModal('Aube');
     } else {
-      setLeftModalOpen(false);
+      setModalContent(content);
       setRightModalOpen(true);
     }
     // Pas de modification d'overflow pour éviter le shift de layout
   };
 
   const closeModal = () => {
-    setLeftModalOpen(false);
     setRightModalOpen(false);
     // Pas de modification d'overflow pour éviter le shift de layout
   };
@@ -106,19 +101,12 @@ export default function ProductDetail() {
     return 'Produit';
   };
 
-  const toggleCategory = (categoryName) => {
-    setOpenCategories(prev => ({
-      ...prev,
-      [categoryName]: !prev[categoryName]
-    }));
-  };
 
   const getModalTitle = () => {
     switch (modalContent) {
       case 'description': return 'Description';
       case 'sizeGuide': return 'Guide des tailles';
       case 'careGuide': return 'Guide d\'entretien';
-      case 'categories': return 'Catégories';
       default: return '';
     }
   };
@@ -229,48 +217,6 @@ export default function ProductDetail() {
             </ul>
           </div>
         );
-      case 'categories':
-        const mainCategories = ['Aube', 'Zénith', 'Crépuscule'];
-        const subCategories = ['Denim', 'T-Shirt', 'Sweat-shirt', 'Sweatpants', 'Baggy Jeans', 'Short', 'Pantalon Cargo', 'Veste en Jeans', 'Underwear'];
-        
-        return (
-          <div>
-            <div className={styles.categoriesList}>
-              {/* Lien "Tous" simple */}
-              <div className={styles.categoryItem}>
-                <Link href="/tous-les-produits" className={styles.allProductsLink}>
-                  <h4>Tous</h4>
-                </Link>
-              </div>
-
-              {/* Catégories principales avec sous-catégories */}
-              {mainCategories.map((category, index) => (
-                <div key={category} className={styles.categoryItem}>
-                  <div 
-                    className={styles.categoryHeader}
-                    onClick={() => toggleCategory(category)}
-                  >
-                    <h4>{category}</h4>
-                    <span className={`${styles.categoryArrow} ${openCategories[category] ? styles.open : ''}`}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </span>
-                  </div>
-                  {openCategories[category] && (
-                    <div className={styles.subcategoriesList}>
-                      {subCategories.map((subcategory) => (
-                        <div key={subcategory} className={styles.subcategoryItem}>
-                          {subcategory}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        );
       default:
         return null;
     }
@@ -306,11 +252,15 @@ export default function ProductDetail() {
           <>
             {/* Breadcrumb */}
             <div className={styles.breadcrumb}>
-              <span onClick={() => openModal('categories')}>Aube</span>
+              <span onClick={() => openCategoriesModal('Aube')}>Aube</span>
               <span> - </span>
-              <span>Denim</span>
+              <Link href="/denim" className={styles.breadcrumbLink}>
+                <span>Denim</span>
+              </Link>
               <span> - </span>
-              <span>Veste</span>
+              <Link href="/veste" className={styles.breadcrumbLink}>
+                <span>Veste</span>
+              </Link>
             </div>
             
             {/* Heart Icon */}
@@ -499,22 +449,9 @@ export default function ProductDetail() {
 
         {/* Modal Overlay */}
         <div 
-          className={`${styles.modalOverlay} ${(leftModalOpen || rightModalOpen) ? styles.open : ''}`}
+          className={`${styles.modalOverlay} ${rightModalOpen ? styles.open : ''}`}
           onClick={closeModal}
         />
-
-        {/* Left Modal (Categories) */}
-        <div className={`${styles.slidingModal} ${leftModalOpen ? styles.open : ''}`}>
-          <div className={styles.modalHeader}>
-            <h2 className={styles.modalTitle}>{getModalTitle()}</h2>
-            <button className={styles.closeButton} onClick={closeModal}>
-              ×
-            </button>
-          </div>
-          <div className={styles.modalContent}>
-            {renderModalContent()}
-          </div>
-        </div>
 
         {/* Right Modal (Description, Size Guide, Care Guide) */}
         <div className={`${styles.slidingModal} ${styles.rightModal} ${rightModalOpen ? styles.open : ''}`}>
