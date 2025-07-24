@@ -79,7 +79,7 @@
 .textSection {
   width: 300px;
   background: white;
-  padding: 120px 30px 40px 30px;
+  padding: 140px 30px 40px 30px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -138,6 +138,7 @@
   height: auto;
   position: relative;
   overflow: hidden;
+  padding-top: 20px;
 }
 
 .collectionVideo {
