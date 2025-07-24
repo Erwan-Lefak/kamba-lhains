@@ -29,7 +29,7 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
   const touchStartX = useRef(0);
   const touchCurrentX = useRef(0);
   const isDragging = useRef(false);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
   
   
   // Créer un tableau infini : [dernière, ...images, première]
