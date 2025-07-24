@@ -9,7 +9,6 @@ import MobileCarousel from '../../components/MobileCarousel';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
 import { useFavorites } from '../../contexts/FavoritesContext';
-import { useCategoriesModal } from '../../contexts/CategoriesModalContext';
 import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
@@ -17,7 +16,6 @@ export default function ProductDetail() {
   const { id } = router.query;
   const { addToCart } = useCart();
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
-  const { openModal: openCategoriesModal } = useCategoriesModal();
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -58,12 +56,8 @@ export default function ProductDetail() {
   };
 
   const openModal = (content) => {
-    if (content === 'categories') {
-      openCategoriesModal('Aube');
-    } else {
-      setModalContent(content);
-      setRightModalOpen(true);
-    }
+    setModalContent(content);
+    setRightModalOpen(true);
     // Pas de modification d'overflow pour éviter le shift de layout
   };
 
@@ -252,7 +246,9 @@ export default function ProductDetail() {
           <>
             {/* Breadcrumb */}
             <div className={styles.breadcrumb}>
-              <span onClick={() => openCategoriesModal('Aube')}>Aube</span>
+              <Link href="/aube" className={styles.breadcrumbLink}>
+                <span>Aube</span>
+              </Link>
               <span> - </span>
               <Link href="/denim" className={styles.breadcrumbLink}>
                 <span>Denim</span>
