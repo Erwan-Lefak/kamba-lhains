@@ -5,11 +5,17 @@ export const products: Product[] = [
     id: 1,
     name: "VESTE JANÉ",
     price: "890,00 EUR",
-    image: "/images/collection/IMG_3031.jpeg",
+    image: "/images/collection/IMG_2864.jpeg",
     images: [
-      "/images/collection/IMG_3031.jpeg",
-      "/images/collection/IMG_3033.jpeg",
-      "/images/collection/IMG_3034.jpeg"
+      "/images/collection/IMG_2864.jpeg",
+      "/images/collection/IMG_2865.jpeg",
+      "/images/collection/IMG_2871.jpeg",
+      "/images/collection/IMG_2866.jpeg",
+      "/images/collection/IMG_2868.jpeg",
+      "/images/collection/IMG_2872.jpeg",
+      "/images/collection/IMG_2870.jpeg",
+      "/images/collection/IMG_2867.jpeg",
+      "/images/collection/IMG_2869.jpeg"
     ],
     description: [
       "Veste en coton recyclé à coupe classique",
