@@ -267,9 +267,9 @@ export default function NouvelleCollection() {
         <section className={styles.gallerySection}>
           <div className={styles.galleryGrid}>
             {[
-              'IMG_2758.jpg', 'IMG_2785.jpeg', 'IMG_2796.jpeg', 'IMG_2797.jpeg',
-              'IMG_2798.jpeg', 'IMG_2799.jpeg', 'IMG_2864.jpeg', 'IMG_2865.jpeg', 
-              'IMG_2866.jpeg', 'IMG_2867.jpeg', 'IMG_2868.jpeg', 'IMG_2869.jpeg'
+              'IMG_2917.jpeg', 'IMG_2918.jpeg', 'IMG_2919.jpeg', 'IMG_2920.jpeg',
+              'IMG_2921.jpeg', 'IMG_2922.jpeg', 'IMG_2923.jpeg', 'IMG_2924.jpeg', 
+              'IMG_2925.jpeg', 'IMG_2926.jpeg', 'IMG_2864.jpeg', 'IMG_2877.jpeg'
             ].map((imageName, index) => (
               <div key={index} className={styles.gallerySlot}>
                 <img 
