@@ -134,12 +134,13 @@ export default function NouvelleCollection() {
               style={{ 
                 fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
                 fontSize: '11px',
-                fontWeight: 400,
+                fontWeight: 700,
                 color: '#000000',
                 textShadow: 'none',
                 boxShadow: 'none',
                 textTransform: 'uppercase',
-                marginBottom: '15px'
+                marginBottom: '15px',
+                textAlign: 'center'
               }}
             >
               "ÉCLAT D'OMBRE"
