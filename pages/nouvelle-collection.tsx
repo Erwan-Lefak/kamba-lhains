@@ -133,7 +133,7 @@ export default function NouvelleCollection() {
             <h1 
               style={{ 
                 fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                fontSize: '11px',
+                fontSize: '13px',
                 fontWeight: 700,
                 color: '#000000',
                 textShadow: 'none',
