@@ -70,6 +70,287 @@
   padding: 0;
   position: relative;
   clear: both;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  margin-top: 80px;
+}
+
+.textSection {
+  width: 300px;
+  background: white;
+  padding: 120px 30px 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.collectionTitle {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
+  font-size: 10px !important;
+  color: #000;
+  margin: 0 0 10px 0;
+  font-weight: 400 !important;
+  text-transform: lowercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.seasonText {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 9px;
+  color: #000;
+  margin: 0 0 5px 0;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.collectionDescription {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #000;
+  margin: 0;
+  font-weight: 300;
+  text-align: justify;
+  max-width: 260px;
+  text-transform: lowercase;
+  word-spacing: 0.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mediaSection {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}
+
+.videoContainer {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.collectionVideo {
+  width: 100%;
+  height: auto;
+  object-fit: none;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
+.imageContainer {
+  flex: 1;
+  width: 50%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  min-height: 400px;
+}
+
+.collectionImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  min-height: 100%;
+}
+
+/* Video Controls for Collection Page */
+.videoPoster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 2;
+  background: #000;
+}
+
+.videoControls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 4;
+  background: none;
+  padding: 10px 15px;
+  opacity: 1;
+}
+
+.playButton,
+.skipButton,
+.fullscreenButton,
+.muteButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.timelineProgress {
+  height: 100%;
+  background: white;
+  border-radius: 0.5px;
+  transition: width 0.1s ease;
+}
+
+.rightControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skipButton {
+  font-size: 18px;
+}
+
+.playButton svg,
+.skipButton svg,
+.fullscreenButton svg {
+  shape-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fullscreen {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  background: #000 !important;
+  transition: all 0.3s ease !important;
+}
+
+.fullscreen .collectionVideo {
+  width: 100vw !important;
+  height: auto !important;
+  object-fit: contain !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}
+
+.fullscreen .videoControls {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
+}
+
+/* Two Products Section */
+.twoProductsSection {
+  width: 100%;
+  background: white;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.twoProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  margin: 0;
+  gap: 0;
+}
+
+.simpleProductSlot {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.simpleProductImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Gallery Section - 4x3 Grid */
+.gallerySection {
+  width: 100%;
+  background: white;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  margin: 0;
+  gap: 0;
+}
+
+.gallerySlot {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  aspect-ratio: 1;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .collectionGrid {
@@ -392,6 +673,40 @@
   .stickyText {
     font-size: 14px;
     letter-spacing: 1px;
+  }
+
+  /* Mobile version for new collection section */
+  .newCollectionSection {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .textSection {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  .mediaSection {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .videoContainer,
+  .imageContainer {
+    width: 100%;
+    height: 50vh;
+  }
+
+  /* Mobile version for two products section */
+  .twoProductsGrid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Mobile version for gallery section */
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
   }
 }
 
