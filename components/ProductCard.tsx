@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product } from '../types';
 import { useFavorites } from '../contexts/FavoritesContext';
@@ -25,6 +25,11 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [containerX, setContainerX] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef(0);
+  const touchCurrentX = useRef(0);
+  const isDragging = useRef(false);
+  const animationFrameRef = useRef<number>();
   
   
   // Créer un tableau infini : [dernière, ...images, première]
@@ -84,6 +89,74 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
     }, 350); // Après la transition
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!hasMultipleImages) return;
+    touchStartX.current = e.touches[0].clientX;
+    touchCurrentX.current = e.touches[0].clientX;
+    isDragging.current = true;
+    setIsTransitioning(false);
+    
+    // Force hardware acceleration
+    if (containerRef.current) {
+      containerRef.current.style.willChange = 'transform';
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging.current || !hasMultipleImages) return;
+    
+    e.preventDefault();
+    touchCurrentX.current = e.touches[0].clientX;
+    const deltaX = touchCurrentX.current - touchStartX.current;
+    const currentX = -currentImageIndex * 100;
+    const containerWidth = containerRef.current?.offsetWidth || 1;
+    const newX = currentX + (deltaX / containerWidth) * 100;
+    
+    // Use requestAnimationFrame for 60fps smooth updates
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+    animationFrameRef.current = requestAnimationFrame(() => {
+      setContainerX(newX);
+    });
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging.current || !hasMultipleImages) return;
+    
+    const deltaX = touchCurrentX.current - touchStartX.current;
+    const threshold = 20; // Very low threshold for iOS
+    
+    setIsTransitioning(true);
+    
+    // Clean up animation frame
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+    
+    // Remove hardware acceleration hint
+    if (containerRef.current) {
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.style.willChange = 'auto';
+        }
+      }, 300);
+    }
+    
+    if (Math.abs(deltaX) > threshold) {
+      if (deltaX > 0) {
+        paginate(-1);
+      } else {
+        paginate(1);
+      }
+    } else {
+      // Snap back to current position
+      setContainerX(-currentImageIndex * 100);
+    }
+    
+    isDragging.current = false;
+  };
+
   return (
     <Link href={`/produit/${product.id}`} className={styles.productCard}>
       <div 
@@ -94,26 +167,16 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
         <div className={styles.imageWrapper}>
           {hasMultipleImages ? (
             <div className={styles.carousel}>
-              <motion.div 
+              <div 
+                ref={containerRef}
                 className={styles.imageContainer}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.05}
-                dragMomentum={false}
-                animate={{ x: `${containerX}%` }}
-                transition={isTransitioning ? { type: "spring", stiffness: 400, damping: 40 } : { duration: 0 }}
-                whileDrag={{ scale: 0.98 }}
-                onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = Math.abs(offset.x) > 25 || Math.abs(velocity.x) > 200;
-                  
-                  if (swipe) {
-                    if (offset.x > 0) {
-                      paginate(-1);
-                    } else {
-                      paginate(1);
-                    }
-                  }
+                style={{
+                  transform: `translate3d(${containerX}%, 0, 0)`,
+                  transition: isTransitioning ? 'transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1)' : 'none',
                 }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
               >
                 {infiniteImages.map((image, index) => (
                   <div key={index} className={styles.imageSlide}>
@@ -130,7 +193,7 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
                     />
                   </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           ) : (
             <Image 
