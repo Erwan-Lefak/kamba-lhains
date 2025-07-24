@@ -142,7 +142,7 @@
 }
 
 .collectionVideo {
-  width: 100%;
+  width: auto;
   height: auto;
   max-width: 100%;
   max-height: 100%;
@@ -153,6 +153,7 @@
   margin: 0;
   padding: 0;
   background: #000;
+  transform: scale(1);
 }
 
 .imageContainer {
@@ -315,6 +316,30 @@
   display: block;
   margin: 0;
   padding: 0;
+}
+
+.textZone {
+  width: 100%;
+  height: auto;
+  background: white;
+  padding: 60px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textZoneContent {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #000;
+  margin: 0;
+  font-weight: 300;
+  text-align: justify;
+  max-width: 400px;
+  word-spacing: 0.5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Gallery Section - 4x3 Grid */

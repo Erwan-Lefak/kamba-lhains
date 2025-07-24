@@ -251,15 +251,18 @@ export default function NouvelleCollection() {
         {/* Two Products Section */}
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
-            {featuredProducts.slice(0, 2).map(product => (
-              <div key={product.id} className={styles.simpleProductSlot}>
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className={styles.simpleProductImage}
-                />
-              </div>
-            ))}
+            <div className={styles.simpleProductSlot}>
+              <img 
+                src={featuredProducts[0].image} 
+                alt={featuredProducts[0].name}
+                className={styles.simpleProductImage}
+              />
+            </div>
+            <div className={styles.textZone}>
+              <p className={styles.textZoneContent}>
+                Chaque création de cette collection capsule révèle une recherche permanente de l'équilibre parfait entre tradition et modernité. Les matières nobles côtoient les coupes contemporaines dans une harmonie subtile qui définit l'ADN de la marque.
+              </p>
+            </div>
           </div>
         </section>
 
