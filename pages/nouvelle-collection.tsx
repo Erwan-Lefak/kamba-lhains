@@ -16,7 +16,6 @@ export default function NouvelleCollection() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showPoster, setShowPoster] = useState(true);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 
   useEffect(() => {
@@ -116,17 +115,6 @@ export default function NouvelleCollection() {
   };
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
-
-  const product = featuredProducts[0];
-  const productImages = product.images || [product.image];
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
-  };
 
   return (
     <>
@@ -264,41 +252,7 @@ export default function NouvelleCollection() {
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
             <div className={styles.simpleProductSlot}>
-              <div className={styles.productCarousel}>
-                <img 
-                  src={productImages[currentImageIndex]} 
-                  alt={product.name}
-                  className={styles.simpleProductImage}
-                />
-                <button 
-                  className={styles.carouselArrow + ' ' + styles.carouselArrowLeft}
-                  onClick={prevImage}
-                  aria-label="Image précédente"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15,18 9,12 15,6"></polyline>
-                  </svg>
-                </button>
-                <button 
-                  className={styles.carouselArrow + ' ' + styles.carouselArrowRight}
-                  onClick={nextImage}
-                  aria-label="Image suivante"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="9,6 15,12 9,18"></polyline>
-                  </svg>
-                </button>
-                <div className={styles.carouselDots}>
-                  {productImages.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`${styles.carouselDot} ${index === currentImageIndex ? styles.carouselDotActive : ''}`}
-                      onClick={() => setCurrentImageIndex(index)}
-                      aria-label={`Image ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
+              <ProductCard product={featuredProducts[0]} />
             </div>
             <div className={styles.textZone}>
               <p className={styles.textZoneContent}>
