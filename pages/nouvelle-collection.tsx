@@ -134,7 +134,7 @@ export default function NouvelleCollection() {
                 marginBottom: '15px !important'
               }}
             >
-              "éclat d'ombre"
+              "ÉCLAT D'OMBRE"
             </h1>
             <p className={styles.collectionDescription}>
               Une exploration subtile entre lumière et obscurité, où chaque pièce révèle l'élégance dans sa forme la plus pure. Cette collection capsule transcende les codes traditionnels pour offrir une garde-robe intemporelle, pensée pour la femme moderne qui cultive l'art de la sophistication discrète.
