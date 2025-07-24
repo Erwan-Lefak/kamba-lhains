@@ -113,14 +113,13 @@
 
 .collectionDescription {
   font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.8;
   color: #000;
   margin: 0;
   font-weight: 300;
   text-align: justify;
   max-width: 260px;
-  text-transform: lowercase;
   word-spacing: 0.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
