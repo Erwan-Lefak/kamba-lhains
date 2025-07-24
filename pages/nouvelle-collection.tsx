@@ -133,14 +133,15 @@ export default function NouvelleCollection() {
             <h1 
               style={{ 
                 fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                fontSize: '13px',
+                fontSize: '15px',
                 fontWeight: 700,
                 color: '#000000',
                 textShadow: 'none',
                 boxShadow: 'none',
                 textTransform: 'uppercase',
                 marginBottom: '15px',
-                textAlign: 'center'
+                textAlign: 'center',
+                width: '100%'
               }}
             >
               "ÉCLAT D'OMBRE"
