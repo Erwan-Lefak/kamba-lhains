@@ -117,6 +117,69 @@ export default function NouvelleCollection() {
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  // Custom images carousel - same structure as MobileCarousel but with images
+  const customImages = [
+    {
+      id: 1,
+      src: '/images/collection/IMG_3031.jpeg',
+      alt: 'Collection image 1'
+    },
+    {
+      id: 2, 
+      src: '/images/collection/IMG_3033.jpeg',
+      alt: 'Collection image 2'
+    },
+    {
+      id: 3,
+      src: '/images/collection/IMG_3034.jpeg', 
+      alt: 'Collection image 3'
+    }
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  const goToPrevious = () => {
+    const newIndex = currentIndex === 0 ? customImages.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToNext = () => {
+    const newIndex = (currentIndex + 1) % customImages.length;
+    setCurrentIndex(newIndex);
+  };
+
+  // Touch handling for horizontal swipe gestures (exactly like MobileCarousel)
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+  };
+
   return (
     <>
       <Head>
@@ -253,7 +316,38 @@ export default function NouvelleCollection() {
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
             <div className={styles.simpleProductSlot}>
-              <ProductCard product={featuredProducts[0]} hideInfo={true} />
+              <div className={styles.mobileCarousel} style={{ display: 'block' }}>
+                <div 
+                  className={styles.mobileCarouselContainer}
+                  style={{
+                    transform: `translateX(-${currentIndex * 40}vw)`,
+                  }}
+                  onTouchStart={onTouchStart}
+                  onTouchMove={onTouchMove}
+                  onTouchEnd={onTouchEnd}
+                >
+                  {customImages.map((image, index) => (
+                    <div key={`mobile-${image.id}`} className={styles.mobileProductSlot}>
+                      <Image 
+                        src={image.src}
+                        alt={image.alt}
+                        width={800}
+                        height={1200}
+                        sizes="40vw"
+                        className={styles.productImage}
+                        quality={95}
+                        draggable={false}
+                        style={{
+                          width: '40vw',
+                          height: 'auto',
+                          objectFit: 'contain',
+                          display: 'block'
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className={styles.textZone}>
               <p className={styles.textZoneContent}>
