@@ -373,7 +373,7 @@
 .galleryImage {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   display: block;
   margin: 0;

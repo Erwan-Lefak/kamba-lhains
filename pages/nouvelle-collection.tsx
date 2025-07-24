@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -271,10 +272,14 @@ export default function NouvelleCollection() {
               'IMG_3043.jpeg', 'IMG_3044.jpeg', 'IMG_2919.jpeg', 'IMG_2920.jpeg'
             ].map((imageName, index) => (
               <div key={index} className={styles.gallerySlot}>
-                <img 
+                <Image 
                   src={`/images/collection/${imageName}`} 
                   alt={`Collection image ${index + 1}`}
+                  width={800}
+                  height={1200}
                   className={styles.galleryImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
             ))}
