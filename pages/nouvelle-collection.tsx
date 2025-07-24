@@ -265,7 +265,7 @@ export default function NouvelleCollection() {
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
             <div className={styles.simpleProductSlot}>
-              <ProductCard product={singleProductWithImages} hideInfo={true} />
+              <ProductCard product={singleProductWithImages} hideInfo={true} noLink={true} />
             </div>
             <div className={styles.textZone}>
               <p className={styles.textZoneContent}>
@@ -273,6 +273,29 @@ export default function NouvelleCollection() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Look Book Title */}
+        <section style={{
+          padding: '30px 0',
+          textAlign: 'center',
+          background: 'white'
+        }}>
+          <h2 style={{
+            fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
+            fontSize: '15px',
+            fontWeight: 700,
+            color: '#000000',
+            textShadow: 'none',
+            boxShadow: 'none',
+            textTransform: 'uppercase',
+            marginBottom: '15px',
+            textAlign: 'center',
+            width: '100%',
+            margin: 0
+          }}>
+            Look Book
+          </h2>
         </section>
 
         {/* Gallery Section - 4x3 Grid */}

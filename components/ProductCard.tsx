@@ -9,9 +9,10 @@ import styles from '../styles/Products.module.css';
 interface ProductCardProps {
   product: Product;
   hideInfo?: boolean;
+  noLink?: boolean;
 }
 
-export default function ProductCard({ product, hideInfo = false }: ProductCardProps) {
+export default function ProductCard({ product, hideInfo = false, noLink = false }: ProductCardProps) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const isProductFavorite = isFavorite(product.id);
   const [isHovered, setIsHovered] = useState(false);
@@ -157,13 +158,12 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
     isDragging.current = false;
   };
 
-  return (
-    <Link href={`/produit/${product.id}`} className={styles.productCard}>
-      <div 
-        className={styles.productImageContainer}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+  const cardContent = (
+    <div 
+      className={styles.productImageContainer}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
         <div className={styles.imageWrapper}>
           {hasMultipleImages ? (
             <div className={styles.carousel}>
@@ -307,6 +307,13 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
           )}
         </div>
       </div>
+  );
+
+  return noLink ? (
+    <div className={styles.productCard}>{cardContent}</div>
+  ) : (
+    <Link href={`/produit/${product.id}`} className={styles.productCard}>
+      {cardContent}
     </Link>
   );
 }
