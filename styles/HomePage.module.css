@@ -141,8 +141,10 @@
 }
 
 .collectionVideo {
-  width: 100%;
+  width: auto;
   height: auto;
+  max-width: none;
+  max-height: none;
   object-fit: none;
   object-position: center;
   display: block;
