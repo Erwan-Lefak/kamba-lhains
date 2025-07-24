@@ -8,7 +8,7 @@ import styles from '../styles/HomePage.module.css';
 
 // Force Vercel cache invalidation 
 export default function NouvelleCollection() {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
@@ -25,7 +25,7 @@ export default function NouvelleCollection() {
   }, []);
 
   useEffect(() => {
-    const handleEscKey = (event) => {
+    const handleEscKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && isFullscreen) {
         setIsFullscreen(false);
       }
@@ -97,7 +97,7 @@ export default function NouvelleCollection() {
     setShowPoster(false);
   };
 
-  const handleTimelineClick = (e) => {
+  const handleTimelineClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (videoRef.current) {
       const rect = e.currentTarget.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
