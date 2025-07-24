@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
@@ -19,8 +19,9 @@ export default function NouvelleCollection() {
 
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(console.error);
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(console.error);
     }
   }, []);
 
@@ -45,26 +46,29 @@ export default function NouvelleCollection() {
   }, [isFullscreen]);
 
   const handlePlayPause = () => {
-    if (videoRef.current) {
+    const video = videoRef.current;
+    if (video) {
       if (isPlaying) {
-        videoRef.current.pause();
+        video.pause();
       } else {
-        videoRef.current.play();
+        video.play();
       }
       setIsPlaying(!isPlaying);
     }
   };
 
   const handleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+    const video = videoRef.current;
+    if (video) {
+      video.muted = !isMuted;
       setIsMuted(!isMuted);
     }
   };
 
   const handleSkip = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime += 5;
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime += 5;
     }
   };
 
@@ -73,14 +77,16 @@ export default function NouvelleCollection() {
   };
 
   const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
+    const video = videoRef.current;
+    if (video) {
+      setCurrentTime(video.currentTime);
     }
   };
 
   const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      setDuration(videoRef.current.duration);
+    const video = videoRef.current;
+    if (video) {
+      setDuration(video.duration);
     }
   };
 
@@ -98,12 +104,13 @@ export default function NouvelleCollection() {
   };
 
   const handleTimelineClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (videoRef.current) {
+    const video = videoRef.current;
+    if (video) {
       const rect = e.currentTarget.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const width = rect.width;
       const newTime = (clickX / width) * duration;
-      videoRef.current.currentTime = newTime;
+      video.currentTime = newTime;
     }
   };
 
