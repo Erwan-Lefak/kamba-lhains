@@ -132,14 +132,14 @@ export default function NouvelleCollection() {
           <div className={styles.textSection}>
             <h1 
               style={{ 
-                fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important",
-                fontSize: '11px !important',
-                fontWeight: '400 !important',
-                color: '#000000 !important',
-                textShadow: 'none !important',
-                boxShadow: 'none !important',
-                textTransform: 'uppercase !important',
-                marginBottom: '15px !important'
+                fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
+                fontSize: '11px',
+                fontWeight: 400,
+                color: '#000000',
+                textShadow: 'none',
+                boxShadow: 'none',
+                textTransform: 'uppercase',
+                marginBottom: '15px'
               }}
             >
               "ÉCLAT D'OMBRE"
