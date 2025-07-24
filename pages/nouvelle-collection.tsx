@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import { featuredProducts } from '../data/products';
 import styles from '../styles/HomePage.module.css';
 
+// Force Vercel cache invalidation 
 export default function NouvelleCollection() {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
