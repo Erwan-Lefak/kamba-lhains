@@ -98,11 +98,13 @@ export default function ProductCard({ product, hideInfo = false }: ProductCardPr
                 className={styles.imageContainer}
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
+                dragElastic={0.05}
+                dragMomentum={false}
                 animate={{ x: `${containerX}%` }}
-                transition={isTransitioning ? { type: "tween", ease: "easeOut", duration: 0.3 } : { duration: 0 }}
+                transition={isTransitioning ? { type: "spring", stiffness: 400, damping: 40 } : { duration: 0 }}
+                whileDrag={{ scale: 0.98 }}
                 onDragEnd={(e, { offset, velocity }) => {
-                  const swipe = Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 500;
+                  const swipe = Math.abs(offset.x) > 25 || Math.abs(velocity.x) > 200;
                   
                   if (swipe) {
                     if (offset.x > 0) {
