@@ -8,9 +8,10 @@ import styles from '../styles/Products.module.css';
 
 interface ProductCardProps {
   product: Product;
+  hideInfo?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, hideInfo = false }: ProductCardProps) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const isProductFavorite = isFavorite(product.id);
   const [isHovered, setIsHovered] = useState(false);
@@ -174,67 +175,71 @@ export default function ProductCard({ product }: ProductCardProps) {
             </>
           )}
           
-          <button 
-            className={styles.favoriteIcon}
-            onClick={handleFavoriteClick}
-            aria-label={isProductFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
-          >
-            <span className={`u-w-full ${isProductFavorite ? 'u-hidden' : ''} | js-product-heart-add`}>
-              <svg className="c-icon" data-size="sm">
-                <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
-              </svg>
-            </span>
-            <span className={`u-w-full ${!isProductFavorite ? 'u-hidden' : ''} | js-product-heart-remove`}>
-              <svg className="c-icon" data-size="sm">
-                <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
-              </svg>
-            </span>
-          </button>
-          {/* Color Swatches - appear on hover */}
-          {product.colors && product.colors.length > 0 && (
-            <AnimatePresence>
-              {isHovered && (
-                <motion.div 
-                  className={styles.colorSwatches}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -20, opacity: 0 }}
-                  transition={{ 
-                    type: "tween",
-                    ease: "easeOut",
-                    duration: 0.3,
-                    staggerChildren: 0.05,
-                    staggerDirection: -1
-                  }}
-                >
-                  {product.colors.map((color, index) => (
+          {!hideInfo && (
+            <>
+              <button 
+                className={styles.favoriteIcon}
+                onClick={handleFavoriteClick}
+                aria-label={isProductFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+              >
+                <span className={`u-w-full ${isProductFavorite ? 'u-hidden' : ''} | js-product-heart-add`}>
+                  <svg className="c-icon" data-size="sm">
+                    <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                  </svg>
+                </span>
+                <span className={`u-w-full ${!isProductFavorite ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                  <svg className="c-icon" data-size="sm">
+                    <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                  </svg>
+                </span>
+              </button>
+              {/* Color Swatches - appear on hover */}
+              {product.colors && product.colors.length > 0 && (
+                <AnimatePresence>
+                  {isHovered && (
                     <motion.div 
-                      key={index}
-                      className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
-                      style={{ 
-                        backgroundColor: color.toLowerCase(),
-                      }}
-                      title={color}
-                      onClick={(e) => handleColorClick(e, color)}
+                      className={styles.colorSwatches}
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       exit={{ x: -20, opacity: 0 }}
                       transition={{ 
                         type: "tween",
                         ease: "easeOut",
-                        duration: 0.2,
-                        delay: (product.colors.length - 1 - index) * 0.05
+                        duration: 0.3,
+                        staggerChildren: 0.05,
+                        staggerDirection: -1
                       }}
-                    />
-                  ))}
-                </motion.div>
+                    >
+                      {product.colors.map((color, index) => (
+                        <motion.div 
+                          key={index}
+                          className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
+                          style={{ 
+                            backgroundColor: color.toLowerCase(),
+                          }}
+                          title={color}
+                          onClick={(e) => handleColorClick(e, color)}
+                          initial={{ x: -20, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: -20, opacity: 0 }}
+                          transition={{ 
+                            type: "tween",
+                            ease: "easeOut",
+                            duration: 0.2,
+                            delay: (product.colors.length - 1 - index) * 0.05
+                          }}
+                        />
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               )}
-            </AnimatePresence>
+              <div className={styles.productOverlay}>
+                <div className={styles.productName}>{product.name}</div>
+                <div className={styles.productPrice}>{product.price}</div>
+              </div>
+            </>
           )}
-          <div className={styles.productOverlay}>
-            <div className={styles.productName}>{product.name}</div>
-            <div className={styles.productPrice}>{product.price}</div>
-          </div>
         </div>
       </div>
     </Link>

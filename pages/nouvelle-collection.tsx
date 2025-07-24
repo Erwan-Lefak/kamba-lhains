@@ -252,7 +252,7 @@ export default function NouvelleCollection() {
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
             <div className={styles.simpleProductSlot}>
-              <ProductCard product={featuredProducts[0]} />
+              <ProductCard product={featuredProducts[0]} hideInfo={true} />
             </div>
             <div className={styles.textZone}>
               <p className={styles.textZoneContent}>
