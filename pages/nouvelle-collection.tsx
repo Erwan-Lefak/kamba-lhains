@@ -187,7 +187,8 @@ export default function NouvelleCollection() {
                 onPlaying={handlePlaying}
                 style={{ opacity: showPoster ? 0 : 1 }}
               >
-                <source src="/collection.mp4" type="video/mp4" />
+                <source src="/collec.mov" type="video/quicktime" />
+                <source src="/collec.mov" type="video/mp4" />
                 Votre navigateur ne supporte pas la lecture de vidéos.
               </video>
               
@@ -278,9 +279,9 @@ export default function NouvelleCollection() {
         <section className={styles.gallerySection}>
           <div className={styles.galleryGrid}>
             {[
-              'IMG_3035.jpeg', 'IMG_3036.jpeg', 'IMG_3037.jpeg', 'IMG_3038.jpeg',
-              'IMG_3039.jpeg', 'IMG_3040.jpeg', 'IMG_3041.jpeg', 'IMG_3042.jpeg', 
-              'IMG_3043.jpeg', 'IMG_3044.jpeg', 'IMG_2919.jpeg', 'IMG_2920.jpeg'
+              'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
+              'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg', 
+              'IMG_3054.jpeg', 'IMG_3055.jpeg', 'IMG_3056.jpeg', 'IMG_3057.jpeg'
             ].map((imageName, index) => (
               <div key={index} className={styles.gallerySlot}>
                 <Image 
