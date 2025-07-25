@@ -139,7 +139,7 @@ export default function NouvelleCollection() {
 
       <Header />
 
-      <main>
+      <main style={{ paddingTop: '34px' }}>
         <section className={styles.newCollectionSection}>
           <div className={styles.textSection}>
             <h1 

@@ -13,7 +13,7 @@ const Navigation = () => {
     { href: '/aube', label: 'Aube', type: 'link' },
     { href: '/zenith', label: 'Zenith', type: 'link' },
     { href: '/crepuscule', label: 'Crépuscule', type: 'link' },
-    { href: '/kambavers', label: t('navigation.kambavers'), type: 'link' }
+    { href: '/kambavers?section=collections&subcategory=eclat-ombre', label: t('navigation.kambavers'), type: 'link' }
   ];
 
   const isActive = (href) => {

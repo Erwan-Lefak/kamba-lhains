@@ -30,5 +30,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "jest.setup.js"],
-  "exclude": ["node_modules", "**/__tests__/**/*"]
+  "exclude": ["node_modules", "**/__tests__/**/*", "tests/e2e/**/*"]
 }

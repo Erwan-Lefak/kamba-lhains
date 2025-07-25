@@ -1,0 +1,171 @@
+# Configuration Artillery pour tests de charge Kamba Lhains
+
+config:
+  target: 'http://localhost:3000'
+  phases:
+    # Phase 1: Montée en charge progressive
+    - duration: 120  # 2 minutes
+      arrivalRate: 1
+      rampTo: 10
+      name: "Warm up"
+    
+    # Phase 2: Charge normale
+    - duration: 300  # 5 minutes  
+      arrivalRate: 10
+      rampTo: 50
+      name: "Normal load"
+    
+    # Phase 3: Pic de trafic
+    - duration: 180  # 3 minutes
+      arrivalRate: 50
+      rampTo: 100
+      name: "Peak load"
+    
+    # Phase 4: Stress test
+    - duration: 240  # 4 minutes
+      arrivalRate: 100
+      name: "Stress test"
+    
+    # Phase 5: Cool down
+    - duration: 60   # 1 minute
+      arrivalRate: 100
+      rampTo: 1
+      name: "Cool down"
+
+  # Variables globales
+  variables:
+    products:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    collections:
+      - "aube"
+      - "zenith" 
+      - "crepuscule"
+      - "nouvelle-collection"
+
+  # Configuration des plugins
+  plugins:
+    expect: {}
+    metrics-by-endpoint: {}
+    
+  # Seuils de performance
+  ensure:
+    p95: 2000        # 95% des requêtes < 2s
+    p99: 5000        # 99% des requêtes < 5s
+    maxErrorRate: 5  # Max 5% d'erreurs
+
+# Scénarios de test
+scenarios:
+  # Scénario 1: Navigation utilisateur standard (70% du trafic)
+  - name: "Standard User Journey"
+    weight: 70
+    flow:
+      # Page d'accueil
+      - get:
+          url: "/"
+          expect:
+            - statusCode: 200
+            - hasHeader: "content-type"
+            - contentType: "text/html"
+          capture:
+            - header: "set-cookie"
+              as: "sessionCookie"
+      
+      # Navigation collections (probabilité 60%)
+      - think: 2
+      - get:
+          url: "/{{ collections[$randomString()] }}"
+          weight: 60
+          expect:
+            - statusCode: 200
+      
+      # Page boutique
+      - think: 3
+      - get:
+          url: "/boutique"
+          expect:
+            - statusCode: 200
+      
+      # Détail produit (probabilité 80%)
+      - think: 2
+      - get:
+          url: "/produit/{{ products[$randomString()] }}"
+          weight: 80
+          expect:
+            - statusCode: 200
+      
+      # Panier (probabilité 30%)
+      - think: 5
+      - get:
+          url: "/panier"
+          weight: 30
+          expect:
+            - statusCode: 200
+
+  # Scénario 2: Tests API intensifs (20% du trafic)
+  - name: "API Heavy User"
+    weight: 20
+    flow:
+      # API Products
+      - get:
+          url: "/api/products"
+          expect:
+            - statusCode: 200
+            - contentType: "application/json"
+          capture:
+            - json: "$.data[0].id"
+              as: "productId"
+      
+      # API Product detail
+      - think: 1
+      - get:
+          url: "/api/products/{{ productId }}"
+          expect:
+            - statusCode: 200
+            - contentType: "application/json"
+      
+      # API Products avec filtres
+      - think: 1
+      - get:
+          url: "/api/products?category=femme&featured=true"
+          expect:
+            - statusCode: 200
+
+  # Scénario 3: Utilisateur mobile (10% du trafic)
+  - name: "Mobile User"
+    weight: 10
+    flow:
+      - get:
+          url: "/"
+          headers:
+            User-Agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15"
+          expect:
+            - statusCode: 200
+      
+      - think: 3
+      - get:
+          url: "/nouvelle-collection"
+          headers:
+            User-Agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15"
+          expect:
+            - statusCode: 200
+      
+      - think: 4
+      - get:
+          url: "/produit/1"
+          headers:
+            User-Agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15"
+          expect:
+            - statusCode: 200
+
+# Configuration des métriques personnalisées
+metrics:
+  - name: "business_metrics"
+    endpoints:
+      - "/api/products"
+      - "/api/products/*"
+      - "/produit/*"
+      - "/checkout"

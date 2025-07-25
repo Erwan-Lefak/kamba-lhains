@@ -1,0 +1,189 @@
+name: ✨ Feature Request
+description: Suggest an idea for this project
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature! ✨
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm these before submitting the feature request
+      options:
+        - label: I have searched existing issues and feature requests
+          required: true
+        - label: I have checked the roadmap and documentation
+          required: true
+        - label: This feature doesn't already exist
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: I'm always frustrated when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like
+      placeholder: I would like to see...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Describe any alternative solutions or features you've considered
+      placeholder: Alternative approaches could be...
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What category does this feature belong to?
+      options:
+        - User Interface (UI)
+        - User Experience (UX)
+        - Performance
+        - Security
+        - API
+        - Database
+        - DevOps/Infrastructure
+        - Testing
+        - Documentation
+        - Accessibility
+        - Mobile Experience
+        - E-commerce Functionality
+        - Analytics
+        - Other
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would improve the experience
+        - High - Important for my use case
+        - Critical - Essential for my use case
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature would be to implement?
+      options:
+        - Low - Simple change or addition
+        - Medium - Moderate development effort
+        - High - Significant development effort
+        - Unknown - I'm not sure
+
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      description: Write a user story for this feature
+      placeholder: |
+        As a [type of user],
+        I want [some goal]
+        So that [some reason/benefit]
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: What specific requirements should this feature meet?
+      placeholder: |
+        - [ ] Requirement 1
+        - [ ] Requirement 2
+        - [ ] Requirement 3
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups/Wireframes
+      description: If you have any mockups, wireframes, or design ideas, please share them
+      placeholder: Drag and drop images here or describe the visual design...
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Describe specific use cases for this feature
+      placeholder: |
+        1. When a user...
+        2. If a customer...
+        3. During checkout...
+
+  - type: dropdown
+    id: users-affected
+    attributes:
+      label: Users Affected
+      description: Who would benefit from this feature?
+      multiple: true
+      options:
+        - All users
+        - Logged-in users
+        - Anonymous users
+        - Mobile users
+        - Desktop users
+        - Administrators
+        - Customers
+        - Vendors
+        - Other
+
+  - type: input
+    id: related-issues
+    attributes:
+      label: Related Issues
+      description: Are there any related issues or feature requests?
+      placeholder: "#123, #456"
+
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: Implementation Ideas
+      description: If you have technical ideas about how this could be implemented, share them
+      placeholder: This could be implemented by...
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, examples, or research about the feature request
+      placeholder: Any additional information...
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      description: Are you willing to contribute to this feature?
+      options:
+        - label: I'm willing to help implement this feature
+        - label: I can provide testing and feedback
+        - label: I can help with documentation
+        - label: I can help with design/UX
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this feature request, you agree to follow our Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
