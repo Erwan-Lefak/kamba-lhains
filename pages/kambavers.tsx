@@ -716,10 +716,9 @@ export default function Kambavers() {
         :global(.ota-benga-gallery .imageNavButton),
         :global(.ota-benga-gallery .prevButton),
         :global(.ota-benga-gallery .nextButton) {
-          background-color: rgba(255, 255, 255, 0.8) !important;
-          color: #333 !important;
-          border: 1px solid rgba(255, 255, 255, 0.9) !important;
+          background-color: rgba(255, 255, 255, 0.9) !important;
           border-radius: 50% !important;
+          opacity: 1 !important;
         }
 
         :global(.ota-benga-carousel .imageNavButton):hover,
@@ -729,16 +728,15 @@ export default function Kambavers() {
         :global(.ota-benga-gallery .prevButton):hover,
         :global(.ota-benga-gallery .nextButton):hover {
           background-color: white !important;
-          color: #000 !important;
+          opacity: 1 !important;
         }
 
-        :global(.ota-benga-carousel .imageNavButton svg),
-        :global(.ota-benga-carousel .prevButton svg),
-        :global(.ota-benga-carousel .nextButton svg),
-        :global(.ota-benga-gallery .imageNavButton svg),
-        :global(.ota-benga-gallery .prevButton svg),
-        :global(.ota-benga-gallery .nextButton svg) {
-          fill: #333 !important;
+        :global(.ota-benga-carousel .imageNavButton svg path),
+        :global(.ota-benga-carousel .prevButton svg path),
+        :global(.ota-benga-carousel .nextButton svg path),
+        :global(.ota-benga-gallery .imageNavButton svg path),
+        :global(.ota-benga-gallery .prevButton svg path),
+        :global(.ota-benga-gallery .nextButton svg path) {
           stroke: #333 !important;
         }
       `}</style>
