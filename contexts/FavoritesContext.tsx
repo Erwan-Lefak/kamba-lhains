@@ -4,8 +4,8 @@ import { Product } from '../types';
 interface FavoritesContextType {
   favorites: Product[];
   addToFavorites: (product: Product) => void;
-  removeFromFavorites: (productId: number) => void;
-  isFavorite: (productId: number) => boolean;
+  removeFromFavorites: (productId: string) => void;
+  isFavorite: (productId: string) => boolean;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
@@ -41,11 +41,11 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     });
   };
 
-  const removeFromFavorites = (productId: number) => {
+  const removeFromFavorites = (productId: string) => {
     setFavorites(prev => prev.filter(fav => fav.id !== productId));
   };
 
-  const isFavorite = (productId: number) => {
+  const isFavorite = (productId: string) => {
     return favorites.some(fav => fav.id === productId);
   };
 

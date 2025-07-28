@@ -181,7 +181,7 @@ export default function ProductCard({ product, hideInfo = false, noLink = false 
                 {infiniteImages.map((image, index) => (
                   <div key={index} className={styles.imageSlide}>
                     <Image 
-                      src={image}
+                      src={typeof image === 'string' ? image : image.url}
                       alt={`${product.name} ${index + 1}`}
                       width={800}
                       height={1200}
@@ -197,7 +197,7 @@ export default function ProductCard({ product, hideInfo = false, noLink = false 
             </div>
           ) : (
             <Image 
-              src={availableImages[currentImageIndex]}
+              src={typeof availableImages[currentImageIndex] === 'string' ? availableImages[currentImageIndex] : availableImages[currentImageIndex].url}
               alt={product.name}
               width={800}
               height={1200}
@@ -275,7 +275,7 @@ export default function ProductCard({ product, hideInfo = false, noLink = false 
                         staggerDirection: -1
                       }}
                     >
-                      {product.colors.map((color, index) => (
+                      {product.colors?.map((color, index) => (
                         <motion.div 
                           key={index}
                           className={`${styles.colorSwatch} ${selectedColor === color ? styles.active : ''}`}
@@ -291,7 +291,7 @@ export default function ProductCard({ product, hideInfo = false, noLink = false 
                             type: "tween",
                             ease: "easeOut",
                             duration: 0.2,
-                            delay: (product.colors.length - 1 - index) * 0.05
+                            delay: ((product.colors?.length || 0) - 1 - index) * 0.05
                           }}
                         />
                       ))}

@@ -4,6 +4,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import TousLesProduits from '../../pages/tous-les-produits';
+import { FavoritesProvider } from '../../contexts/FavoritesContext';
+import { CartProvider } from '../../contexts/CartContext';
 
 // Mock next/link
 jest.mock('next/link', () => {
@@ -53,12 +55,22 @@ describe('Tous Les Produits Page', () => {
     }
   ];
 
+  const renderWithProviders = (component: React.ReactElement) => {
+    return render(
+      <CartProvider>
+        <FavoritesProvider>
+          {component}
+        </FavoritesProvider>
+      </CartProvider>
+    );
+  };
+
   it('renders page without crashing', () => {
-    expect(() => render(<TousLesProduits />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits />)).not.toThrow();
   });
 
   it('has proper page structure', () => {
-    const { container } = render(<TousLesProduits />);
+    const { container } = renderWithProviders(<TousLesProduits />);
     
     expect(container.firstChild).toBeTruthy();
   });
@@ -68,7 +80,7 @@ describe('Tous Les Produits Page', () => {
       products: mockProducts
     };
 
-    expect(() => render(<TousLesProduits {...props} />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits {...props} />)).not.toThrow();
   });
 
   it('handles empty products array', () => {
@@ -76,7 +88,7 @@ describe('Tous Les Produits Page', () => {
       products: []
     };
 
-    expect(() => render(<TousLesProduits {...props} />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits {...props} />)).not.toThrow();
   });
 
   it('renders correctly on different screen sizes', () => {
@@ -88,7 +100,7 @@ describe('Tous Les Produits Page', () => {
     });
     window.dispatchEvent(new Event('resize'));
 
-    expect(() => render(<TousLesProduits />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits />)).not.toThrow();
 
     // Desktop
     Object.defineProperty(window, 'innerWidth', {
@@ -98,11 +110,11 @@ describe('Tous Les Produits Page', () => {
     });
     window.dispatchEvent(new Event('resize'));
 
-    expect(() => render(<TousLesProduits />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits />)).not.toThrow();
   });
 
   it('handles missing props gracefully', () => {
-    expect(() => render(<TousLesProduits />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits />)).not.toThrow();
   });
 
   it('supports server-side rendering', () => {
@@ -110,7 +122,7 @@ describe('Tous Les Produits Page', () => {
     const originalWindow = global.window;
     delete (global as any).window;
 
-    expect(() => render(<TousLesProduits />)).not.toThrow();
+    expect(() => renderWithProviders(<TousLesProduits />)).not.toThrow();
 
     global.window = originalWindow;
   });

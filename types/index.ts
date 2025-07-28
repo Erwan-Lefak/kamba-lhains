@@ -1,28 +1,87 @@
+// Types robustes pour l'application Kamba Lhains
+
+export interface ProductImage {
+  id: string;
+  url: string;
+  alt: string;
+  width: number;
+  height: number;
+  priority?: boolean;
+}
+
+export interface ProductVariant {
+  id: string;
+  size?: string;
+  color?: string;
+  price: number;
+  stock: number;
+  sku: string;
+}
+
+export interface SEOData {
+  title: string;
+  description: string;
+  keywords: string[];
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+export interface ProductAnalytics {
+  views: number;
+  favorites: number;
+  purchases: number;
+  lastViewed?: string;
+}
+
 export interface Product {
-  id: number;
+  id: string;
   name: string;
-  price: string;
-  image: string;
-  images?: string[];
-  description: string[];
+  description: string | string[];
+  price: number;
+  originalPrice?: number;
+  image: string; // Pour compatibilité
+  images?: ProductImage[] | string[];
+  variants?: ProductVariant[];
   category: string;
   subCategory?: string;
-  colors: string[];
-  sizes: string[];
+  collection?: CollectionType;
+  colors?: string[];
+  sizes?: string[];
+  tags?: string[];
+  status?: ProductStatus;
   inStock: boolean;
   featured: boolean;
+  seo?: SEOData;
+  analytics?: ProductAnalytics;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface CartItem {
   cartId: string;
+  product: Product;
+  variant?: ProductVariant;
+  selectedSize?: string;
+  selectedColor?: string;
+  quantity: number;
+  addedAt: string;
+  // Compatibilité avec l'ancien format
   id: number;
   name: string;
-  price: string;
+  price: number;
   image: string;
   size: string;
   color: string;
-  quantity: number;
   category: string;
+}
+
+export interface UserPreferences {
+  favoriteCategories: string[];
+  preferredSizes: string[];
+  newsletter: boolean;
+  language: 'fr' | 'en';
+  currency: 'EUR' | 'USD';
+  theme: 'light' | 'dark';
 }
 
 export interface User {
@@ -30,7 +89,12 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
+  name: string; // firstName + lastName
+  avatar?: string;
   role: 'USER' | 'ADMIN';
+  preferences: UserPreferences;
+  createdAt: string;
+  lastLoginAt?: string;
 }
 
 export interface Order {
@@ -104,4 +168,130 @@ export type CartAction =
 export interface CartState {
   items: CartItem[];
   isOpen: boolean;
+}
+
+// Types utilitaires
+export type ProductStatus = 'active' | 'draft' | 'archived' | 'out_of_stock';
+export type CollectionType = 'eclat-ombre' | 'ota-benga';
+export type ViewMode = 'grid' | 'list';
+export type SortOption = 'name' | 'price' | 'date' | 'popularity';
+export type SortOrder = 'asc' | 'desc';
+
+// Types pour les collections
+export interface Collection {
+  id: string;
+  name: string;
+  description: string;
+  type: CollectionType;
+  heroImage?: ProductImage;
+  heroVideo?: string;
+  products: Product[];
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Types pour les filtres
+export interface ProductFilters {
+  search: string;
+  category: string;
+  collection: CollectionType | '';
+  priceRange: [number, number];
+  sizes: string[];
+  colors: string[];
+  inStock: boolean;
+  sortBy: SortOption;
+  sortOrder: SortOrder;
+}
+
+// Types pour les événements analytics
+export interface AnalyticsEvent {
+  name: string;
+  properties: Record<string, any>;
+  timestamp: string;
+  sessionId: string;
+  userId?: string;
+}
+
+// Types pour les erreurs
+export interface AppError {
+  code: string;
+  message: string;
+  details?: Record<string, any>;
+  timestamp: string;
+  stack?: string;
+}
+
+// Types pour l'état global
+export interface AppState {
+  user: User | null;
+  cart: CartItem[];
+  favorites: string[];
+  recentlyViewed: Product[];
+  preferences: UserPreferences;
+  isLoading: boolean;
+  error: AppError | null;
+}
+
+// Types pour les hooks
+export interface UseProductsOptions {
+  filters?: Partial<ProductFilters>;
+  page?: number;
+  limit?: number;
+}
+
+export interface UseProductsResult {
+  products: Product[];
+  loading: boolean;
+  error: AppError | null;
+  hasMore: boolean;
+  loadMore: () => void;
+  refetch: () => void;
+}
+
+// Types pour les performances
+export interface PerformanceMetrics {
+  fcp: number; // First Contentful Paint
+  lcp: number; // Largest Contentful Paint
+  cls: number; // Cumulative Layout Shift
+  fid: number; // First Input Delay
+  ttfb: number; // Time to First Byte
+}
+
+// Types pour les animations
+export interface AnimationConfig {
+  duration: number;
+  ease: string;
+  delay?: number;
+}
+
+// Types pour les toasts/notifications
+export interface ToastMessage {
+  id: string;
+  type: 'success' | 'error' | 'warning' | 'info';
+  title?: string;
+  message: string;
+  duration?: number;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+}
+
+// Types pour la recherche
+export interface SearchResult {
+  products: Product[];
+  suggestions: string[];
+  filters: {
+    categories: Array<{ name: string; count: number }>;
+    priceRanges: Array<{ min: number; max: number; count: number }>;
+    colors: Array<{ name: string; count: number }>;
+    sizes: Array<{ name: string; count: number }>;
+  };
+  meta: {
+    total: number;
+    page: number;
+    limit: number;
+    hasMore: boolean;
+  };
 }

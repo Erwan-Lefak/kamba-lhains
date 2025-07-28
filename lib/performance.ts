@@ -1,4 +1,4 @@
-// Performance monitoring et optimisations
+// Performance monitoring et optimisations avancées
 import React from 'react';
 
 interface PerformanceConfig {

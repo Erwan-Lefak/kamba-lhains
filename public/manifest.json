@@ -125,7 +125,13 @@
     "params": {
       "title": "title",
       "text": "text",
-      "url": "url"
+      "url": "url",
+      "files": [
+        {
+          "name": "images",
+          "accept": ["image/*"]
+        }
+      ]
     }
   },
   
@@ -133,6 +139,25 @@
     {
       "protocol": "web+kamba",
       "url": "/product?id=%s"
+    }
+  ],
+
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "preferred",
+  "file_handlers": [
+    {
+      "action": "/handle-files",
+      "accept": {
+        "image/*": [".jpg", ".jpeg", ".png", ".webp", ".avif"]
+      }
     }
   ]
 }

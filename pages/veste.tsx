@@ -10,9 +10,9 @@ export default function Veste() {
   // Filtrer les produits contenant "veste" dans le nom ou la description
   const vesteProducts = products.filter(product => {
     const nameMatch = product.name.toLowerCase().includes('veste');
-    const descriptionMatch = product.description.some(desc => 
-      desc.toLowerCase().includes('veste')
-    );
+    const descriptionMatch = Array.isArray(product.description) 
+      ? product.description.some(desc => desc.toLowerCase().includes('veste'))
+      : product.description.toLowerCase().includes('veste');
     return nameMatch || descriptionMatch;
   });
 

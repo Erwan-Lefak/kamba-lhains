@@ -11,10 +11,13 @@ export default function Denim() {
   const denimProducts = products.filter(product => {
     const nameMatch = product.name.toLowerCase().includes('jean') || 
                      product.name.toLowerCase().includes('denim');
-    const descriptionMatch = product.description.some(desc => 
-      desc.toLowerCase().includes('jean') || 
-      desc.toLowerCase().includes('denim')
-    );
+    const descriptionMatch = Array.isArray(product.description) 
+      ? product.description.some(desc => 
+          desc.toLowerCase().includes('jean') || 
+          desc.toLowerCase().includes('denim')
+        )
+      : product.description.toLowerCase().includes('jean') || 
+        product.description.toLowerCase().includes('denim');
     return nameMatch || descriptionMatch;
   });
 

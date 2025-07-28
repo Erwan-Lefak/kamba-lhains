@@ -282,7 +282,7 @@ export class SmartSearchEngine {
 
       // Filtre de prix
       if (filters.priceRange) {
-        const price = parseFloat(product.price.replace('€', ''));
+        const price = product.price;
         const [min, max] = filters.priceRange;
         if (price < min || price > max) {
           return false;
@@ -398,7 +398,7 @@ export class SmartSearchEngine {
         }
         
         // Boost pour la gamme de prix habituelle
-        const itemPrice = parseFloat(item.price.replace('€', ''));
+        const itemPrice = item.price;
         const [minPrice, maxPrice] = profile.priceRange;
         if (itemPrice >= minPrice && itemPrice <= maxPrice) {
           personalizedScore *= 1.2;
@@ -421,15 +421,15 @@ export class SmartSearchEngine {
     switch (sortBy) {
       case 'price_low':
         return results.sort((a, b) => {
-          const priceA = parseFloat(a.price.replace('€', ''));
-          const priceB = parseFloat(b.price.replace('€', ''));
+          const priceA = a.price;
+          const priceB = b.price;
           return priceA - priceB;
         });
         
       case 'price_high':
         return results.sort((a, b) => {
-          const priceA = parseFloat(a.price.replace('€', ''));
-          const priceB = parseFloat(b.price.replace('€', ''));
+          const priceA = a.price;
+          const priceB = b.price;
           return priceB - priceA;
         });
         
@@ -528,7 +528,7 @@ export class SmartSearchEngine {
       brands.set(brand, (brands.get(brand) || 0) + 1);
       
       // Gammes de prix
-      const price = parseFloat(product.price.replace('€', ''));
+      const price = product.price;
       let priceRange = '';
       if (price < 50) priceRange = 'Moins de 50€';
       else if (price < 100) priceRange = '50€ - 100€';
@@ -569,9 +569,9 @@ export class SmartSearchEngine {
     // Simuler une base de données de produits
     return [
       {
-        id: 1,
+        id: "1",
         name: 'Robe Aube Dorée',
-        price: '145€',
+        price: 145,
         description: ['Robe élégante pour soirée avec détails brodés'],
         image: '/images/aube-doree.jpg',
         colors: ['Doré'],
@@ -581,9 +581,9 @@ export class SmartSearchEngine {
         category: 'robes'
       },
       {
-        id: 2,
+        id: "2",
         name: 'Blouse Zenith Blanc',
-        price: '89€',
+        price: 145,
         description: ['Blouse professionnelle en coton bio'],
         image: '/images/zenith-blouse.jpg',
         colors: ['Blanc'],
@@ -593,9 +593,9 @@ export class SmartSearchEngine {
         category: 'tops'
       },
       {
-        id: 3,
+        id: "3",
         name: 'Pantalon Crépuscule Noir',
-        price: '125€',
+        price: 145,
         description: ['Pantalon tailleur confortable et élégant'],
         image: '/images/crepuscule-pantalon.jpg',
         colors: ['Noir'],

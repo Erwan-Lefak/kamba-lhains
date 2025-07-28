@@ -39,8 +39,9 @@ describe('ErrorBoundary', () => {
       </ErrorBoundary>
     );
 
-    expect(screen.getByText('Quelque chose s\'est mal passé')).toBeInTheDocument();
-    expect(screen.getByText('Une erreur inattendue s\'est produite. Veuillez rafraîchir la page.')).toBeInTheDocument();
+    expect(screen.getByText('⚡ Erreur de Composant')).toBeInTheDocument();
+    expect(screen.getByText('Ce composant rencontre un problème temporaire.')).toBeInTheDocument();
+    expect(screen.getByText('Réessayer')).toBeInTheDocument();
   });
 
   it('renders custom fallback when provided', () => {

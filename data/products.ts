@@ -2,9 +2,9 @@ import { Product } from '../types';
 
 export const products: Product[] = [
   {
-    id: 1,
+    id: "1",
     name: "VESTE JANÉ",
-    price: "890,00 EUR",
+    price: 890,
     image: "/images/collection/IMG_2864.jpeg",
     images: [
       "/images/collection/IMG_2864.jpeg",
@@ -33,9 +33,9 @@ export const products: Product[] = [
     featured: true
   },
   {
-    id: 2,
+    id: "2",
     name: "JEAN TRF MOM FIT",
-    price: "450,00 EUR",
+    price: 450,
     image: "/images/collection/IMG_2885.jpeg",
     description: [
       "• Jean mom fit en denim premium",
@@ -52,9 +52,9 @@ export const products: Product[] = [
     featured: true
   },
   {
-    id: 3,
+    id: "3",
     name: "BOXY FIT SHIRT",
-    price: "320,00 EUR",
+    price: 320,
     image: "/images/collection/IMG_2797.jpeg",
     description: [
       "• Chemise coupe boxy en coton",
@@ -71,9 +71,9 @@ export const products: Product[] = [
     featured: true
   },
   {
-    id: 4,
+    id: "4",
     name: "VESTE AVEC COL EN CONTRASTE",
-    price: "460,00 EUR",
+    price: 460,
     image: "/images/collection/IMG_2877.jpeg",
     description: [
       "• Veste élégante avec col contrastant",
@@ -90,9 +90,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 5,
+    id: "5",
     name: "PANTALON KOFFI",
-    price: "580,00 EUR",
+    price: 580,
     image: "/images/products/pantalon-koffi.png",
     description: [
       "• Pantalon droit en laine mérinos",
@@ -109,9 +109,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 6,
+    id: "6",
     name: "BLAZER AMARA",
-    price: "890,00 EUR",
+    price: 890,
     image: "/images/products/blazer-amara.png",
     description: [
       "• Blazer non doublé en lin",
@@ -128,9 +128,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 7,
+    id: "7",
     name: "CHEMISE URIEL",
-    price: "390,00 EUR",
+    price: 390,
     image: "/images/products/chemise-uriel.png",
     description: [
       "• Chemise coupe droite en coton",
@@ -147,9 +147,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 8,
+    id: "8",
     name: "VESTE KMOBOU",
-    price: "590,00 EUR",
+    price: 590,
     image: "/images/products/veste-kmobou.png",
     description: [
       "• Veste légère en coton mélangé",
@@ -166,9 +166,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 9,
+    id: "9",
     name: "VESTE JANE",
-    price: "720,00 EUR",
+    price: 720,
     image: "/images/products/veste-jane.png",
     description: [
       "• Veste structurée en laine mélangée",
@@ -185,9 +185,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 10,
+    id: "10",
     name: "BOMBERS ITOUA",
-    price: "650,00 EUR",
+    price: 650,
     image: "/images/products/bombers-itoua.png",
     description: [
       "• Bombers moderne en nylon technique",
@@ -204,9 +204,9 @@ export const products: Product[] = [
     featured: false
   },
   {
-    id: 11,
+    id: "11",
     name: "JUPE BINE",
-    price: "420,00 EUR",
+    price: 420,
     image: "/images/products/jupe-bine.png",
     description: [
       "• Jupe midi en crêpe fluide",

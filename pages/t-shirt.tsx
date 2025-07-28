@@ -11,10 +11,13 @@ export default function TShirt() {
   const tshirtProducts = products.filter(product => {
     const nameMatch = product.name.toLowerCase().includes('t-shirt') || 
                      product.name.toLowerCase().includes('shirt');
-    const descriptionMatch = product.description.some(desc => 
-      desc.toLowerCase().includes('t-shirt') || 
-      desc.toLowerCase().includes('shirt')
-    );
+    const descriptionMatch = Array.isArray(product.description) 
+      ? product.description.some(desc => 
+          desc.toLowerCase().includes('t-shirt') || 
+          desc.toLowerCase().includes('shirt')
+        )
+      : product.description.toLowerCase().includes('t-shirt') || 
+        product.description.toLowerCase().includes('shirt');
     return nameMatch || descriptionMatch;
   });
 

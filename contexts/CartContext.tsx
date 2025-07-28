@@ -92,13 +92,18 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   const addToCart = (product: Product, selectedSize: string, selectedColor: string, quantity: number = 1) => {
     const cartItem = {
       cartId: `${product.id}-${selectedSize}-${selectedColor}-${Date.now()}`,
-      id: product.id,
+      product,
+      selectedSize,
+      selectedColor,
+      quantity,
+      addedAt: new Date().toISOString(),
+      // Compatibilité avec l'ancien format
+      id: parseInt(product.id),
       name: product.name,
       price: product.price,
       image: product.image,
       size: selectedSize,
       color: selectedColor,
-      quantity,
       category: product.category
     };
 
@@ -132,8 +137,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const getTotalPrice = (): number => {
     return state.items.reduce((total, item) => {
-      const price = parseFloat(item.price.replace(/[^\d,]/g, '').replace(',', '.'));
-      return total + (price * item.quantity);
+      return total + (item.price * item.quantity);
     }, 0);
   };
 
