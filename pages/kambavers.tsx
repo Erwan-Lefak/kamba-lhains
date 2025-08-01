@@ -18,9 +18,12 @@ export default function Kambavers() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showPoster, setShowPoster] = useState(true);
-  const [activeCategory, setActiveCategory] = useState('collections');
-  const [activeSubCategory, setActiveSubCategory] = useState('eclat-ombre');
-  const [showCollectionsSubmenu, setShowCollectionsSubmenu] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('');
+  const [activeSubCategory, setActiveSubCategory] = useState('');
+  const [showCollectionsSubmenu, setShowCollectionsSubmenu] = useState(false);
+  const [isMenuVisible, setIsMenuVisible] = useState(true);
+  const [isHoveringMenu, setIsHoveringMenu] = useState(false);
+  const [isHoveringButton, setIsHoveringButton] = useState(false);
 
   // Handle navigation from URL or external links
   useEffect(() => {
@@ -29,12 +32,37 @@ export default function Kambavers() {
     const section = urlParams.get('section');
     const subcategory = urlParams.get('subcategory');
     
-    if (section === 'collections' || !section) {
+    if (section === 'collections') {
       setActiveCategory('collections');
       setActiveSubCategory(subcategory || 'eclat-ombre');
       setShowCollectionsSubmenu(true);
+    } else {
+      // Si pas de section ou navigation directe vers kambavers, réinitialiser
+      setActiveCategory('');
+      setActiveSubCategory('');
+      setShowCollectionsSubmenu(false);
     }
   }, []);
+
+  // Réinitialiser quand on navigue vers kambavers depuis le menu principal
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (window.location.pathname === '/kambavers' && !window.location.search) {
+        setActiveCategory('');
+        setActiveSubCategory('');
+        setShowCollectionsSubmenu(false);
+      }
+    };
+
+    // Écouter les changements de route
+    window.addEventListener('popstate', handleRouteChange);
+    return () => window.removeEventListener('popstate', handleRouteChange);
+  }, []);
+
+
+  const toggleMenu = () => {
+    setIsMenuVisible(!isMenuVisible);
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -169,26 +197,29 @@ export default function Kambavers() {
 
       <main className="kambavers-page">
         {/* Menu latéral gauche */}
-        <div className="sidebar-menu">
+        <div 
+          className={`sidebar-menu ${isMenuVisible ? 'visible' : 'hidden'}`}
+          onMouseEnter={() => setIsHoveringMenu(true)}
+          onMouseLeave={() => setIsHoveringMenu(false)}
+        >
           <nav className="sidebar-nav">
             <ul>
               <li>
                 <button 
                   onClick={() => {
-                    setActiveCategory('collections');
                     setShowCollectionsSubmenu(!showCollectionsSubmenu);
                   }}
                   className={activeCategory === 'collections' ? 'active' : ''}
                 >
                   COLLECTIONS
                 </button>
-                {activeCategory === 'collections' && showCollectionsSubmenu && (
+                {showCollectionsSubmenu && (
                   <ul className="submenu">
                     <li>
                       <button 
                         onClick={() => {
+                          setActiveCategory('collections');
                           setActiveSubCategory('eclat-ombre');
-                          // This is already the current page content, no navigation needed
                         }}
                         className={`submenu-item ${activeSubCategory === 'eclat-ombre' ? 'active' : ''}`}
                       >
@@ -197,7 +228,10 @@ export default function Kambavers() {
                     </li>
                     <li>
                       <button 
-                        onClick={() => setActiveSubCategory('ota-benga')}
+                        onClick={() => {
+                          setActiveCategory('collections');
+                          setActiveSubCategory('ota-benga');
+                        }}
                         className={`submenu-item ${activeSubCategory === 'ota-benga' ? 'active' : ''}`}
                       >
                         OTA BENGA - Acte 1
@@ -226,9 +260,76 @@ export default function Kambavers() {
           </nav>
         </div>
 
+        {/* Bouton toggle pour le menu */}
+        <button 
+          className="menu-toggle" 
+          onClick={toggleMenu}
+          onMouseEnter={() => setIsHoveringButton(true)}
+          onMouseLeave={() => setIsHoveringButton(false)}
+        >
+          {isMenuVisible && (isHoveringMenu || isHoveringButton) ? (
+            // Croix quand le menu est visible et qu'on le survole
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          ) : !isMenuVisible ? (
+            // 3 traits quand le menu n'est pas visible
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          ) : null}
+        </button>
+
         {/* Contenu principal */}
-        <div className="main-content">
-          {/* Contenu conditionnel selon la sous-catégorie */}
+        <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
+          {/* Vue par défaut Kambavers quand aucune collection n'est sélectionnée */}
+          {!activeCategory && (
+            <>
+            <section className={styles.newCollectionSection}>
+            <div className={styles.textSection}>
+              <h1 
+                style={{ 
+                  fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  color: '#000000',
+                  textShadow: 'none',
+                  boxShadow: 'none',
+                  textTransform: 'uppercase',
+                  marginBottom: '15px',
+                  textAlign: 'center',
+                  width: '100%'
+                }}
+              >
+                "KAMBAVERS"
+              </h1>
+              <p className={styles.collectionDescription}>
+                L'univers Kambavers incarne l'essence de la créativité africaine contemporaine, fusionnant héritage culturel et innovation moderne. Chaque création raconte une histoire unique, célébrant la richesse des traditions tout en embrassant les codes de la mode d'aujourd'hui. Un voyage artistique où l'authenticité rencontre l'élégance.
+              </p>
+            </div>
+            
+            <div className={styles.mediaSection}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/images/collection/wetransfer_img_2800-jpeg_2025-07-25_1347/IMG_2802.jpeg"
+                  alt="Kambavers Collection"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+              </div>
+            </div>
+          </section>
+
+          </>
+          )}
+
+          {/* Contenu pour ÉCLAT D'OMBRE */}
           {activeCategory === 'collections' && activeSubCategory === 'eclat-ombre' && (
             <>
             <section className={styles.newCollectionSection}>
@@ -469,51 +570,6 @@ export default function Kambavers() {
             </div>
           </section>
 
-          {/* Look Book Title */}
-          <section style={{
-            padding: '30px 0',
-            textAlign: 'center',
-            background: 'white'
-          }}>
-            <h2 style={{
-              fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '15px',
-              fontWeight: 700,
-              color: '#000000',
-              textShadow: 'none',
-              boxShadow: 'none',
-              textTransform: 'uppercase',
-              marginBottom: '15px',
-              textAlign: 'center',
-              width: '100%',
-              margin: 0
-            }}>
-              Look Book
-            </h2>
-          </section>
-
-          {/* Gallery Section - 4x3 Grid */}
-          <section className={`${styles.gallerySection} ota-benga-gallery`}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
-                'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg', 
-                'IMG_3054.jpeg', 'IMG_3055.jpeg', 'IMG_3056.jpeg', 'IMG_3057.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`OTA BENGA collection image ${index + 1}`}
-                    width={800}
-                    height={1200}
-                    className={styles.galleryImage}
-                    quality={95}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
           </>
           )}
           
@@ -534,7 +590,7 @@ export default function Kambavers() {
         </div>
       </main>
 
-      <Footer />
+      <Footer isKambaversPage={true} isMenuVisible={isMenuVisible} />
 
       <style jsx>{`
         .kambavers-page {
@@ -552,6 +608,15 @@ export default function Kambavers() {
           background: white;
           z-index: 1000;
           overflow-y: auto;
+          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-menu.hidden {
+          transform: translateX(-100%);
+        }
+
+        .sidebar-menu.visible {
+          transform: translateX(0);
         }
 
         .sidebar-nav {
@@ -623,10 +688,48 @@ export default function Kambavers() {
           color: #9f0909 !important;
         }
 
+        .menu-toggle {
+          position: fixed;
+          top: 90px;
+          left: 20px;
+          z-index: 1001;
+          background: transparent;
+          border: none;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: color 0.3s ease;
+        }
+
+        .menu-toggle svg {
+          color: #000000;
+          transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover svg {
+          color: #9f0909;
+        }
+
+        .menu-toggle:hover svg line {
+          stroke: #9f0909;
+        }
+
         .main-content {
           margin-left: 250px;
           flex: 1;
           padding-top: 40px;
+          transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-content.full-width {
+          margin-left: 0;
+        }
+
+        .main-content.with-sidebar {
+          margin-left: 250px;
         }
 
         @media (max-width: 1024px) {
@@ -634,7 +737,7 @@ export default function Kambavers() {
             width: 200px;
           }
 
-          .main-content {
+          .main-content.with-sidebar {
             margin-left: 200px;
           }
 
@@ -656,12 +759,16 @@ export default function Kambavers() {
 
         @media (max-width: 768px) {
           .sidebar-menu {
-            position: relative;
-            width: 100%;
+            width: 280px;
             top: 0;
-            height: auto;
+            height: 100vh;
             border-right: none;
             border-bottom: 1px solid #e5e7eb;
+          }
+
+          .menu-toggle {
+            top: 20px;
+            left: 20px;
           }
 
           .sidebar-nav {
@@ -696,8 +803,8 @@ export default function Kambavers() {
           }
 
           .main-content {
-            margin-left: 0;
-            padding-top: 0;
+            margin-left: 0 !important;
+            padding-top: 80px;
           }
         }
 

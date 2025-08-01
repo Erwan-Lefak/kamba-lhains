@@ -141,7 +141,7 @@ const nextConfig = {
 
   // Mode expérimental pour les dernières optimisations
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Temporarily disabled - requires critters package
     scrollRestoration: true,
   },
 }

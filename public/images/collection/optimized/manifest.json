@@ -1,0 +1,1323 @@
+{
+  "generated": "2025-07-28T01:50:27.508Z",
+  "sizes": [
+    {
+      "width": 400,
+      "quality": 80,
+      "suffix": "-400w"
+    },
+    {
+      "width": 800,
+      "quality": 75,
+      "suffix": "-800w"
+    },
+    {
+      "width": 1200,
+      "quality": 70,
+      "suffix": "-1200w"
+    },
+    {
+      "width": 1600,
+      "quality": 65,
+      "suffix": "-1600w"
+    }
+  ],
+  "images": [
+    {
+      "original": "IMG_2758.jpg",
+      "optimized": {
+        "original": "IMG_2758-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2758-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2758-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2758-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2758-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2785.jpeg",
+      "optimized": {
+        "original": "IMG_2785-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2785-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2785-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2785-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2785-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2796.jpeg",
+      "optimized": {
+        "original": "IMG_2796-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2796-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2796-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2796-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2796-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2797.jpeg",
+      "optimized": {
+        "original": "IMG_2797-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2797-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2797-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2797-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2797-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2798.jpeg",
+      "optimized": {
+        "original": "IMG_2798-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2798-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2798-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2798-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2798-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2799.jpeg",
+      "optimized": {
+        "original": "IMG_2799-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2799-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2799-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2799-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2799-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2864.jpeg",
+      "optimized": {
+        "original": "IMG_2864-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2864-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2864-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2864-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2864-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2865.jpeg",
+      "optimized": {
+        "original": "IMG_2865-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2865-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2865-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2865-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2865-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2866.jpeg",
+      "optimized": {
+        "original": "IMG_2866-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2866-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2866-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2866-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2866-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2867.jpeg",
+      "optimized": {
+        "original": "IMG_2867-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2867-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2867-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2867-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2867-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2868.jpeg",
+      "optimized": {
+        "original": "IMG_2868-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2868-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2868-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2868-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2868-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2869.jpeg",
+      "optimized": {
+        "original": "IMG_2869-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2869-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2869-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2869-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2869-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2870.jpeg",
+      "optimized": {
+        "original": "IMG_2870-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2870-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2870-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2870-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2870-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2871.jpeg",
+      "optimized": {
+        "original": "IMG_2871-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2871-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2871-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2871-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2871-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2872.jpeg",
+      "optimized": {
+        "original": "IMG_2872-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2872-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2872-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2872-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2872-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2873.jpeg",
+      "optimized": {
+        "original": "IMG_2873-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2873-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2873-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2873-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2873-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2877.jpeg",
+      "optimized": {
+        "original": "IMG_2877-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2877-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2877-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2877-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2877-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2879.jpeg",
+      "optimized": {
+        "original": "IMG_2879-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2879-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2879-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2879-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2879-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2885.jpeg",
+      "optimized": {
+        "original": "IMG_2885-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2885-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2885-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2885-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2885-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2917.jpeg",
+      "optimized": {
+        "original": "IMG_2917-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2917-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2917-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2917-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2917-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2918.jpeg",
+      "optimized": {
+        "original": "IMG_2918-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2918-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2918-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2918-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2918-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2919.jpeg",
+      "optimized": {
+        "original": "IMG_2919-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2919-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2919-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2919-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2919-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2920.jpeg",
+      "optimized": {
+        "original": "IMG_2920-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2920-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2920-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2920-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2920-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2921.jpeg",
+      "optimized": {
+        "original": "IMG_2921-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2921-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2921-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2921-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2921-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2922.jpeg",
+      "optimized": {
+        "original": "IMG_2922-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2922-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2922-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2922-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2922-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2923.jpeg",
+      "optimized": {
+        "original": "IMG_2923-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2923-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2923-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2923-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2923-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2924.jpeg",
+      "optimized": {
+        "original": "IMG_2924-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2924-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2924-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2924-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2924-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2925.jpeg",
+      "optimized": {
+        "original": "IMG_2925-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2925-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2925-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2925-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2925-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_2926.jpeg",
+      "optimized": {
+        "original": "IMG_2926-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_2926-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_2926-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_2926-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_2926-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3031.jpeg",
+      "optimized": {
+        "original": "IMG_3031-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3031-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3031-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3031-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3031-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3033.jpeg",
+      "optimized": {
+        "original": "IMG_3033-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3033-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3033-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3033-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3033-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3034.jpeg",
+      "optimized": {
+        "original": "IMG_3034-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3034-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3034-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3034-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3034-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3035.jpeg",
+      "optimized": {
+        "original": "IMG_3035-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3035-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3035-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3035-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3035-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3036.jpeg",
+      "optimized": {
+        "original": "IMG_3036-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3036-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3036-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3036-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3036-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3037.jpeg",
+      "optimized": {
+        "original": "IMG_3037-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3037-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3037-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3037-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3037-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3038.jpeg",
+      "optimized": {
+        "original": "IMG_3038-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3038-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3038-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3038-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3038-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3039.jpeg",
+      "optimized": {
+        "original": "IMG_3039-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3039-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3039-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3039-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3039-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3040.jpeg",
+      "optimized": {
+        "original": "IMG_3040-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3040-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3040-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3040-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3040-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3041.jpeg",
+      "optimized": {
+        "original": "IMG_3041-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3041-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3041-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3041-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3041-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3042.jpeg",
+      "optimized": {
+        "original": "IMG_3042-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3042-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3042-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3042-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3042-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3043.jpeg",
+      "optimized": {
+        "original": "IMG_3043-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3043-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3043-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3043-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3043-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3044.jpeg",
+      "optimized": {
+        "original": "IMG_3044-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3044-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3044-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3044-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3044-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3046.jpeg",
+      "optimized": {
+        "original": "IMG_3046-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3046-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3046-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3046-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3046-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3047.jpeg",
+      "optimized": {
+        "original": "IMG_3047-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3047-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3047-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3047-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3047-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3048.jpeg",
+      "optimized": {
+        "original": "IMG_3048-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3048-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3048-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3048-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3048-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3049.jpeg",
+      "optimized": {
+        "original": "IMG_3049-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3049-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3049-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3049-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3049-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3050.jpeg",
+      "optimized": {
+        "original": "IMG_3050-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3050-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3050-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3050-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3050-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3051.jpeg",
+      "optimized": {
+        "original": "IMG_3051-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3051-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3051-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3051-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3051-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3052.jpeg",
+      "optimized": {
+        "original": "IMG_3052-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3052-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3052-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3052-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3052-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3054.jpeg",
+      "optimized": {
+        "original": "IMG_3054-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3054-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3054-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3054-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3054-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3055.jpeg",
+      "optimized": {
+        "original": "IMG_3055-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3055-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3055-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3055-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3055-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3056.jpeg",
+      "optimized": {
+        "original": "IMG_3056-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3056-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3056-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3056-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3056-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3057.jpeg",
+      "optimized": {
+        "original": "IMG_3057-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3057-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3057-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3057-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3057-1600w.webp"
+          }
+        ]
+      }
+    },
+    {
+      "original": "IMG_3475.jpg",
+      "optimized": {
+        "original": "IMG_3475-original.webp",
+        "responsive": [
+          {
+            "width": 400,
+            "file": "IMG_3475-400w.webp"
+          },
+          {
+            "width": 800,
+            "file": "IMG_3475-800w.webp"
+          },
+          {
+            "width": 1200,
+            "file": "IMG_3475-1200w.webp"
+          },
+          {
+            "width": 1600,
+            "file": "IMG_3475-1600w.webp"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useLanguage } from '../contexts/LanguageContext';
+import { Language as LanguageType } from '../utils/translations';
 
 interface OpenSections {
   [key: string]: boolean;
@@ -13,13 +14,18 @@ interface Country {
   currency: string;
 }
 
-interface Language {
-  code: string;
+interface LanguageOption {
+  code: LanguageType;
   label: string;
   flag: string;
 }
 
-export default function Footer(): React.JSX.Element {
+interface FooterProps {
+  isKambaversPage?: boolean;
+  isMenuVisible?: boolean;
+}
+
+export default function Footer({ isKambaversPage = false, isMenuVisible = false }: FooterProps): React.JSX.Element {
   const [openSections, setOpenSections] = useState<OpenSections>({});
   const [email, setEmail] = useState<string>('');
   const [showCountryModal, setShowCountryModal] = useState<boolean>(false);
@@ -45,7 +51,7 @@ export default function Footer(): React.JSX.Element {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  const languages: Language[] = [
+  const languages: LanguageOption[] = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
     { code: 'en', label: 'English', flag: '🇬🇧' },
     { code: 'ko', label: '한국어', flag: '🇰🇷' }
@@ -268,6 +274,10 @@ export default function Footer(): React.JSX.Element {
           font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
           font-weight: 300;
           letter-spacing: 0.3px;
+          ${isKambaversPage ? `
+            margin-left: ${isMenuVisible ? '250px' : '0'};
+            transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          ` : ''}
         }
         
         .container {
@@ -703,6 +713,14 @@ export default function Footer(): React.JSX.Element {
           font-family: 'Manrope', sans-serif;
         }
         
+        @media (max-width: 1024px) and (min-width: 769px) {
+          .footer {
+            ${isKambaversPage ? `
+              margin-left: ${isMenuVisible ? '200px' : '0'};
+            ` : ''}
+          }
+        }
+
         @media (min-width: 769px) {
           .section-header {
             cursor: default;
@@ -724,6 +742,7 @@ export default function Footer(): React.JSX.Element {
         @media (max-width: 768px) {
           .footer {
             padding: 25px 0 10px;
+            ${isKambaversPage ? 'margin-left: 0 !important;' : ''}
           }
           
           .footer-top {
