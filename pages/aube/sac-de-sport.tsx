@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
@@ -9,7 +10,10 @@ import MobileCarousel from '../../components/MobileCarousel';
 import CollectionHeader from '../../components/CollectionHeader';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
+import { useCart } from '../../contexts/CartContext';
+import { useFavorites } from '../../contexts/FavoritesContext';
 import styles from '../../styles/HomePage.module.css';
+import productStyles from '../../styles/ProductPage.module.css';
 
 export default function AubeSacDeSport() {
   const router = useRouter();
@@ -19,6 +23,15 @@ export default function AubeSacDeSport() {
   const [showHautSubmenu, setShowHautSubmenu] = useState(false);
   const [showBasSubmenu, setShowBasSubmenu] = useState(false);
   const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(true);
+  
+  // Product page states
+  const { addToCart } = useCart();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const [selectedColor, setSelectedColor] = useState('Beige');
+  const [selectedSize, setSelectedSize] = useState('Unique');
+  const [quantity, setQuantity] = useState(1);
+  const [rightModalOpen, setRightModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   useEffect(() => {
     setIsMenuVisible(false);
@@ -26,6 +39,89 @@ export default function AubeSacDeSport() {
 
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
+  };
+
+  // Product page functions
+  const sacDeSportProduct = {
+    id: 'aube-sac-de-sport-001',
+    name: 'Sac de Sport',
+    price: '150€',
+    images: ['/images/products/sacdesport1.jpg', '/images/products/sacdesport2.jpg', '/images/products/sacdesport3.jpg', '/images/products/sacdesport4.jpg'],
+    category: 'Aube',
+    subcategory: 'Accessoires',
+    description: ['Sac de sport élégant et fonctionnel pour accompagner vos activités sportives.', 'Matière résistante et imperméable', 'Grande capacité de rangement', 'Sangles ajustables et confortables'],
+    colors: ['Beige'],
+    sizes: ['Unique'],
+    inStock: true
+  };
+
+  const handleAddToCart = () => {
+    addToCart(sacDeSportProduct, selectedSize, selectedColor, quantity);
+    alert(`${sacDeSportProduct.name} ajouté au panier !`);
+  };
+
+  const handleHeartClick = () => {
+    if (isFavorite(sacDeSportProduct.id)) {
+      removeFromFavorites(sacDeSportProduct.id);
+    } else {
+      addToFavorites(sacDeSportProduct);
+    }
+  };
+
+  const openModal = (content) => {
+    setModalContent(content);
+    setRightModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setRightModalOpen(false);
+  };
+
+  const getModalTitle = () => {
+    switch (modalContent) {
+      case 'description': return 'Description';
+      case 'sizeGuide': return 'Guide des tailles';
+      case 'careGuide': return 'Guide d\'entretien';
+      default: return '';
+    }
+  };
+
+  const renderModalContent = () => {
+    switch (modalContent) {
+      case 'description':
+        return (
+          <div>
+            <h3>Composition</h3>
+            <ul>
+              {sacDeSportProduct.description.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      case 'sizeGuide':
+        return (
+          <div>
+            <h3>Guide des tailles</h3>
+            <p>Taille unique : 50cm x 30cm x 25cm</p>
+            <p>Capacité : 40 litres</p>
+          </div>
+        );
+      case 'careGuide':
+        return (
+          <div>
+            <h3>Composition et entretien</h3>
+            <ul>
+              <li>100% polyester recyclé.</li>
+              <li>Nettoyage à l'eau tiède avec un chiffon humide.</li>
+              <li>Séchage à l'air libre.</li>
+              <li>Ne pas utiliser de produits chimiques agressifs.</li>
+            </ul>
+          </div>
+        );
+      default:
+        return null;
+    }
   };
 
   const sacDeSportProducts = products.filter(product => {
@@ -93,17 +189,17 @@ export default function AubeSacDeSport() {
 
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
           {/* 1ère section: Collection Header */}
-          <CollectionHeader collection="aube" customImagePath="/accessoires2.jpg" />
+          <CollectionHeader collection="aube" customImagePath="/aube.jpg" />
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
-            padding: '60px 0',
+            padding: '30px 0',
             textAlign: 'center',
             background: 'white'
           }}>
             <h2 style={{
               fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '11px',
+              fontSize: '15px',
               fontWeight: 400,
               color: '#000000',
               textShadow: 'none',
@@ -118,27 +214,193 @@ export default function AubeSacDeSport() {
             </h2>
           </section>
 
-          {/* 3ème section: Galerie photo 4x2 */}
-          <section className={styles.gallerySection}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
-                'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`Sac de Sport ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className={styles.galleryImage}
-                    quality={90}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
+          {/* 4ème section: Page Produit Complète */}
+          <div className={productStyles.productPage}>
+            <div className={productStyles.productContainer}>
+              {/* Image Section - 60% */}
+              <div className={productStyles.productImageSection} style={{position: 'relative'}}>
+                {/* Breadcrumb - Positioned absolutely */}
+                <div className={productStyles.breadcrumb} style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  zIndex: 10
+                }}>
+                  <Link href="/aube" className={productStyles.breadcrumbLink}>
+                    <span>Aube</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/aube/sac" className={productStyles.breadcrumbLink}>
+                    <span>Accessoires</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/aube/sac-de-sport" className={productStyles.breadcrumbLink}>
+                    <span>Sac de Sport</span>
+                  </Link>
                 </div>
-              ))}
+                
+                {/* Heart Icon - Positioned absolutely */}
+                <button 
+                  className={`${productStyles.heartIcon} ${isFavorite(sacDeSportProduct.id) ? productStyles.liked : ''}`}
+                  onClick={handleHeartClick}
+                  aria-label={isFavorite(sacDeSportProduct.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                  style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    zIndex: 10
+                  }}
+                >
+                  <span className={`u-w-full ${isFavorite(sacDeSportProduct.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                  <span className={`u-w-full ${!isFavorite(sacDeSportProduct.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                </button>
+                
+                {/* Vertical Image Stack */}
+                <div className={productStyles.imageStack}>
+                  {sacDeSportProduct.images.map((image, index) => (
+                    <img 
+                      key={index}
+                      src={image}
+                      alt={`${sacDeSportProduct.name} ${index + 1}`}
+                      className={productStyles.stackedImage}
+                      onError={(e) => {
+                        console.log('Image failed to load:', image);
+                        e.target.src = '/logo.png';
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Product Info Section - 40% */}
+              <div className={productStyles.productInfoSection}>
+                {/* Main Content - Centered */}
+                <div className={productStyles.productMainContent}>
+                  <h1 className={productStyles.productTitle}>{sacDeSportProduct.name}</h1>
+                  <span className={productStyles.productPrice}>{sacDeSportProduct.price}</span>
+                  
+                  {/* Color Selector */}
+                  <div className={productStyles.colorSection}>
+                    <div className={productStyles.colorHeader}>
+                      <div className={productStyles.colorLabel}>
+                        Couleur : {selectedColor}
+                      </div>
+                    </div>
+                    <div className={productStyles.colorOptions}>
+                      {sacDeSportProduct.colors.map((color, index) => (
+                        <div
+                          key={index}
+                          className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
+                          style={{ 
+                            backgroundColor: color === 'Beige' ? '#8B7355' : color
+                          }}
+                          onClick={() => setSelectedColor(color)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Add to Cart Button with Quantity */}
+                  <div className={productStyles.addToCartSection}>
+                    <div className={productStyles.addToCartButton}>
+                      <div 
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      >
+                        -
+                      </div>
+                      <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1}}>
+                        <span>AJOUTER AU PANIER</span>
+                      </button>
+                      <div 
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => setQuantity(quantity + 1)}
+                      >
+                        {quantity === 1 ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info Links */}
+                  <div className={productStyles.infoLinksSection}>
+                    <button 
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('description')}
+                    >
+                      Description
+                    </button>
+                    <button 
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('sizeGuide')}
+                    >
+                      Guide des tailles
+                    </button>
+                    <button 
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('careGuide')}
+                    >
+                      Guide d'entretien
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </section>
+
+            {/* Complete Your Look Section */}
+            <section className={productStyles.completeYourLook}>
+              <div className={productStyles.sectionContainer}>
+                <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
+              </div>
+              
+              {/* Three Products Grid Section - Using Homepage Style */}
+              <section className={productStyles.threeProductsSection}>
+                {/* Desktop Grid */}
+                <div className={productStyles.threeProductsGrid}>
+                  {products
+                    .filter(p => p.category === 'Aube' && p.id !== sacDeSportProduct.id)
+                    .slice(0, 3)
+                    .map((recommendedProduct) => (
+                      <div key={recommendedProduct.id} className={productStyles.productSlot}>
+                        <ProductCard product={recommendedProduct} />
+                      </div>
+                    ))
+                  }
+                </div>
+                
+                {/* Mobile Carousel */}
+                <div className={productStyles.mobileCarousel}>
+                  <MobileCarousel products={products.filter(p => p.category === 'Aube' && p.id !== sacDeSportProduct.id).slice(0, 3)} />
+                </div>
+              </section>
+            </section>
+
+            {/* Modal Overlay */}
+            <div 
+              className={`${productStyles.modalOverlay} ${rightModalOpen ? productStyles.open : ''}`}
+              onClick={closeModal}
+            />
+
+            {/* Right Modal (Description, Size Guide, Care Guide) */}
+            <div className={`${productStyles.slidingModal} ${productStyles.rightModal} ${rightModalOpen ? productStyles.open : ''}`}>
+              <div className={productStyles.modalHeader}>
+                <h2 className={productStyles.modalTitle}>{getModalTitle()}</h2>
+                <button className={productStyles.closeButton} onClick={closeModal}>
+                  ×
+                </button>
+              </div>
+              <div className={productStyles.modalContent}>
+                {renderModalContent()}
+              </div>
+            </div>
+          </div>
 
         </div>
       </main>

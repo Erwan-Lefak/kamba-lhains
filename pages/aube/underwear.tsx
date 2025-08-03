@@ -2,6 +2,7 @@ import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
@@ -9,7 +10,10 @@ import MobileCarousel from '../../components/MobileCarousel';
 import CollectionHeader from '../../components/CollectionHeader';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
+import { useCart } from '../../contexts/CartContext';
+import { useFavorites } from '../../contexts/FavoritesContext';
 import styles from '../../styles/HomePage.module.css';
+import productStyles from '../../styles/ProductPage.module.css';
 
 export default function AubeUnderwear() {
   const router = useRouter();
@@ -19,6 +23,15 @@ export default function AubeUnderwear() {
   const [showHautSubmenu, setShowHautSubmenu] = useState(false);
   const [showBasSubmenu, setShowBasSubmenu] = useState(false);
   const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(true);
+  
+  // Product page states
+  const { addToCart } = useCart();
+  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  const [selectedColor, setSelectedColor] = useState('Blanc');
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [quantity, setQuantity] = useState(1);
+  const [rightModalOpen, setRightModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
 
   useEffect(() => {
     setIsMenuVisible(false);
@@ -26,6 +39,92 @@ export default function AubeUnderwear() {
 
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
+  };
+
+  // Product page functions
+  const boxerProduct = {
+    id: 'aube-boxer-001',
+    name: 'Boxer',
+    price: '30€',
+    images: ['/images/products/boxer1.jpg', '/images/products/boxer2.jpg', '/images/products/boxer3.jpg', '/images/products/boxer4.jpg', '/images/products/boxer5.jpg', '/images/products/boxer6.jpg'],
+    category: 'Aube',
+    subcategory: 'Underwear',
+    description: ['Boxer confortable et élégant pour un confort optimal au quotidien.', 'Coton biologique de qualité supérieure', 'Coupe ajustée et respirante', 'Ceinture élastique douce'],
+    colors: ['Blanc', 'Noir', 'Gris'],
+    sizes: ['S', 'M', 'L', 'XL'],
+    inStock: true
+  };
+
+  const handleAddToCart = () => {
+    addToCart(boxerProduct, selectedSize, selectedColor, quantity);
+    alert(`${boxerProduct.name} ajouté au panier !`);
+  };
+
+  const handleHeartClick = () => {
+    if (isFavorite(boxerProduct.id)) {
+      removeFromFavorites(boxerProduct.id);
+    } else {
+      addToFavorites(boxerProduct);
+    }
+  };
+
+  const openModal = (content) => {
+    setModalContent(content);
+    setRightModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setRightModalOpen(false);
+  };
+
+  const getModalTitle = () => {
+    switch (modalContent) {
+      case 'description': return 'Description';
+      case 'sizeGuide': return 'Guide des tailles';
+      case 'careGuide': return 'Guide d\'entretien';
+      default: return '';
+    }
+  };
+
+  const renderModalContent = () => {
+    switch (modalContent) {
+      case 'description':
+        return (
+          <div>
+            <h3>Composition</h3>
+            <ul>
+              {boxerProduct.description.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      case 'sizeGuide':
+        return (
+          <div>
+            <h3>Guide des tailles</h3>
+            <p><strong>S</strong> : Tour de taille 70-75cm</p>
+            <p><strong>M</strong> : Tour de taille 76-80cm</p>
+            <p><strong>L</strong> : Tour de taille 81-85cm</p>
+            <p><strong>XL</strong> : Tour de taille 86-90cm</p>
+          </div>
+        );
+      case 'careGuide':
+        return (
+          <div>
+            <h3>Composition et entretien</h3>
+            <ul>
+              <li>95% coton biologique, 5% élasthanne.</li>
+              <li>Lavage en machine à 30°C.</li>
+              <li>Pas de blanchiment.</li>
+              <li>Séchage à basse température.</li>
+              <li>Repassage à basse température.</li>
+            </ul>
+          </div>
+        );
+      default:
+        return null;
+    }
   };
 
   const underwearProducts = products.filter(product => {
@@ -100,7 +199,7 @@ export default function AubeUnderwear() {
           }}>
             <h2 style={{
               fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '11px',
+              fontSize: '15px',
               fontWeight: 400,
               color: '#000000',
               textShadow: 'none',
@@ -115,27 +214,211 @@ export default function AubeUnderwear() {
             </h2>
           </section>
 
-          {/* 3ème section: Galerie photo 4x2 */}
-          <section className={styles.gallerySection}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
-                'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`Underwear ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className={styles.galleryImage}
-                    quality={90}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
+          {/* 3ème section: Page Produit Complète */}
+          <div className={productStyles.productPage}>
+            <div className={productStyles.productContainer}>
+              {/* Image Section - 60% */}
+              <div className={productStyles.productImageSection} style={{position: 'relative'}}>
+                {/* Breadcrumb - Positioned absolutely */}
+                <div className={productStyles.breadcrumb} style={{
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  zIndex: 10
+                }}>
+                  <Link href="/aube" className={productStyles.breadcrumbLink}>
+                    <span>Aube</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/aube/underwear" className={productStyles.breadcrumbLink}>
+                    <span>Underwear</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/aube/underwear" className={productStyles.breadcrumbLink}>
+                    <span>Boxer</span>
+                  </Link>
                 </div>
-              ))}
+                
+                {/* Heart Icon - Positioned absolutely */}
+                <button 
+                  className={`${productStyles.heartIcon} ${isFavorite(boxerProduct.id) ? productStyles.liked : ''}`}
+                  onClick={handleHeartClick}
+                  aria-label={isFavorite(boxerProduct.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                  style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    zIndex: 10
+                  }}
+                >
+                  <span className={`u-w-full ${isFavorite(boxerProduct.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                  <span className={`u-w-full ${!isFavorite(boxerProduct.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                </button>
+                
+                {/* Vertical Image Stack */}
+                <div className={productStyles.imageStack}>
+                  {boxerProduct.images.map((image, index) => (
+                    <img 
+                      key={index}
+                      src={image}
+                      alt={`${boxerProduct.name} ${index + 1}`}
+                      className={productStyles.stackedImage}
+                      onError={(e) => {
+                        console.log('Image failed to load:', image);
+                        e.target.src = '/logo.png';
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Product Info Section - 40% */}
+              <div className={productStyles.productInfoSection}>
+                {/* Main Content - Centered */}
+                <div className={productStyles.productMainContent}>
+                  <h1 className={productStyles.productTitle}>{boxerProduct.name}</h1>
+                  <span className={productStyles.productPrice}>{boxerProduct.price}</span>
+                  
+                  {/* Color Selector */}
+                  <div className={productStyles.colorSection}>
+                    <div className={productStyles.colorHeader}>
+                      <div className={productStyles.colorLabel}>
+                        Couleur : {selectedColor}
+                      </div>
+                    </div>
+                    <div className={productStyles.colorOptions}>
+                      {boxerProduct.colors.map((color, index) => (
+                        <div
+                          key={index}
+                          className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
+                          style={{ 
+                            backgroundColor: color === 'Blanc' ? '#FFFFFF' : color === 'Noir' ? '#000000' : color === 'Gris' ? '#808080' : color
+                          }}
+                          onClick={() => setSelectedColor(color)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Size Selector */}
+                  <div className={productStyles.sizeSection}>
+                    <div className={productStyles.sizeHeader}>
+                      <div className={productStyles.sizeLabel}>Taille</div>
+                    </div>
+                    <div className={productStyles.sizeGrid}>
+                      {boxerProduct.sizes.map((size, index) => (
+                        <button
+                          key={index}
+                          className={`${productStyles.sizeOption} ${selectedSize === size ? productStyles.active : ''}`}
+                          onClick={() => setSelectedSize(size)}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Add to Cart Button with Quantity */}
+                  <div className={productStyles.addToCartSection}>
+                    <div className={productStyles.addToCartButton}>
+                      <div 
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      >
+                        -
+                      </div>
+                      <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1}}>
+                        <span>AJOUTER AU PANIER</span>
+                      </button>
+                      <div 
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => setQuantity(quantity + 1)}
+                      >
+                        {quantity === 1 ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info Links */}
+                  <div className={productStyles.infoLinksSection}>
+                    <button 
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('description')}
+                    >
+                      Description
+                    </button>
+                    <button 
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('sizeGuide')}
+                    >
+                      Guide des tailles
+                    </button>
+                    <button 
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('careGuide')}
+                    >
+                      Guide d'entretien
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </section>
+
+            {/* Complete Your Look Section */}
+            <section className={productStyles.completeYourLook}>
+              <div className={productStyles.sectionContainer}>
+                <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
+              </div>
+              
+              {/* Three Products Grid Section - Using Homepage Style */}
+              <section className={productStyles.threeProductsSection}>
+                {/* Desktop Grid */}
+                <div className={productStyles.threeProductsGrid}>
+                  {products
+                    .filter(p => p.category === 'Aube' && p.id !== boxerProduct.id)
+                    .slice(0, 3)
+                    .map((recommendedProduct) => (
+                      <div key={recommendedProduct.id} className={productStyles.productSlot}>
+                        <ProductCard product={recommendedProduct} />
+                      </div>
+                    ))
+                  }
+                </div>
+                
+                {/* Mobile Carousel */}
+                <div className={productStyles.mobileCarousel}>
+                  <MobileCarousel products={products.filter(p => p.category === 'Aube' && p.id !== boxerProduct.id).slice(0, 3)} />
+                </div>
+              </section>
+            </section>
+
+            {/* Modal Overlay */}
+            <div 
+              className={`${productStyles.modalOverlay} ${rightModalOpen ? productStyles.open : ''}`}
+              onClick={closeModal}
+            />
+
+            {/* Right Modal (Description, Size Guide, Care Guide) */}
+            <div className={`${productStyles.slidingModal} ${productStyles.rightModal} ${rightModalOpen ? productStyles.open : ''}`}>
+              <div className={productStyles.modalHeader}>
+                <h2 className={productStyles.modalTitle}>{getModalTitle()}</h2>
+                <button className={productStyles.closeButton} onClick={closeModal}>
+                  ×
+                </button>
+              </div>
+              <div className={productStyles.modalContent}>
+                {renderModalContent()}
+              </div>
+            </div>
+          </div>
 
         </div>
       </main>
