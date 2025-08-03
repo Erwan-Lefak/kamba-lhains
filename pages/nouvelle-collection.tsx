@@ -283,8 +283,8 @@ export default function NouvelleCollection() {
         }}>
           <h2 style={{
             fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-            fontSize: '15px',
-            fontWeight: 700,
+            fontSize: '11px',
+            fontWeight: 400,
             color: '#000000',
             textShadow: 'none',
             boxShadow: 'none',

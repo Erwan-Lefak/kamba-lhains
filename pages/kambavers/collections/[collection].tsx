@@ -164,8 +164,8 @@ export default function KambaversCollection() {
                 <h1 
                   style={{ 
                     fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                    fontSize: '15px',
-                    fontWeight: 700,
+                    fontSize: '11px',
+                    fontWeight: 400,
                     color: '#000000',
                     textShadow: 'none',
                     boxShadow: 'none',
@@ -350,8 +350,8 @@ export default function KambaversCollection() {
                 <h1 
                   style={{ 
                     fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                    fontSize: '15px',
-                    fontWeight: 700,
+                    fontSize: '11px',
+                    fontWeight: 400,
                     color: '#000000',
                     textShadow: 'none',
                     boxShadow: 'none',
@@ -453,14 +453,14 @@ export default function KambaversCollection() {
                 </button>
                 {showCollectionsSubmenu && (
                   <ul className="submenu">
-                    <li>
+                    {/* <li>
                       <button 
                         onClick={() => router.push('/kambavers/collections/eclat-ombre')}
                         className={`submenu-item ${collection === 'eclat-ombre' ? 'active' : ''}`}
                       >
                         ÉCLAT D'OMBRE
                       </button>
-                    </li>
+                    </li> */}
                     <li>
                       <button 
                         onClick={() => router.push('/kambavers/collections/ota-benga')}
@@ -476,7 +476,7 @@ export default function KambaversCollection() {
                 <button 
                   onClick={() => router.push('/kambavers/boutiques')}
                 >
-                  POINT DE VENTE
+                  POINTS DE VENTE
                 </button>
               </li>
             </ul>

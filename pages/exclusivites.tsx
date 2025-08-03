@@ -89,8 +89,8 @@ export default function Exclusivites() {
               <h1 
                 style={{ 
                   fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
+                  fontSize: '11px',
+                  fontWeight: 400,
                   color: '#000000',
                   textShadow: 'none',
                   boxShadow: 'none',
@@ -103,14 +103,15 @@ export default function Exclusivites() {
                 Exclusivités
               </h1>
               <p className={styles.collectionDescription}>
-                Nos Exclusivités représentent le summum de notre savoir-faire artisanal. Ces créations uniques et limitées incarnent l'excellence de la maison Kamba Lhains, alliant tradition ancestrale et innovation contemporaine pour des pièces d'exception.
+                Nos exclusivités sont des pièces conçues en exemplaire unique.
+                Chaque création est réalisée dans une taille spécifique, à partir de tissus en quantité très limitée : fins de rouleaux, stocks restants ou chutes revalorisées, ainsi que des collaborations spontanées avec divers créatifs.
               </p>
             </div>
             
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/marque.jpg"
+                  src="/exclu2.jpg"
                   alt="Exclusivités - Kamba Lhains"
                   width={1200}
                   height={800}
@@ -124,13 +125,13 @@ export default function Exclusivites() {
 
           {/* Collection Title */}
           <section style={{
-            padding: '30px 0',
+            padding: '60px 0',
             textAlign: 'center',
             background: 'white'
           }}>
             <h2 style={{
               fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '15px',
+              fontSize: '11px',
               fontWeight: 400,
               color: '#000000',
               textShadow: 'none',

@@ -89,8 +89,8 @@ export default function Zenith() {
               <h1 
                 style={{ 
                   fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
+                  fontSize: '11px',
+                  fontWeight: 400,
                   color: '#000000',
                   textShadow: 'none',
                   boxShadow: 'none',
@@ -110,7 +110,7 @@ export default function Zenith() {
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/marque.jpg"
+                  src="/zenith.jpg"
                   alt="Collection Zénith - Kamba Lhains"
                   width={1200}
                   height={800}
@@ -124,13 +124,13 @@ export default function Zenith() {
 
           {/* Collection Title */}
           <section style={{
-            padding: '30px 0',
+            padding: '60px 0',
             textAlign: 'center',
             background: 'white'
           }}>
             <h2 style={{
               fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '15px',
+              fontSize: '11px',
               fontWeight: 400,
               color: '#000000',
               textShadow: 'none',

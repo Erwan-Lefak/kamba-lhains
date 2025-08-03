@@ -440,6 +440,7 @@
   overflow: visible;
   height: calc(80vh + 100px);
   display: block;
+  cursor: pointer;
 }
 
 .collectionImage {

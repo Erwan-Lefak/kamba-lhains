@@ -64,14 +64,14 @@ export default function KambaversCharte() {
                 </button>
                 {showCollectionsSubmenu && (
                   <ul className="submenu">
-                    <li>
+                    {/* <li>
                       <button 
                         onClick={() => router.push('/kambavers/collections/eclat-ombre')}
                         className="submenu-item"
                       >
                         ÉCLAT D'OMBRE
                       </button>
-                    </li>
+                    </li> */}
                     <li>
                       <button 
                         onClick={() => router.push('/kambavers/collections/ota-benga')}
@@ -87,7 +87,7 @@ export default function KambaversCharte() {
                 <button 
                   onClick={() => router.push('/kambavers/boutiques')}
                 >
-                  POINT DE VENTE
+                  POINTS DE VENTE
                 </button>
               </li>
             </ul>
@@ -125,8 +125,8 @@ export default function KambaversCharte() {
               <h1 
                 style={{ 
                   fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
+                  fontSize: '11px',
+                  fontWeight: 400,
                   color: '#000000',
                   textShadow: 'none',
                   boxShadow: 'none',

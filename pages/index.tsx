@@ -242,9 +242,16 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Delay initial call to avoid hydration mismatch
+    const timeoutId = setTimeout(() => {
+      handleScroll();
+    }, 100);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
@@ -284,22 +291,24 @@ export default function Home() {
         {/* New Collection Section */}
         <section className={styles.newCollectionSection}>
           <div className={styles.collectionGrid}>
-            <div className={styles.collectionImageSlot}>
-              <Image 
-                src="/images/collection/IMG_2758.jpg"
-                alt="Nouvelle Collection 1"
-                fill
-                sizes="50vw"
-                className={styles.collectionImage}
-                priority
-              />
-              <div className={styles.stickyTextContainer}>
-                <div className={styles.stickyText}>EXCLUSIVITÉS</div>
+            <Link href="/exclusivites">
+              <div className={styles.collectionImageSlot}>
+                <Image 
+                  src="/exclu.jpg"
+                  alt="Exclusivités"
+                  fill
+                  sizes="50vw"
+                  className={styles.collectionImage}
+                  priority
+                />
+                <div className={styles.stickyTextContainer}>
+                  <div className={styles.stickyText}>EXCLUSIVITÉS</div>
+                </div>
+                <div className={styles.stickyTextContainer}>
+                  <div className={styles.stickyText} id="exclusivite-phase1">EXCLUSIVITÉS</div>
+                </div>
               </div>
-              <div className={styles.stickyTextContainer}>
-                <div className={styles.stickyText} id="exclusivite-phase1">EXCLUSIVITÉS</div>
-              </div>
-            </div>
+            </Link>
             <div className={styles.collectionImageSlot}>
               <Image 
                 src="/images/collection/IMG_3475.jpg"
