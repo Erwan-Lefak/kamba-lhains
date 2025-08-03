@@ -3,10 +3,11 @@ import styles from '../styles/HomePage.module.css';
 
 interface CollectionHeaderProps {
   collection: 'exclusivites' | 'aube' | 'zenith' | 'crepuscule';
-  title: string;
-  description: string;
-  imagePath: string;
-  galleryImages: string[];
+  title?: string;
+  description?: string;
+  imagePath?: string;
+  galleryImages?: string[];
+  customImagePath?: string;
 }
 
 const collectionData = {
@@ -48,7 +49,7 @@ const collectionData = {
   }
 };
 
-export default function CollectionHeader({ collection }: { collection: 'exclusivites' | 'aube' | 'zenith' | 'crepuscule' }) {
+export default function CollectionHeader({ collection, customImagePath }: { collection: 'exclusivites' | 'aube' | 'zenith' | 'crepuscule'; customImagePath?: string }) {
   const data = collectionData[collection];
 
   return (
@@ -80,7 +81,7 @@ export default function CollectionHeader({ collection }: { collection: 'exclusiv
         <div className={styles.mediaSection}>
           <div className={styles.imageContainer}>
             <Image
-              src={data.imagePath}
+              src={customImagePath || data.imagePath}
               alt={`Collection ${data.title} - Kamba Lhains`}
               width={1200}
               height={800}

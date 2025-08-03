@@ -51,10 +51,7 @@ const subcategories = {
   ],
   accessoires: [
     { key: 'bonnet', label: 'BONNET' },
-    { key: 'casquette', label: 'CASQUETTE' },
-    { key: 'chapeau', label: 'CHAPEAU' },
-    { key: 'sac', label: 'SAC' },
-    { key: 'ceinture', label: 'CEINTURE' }
+    { key: 'sac-de-sport', label: 'SAC DE SPORT' }
   ]
 };
 
@@ -117,7 +114,15 @@ export default function CollectionSidebar({
               </button>
               {showHautSubmenu && (
                 <ul className="submenu">
-                  {subcategories.haut.map(sub => (
+                  {subcategories.haut
+                    .filter(sub => {
+                      // Cacher chemise et veste-en-jeans pour la collection aube
+                      if (collection === 'aube' && (sub.key === 'chemise' || sub.key === 'veste-en-jeans')) {
+                        return false;
+                      }
+                      return true;
+                    })
+                    .map(sub => (
                     <li key={sub.key}>
                       <button 
                         onClick={() => router.push(`${config.basePath}/${sub.key}`)} 

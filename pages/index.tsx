@@ -309,10 +309,10 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <div className={styles.collectionImageSlot}>
+            <Link href="/aube/bonnet" className={styles.collectionImageSlot}>
               <Image 
-                src="/images/collection/IMG_3475.jpg"
-                alt="Nouvelle Collection 2"
+                src="/accessoires.jpg"
+                alt="Accessoires"
                 fill
                 sizes="50vw"
                 className={styles.collectionImage}
@@ -324,7 +324,7 @@ export default function Home() {
               <div className={styles.stickyTextContainer}>
                 <div className={styles.stickyText} id="accessoires-phase1">ACCESSOIRES</div>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
       </main>

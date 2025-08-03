@@ -11,7 +11,7 @@ import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
 import styles from '../../styles/HomePage.module.css';
 
-export default function AubeCeinture() {
+export default function AubeSacDeSport() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
@@ -28,25 +28,28 @@ export default function AubeCeinture() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  const ceintureProducts = products.filter(product => {
+  const sacDeSportProducts = products.filter(product => {
     const isAube = product.category === 'Aube';
-    const nameMatch = product.name.toLowerCase().includes('ceinture') || 
-                     product.name.toLowerCase().includes('belt');
+    const nameMatch = product.name.toLowerCase().includes('sac de sport') || 
+                     product.name.toLowerCase().includes('sac-de-sport') ||
+                     product.name.toLowerCase().includes('sport bag');
     const descriptionMatch = Array.isArray(product.description) 
       ? product.description.some(desc => 
-          desc.toLowerCase().includes('ceinture') || 
-          desc.toLowerCase().includes('belt')
+          desc.toLowerCase().includes('sac de sport') || 
+          desc.toLowerCase().includes('sac-de-sport') ||
+          desc.toLowerCase().includes('sport bag')
         )
-      : product.description.toLowerCase().includes('ceinture') || 
-        product.description.toLowerCase().includes('belt');
+      : product.description.toLowerCase().includes('sac de sport') || 
+        product.description.toLowerCase().includes('sac-de-sport') ||
+        product.description.toLowerCase().includes('sport bag');
     return isAube && (nameMatch || descriptionMatch);
   });
 
   return (
     <>
       <Head>
-        <title>Ceinture - Kamba Lhains</title>
-        <meta name="description" content="Découvrez nos Ceintures Aube - Fraîcheur et élégance pour vos matinées lumineuses." />
+        <title>Sac de Sport - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos Sacs de Sport Aube - Praticité et style pour vos activités sportives." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -56,7 +59,7 @@ export default function AubeCeinture() {
       <main className="kambavers-page">
         <CollectionSidebar
           collection="aube"
-          currentPage="ceinture"
+          currentPage="sac-de-sport"
           isMenuVisible={isMenuVisible}
           isHoveringMenu={isHoveringMenu}
           showHautSubmenu={showHautSubmenu}
@@ -111,7 +114,7 @@ export default function AubeCeinture() {
               width: '100%',
               margin: 0
             }}>
-              Ceinture
+              Sac de Sport
             </h2>
           </section>
 
@@ -125,7 +128,7 @@ export default function AubeCeinture() {
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Ceinture ${index + 1}`}
+                    alt={`Sac de Sport ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}

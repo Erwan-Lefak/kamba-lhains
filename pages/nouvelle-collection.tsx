@@ -11,6 +11,8 @@ import styles from '../styles/HomePage.module.css';
 // Force Vercel cache invalidation 
 export default function NouvelleCollection() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const productRef = useRef<HTMLDivElement>(null);
+  const textZoneRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
@@ -18,6 +20,7 @@ export default function NouvelleCollection() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [showPoster, setShowPoster] = useState(true);
+  const [productHeight, setProductHeight] = useState<number>(0);
 
 
   useEffect(() => {
@@ -25,6 +28,41 @@ export default function NouvelleCollection() {
     if (video) {
       video.play().catch(console.error);
     }
+  }, []);
+
+  // Observer pour détecter les changements de hauteur du produit
+  useEffect(() => {
+    const productElement = productRef.current;
+    const textElement = textZoneRef.current;
+    
+    if (!productElement || !textElement) return;
+
+    const updateHeight = () => {
+      const height = productElement.offsetHeight;
+      setProductHeight(height);
+      textElement.style.height = `${height}px`;
+    };
+
+    // Observer les changements de taille
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(productElement);
+
+    // Observer les changements dans le DOM (carrousel)
+    const mutationObserver = new MutationObserver(updateHeight);
+    mutationObserver.observe(productElement, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style']
+    });
+
+    // Mise à jour initiale
+    updateHeight();
+
+    return () => {
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   useEffect(() => {
@@ -145,8 +183,8 @@ export default function NouvelleCollection() {
             <h1 
               style={{ 
                 fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                fontSize: '15px',
-                fontWeight: 700,
+                fontSize: '11px',
+                fontWeight: 400,
                 color: '#000000',
                 textShadow: 'none',
                 boxShadow: 'none',
@@ -264,10 +302,10 @@ export default function NouvelleCollection() {
         {/* Two Products Section */}
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
-            <div className={styles.simpleProductSlot}>
+            <div className={styles.simpleProductSlot} ref={productRef}>
               <ProductCard product={singleProductWithImages} hideInfo={true} noLink={true} />
             </div>
-            <div className={styles.textZone}>
+            <div className={styles.textZone} ref={textZoneRef}>
               <p className={styles.textZoneContent}>
                 Chaque création de cette collection capsule révèle une recherche permanente de l'équilibre parfait entre tradition et modernité. Les matières nobles côtoient les coupes contemporaines dans une harmonie subtile qui définit l'ADN de la marque.
               </p>

@@ -90,7 +90,7 @@ export default function AubeSac() {
 
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
           {/* 1ère section: Collection Header */}
-          <CollectionHeader collection="aube" />
+          <CollectionHeader collection="aube" customImagePath="/accessoires2.jpg" />
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
