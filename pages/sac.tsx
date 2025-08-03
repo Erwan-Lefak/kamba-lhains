@@ -6,18 +6,17 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import MobileCarousel from '../components/MobileCarousel';
-import CollectionSidebar from '../components/CollectionSidebar';
 import { products } from '../data/products';
 import styles from '../styles/HomePage.module.css';
 
-export default function Crepuscule() {
+export default function Sac() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showHautSubmenu, setShowHautSubmenu] = useState(false);
   const [showBasSubmenu, setShowBasSubmenu] = useState(false);
-  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
+  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(true);
 
   // Cacher le menu immédiatement quand on arrive sur la page
   useEffect(() => {
@@ -28,16 +27,28 @@ export default function Crepuscule() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Filtrer les produits de la catégorie "Crépuscule"
-  const crepusculeProducts = products.filter(product => {
-    return product.category === 'Crépuscule';
+  // Filtrer les produits contenant "sac" ou "bag" dans le nom ou la description
+  const sacProducts = products.filter(product => {
+    const nameMatch = product.name.toLowerCase().includes('sac') || 
+                     product.name.toLowerCase().includes('bag') ||
+                     product.name.toLowerCase().includes('sacs');
+    const descriptionMatch = Array.isArray(product.description) 
+      ? product.description.some(desc => 
+          desc.toLowerCase().includes('sac') || 
+          desc.toLowerCase().includes('bag') ||
+          desc.toLowerCase().includes('sacs')
+        )
+      : product.description.toLowerCase().includes('sac') || 
+        product.description.toLowerCase().includes('bag') ||
+        product.description.toLowerCase().includes('sacs');
+    return nameMatch || descriptionMatch;
   });
 
   return (
     <>
       <Head>
-        <title>Crépuscule - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre collection Crépuscule - La beauté de la fin de journée." />
+        <title>Sac - Kamba Lhains</title>
+        <meta name="description" content="Découvrez notre sélection de Sacs - Praticité et élégance au quotidien." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -45,18 +56,78 @@ export default function Crepuscule() {
       <Header />
 
       <main className="kambavers-page">
-        <CollectionSidebar
-          collection="crepuscule"
-          isMenuVisible={isMenuVisible}
-          isHoveringMenu={isHoveringMenu}
-          showHautSubmenu={showHautSubmenu}
-          showBasSubmenu={showBasSubmenu}
-          showAccessoiresSubmenu={showAccessoiresSubmenu}
-          setShowHautSubmenu={setShowHautSubmenu}
-          setShowBasSubmenu={setShowBasSubmenu}
-          setShowAccessoiresSubmenu={setShowAccessoiresSubmenu}
-          setIsHoveringMenu={setIsHoveringMenu}
-        />
+        {/* Menu latéral gauche */}
+        <div 
+          className={`sidebar-menu ${isMenuVisible ? 'visible' : 'hidden'}`}
+          onMouseEnter={() => setIsHoveringMenu(true)}
+          onMouseLeave={() => setIsHoveringMenu(false)}
+        >
+          <nav className="sidebar-nav">
+            <h3 className="sidebar-title">Catégorie</h3>
+            <ul>
+              <li>
+                <button>
+                  TOUS
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setShowHautSubmenu(!showHautSubmenu);
+                  }}
+                >
+                  HAUT
+                </button>
+                {showHautSubmenu && (
+                  <ul className="submenu">
+                    <li><button onClick={() => router.push('/t-shirt')} className="submenu-item">T-SHIRT</button></li>
+                    <li><button onClick={() => router.push('/chemise')} className="submenu-item">CHEMISE</button></li>
+                    <li><button onClick={() => router.push('/sweat-shirt')} className="submenu-item">SWEAT-SHIRT</button></li>
+                    <li><button onClick={() => router.push('/veste-en-jeans')} className="submenu-item">VESTE EN JEANS</button></li>
+                  </ul>
+                )}
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setShowBasSubmenu(!showBasSubmenu);
+                  }}
+                >
+                  BAS
+                </button>
+                {showBasSubmenu && (
+                  <ul className="submenu">
+                    <li><button onClick={() => router.push('/denim')} className="submenu-item">DENIM</button></li>
+                    <li><button onClick={() => router.push('/sweatpants')} className="submenu-item">SWEATPANTS</button></li>
+                    <li><button onClick={() => router.push('/baggy-jeans')} className="submenu-item">BAGGY JEANS</button></li>
+                    <li><button onClick={() => router.push('/short')} className="submenu-item">SHORT</button></li>
+                    <li><button onClick={() => router.push('/pantalon-cargo')} className="submenu-item">PANTALON CARGO</button></li>
+                    <li><button onClick={() => router.push('/underwear')} className="submenu-item">UNDERWEAR</button></li>
+                  </ul>
+                )}
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setShowAccessoiresSubmenu(!showAccessoiresSubmenu);
+                  }}
+                  className="active"
+                >
+                  ACCESSOIRES
+                </button>
+                {showAccessoiresSubmenu && (
+                  <ul className="submenu">
+                    <li><button onClick={() => router.push('/bonnet')} className="submenu-item">BONNET</button></li>
+                    <li><button onClick={() => router.push('/casquette')} className="submenu-item">CASQUETTE</button></li>
+                    <li><button onClick={() => router.push('/chapeau')} className="submenu-item">CHAPEAU</button></li>
+                    <li><button onClick={() => router.push('/sac')} className="submenu-item active">SAC</button></li>
+                    <li><button onClick={() => router.push('/ceinture')} className="submenu-item">CEINTURE</button></li>
+                  </ul>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </div>
 
         {/* Bouton toggle pour le menu */}
         <button 
@@ -83,7 +154,7 @@ export default function Crepuscule() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Crépuscule */}
+          {/* Section Introduction Sac */}
           <section className={styles.newCollectionSection}>
             <div className={styles.textSection}>
               <h1 
@@ -100,10 +171,10 @@ export default function Crepuscule() {
                   width: '100%'
                 }}
               >
-                Crépuscule
+                Sac
               </h1>
               <p className={styles.collectionDescription}>
-                Le Crépuscule évoque ces moments suspendus entre jour et nuit, où la lumière se teinte de nuances dorées et pourpres. Cette collection capture la poésie de ces instants privilégiés, révélant des créations empreintes de mystère et d'élégance.
+                Découvrez notre collection de sacs, accessoires indispensables alliant praticité et élégance au quotidien. Des designs fonctionnels et des lignes raffinées pour accompagner tous vos déplacements avec style.
               </p>
             </div>
             
@@ -111,7 +182,7 @@ export default function Crepuscule() {
               <div className={styles.imageContainer}>
                 <Image
                   src="/images/marque.jpg"
-                  alt="Collection Crépuscule - Kamba Lhains"
+                  alt="Sac - Kamba Lhains"
                   width={1200}
                   height={800}
                   className={styles.collectionImage}
@@ -141,7 +212,7 @@ export default function Crepuscule() {
               width: '100%',
               margin: 0
             }}>
-              Tous les articles
+              Sac
             </h2>
           </section>
 
@@ -149,13 +220,13 @@ export default function Crepuscule() {
           <section className={styles.gallerySection}>
             <div className={styles.galleryGrid}>
               {[
-                'IMG_2868.jpeg', 'IMG_2869.jpeg', 'IMG_2870.jpeg', 'IMG_2871.jpeg',
-                'IMG_2872.jpeg', 'IMG_2873.jpeg', 'IMG_2877.jpeg', 'IMG_2879.jpeg'
+                'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
+                'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg'
               ].map((imageName, index) => (
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Collection Crépuscule ${index + 1}`}
+                    alt={`Sac ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}
@@ -171,15 +242,21 @@ export default function Crepuscule() {
         <section className={styles.threeProductsSection}>
           {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
-            {crepusculeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
+            {sacProducts.length > 0 ? (
+              sacProducts.map(product => (
+                <div key={product.id} className={styles.productSlot}>
+                  <ProductCard product={product} />
+                </div>
+              ))
+            ) : (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>
+                <p>Aucun sac disponible pour le moment.</p>
               </div>
-            ))}
+            )}
           </div>
           
           {/* Mobile Carousel */}
-          <MobileCarousel products={crepusculeProducts} />
+          {sacProducts.length > 0 && <MobileCarousel products={sacProducts} />}
         </section>
         </div>
       </main>

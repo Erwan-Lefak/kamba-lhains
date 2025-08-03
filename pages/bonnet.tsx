@@ -1,23 +1,24 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import MobileCarousel from '../components/MobileCarousel';
+import CollectionHeader from '../components/CollectionHeader';
 import CollectionSidebar from '../components/CollectionSidebar';
 import { products } from '../data/products';
 import styles from '../styles/HomePage.module.css';
 
-export default function Crepuscule() {
+export default function CrepusculeBonnet() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showHautSubmenu, setShowHautSubmenu] = useState(false);
   const [showBasSubmenu, setShowBasSubmenu] = useState(false);
-  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
+  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(true);
 
   // Cacher le menu immédiatement quand on arrive sur la page
   useEffect(() => {
@@ -28,16 +29,22 @@ export default function Crepuscule() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Filtrer les produits de la catégorie "Crépuscule"
-  const crepusculeProducts = products.filter(product => {
-    return product.category === 'Crépuscule';
+  const bonnetProducts = products.filter(product => {
+    const isCrepuscule = product.category === 'Crépuscule';
+    const nameMatch = product.name.toLowerCase().includes('bonnet');
+    const descriptionMatch = Array.isArray(product.description) 
+      ? product.description.some(desc => 
+          desc.toLowerCase().includes('bonnet')
+        )
+      : product.description.toLowerCase().includes('bonnet');
+    return isCrepuscule && (nameMatch || descriptionMatch);
   });
 
   return (
     <>
       <Head>
-        <title>Crépuscule - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre collection Crépuscule - La beauté de la fin de journée." />
+        <title>Bonnet Crépuscule - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos Bonnets de la collection Crépuscule - Chaleur nocturne et style mystérieux." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -47,6 +54,7 @@ export default function Crepuscule() {
       <main className="kambavers-page">
         <CollectionSidebar
           collection="crepuscule"
+          currentPage="bonnet"
           isMenuVisible={isMenuVisible}
           isHoveringMenu={isHoveringMenu}
           showHautSubmenu={showHautSubmenu}
@@ -83,46 +91,10 @@ export default function Crepuscule() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Crépuscule */}
-          <section className={styles.newCollectionSection}>
-            <div className={styles.textSection}>
-              <h1 
-                style={{ 
-                  fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: '#000000',
-                  textShadow: 'none',
-                  boxShadow: 'none',
-                  textTransform: 'uppercase',
-                  marginBottom: '15px',
-                  textAlign: 'center',
-                  width: '100%'
-                }}
-              >
-                Crépuscule
-              </h1>
-              <p className={styles.collectionDescription}>
-                Le Crépuscule évoque ces moments suspendus entre jour et nuit, où la lumière se teinte de nuances dorées et pourpres. Cette collection capture la poésie de ces instants privilégiés, révélant des créations empreintes de mystère et d'élégance.
-              </p>
-            </div>
-            
-            <div className={styles.mediaSection}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src="/images/marque.jpg"
-                  alt="Collection Crépuscule - Kamba Lhains"
-                  width={1200}
-                  height={800}
-                  className={styles.collectionImage}
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                />
-              </div>
-            </div>
-          </section>
+          {/* 1ère section: Collection Header */}
+          <CollectionHeader collection="crepuscule" />
 
-          {/* Collection Title */}
+          {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
             padding: '30px 0',
             textAlign: 'center',
@@ -141,11 +113,11 @@ export default function Crepuscule() {
               width: '100%',
               margin: 0
             }}>
-              Tous les articles
+              Bonnet
             </h2>
           </section>
 
-          {/* Gallery Section - 2x4 Grid */}
+          {/* 3ème section: Galerie photo 4x2 */}
           <section className={styles.gallerySection}>
             <div className={styles.galleryGrid}>
               {[
@@ -155,7 +127,7 @@ export default function Crepuscule() {
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Collection Crépuscule ${index + 1}`}
+                    alt={`Bonnet Crépuscule ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}
@@ -166,21 +138,6 @@ export default function Crepuscule() {
               ))}
             </div>
           </section>
-
-        {/* Three Products Grid Section */}
-        <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {crepusculeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-          
-          {/* Mobile Carousel */}
-          <MobileCarousel products={crepusculeProducts} />
-        </section>
         </div>
       </main>
 
@@ -191,110 +148,6 @@ export default function Crepuscule() {
           display: flex;
           min-height: 100vh;
           background: white;
-        }
-
-        .sidebar-menu {
-          position: fixed;
-          left: 0;
-          top: 80px;
-          width: 250px;
-          height: calc(100vh - 80px);
-          background: white;
-          z-index: 1000;
-          overflow-y: auto;
-          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .sidebar-menu.hidden {
-          transform: translateX(-100%);
-        }
-
-        .sidebar-menu.visible {
-          transform: translateX(0);
-        }
-
-        .sidebar-nav {
-          padding: 40px 0;
-        }
-
-        .sidebar-nav ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-        }
-
-        .sidebar-nav li {
-          margin-bottom: 0;
-        }
-
-        .sidebar-nav button {
-          width: 100%;
-          background: none;
-          border: none;
-          padding: 20px 30px;
-          text-align: left;
-          font-family: inherit;
-          font-size: 11px;
-          font-weight: 400;
-          color: #333;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          cursor: pointer;
-          transition: color 0.3s ease;
-        }
-
-        .sidebar-nav button:hover {
-          color: #9f0909;
-        }
-
-        .sidebar-nav button.active {
-          color: #9f0909;
-        }
-
-        .sidebar-title {
-          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-          font-size: 12px;
-          font-weight: 600;
-          color: #000000;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin: 15px 0 20px 30px;
-          padding: 0;
-        }
-
-        .sidebar-nav .submenu {
-          list-style: none !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          padding-left: 35px !important;
-        }
-
-        .sidebar-nav .submenu li {
-          margin-bottom: 0 !important;
-        }
-
-        .sidebar-nav .submenu-item {
-          width: 100% !important;
-          background: none !important;
-          border: none !important;
-          padding: 10px 20px !important;
-          text-align: left !important;
-          font-family: inherit !important;
-          font-size: 8px !important;
-          font-weight: 400 !important;
-          color: #666 !important;
-          text-transform: uppercase !important;
-          letter-spacing: 0.5px !important;
-          cursor: pointer !important;
-          transition: color 0.3s ease !important;
-        }
-
-        .sidebar-nav .submenu-item:hover {
-          color: #9f0909 !important;
-        }
-
-        .sidebar-nav .submenu-item.active {
-          color: #9f0909 !important;
         }
 
         .menu-toggle {
@@ -342,33 +195,12 @@ export default function Crepuscule() {
         }
 
         @media (max-width: 1024px) {
-          .sidebar-menu {
-            width: 200px;
-          }
-
           .main-content.with-sidebar {
             margin-left: 200px;
-          }
-
-          .sidebar-nav button {
-            padding: 16px 20px;
-            font-size: 11px;
-            font-weight: 400;
-          }
-
-          .submenu-item {
-            padding: 12px 20px;
-            font-size: 8px;
           }
         }
 
         @media (max-width: 768px) {
-          .sidebar-menu {
-            width: 280px;
-            top: 0;
-            height: 100vh;
-          }
-
           .menu-toggle {
             top: 20px;
             left: 20px;

@@ -1,25 +1,20 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ProductCard from '../components/ProductCard';
-import MobileCarousel from '../components/MobileCarousel';
-import CollectionSidebar from '../components/CollectionSidebar';
-import { products } from '../data/products';
-import styles from '../styles/HomePage.module.css';
+import Image from 'next/image';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import CollectionHeader from '../../components/CollectionHeader';
+import CollectionSidebar from '../../components/CollectionSidebar';
+import styles from '../../styles/HomePage.module.css';
 
-export default function Crepuscule() {
-  const router = useRouter();
+export default function ZenithUnderwear() {
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
   const [showHautSubmenu, setShowHautSubmenu] = useState(false);
   const [showBasSubmenu, setShowBasSubmenu] = useState(false);
-  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
+  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(true);
 
-  // Cacher le menu immédiatement quand on arrive sur la page
   useEffect(() => {
     setIsMenuVisible(false);
   }, []);
@@ -28,16 +23,11 @@ export default function Crepuscule() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Filtrer les produits de la catégorie "Crépuscule"
-  const crepusculeProducts = products.filter(product => {
-    return product.category === 'Crépuscule';
-  });
-
   return (
     <>
       <Head>
-        <title>Crépuscule - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre collection Crépuscule - La beauté de la fin de journée." />
+        <title>Underwear Zénith - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos Underwear Zénith - Sous-vêtements confortables et élégants de notre collection Zénith." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -46,7 +36,8 @@ export default function Crepuscule() {
 
       <main className="kambavers-page">
         <CollectionSidebar
-          collection="crepuscule"
+          collection="zenith"
+          currentPage="underwear"
           isMenuVisible={isMenuVisible}
           isHoveringMenu={isHoveringMenu}
           showHautSubmenu={showHautSubmenu}
@@ -58,7 +49,6 @@ export default function Crepuscule() {
           setIsHoveringMenu={setIsHoveringMenu}
         />
 
-        {/* Bouton toggle pour le menu */}
         <button 
           className="menu-toggle" 
           onClick={toggleMenu}
@@ -66,13 +56,11 @@ export default function Crepuscule() {
           onMouseLeave={() => setIsHoveringButton(false)}
         >
           {isMenuVisible ? (
-            // Croix quand le menu est visible
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           ) : (
-            // 3 traits quand le menu n'est pas visible
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -81,48 +69,11 @@ export default function Crepuscule() {
           )}
         </button>
 
-        {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Crépuscule */}
-          <section className={styles.newCollectionSection}>
-            <div className={styles.textSection}>
-              <h1 
-                style={{ 
-                  fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: '#000000',
-                  textShadow: 'none',
-                  boxShadow: 'none',
-                  textTransform: 'uppercase',
-                  marginBottom: '15px',
-                  textAlign: 'center',
-                  width: '100%'
-                }}
-              >
-                Crépuscule
-              </h1>
-              <p className={styles.collectionDescription}>
-                Le Crépuscule évoque ces moments suspendus entre jour et nuit, où la lumière se teinte de nuances dorées et pourpres. Cette collection capture la poésie de ces instants privilégiés, révélant des créations empreintes de mystère et d'élégance.
-              </p>
-            </div>
-            
-            <div className={styles.mediaSection}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src="/images/marque.jpg"
-                  alt="Collection Crépuscule - Kamba Lhains"
-                  width={1200}
-                  height={800}
-                  className={styles.collectionImage}
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                />
-              </div>
-            </div>
-          </section>
+          {/* 1ère section: Collection Header */}
+          <CollectionHeader collection="zenith" />
 
-          {/* Collection Title */}
+          {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
             padding: '30px 0',
             textAlign: 'center',
@@ -141,21 +92,21 @@ export default function Crepuscule() {
               width: '100%',
               margin: 0
             }}>
-              Tous les articles
+              Underwear
             </h2>
           </section>
 
-          {/* Gallery Section - 2x4 Grid */}
+          {/* 3ème section: Galerie photo 4x2 */}
           <section className={styles.gallerySection}>
             <div className={styles.galleryGrid}>
               {[
-                'IMG_2868.jpeg', 'IMG_2869.jpeg', 'IMG_2870.jpeg', 'IMG_2871.jpeg',
-                'IMG_2872.jpeg', 'IMG_2873.jpeg', 'IMG_2877.jpeg', 'IMG_2879.jpeg'
+                'IMG_2885.jpeg', 'IMG_2917.jpeg', 'IMG_2918.jpeg', 'IMG_2919.jpeg',
+                'IMG_2920.jpeg', 'IMG_2921.jpeg', 'IMG_2922.jpeg', 'IMG_2923.jpeg'
               ].map((imageName, index) => (
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Collection Crépuscule ${index + 1}`}
+                    alt={`Underwear Zénith ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}
@@ -167,20 +118,6 @@ export default function Crepuscule() {
             </div>
           </section>
 
-        {/* Three Products Grid Section */}
-        <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {crepusculeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-          
-          {/* Mobile Carousel */}
-          <MobileCarousel products={crepusculeProducts} />
-        </section>
         </div>
       </main>
 

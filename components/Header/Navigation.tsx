@@ -28,19 +28,25 @@ const Navigation: React.FC = () => {
       return router.pathname === '/';
     }
     
-    // Pour Kambavers, on vérifie aussi les paramètres de requête
+    // Pour Kambavers, on vérifie toutes les pages kambavers
     if (href.includes('/kambavers')) {
-      return router.pathname === '/kambavers';
+      return router.pathname.startsWith('/kambavers');
     }
     
     return router.pathname.startsWith(href);
   };
 
   const handleKambaversClick = (e: React.MouseEvent, href: string) => {
-    if (href === '/kambavers' && router.pathname === '/kambavers') {
+    if (href === '/kambavers') {
       e.preventDefault();
-      // Forcer le rechargement de la page pour revenir à la présentation par défaut
-      window.location.href = '/kambavers';
+      // Forcer la navigation vers kambavers principal sur tous les appareils
+      if (router.pathname.startsWith('/kambavers')) {
+        // Si on est déjà dans une section kambavers, forcer le rechargement
+        window.location.href = '/kambavers';
+      } else {
+        // Sinon, navigation normale
+        router.push('/kambavers');
+      }
     }
   };
 

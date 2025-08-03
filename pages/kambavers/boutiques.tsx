@@ -2,21 +2,16 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ProductCard from '../components/ProductCard';
-import MobileCarousel from '../components/MobileCarousel';
-import { products } from '../data/products';
-import styles from '../styles/HomePage.module.css';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import styles from '../../styles/HomePage.module.css';
 
-export default function TShirt() {
+export default function KambaversBoutiques() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
-  const [showHautSubmenu, setShowHautSubmenu] = useState(true);
-  const [showBasSubmenu, setShowBasSubmenu] = useState(false);
-  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
+  const [showCollectionsSubmenu, setShowCollectionsSubmenu] = useState(false);
 
   // Cacher le menu immédiatement quand on arrive sur la page
   useEffect(() => {
@@ -27,25 +22,11 @@ export default function TShirt() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Filtrer les produits contenant "t-shirt" ou "shirt" dans le nom ou la description
-  const tshirtProducts = products.filter(product => {
-    const nameMatch = product.name.toLowerCase().includes('t-shirt') || 
-                     product.name.toLowerCase().includes('shirt');
-    const descriptionMatch = Array.isArray(product.description) 
-      ? product.description.some(desc => 
-          desc.toLowerCase().includes('t-shirt') || 
-          desc.toLowerCase().includes('shirt')
-        )
-      : product.description.toLowerCase().includes('t-shirt') || 
-        product.description.toLowerCase().includes('shirt');
-    return nameMatch || descriptionMatch;
-  });
-
   return (
     <>
       <Head>
-        <title>T-Shirt - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre sélection de T-Shirts - Confort et style au quotidien." />
+        <title>Boutiques - Kambavers - Kamba Lhains</title>
+        <meta name="description" content="Trouvez nos boutiques et points de vente Kambavers - Kamba Lhains." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -60,67 +41,57 @@ export default function TShirt() {
           onMouseLeave={() => setIsHoveringMenu(false)}
         >
           <nav className="sidebar-nav">
-            <h3 className="sidebar-title">Catégorie</h3>
             <ul>
               <li>
-                <button>
-                  TOUS
+                <button 
+                  onClick={() => router.push('/kambavers/marque')}
+                >
+                  LA MARQUE
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => router.push('/kambavers/charte')}
+                >
+                  NOTRE CHARTE
                 </button>
               </li>
               <li>
                 <button 
                   onClick={() => {
-                    setShowHautSubmenu(!showHautSubmenu);
+                    setShowCollectionsSubmenu(!showCollectionsSubmenu);
                   }}
+                >
+                  COLLECTIONS
+                </button>
+                {showCollectionsSubmenu && (
+                  <ul className="submenu">
+                    <li>
+                      <button 
+                        onClick={() => router.push('/kambavers/collections/eclat-ombre')}
+                        className="submenu-item"
+                      >
+                        ÉCLAT D'OMBRE
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={() => router.push('/kambavers/collections/ota-benga')}
+                        className="submenu-item"
+                      >
+                        OTA BENGA - Acte 1
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </li>
+              <li>
+                <button 
+                  onClick={() => router.push('/kambavers/boutiques')}
                   className="active"
                 >
-                  HAUT
+                  POINT DE VENTE
                 </button>
-                {showHautSubmenu && (
-                  <ul className="submenu">
-                    <li><button onClick={() => router.push('/t-shirt')} className="submenu-item active">T-SHIRT</button></li>
-                    <li><button onClick={() => router.push('/chemise')} className="submenu-item">CHEMISE</button></li>
-                    <li><button onClick={() => router.push('/sweat-shirt')} className="submenu-item">SWEAT-SHIRT</button></li>
-                    <li><button onClick={() => router.push('/veste-en-jeans')} className="submenu-item">VESTE EN JEANS</button></li>
-                  </ul>
-                )}
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    setShowBasSubmenu(!showBasSubmenu);
-                  }}
-                >
-                  BAS
-                </button>
-                {showBasSubmenu && (
-                  <ul className="submenu">
-                    <li><button onClick={() => router.push('/denim')} className="submenu-item">DENIM</button></li>
-                    <li><button onClick={() => router.push('/sweatpants')} className="submenu-item">SWEATPANTS</button></li>
-                    <li><button onClick={() => router.push('/baggy-jeans')} className="submenu-item">BAGGY JEANS</button></li>
-                    <li><button onClick={() => router.push('/short')} className="submenu-item">SHORT</button></li>
-                    <li><button onClick={() => router.push('/pantalon-cargo')} className="submenu-item">PANTALON CARGO</button></li>
-                    <li><button onClick={() => router.push('/underwear')} className="submenu-item">UNDERWEAR</button></li>
-                  </ul>
-                )}
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
-                    setShowAccessoiresSubmenu(!showAccessoiresSubmenu);
-                  }}
-                >
-                  ACCESSOIRES
-                </button>
-                {showAccessoiresSubmenu && (
-                  <ul className="submenu">
-                    <li><button onClick={() => router.push('/bonnet')} className="submenu-item">BONNET</button></li>
-                    <li><button onClick={() => router.push('/casquette')} className="submenu-item">CASQUETTE</button></li>
-                    <li><button onClick={() => router.push('/chapeau')} className="submenu-item">CHAPEAU</button></li>
-                    <li><button onClick={() => router.push('/sac')} className="submenu-item">SAC</button></li>
-                    <li><button onClick={() => router.push('/ceinture')} className="submenu-item">CEINTURE</button></li>
-                  </ul>
-                )}
               </li>
             </ul>
           </nav>
@@ -151,7 +122,7 @@ export default function TShirt() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction T-Shirt */}
+          {/* Section 1 - Nos Boutiques Introduction - comme 1ère section charte */}
           <section className={styles.newCollectionSection}>
             <div className={styles.textSection}>
               <h1 
@@ -159,7 +130,7 @@ export default function TShirt() {
                   fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
                   fontSize: '15px',
                   fontWeight: 700,
-                  color: '#000000',
+                  color: '#5aac40',
                   textShadow: 'none',
                   boxShadow: 'none',
                   textTransform: 'uppercase',
@@ -168,18 +139,20 @@ export default function TShirt() {
                   width: '100%'
                 }}
               >
-                T-Shirt
+                Fashion Green Room
               </h1>
               <p className={styles.collectionDescription}>
-                Découvrez notre sélection de T-shirts, alliant confort et style au quotidien. Des coupes modernes aux matières premium, chaque pièce est pensée pour accompagner votre mode de vie avec élégance et décontraction.
+                Kamba Lhains a l'opportunité d'être sélectionné par l'association Fashion Green Hub pour participer à la seconde édition de son concept store Fashion Green Room, installé au Printemps Haussmann.
+                <br /><br />
+                À partir d'octobre 2025, vous pourrez retrouver nos créations sous le dôme Binet, dans un espace de 37 m² qui met en lumière une sélection de designers et d'artisans engagés, unis par une même vision : celle d'une mode écoresponsable, durable et respectueuse des savoir-faire.
               </p>
             </div>
             
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/marque.jpg"
-                  alt="T-Shirt - Kamba Lhains"
+                  src="/images/map2.jpg"
+                  alt="Fashion Green Room - Plan"
                   width={1200}
                   height={800}
                   className={styles.collectionImage}
@@ -190,71 +163,84 @@ export default function TShirt() {
             </div>
           </section>
 
-          {/* Collection Title */}
-          <section style={{
-            padding: '30px 0',
-            textAlign: 'center',
-            background: 'white'
-          }}>
-            <h2 style={{
-              fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '15px',
-              fontWeight: 400,
-              color: '#000000',
-              textShadow: 'none',
-              boxShadow: 'none',
-              textTransform: 'uppercase',
-              marginBottom: '15px',
-              textAlign: 'center',
-              width: '100%',
-              margin: 0
-            }}>
-              T-Shirt
-            </h2>
-          </section>
+          {/* Section 2 - Détails des Boutiques */}
+          <section className={styles.twoProductsSection}>
+            <div className={styles.twoProductsGrid}>
+              <div className={styles.simpleProductSlot}>
+                <Image
+                  src="/images/haussman.jpg"
+                  alt="Boutique Haussman - Kamba Lhains"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className={styles.textZone}>
+                <div style={{ 
+                  width: '100%', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'flex-start', 
+                  justifyContent: 'center',
+                  height: '100%' 
+                }}>
+                  <h1 
+                    style={{ 
+                      fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
+                      fontSize: '15px',
+                      fontWeight: 400,
+                      color: '#000000',
+                      textShadow: 'none',
+                      boxShadow: 'none',
+                      textTransform: 'uppercase',
+                      margin: '0 auto 20px auto',
+                      textAlign: 'justify',
+                      maxWidth: '260px',
+                      marginLeft: 'calc(50% - 130px + 3px)'
+                    }}
+                  >
+                    Points de ventes
+                  </h1>
+                  <div className="boutiques-details">
+                    <h3 className="section-title">PRINTEMPS HAUSSEMANN</h3>
+                  <p className={styles.textZoneContent}>
+                    123 Boulevard Haussmann<br />
+                    75008 Paris, France<br />
+                    Métro : Havre-Caumartin<br />
+                    Tél : +33 1 42 XX XX XX
+                  </p>
 
-          {/* Gallery Section - 2x4 Grid */}
-          <section className={styles.gallerySection}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
-                'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`T-Shirt ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className={styles.galleryImage}
-                    quality={90}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
+                  <br />
+                  <h3 className="section-title">HORAIRES</h3>
+                  <p className={styles.textZoneContent}>
+                    Lundi au Samedi : 10h00 - 20h00<br />
+                    Dimanche : 11h00 - 19h00<br />
+                    Fermé les jours fériés
+                  </p>
+
+                  <h3 className="section-title">FK LE MARAIS</h3>
+                  <p className={styles.textZoneContent}>
+                    72 Rue de Turenne,<br />
+                    75003 Paris, France<br />
+                    Métro : Havre-Caumartin<br />
+                    Tél : +33 1 42 XX XX XX
+                  </p>
+
+                  <br />
+                  <h3 className="section-title">HORAIRES</h3>
+                  <p className={styles.textZoneContent}>
+                    Lundi : Fermé<br />
+                    Mardi au Samedi : 11h00 - 19h00<br />
+                    Dimanche : 14h00 - 18h00<br />
+                    Fermé les jours fériés
+                  </p>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </section>
-
-        {/* Three Products Grid Section */}
-        <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {tshirtProducts.length > 0 ? (
-              tshirtProducts.map(product => (
-                <div key={product.id} className={styles.productSlot}>
-                  <ProductCard product={product} />
-                </div>
-              ))
-            ) : (
-              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>
-                <p>Aucun t-shirt disponible pour le moment.</p>
-              </div>
-            )}
-          </div>
-          
-          {/* Mobile Carousel */}
-          {tshirtProducts.length > 0 && <MobileCarousel products={tshirtProducts} />}
-        </section>
         </div>
       </main>
 
@@ -323,17 +309,6 @@ export default function TShirt() {
 
         .sidebar-nav button.active {
           color: #9f0909;
-        }
-
-        .sidebar-title {
-          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-          font-size: 12px;
-          font-weight: 600;
-          color: #000000;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin: 15px 0 20px 30px;
-          padding: 0;
         }
 
         .sidebar-nav .submenu {
@@ -415,6 +390,84 @@ export default function TShirt() {
           margin-left: 250px;
         }
 
+        /* Styles spécifiques pour les boutiques */
+        .boutiques-details {
+          width: 100%;
+          height: 30vh;
+          overflow-y: auto;
+          padding: 20px 0;
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+
+        .boutiques-details::-webkit-scrollbar {
+          display: none; /* WebKit */
+        }
+
+        .boutiques-details .textZoneContent,
+        .boutiques-details p,
+        .boutiques-details * {
+          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
+          font-size: 11px;
+          line-height: 1.8;
+          color: #000;
+          margin: 0 auto;
+          font-weight: 300;
+          text-align: justify !important;
+          text-justify: inter-word !important;
+          max-width: 260px;
+          word-spacing: 0.5px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        .section-title {
+          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+          font-size: 11px;
+          color: #000;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin: 25px auto 10px auto;
+          text-align: justify;
+          max-width: 260px;
+          word-spacing: 0.5px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        .section-title:first-of-type,
+        .boutiques-details h3:nth-of-type(3) {
+          font-weight: 700;
+        }
+
+        .boutiques-details h3:nth-of-type(3) {
+          margin-top: 50px;
+        }
+
+        .section-title:not(:first-of-type):not(.boutiques-details h3:nth-of-type(3)):not(.boutiques-details h3:nth-of-type(2)):not(.boutiques-details h3:nth-of-type(4)) {
+          font-weight: 600;
+        }
+
+        .boutiques-details h3:nth-of-type(2),
+        .boutiques-details h3:nth-of-type(4) {
+          font-weight: 400;
+        }
+
+        .main-title {
+          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+          font-size: 15px;
+          font-weight: 700;
+          color: #000;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin: 0 auto 30px auto;
+          text-align: center;
+          max-width: 260px;
+          word-spacing: 0.5px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
         @media (max-width: 1024px) {
           .sidebar-menu {
             width: 200px;
@@ -422,17 +475,6 @@ export default function TShirt() {
 
           .main-content.with-sidebar {
             margin-left: 200px;
-          }
-
-          .sidebar-nav button {
-            padding: 16px 20px;
-            font-size: 11px;
-            font-weight: 400;
-          }
-
-          .submenu-item {
-            padding: 12px 20px;
-            font-size: 8px;
           }
         }
 

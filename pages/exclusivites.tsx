@@ -10,7 +10,7 @@ import CollectionSidebar from '../components/CollectionSidebar';
 import { products } from '../data/products';
 import styles from '../styles/HomePage.module.css';
 
-export default function Crepuscule() {
+export default function Exclusivites() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
@@ -28,16 +28,16 @@ export default function Crepuscule() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Filtrer les produits de la catégorie "Crépuscule"
-  const crepusculeProducts = products.filter(product => {
-    return product.category === 'Crépuscule';
+  // Filtrer les produits de la catégorie "Exclusivités" (ou prendre tous les produits pour le moment)
+  const exclusivitesProducts = products.filter(product => {
+    return product.category === 'Exclusivités' || product.category === 'Aube'; // fallback temporaire
   });
 
   return (
     <>
       <Head>
-        <title>Crépuscule - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre collection Crépuscule - La beauté de la fin de journée." />
+        <title>Exclusivités - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos créations exclusives - Des pièces uniques et limitées." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -46,7 +46,7 @@ export default function Crepuscule() {
 
       <main className="kambavers-page">
         <CollectionSidebar
-          collection="crepuscule"
+          collection="exclusivites"
           isMenuVisible={isMenuVisible}
           isHoveringMenu={isHoveringMenu}
           showHautSubmenu={showHautSubmenu}
@@ -83,7 +83,7 @@ export default function Crepuscule() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Crépuscule */}
+          {/* Section Introduction Exclusivités */}
           <section className={styles.newCollectionSection}>
             <div className={styles.textSection}>
               <h1 
@@ -100,10 +100,10 @@ export default function Crepuscule() {
                   width: '100%'
                 }}
               >
-                Crépuscule
+                Exclusivités
               </h1>
               <p className={styles.collectionDescription}>
-                Le Crépuscule évoque ces moments suspendus entre jour et nuit, où la lumière se teinte de nuances dorées et pourpres. Cette collection capture la poésie de ces instants privilégiés, révélant des créations empreintes de mystère et d'élégance.
+                Nos Exclusivités représentent le summum de notre savoir-faire artisanal. Ces créations uniques et limitées incarnent l'excellence de la maison Kamba Lhains, alliant tradition ancestrale et innovation contemporaine pour des pièces d'exception.
               </p>
             </div>
             
@@ -111,7 +111,7 @@ export default function Crepuscule() {
               <div className={styles.imageContainer}>
                 <Image
                   src="/images/marque.jpg"
-                  alt="Collection Crépuscule - Kamba Lhains"
+                  alt="Exclusivités - Kamba Lhains"
                   width={1200}
                   height={800}
                   className={styles.collectionImage}
@@ -149,13 +149,13 @@ export default function Crepuscule() {
           <section className={styles.gallerySection}>
             <div className={styles.galleryGrid}>
               {[
-                'IMG_2868.jpeg', 'IMG_2869.jpeg', 'IMG_2870.jpeg', 'IMG_2871.jpeg',
-                'IMG_2872.jpeg', 'IMG_2873.jpeg', 'IMG_2877.jpeg', 'IMG_2879.jpeg'
+                'IMG_2885.jpeg', 'IMG_2917.jpeg', 'IMG_2918.jpeg', 'IMG_2919.jpeg',
+                'IMG_2920.jpeg', 'IMG_2921.jpeg', 'IMG_2922.jpeg', 'IMG_2923.jpeg'
               ].map((imageName, index) => (
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Collection Crépuscule ${index + 1}`}
+                    alt={`Collection Exclusivités ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}
@@ -171,7 +171,7 @@ export default function Crepuscule() {
         <section className={styles.threeProductsSection}>
           {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
-            {crepusculeProducts.map(product => (
+            {exclusivitesProducts.map(product => (
               <div key={product.id} className={styles.productSlot}>
                 <ProductCard product={product} />
               </div>
@@ -179,7 +179,7 @@ export default function Crepuscule() {
           </div>
           
           {/* Mobile Carousel */}
-          <MobileCarousel products={crepusculeProducts} />
+          <MobileCarousel products={exclusivitesProducts} />
         </section>
         </div>
       </main>

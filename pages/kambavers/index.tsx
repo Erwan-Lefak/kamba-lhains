@@ -2,22 +2,16 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ProductCard from '../components/ProductCard';
-import MobileCarousel from '../components/MobileCarousel';
-import CollectionSidebar from '../components/CollectionSidebar';
-import { products } from '../data/products';
-import styles from '../styles/HomePage.module.css';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import styles from '../../styles/HomePage.module.css';
 
-export default function Crepuscule() {
+export default function KambaversIndex() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
-  const [showHautSubmenu, setShowHautSubmenu] = useState(false);
-  const [showBasSubmenu, setShowBasSubmenu] = useState(false);
-  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
+  const [showCollectionsSubmenu, setShowCollectionsSubmenu] = useState(false);
 
   // Cacher le menu immédiatement quand on arrive sur la page
   useEffect(() => {
@@ -28,16 +22,11 @@ export default function Crepuscule() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Filtrer les produits de la catégorie "Crépuscule"
-  const crepusculeProducts = products.filter(product => {
-    return product.category === 'Crépuscule';
-  });
-
   return (
     <>
       <Head>
-        <title>Crépuscule - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre collection Crépuscule - La beauté de la fin de journée." />
+        <title>Kambavers - Kamba Lhains</title>
+        <meta name="description" content="L'univers Kambavers incarne l'essence de la créativité africaine contemporaine, fusionnant héritage culturel et innovation moderne." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -45,18 +34,67 @@ export default function Crepuscule() {
       <Header />
 
       <main className="kambavers-page">
-        <CollectionSidebar
-          collection="crepuscule"
-          isMenuVisible={isMenuVisible}
-          isHoveringMenu={isHoveringMenu}
-          showHautSubmenu={showHautSubmenu}
-          showBasSubmenu={showBasSubmenu}
-          showAccessoiresSubmenu={showAccessoiresSubmenu}
-          setShowHautSubmenu={setShowHautSubmenu}
-          setShowBasSubmenu={setShowBasSubmenu}
-          setShowAccessoiresSubmenu={setShowAccessoiresSubmenu}
-          setIsHoveringMenu={setIsHoveringMenu}
-        />
+        {/* Menu latéral gauche */}
+        <div 
+          className={`sidebar-menu ${isMenuVisible ? 'visible' : 'hidden'}`}
+          onMouseEnter={() => setIsHoveringMenu(true)}
+          onMouseLeave={() => setIsHoveringMenu(false)}
+        >
+          <nav className="sidebar-nav">
+            <ul>
+              <li>
+                <button 
+                  onClick={() => router.push('/kambavers/marque')}
+                >
+                  LA MARQUE
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => router.push('/kambavers/charte')}
+                >
+                  NOTRE CHARTE
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setShowCollectionsSubmenu(!showCollectionsSubmenu);
+                  }}
+                >
+                  COLLECTIONS
+                </button>
+                {showCollectionsSubmenu && (
+                  <ul className="submenu">
+                    <li>
+                      <button 
+                        onClick={() => router.push('/kambavers/collections/eclat-ombre')}
+                        className="submenu-item"
+                      >
+                        ÉCLAT D'OMBRE
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        onClick={() => router.push('/kambavers/collections/ota-benga')}
+                        className="submenu-item"
+                      >
+                        OTA BENGA - Acte 1
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </li>
+              <li>
+                <button 
+                  onClick={() => router.push('/kambavers/boutiques')}
+                >
+                  POINT DE VENTE
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
 
         {/* Bouton toggle pour le menu */}
         <button 
@@ -83,7 +121,6 @@ export default function Crepuscule() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Crépuscule */}
           <section className={styles.newCollectionSection}>
             <div className={styles.textSection}>
               <h1 
@@ -100,18 +137,18 @@ export default function Crepuscule() {
                   width: '100%'
                 }}
               >
-                Crépuscule
+                "KAMBAVERS"
               </h1>
               <p className={styles.collectionDescription}>
-                Le Crépuscule évoque ces moments suspendus entre jour et nuit, où la lumière se teinte de nuances dorées et pourpres. Cette collection capture la poésie de ces instants privilégiés, révélant des créations empreintes de mystère et d'élégance.
+                L'univers Kambavers incarne l'essence de la créativité africaine contemporaine, fusionnant héritage culturel et innovation moderne. Chaque création raconte une histoire unique, célébrant la richesse des traditions tout en embrassant les codes de la mode d'aujourd'hui. Un voyage artistique où l'authenticité rencontre l'élégance.
               </p>
             </div>
             
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/marque.jpg"
-                  alt="Collection Crépuscule - Kamba Lhains"
+                  src="/images/kambavers.jpg"
+                  alt="Kambavers Collection"
                   width={1200}
                   height={800}
                   className={styles.collectionImage}
@@ -121,66 +158,6 @@ export default function Crepuscule() {
               </div>
             </div>
           </section>
-
-          {/* Collection Title */}
-          <section style={{
-            padding: '30px 0',
-            textAlign: 'center',
-            background: 'white'
-          }}>
-            <h2 style={{
-              fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '15px',
-              fontWeight: 400,
-              color: '#000000',
-              textShadow: 'none',
-              boxShadow: 'none',
-              textTransform: 'uppercase',
-              marginBottom: '15px',
-              textAlign: 'center',
-              width: '100%',
-              margin: 0
-            }}>
-              Tous les articles
-            </h2>
-          </section>
-
-          {/* Gallery Section - 2x4 Grid */}
-          <section className={styles.gallerySection}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_2868.jpeg', 'IMG_2869.jpeg', 'IMG_2870.jpeg', 'IMG_2871.jpeg',
-                'IMG_2872.jpeg', 'IMG_2873.jpeg', 'IMG_2877.jpeg', 'IMG_2879.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`Collection Crépuscule ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className={styles.galleryImage}
-                    quality={90}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-
-        {/* Three Products Grid Section */}
-        <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {crepusculeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-          
-          {/* Mobile Carousel */}
-          <MobileCarousel products={crepusculeProducts} />
-        </section>
         </div>
       </main>
 
@@ -249,17 +226,6 @@ export default function Crepuscule() {
 
         .sidebar-nav button.active {
           color: #9f0909;
-        }
-
-        .sidebar-title {
-          font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-          font-size: 12px;
-          font-weight: 600;
-          color: #000000;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin: 15px 0 20px 30px;
-          padding: 0;
         }
 
         .sidebar-nav .submenu {
@@ -350,6 +316,10 @@ export default function Crepuscule() {
             margin-left: 200px;
           }
 
+          .sidebar-nav {
+            padding: 30px 0;
+          }
+
           .sidebar-nav button {
             padding: 16px 20px;
             font-size: 11px;
@@ -367,6 +337,8 @@ export default function Crepuscule() {
             width: 280px;
             top: 0;
             height: 100vh;
+            border-right: none;
+            border-bottom: 1px solid #e5e7eb;
           }
 
           .menu-toggle {
@@ -374,9 +346,48 @@ export default function Crepuscule() {
             left: 20px;
           }
 
+          .sidebar-nav {
+            padding: 20px 0;
+          }
+
+          .sidebar-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+          }
+
+          .sidebar-nav li {
+            flex: 1;
+          }
+
+          .sidebar-nav button {
+            padding: 15px 10px;
+            font-size: 11px;
+            font-weight: 400;
+            text-align: center;
+            border-bottom: none;
+            border-right: 1px solid #f5f5f5;
+          }
+
+          .sidebar-nav li:last-child button {
+            border-right: none;
+          }
+
+          .submenu {
+            display: none;
+          }
+
           .main-content {
             margin-left: 0 !important;
             padding-top: 80px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .sidebar-nav button {
+            padding: 12px 5px;
+            font-size: 11px;
+            font-weight: 400;
           }
         }
       `}</style>
