@@ -20,6 +20,7 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [hasClickedPlus, setHasClickedPlus] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState('cm');
   const [rightModalOpen, setRightModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
@@ -372,20 +373,28 @@ export default function ProductDetail() {
                     className={styles.quantityButtonInside}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setQuantity(Math.max(1, quantity - 1));
+                      const newQuantity = Math.max(1, quantity - 1);
+                      setQuantity(newQuantity);
+                      if (newQuantity === 1) {
+                        setHasClickedPlus(false);
+                      }
                     }}
                   >
                     -
                   </button>
-                  <span>AJOUTER AU PANIER</span>
+                  <span style={{color: 'black'}}>AJOUTER AU PANIER</span>
                   <button 
                     className={styles.quantityButtonInside}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setQuantity(quantity + 1);
+                      if (quantity === 1 && !hasClickedPlus) {
+                        setHasClickedPlus(true);
+                      } else {
+                        setQuantity(quantity + 1);
+                      }
                     }}
                   >
-                    {quantity === 1 ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
+                    {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                   </button>
                 </button>
               </div>
