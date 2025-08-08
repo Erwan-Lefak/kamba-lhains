@@ -337,7 +337,7 @@ export default function AubeSacDeSport() {
                       >
                         -
                       </div>
-                      <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1}}>
+                      <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1, color: 'black'}}>
                         <span>AJOUTER AU PANIER</span>
                       </button>
                       <div 
