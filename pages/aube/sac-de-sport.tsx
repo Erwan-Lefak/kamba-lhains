@@ -337,7 +337,7 @@ export default function AubeSacDeSport() {
                         className={productStyles.quantityButtonInside}
                         onClick={() => setQuantity(quantity + 1)}
                       >
-                        {quantity === 1 ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
+                        <span style={{fontSize: '14px'}}>{quantity}</span>
                       </div>
                     </div>
                   </div>
