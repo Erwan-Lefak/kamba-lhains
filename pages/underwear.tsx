@@ -50,8 +50,8 @@ export default function Underwear() {
   return (
     <>
       <Head>
-        <title>Underwear - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre sélection d'Underwear - Confort intime et qualité premium." />
+        <title>Sous-vêtements - Kamba Lhains</title>
+        <meta name="description" content="Découvrez notre sélection de Sous-vêtements - Confort intime et qualité premium." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -106,7 +106,7 @@ export default function Underwear() {
                     <li><button onClick={() => router.push('/baggy-jeans')} className="submenu-item">BAGGY JEANS</button></li>
                     <li><button onClick={() => router.push('/short')} className="submenu-item">SHORT</button></li>
                     <li><button onClick={() => router.push('/pantalon-cargo')} className="submenu-item">PANTALON CARGO</button></li>
-                    <li><button onClick={() => router.push('/underwear')} className="submenu-item active">UNDERWEAR</button></li>
+                    <li><button onClick={() => router.push('/underwear')} className="submenu-item active">SOUS-VÊTEMENTS</button></li>
                   </ul>
                 )}
               </li>
@@ -157,44 +157,6 @@ export default function Underwear() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Underwear */}
-          <section className={styles.newCollectionSection}>
-            <div className={styles.textSection}>
-              <h1 
-                style={{ 
-                  fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '11px',
-                  fontWeight: 400,
-                  color: '#000000',
-                  textShadow: 'none',
-                  boxShadow: 'none',
-                  textTransform: 'uppercase',
-                  marginBottom: '15px',
-                  textAlign: 'center',
-                  width: '100%'
-                }}
-              >
-                Underwear
-              </h1>
-              <p className={styles.collectionDescription}>
-                Découvrez notre collection d'underwear, essentiels du confort intime et de la qualité premium. Des pièces conçues avec soin pour offrir un bien-être optimal et une confiance absolue au quotidien.
-              </p>
-            </div>
-            
-            <div className={styles.mediaSection}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src="/images/marque.jpg"
-                  alt="Underwear - Kamba Lhains"
-                  width={1200}
-                  height={800}
-                  className={styles.collectionImage}
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                />
-              </div>
-            </div>
-          </section>
 
           {/* Collection Title */}
           <section style={{
@@ -229,7 +191,7 @@ export default function Underwear() {
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Underwear ${index + 1}`}
+                    alt={`Sous-vêtements ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}
@@ -253,7 +215,7 @@ export default function Underwear() {
               ))
             ) : (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>
-                <p>Aucun underwear disponible pour le moment.</p>
+                <p>Aucun sous-vêtement disponible pour le moment.</p>
               </div>
             )}
           </div>
@@ -382,10 +344,11 @@ export default function Underwear() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
           border: none;
-          width: 44px;
-          height: 44px;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;

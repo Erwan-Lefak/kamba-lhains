@@ -47,7 +47,7 @@ const subcategories = {
     { key: 'baggy-jeans', label: 'BAGGY JEANS' },
     { key: 'short', label: 'SHORT' },
     { key: 'pantalon-cargo', label: 'PANTALON CARGO' },
-    { key: 'underwear', label: 'UNDERWEAR' }
+    { key: 'underwear', label: 'SOUS-VÊTEMENTS' }
   ],
   accessoires: [
     { key: 'bonnet', label: 'BONNET' },

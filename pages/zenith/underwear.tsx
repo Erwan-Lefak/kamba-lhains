@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import CollectionHeader from '../../components/CollectionHeader';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import styles from '../../styles/HomePage.module.css';
 
@@ -26,8 +25,8 @@ export default function ZenithUnderwear() {
   return (
     <>
       <Head>
-        <title>Underwear Zénith - Kamba Lhains</title>
-        <meta name="description" content="Découvrez nos Underwear Zénith - Sous-vêtements confortables et élégants de notre collection Zénith." />
+        <title>Sous-vêtements Zénith - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos Sous-vêtements Zénith - Sous-vêtements confortables et élégants de notre collection Zénith." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -70,8 +69,23 @@ export default function ZenithUnderwear() {
         </button>
 
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* 1ère section: Collection Header */}
-          <CollectionHeader collection="zenith" />
+
+          {/* Image Section */}
+          <section className={styles.newCollectionSection}>
+            <div className={styles.mediaSection}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/zenith.jpg"
+                  alt="Collection Zénith - Kamba Lhains"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+              </div>
+            </div>
+          </section>
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
@@ -92,7 +106,7 @@ export default function ZenithUnderwear() {
               width: '100%',
               margin: 0
             }}>
-              Underwear
+              Sous-vêtements
             </h2>
           </section>
 
@@ -106,7 +120,7 @@ export default function ZenithUnderwear() {
                 <div key={index} className={styles.gallerySlot}>
                   <Image 
                     src={`/images/collection/${imageName}`} 
-                    alt={`Underwear Zénith ${index + 1}`}
+                    alt={`Sous-vêtements Zénith ${index + 1}`}
                     width={400}
                     height={600}
                     className={styles.galleryImage}
@@ -239,10 +253,11 @@ export default function ZenithUnderwear() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
           border: none;
-          width: 44px;
-          height: 44px;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;

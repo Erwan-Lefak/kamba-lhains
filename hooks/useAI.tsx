@@ -262,7 +262,7 @@ export function useAI(config: AIConfig): UseAIReturn {
 
         // Score basé sur la gamme de prix
         if (item.price) {
-          const price = parseFloat(item.price.replace('€', ''));
+          const price = parseFloat(item.price.replace('EUR', ''));
           const [minPrice, maxPrice] = profile.priceRange;
           if (price >= minPrice && price <= maxPrice) {
             score += 25;

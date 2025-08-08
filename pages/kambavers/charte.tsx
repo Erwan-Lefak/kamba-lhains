@@ -337,10 +337,11 @@ export default function KambaversCharte() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
           border: none;
-          width: 44px;
-          height: 44px;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;

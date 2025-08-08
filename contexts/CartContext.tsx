@@ -137,7 +137,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   const getTotalPrice = (): number => {
     return state.items.reduce((total, item) => {
-      return total + (item.price * item.quantity);
+      const price = typeof item.price === 'string' 
+        ? parseFloat(item.price.replace(/[^\d.]/g, '')) 
+        : item.price;
+      return total + (price * item.quantity);
     }, 0);
   };
 

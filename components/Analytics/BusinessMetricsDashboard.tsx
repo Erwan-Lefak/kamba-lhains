@@ -29,7 +29,7 @@ export default function BusinessMetricsDashboard() {
           name: 'Chiffre d\'affaires',
           value: 128000,
           change: 12.5,
-          unit: '€',
+          unit: 'EUR',
           category: 'revenue',
           trend: 'up'
         },

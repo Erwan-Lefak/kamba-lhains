@@ -97,7 +97,7 @@ export default function Chemise() {
                     <li><button onClick={() => router.push('/baggy-jeans')} className="submenu-item">BAGGY JEANS</button></li>
                     <li><button onClick={() => router.push('/short')} className="submenu-item">SHORT</button></li>
                     <li><button onClick={() => router.push('/pantalon-cargo')} className="submenu-item">PANTALON CARGO</button></li>
-                    <li><button onClick={() => router.push('/underwear')} className="submenu-item">UNDERWEAR</button></li>
+                    <li><button onClick={() => router.push('/underwear')} className="submenu-item">SOUS-VÊTEMENTS</button></li>
                   </ul>
                 )}
               </li>
@@ -148,44 +148,6 @@ export default function Chemise() {
 
         {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* Section Introduction Chemise */}
-          <section className={styles.newCollectionSection}>
-            <div className={styles.textSection}>
-              <h1 
-                style={{ 
-                  fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-                  fontSize: '11px',
-                  fontWeight: 400,
-                  color: '#000000',
-                  textShadow: 'none',
-                  boxShadow: 'none',
-                  textTransform: 'uppercase',
-                  marginBottom: '15px',
-                  textAlign: 'center',
-                  width: '100%'
-                }}
-              >
-                Chemise
-              </h1>
-              <p className={styles.collectionDescription}>
-                Découvrez notre collection de chemises, symboles d'élégance et de sophistication. Des coupes classiques aux designs contemporains, chaque pièce exprime un raffinement intemporel pour tous vos moments importants.
-              </p>
-            </div>
-            
-            <div className={styles.mediaSection}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src="/images/marque.jpg"
-                  alt="Chemise - Kamba Lhains"
-                  width={1200}
-                  height={800}
-                  className={styles.collectionImage}
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                />
-              </div>
-            </div>
-          </section>
 
           {/* Collection Title */}
           <section style={{
@@ -373,10 +335,11 @@ export default function Chemise() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
           border: none;
-          width: 44px;
-          height: 44px;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;

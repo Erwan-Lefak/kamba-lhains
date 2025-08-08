@@ -391,7 +391,7 @@ export default function AIInsights({
                       <strong>Couleurs:</strong> {insights.profile.preferredColors.join(', ') || 'Non défini'}
                     </div>
                     <div className={styles.preferenceItem}>
-                      <strong>Budget:</strong> {insights.profile.priceRange[0]}€ - {insights.profile.priceRange[1]}€
+                      <strong>Budget:</strong> {insights.profile.priceRange[0]}EUR - {insights.profile.priceRange[1]}EUR
                     </div>
                   </div>
                 </div>

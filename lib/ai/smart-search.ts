@@ -282,7 +282,9 @@ export class SmartSearchEngine {
 
       // Filtre de prix
       if (filters.priceRange) {
-        const price = product.price;
+        const price = typeof product.price === 'string' 
+          ? parseFloat(product.price.replace(/[^\d.]/g, '')) 
+          : product.price;
         const [min, max] = filters.priceRange;
         if (price < min || price > max) {
           return false;
@@ -421,15 +423,23 @@ export class SmartSearchEngine {
     switch (sortBy) {
       case 'price_low':
         return results.sort((a, b) => {
-          const priceA = a.price;
-          const priceB = b.price;
+          const priceA = typeof a.price === 'string' 
+            ? parseFloat(a.price.replace(/[^\d.]/g, '')) 
+            : a.price;
+          const priceB = typeof b.price === 'string' 
+            ? parseFloat(b.price.replace(/[^\d.]/g, '')) 
+            : b.price;
           return priceA - priceB;
         });
         
       case 'price_high':
         return results.sort((a, b) => {
-          const priceA = a.price;
-          const priceB = b.price;
+          const priceA = typeof a.price === 'string' 
+            ? parseFloat(a.price.replace(/[^\d.]/g, '')) 
+            : a.price;
+          const priceB = typeof b.price === 'string' 
+            ? parseFloat(b.price.replace(/[^\d.]/g, '')) 
+            : b.price;
           return priceB - priceA;
         });
         
@@ -528,12 +538,14 @@ export class SmartSearchEngine {
       brands.set(brand, (brands.get(brand) || 0) + 1);
       
       // Gammes de prix
-      const price = product.price;
+      const price = typeof product.price === 'string' 
+        ? parseFloat(product.price.replace(/[^\d.]/g, '')) 
+        : product.price;
       let priceRange = '';
-      if (price < 50) priceRange = 'Moins de 50€';
-      else if (price < 100) priceRange = '50€ - 100€';
-      else if (price < 200) priceRange = '100€ - 200€';
-      else priceRange = 'Plus de 200€';
+      if (price < 50) priceRange = 'Moins de 50EUR';
+      else if (price < 100) priceRange = '50EUR - 100EUR';
+      else if (price < 200) priceRange = '100EUR - 200EUR';
+      else priceRange = 'Plus de 200EUR';
       
       priceRanges.set(priceRange, (priceRanges.get(priceRange) || 0) + 1);
     });

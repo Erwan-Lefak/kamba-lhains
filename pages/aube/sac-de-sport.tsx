@@ -69,7 +69,7 @@ export default function AubeSacDeSport() {
     }
   };
 
-  const openModal = (content) => {
+  const openModal = (content: any) => {
     setModalContent(content);
     setRightModalOpen(true);
   };
@@ -289,7 +289,7 @@ export default function AubeSacDeSport() {
                       className={productStyles.stackedImage}
                       onError={(e) => {
                         console.log('Image failed to load:', image);
-                        e.target.src = '/logo.png';
+                        (e.target as HTMLImageElement).src = '/logo.png';
                       }}
                     />
                   ))}

@@ -101,7 +101,9 @@ class AIPersonalizationEngine implements RecommendationEngine {
       
       // Score basé sur la gamme de prix
       const [minPrice, maxPrice] = userBehavior.preferences.priceRange;
-      const productPrice = product.price;
+      const productPrice = typeof product.price === 'string' 
+        ? parseFloat(product.price.replace(/[^\d.]/g, '')) 
+        : product.price;
       if (productPrice >= minPrice && productPrice <= maxPrice) {
         score += 2;
       }

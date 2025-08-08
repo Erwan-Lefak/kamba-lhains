@@ -7,7 +7,6 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
 import MobileCarousel from '../../components/MobileCarousel';
-import CollectionHeader from '../../components/CollectionHeader';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
@@ -45,14 +44,16 @@ export default function AubeUnderwear() {
   const boxerProduct = {
     id: 'aube-boxer-001',
     name: 'Boxer',
-    price: '30€',
+    price: '30 EUR',
+    image: '/images/products/boxer1.jpg',
     images: ['/images/products/boxer1.jpg', '/images/products/boxer2.jpg', '/images/products/boxer3.jpg', '/images/products/boxer4.jpg', '/images/products/boxer5.jpg', '/images/products/boxer6.jpg'],
     category: 'Aube',
-    subcategory: 'Underwear',
+    subcategory: 'Sous-vêtements',
     description: ['Boxer confortable et élégant pour un confort optimal au quotidien.', 'Coton biologique de qualité supérieure', 'Coupe ajustée et respirante', 'Ceinture élastique douce'],
-    colors: ['Blanc', 'Noir', 'Gris'],
+    colors: ['Blanc', 'Noir'],
     sizes: ['S', 'M', 'L', 'XL'],
-    inStock: true
+    inStock: true,
+    featured: false
   };
 
   const handleAddToCart = () => {
@@ -68,7 +69,7 @@ export default function AubeUnderwear() {
     }
   };
 
-  const openModal = (content) => {
+  const openModal = (content: any) => {
     setModalContent(content);
     setRightModalOpen(true);
   };
@@ -144,8 +145,8 @@ export default function AubeUnderwear() {
   return (
     <>
       <Head>
-        <title>Underwear - Kamba Lhains</title>
-        <meta name="description" content="Découvrez nos Underwear - Fraîcheur et élégance pour vos matinées lumineuses." />
+        <title>Sous-vêtements - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos Sous-vêtements - Fraîcheur et élégance pour vos matinées lumineuses." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -188,8 +189,23 @@ export default function AubeUnderwear() {
         </button>
 
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* 1ère section: Collection Header */}
-          <CollectionHeader collection="aube" customImagePath="/underwear.jpg" />
+
+          {/* Image Section */}
+          <section className={styles.newCollectionSection}>
+            <div className={styles.mediaSection}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/underwear.jpg"
+                  alt="Collection Aube - Kamba Lhains"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+              </div>
+            </div>
+          </section>
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
@@ -210,7 +226,7 @@ export default function AubeUnderwear() {
               width: '100%',
               margin: 0
             }}>
-              Underwear
+              Sous-vêtements
             </h2>
           </section>
 
@@ -231,7 +247,7 @@ export default function AubeUnderwear() {
                   </Link>
                   <span> - </span>
                   <Link href="/aube/underwear" className={productStyles.breadcrumbLink}>
-                    <span>Underwear</span>
+                    <span>Sous-vêtements</span>
                   </Link>
                   <span> - </span>
                   <Link href="/aube/underwear" className={productStyles.breadcrumbLink}>
@@ -273,7 +289,7 @@ export default function AubeUnderwear() {
                       className={productStyles.stackedImage}
                       onError={(e) => {
                         console.log('Image failed to load:', image);
-                        e.target.src = '/logo.png';
+                        (e.target as HTMLImageElement).src = '/logo.png';
                       }}
                     />
                   ))}
@@ -300,7 +316,8 @@ export default function AubeUnderwear() {
                           key={index}
                           className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
                           style={{ 
-                            backgroundColor: color === 'Blanc' ? '#FFFFFF' : color === 'Noir' ? '#000000' : color === 'Gris' ? '#808080' : color
+                            backgroundColor: color === 'Blanc' ? '#FFFFFF' : color === 'Noir' ? '#000000' : color === 'Gris' ? '#808080' : color,
+                            border: color === 'Blanc' ? '1px solid #E5E5E5' : 'none'
                           }}
                           onClick={() => setSelectedColor(color)}
                         />
@@ -437,10 +454,11 @@ export default function AubeUnderwear() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
           border: none;
-          width: 44px;
-          height: 44px;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;

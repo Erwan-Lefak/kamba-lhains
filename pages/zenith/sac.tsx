@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import CollectionHeader from '../../components/CollectionHeader';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import styles from '../../styles/HomePage.module.css';
 
@@ -70,8 +69,23 @@ export default function ZenithSac() {
         </button>
 
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* 1ère section: Collection Header */}
-          <CollectionHeader collection="zenith" />
+
+          {/* Image Section */}
+          <section className={styles.newCollectionSection}>
+            <div className={styles.mediaSection}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/zenith.jpg"
+                  alt="Collection Zénith - Kamba Lhains"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+              </div>
+            </div>
+          </section>
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
@@ -239,10 +253,11 @@ export default function ZenithSac() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
           border: none;
-          width: 44px;
-          height: 44px;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;

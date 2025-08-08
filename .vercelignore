@@ -1,0 +1,15 @@
+coverage/
+__tests__/
+docs/
+*.txt
+tailles.png
+e2e/
+tests/
+scripts/
+*.mp4
+*.mov
+bout.txt
+haussmann.txt
+kamba.txt
+room.txt
+templates/

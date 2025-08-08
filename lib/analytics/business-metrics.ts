@@ -334,7 +334,7 @@ export class BusinessMetricsEngine {
         previousValue: previousRevenue,
         change: totalRevenue - previousRevenue,
         changePercent: previousRevenue ? ((totalRevenue - previousRevenue) / previousRevenue) * 100 : 0,
-        unit: '€',
+        unit: 'EUR',
         format: 'currency',
         category: 'revenue',
         description: 'Revenus totaux générés sur la période',
@@ -346,7 +346,7 @@ export class BusinessMetricsEngine {
         id: 'avg_order_value',
         name: 'Panier moyen',
         value: avgOrderValue,
-        unit: '€',
+        unit: 'EUR',
         format: 'currency',
         category: 'revenue',
         description: 'Valeur moyenne des commandes',
@@ -357,7 +357,7 @@ export class BusinessMetricsEngine {
         id: 'gross_margin',
         name: 'Marge brute',
         value: grossMargin,
-        unit: '€',
+        unit: 'EUR',
         format: 'currency',
         category: 'revenue',
         description: 'Profit brut après coûts directs',
@@ -410,7 +410,7 @@ export class BusinessMetricsEngine {
         id: 'customer_ltv',
         name: 'Valeur vie client',
         value: customerLifetimeValue,
-        unit: '€',
+        unit: 'EUR',
         format: 'currency',
         category: 'customer',
         description: 'Revenus moyens générés par client sur sa durée de vie',
@@ -433,7 +433,7 @@ export class BusinessMetricsEngine {
         id: 'cac',
         name: 'Coût d\'acquisition client',
         value: acquisitionCost,
-        unit: '€',
+        unit: 'EUR',
         format: 'currency',
         category: 'customer',
         description: 'Coût moyen pour acquérir un nouveau client',
@@ -705,7 +705,7 @@ export class BusinessMetricsEngine {
 
   private calculateCAC(customers: any[]): number {
     // Simulation du coût d'acquisition client
-    return Math.random() * 50 + 20; // 20-70€
+    return Math.random() * 50 + 20; // 20-70EUR
   }
 
   private getBestSellingProducts(products: any[], orders: any[]): any[] {
