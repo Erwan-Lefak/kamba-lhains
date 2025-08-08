@@ -352,12 +352,11 @@ export default function AubeUnderwear() {
                       <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1}}>
                         <span>AJOUTER AU PANIER</span>
                       </button>
-                      <span className={productStyles.quantityDisplay}>{quantity}</span>
                       <div 
                         className={productStyles.quantityButtonInside}
                         onClick={() => setQuantity(quantity + 1)}
                       >
-                        +
+                        {quantity === 1 ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                       </div>
                     </div>
                   </div>
