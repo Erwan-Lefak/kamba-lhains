@@ -37,7 +37,7 @@ export interface Product {
   id: string;
   name: string;
   description: string | string[];
-  price: number;
+  price: number | string;
   originalPrice?: number;
   image: string; // Pour compatibilité
   images?: ProductImage[] | string[];
