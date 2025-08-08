@@ -207,13 +207,13 @@ export default function AubeSacDeSport() {
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
-            padding: '30px 0',
+            padding: '60px 0',
             textAlign: 'center',
             background: 'white'
           }}>
             <h2 style={{
               fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
-              fontSize: '15px',
+              fontSize: '11px',
               fontWeight: 400,
               color: '#000000',
               textShadow: 'none',
@@ -229,7 +229,7 @@ export default function AubeSacDeSport() {
           </section>
 
           {/* 4ème section: Page Produit Complète */}
-          <div className={productStyles.productPage}>
+          <div className={productStyles.productPage} style={{marginTop: 0}}>
             <div className={productStyles.productContainer}>
               {/* Image Section - 60% */}
               <div className={productStyles.productImageSection} style={{position: 'relative'}}>
