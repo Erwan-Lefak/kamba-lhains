@@ -167,19 +167,9 @@ export default function Aube() {
             </div>
           </section>
 
-        {/* Three Products Grid Section */}
+        {/* Temporarily disabled products section */}
         <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {aubeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-          
-          {/* Mobile Carousel */}
-          <MobileCarousel products={aubeProducts} />
+          <p>Section produits temporairement désactivée</p>
         </section>
         </div>
       </main>
