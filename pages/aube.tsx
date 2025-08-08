@@ -42,7 +42,7 @@ export default function Aube() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+{/* Temporarily removed Header for debugging */}
 
       <main className="kambavers-page">
 {/* Temporarily removed CollectionSidebar for debugging */}
@@ -156,24 +156,14 @@ export default function Aube() {
             </div>
           </section>
 
-        {/* Three Products Grid Section */}
-        <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {aubeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-          
-          {/* Mobile Carousel */}
-          <MobileCarousel products={aubeProducts} />
+        {/* Temporarily removed products section for debugging */}
+        <section>
+          <p>Products section temporarily disabled</p>
         </section>
         </div>
       </main>
 
-      <Footer isKambaversPage={true} isMenuVisible={isMenuVisible} />
+{/* Temporarily removed Footer for debugging */}
 
       <style jsx>{`
         .kambavers-page {
