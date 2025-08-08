@@ -29,6 +29,7 @@ export default function AubeUnderwear() {
   const [selectedColor, setSelectedColor] = useState('Blanc');
   const [selectedSize, setSelectedSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
+  const [hasClickedPlus, setHasClickedPlus] = useState(false);
   const [rightModalOpen, setRightModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState('');
 
@@ -345,7 +346,13 @@ export default function AubeUnderwear() {
                     <div className={productStyles.addToCartButton}>
                       <div 
                         className={productStyles.quantityButtonInside}
-                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                        onClick={() => {
+                          const newQuantity = Math.max(1, quantity - 1);
+                          setQuantity(newQuantity);
+                          if (newQuantity === 1) {
+                            setHasClickedPlus(false);
+                          }
+                        }}
                       >
                         -
                       </div>
@@ -354,9 +361,15 @@ export default function AubeUnderwear() {
                       </button>
                       <div 
                         className={productStyles.quantityButtonInside}
-                        onClick={() => setQuantity(quantity + 1)}
+                        onClick={() => {
+                          if (quantity === 1 && !hasClickedPlus) {
+                            setHasClickedPlus(true);
+                          } else {
+                            setQuantity(quantity + 1);
+                          }
+                        }}
                       >
-                        <span style={{fontSize: '14px'}}>{quantity}</span>
+                        {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                       </div>
                     </div>
                   </div>
