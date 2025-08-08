@@ -45,18 +45,7 @@ export default function Aube() {
       <Header />
 
       <main className="kambavers-page">
-        <CollectionSidebar
-          collection="aube"
-          isMenuVisible={isMenuVisible}
-          isHoveringMenu={isHoveringMenu}
-          showHautSubmenu={showHautSubmenu}
-          showBasSubmenu={showBasSubmenu}
-          showAccessoiresSubmenu={showAccessoiresSubmenu}
-          setShowHautSubmenu={setShowHautSubmenu}
-          setShowBasSubmenu={setShowBasSubmenu}
-          setShowAccessoiresSubmenu={setShowAccessoiresSubmenu}
-          setIsHoveringMenu={setIsHoveringMenu}
-        />
+{/* Temporarily removed CollectionSidebar for debugging */}
 
         {/* Bouton toggle pour le menu */}
         <button 
