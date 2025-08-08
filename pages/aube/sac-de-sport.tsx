@@ -10,7 +10,7 @@ import MobileCarousel from '../../components/MobileCarousel';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
-import { useFavorites } from '../../contexts/FavoritesContext';
+// import { useFavorites } from '../../contexts/FavoritesContext';
 import styles from '../../styles/HomePage.module.css';
 import productStyles from '../../styles/ProductPage.module.css';
 
@@ -25,7 +25,7 @@ export default function AubeSacDeSport() {
   
   // Product page states
   const { addToCart } = useCart();
-  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
+  // const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites();
   const [selectedColor, setSelectedColor] = useState('Beige');
   const [selectedSize, setSelectedSize] = useState('Unique');
   const [quantity, setQuantity] = useState(1);
@@ -62,11 +62,8 @@ export default function AubeSacDeSport() {
   };
 
   const handleHeartClick = () => {
-    if (isFavorite(sacDeSportProduct.id)) {
-      removeFromFavorites(sacDeSportProduct.id);
-    } else {
-      addToFavorites(sacDeSportProduct);
-    }
+    // Temporarily disabled favorites
+    console.log('Heart clicked');
   };
 
   const openModal = (content: any) => {
@@ -257,9 +254,9 @@ export default function AubeSacDeSport() {
                 
                 {/* Heart Icon - Positioned absolutely */}
                 <button 
-                  className={`${productStyles.heartIcon} ${isFavorite(sacDeSportProduct.id) ? productStyles.liked : ''}`}
+                  className={`${productStyles.heartIcon}`}
                   onClick={handleHeartClick}
-                  aria-label={isFavorite(sacDeSportProduct.id) ? "Retirer des favoris" : "Ajouter aux favoris"}
+                  aria-label="Favoris temporairement désactivés"
                   style={{
                     position: 'absolute',
                     top: '10px',
@@ -267,12 +264,12 @@ export default function AubeSacDeSport() {
                     zIndex: 10
                   }}
                 >
-                  <span className={`u-w-full ${isFavorite(sacDeSportProduct.id) ? 'u-hidden' : ''} | js-product-heart-add`}>
+                  <span className={`u-w-full ${false ? 'u-hidden' : ''} | js-product-heart-add`}>
                     <svg className="c-icon" data-size="sm">
                       <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
                     </svg>
                   </span>
-                  <span className={`u-w-full ${!isFavorite(sacDeSportProduct.id) ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                  <span className={`u-w-full ${!false ? 'u-hidden' : ''} | js-product-heart-remove`}>
                     <svg className="c-icon" data-size="sm">
                       <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
                     </svg>
