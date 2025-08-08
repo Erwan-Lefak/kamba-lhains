@@ -7,7 +7,6 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
 import MobileCarousel from '../../components/MobileCarousel';
-import CollectionHeader from '../../components/CollectionHeader';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
@@ -45,14 +44,16 @@ export default function AubeSacDeSport() {
   const sacDeSportProduct = {
     id: 'aube-sac-de-sport-001',
     name: 'Sac de Sport',
-    price: '150€',
+    price: '150EUR',
+    image: '/images/products/sacdesport1.jpg',
     images: ['/images/products/sacdesport1.jpg', '/images/products/sacdesport2.jpg', '/images/products/sacdesport3.jpg', '/images/products/sacdesport4.jpg'],
     category: 'Aube',
     subcategory: 'Accessoires',
     description: ['Sac de sport élégant et fonctionnel pour accompagner vos activités sportives.', 'Matière résistante et imperméable', 'Grande capacité de rangement', 'Sangles ajustables et confortables'],
     colors: ['Beige'],
     sizes: ['Unique'],
-    inStock: true
+    inStock: true,
+    featured: false
   };
 
   const handleAddToCart = () => {
@@ -188,8 +189,23 @@ export default function AubeSacDeSport() {
         </button>
 
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-          {/* 1ère section: Collection Header */}
-          <CollectionHeader collection="aube" customImagePath="/aube.jpg" />
+
+          {/* Image Section */}
+          <section className={styles.newCollectionSection}>
+            <div className={styles.mediaSection}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src="/aube.jpg"
+                  alt="Collection Aube - Kamba Lhains"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+              </div>
+            </div>
+          </section>
 
           {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
@@ -419,10 +435,11 @@ export default function AubeSacDeSport() {
           top: 90px;
           left: 20px;
           z-index: 1001;
-          background: transparent;
+          background: rgba(255, 255, 255, 0.3);
           border: none;
-          width: 44px;
-          height: 44px;
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
           display: flex;
           align-items: center;
           justify-content: center;
