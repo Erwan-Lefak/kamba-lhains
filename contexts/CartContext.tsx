@@ -78,14 +78,18 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
   // Persistence dans localStorage
   useEffect(() => {
-    const savedCart = localStorage.getItem('kamba-cart');
-    if (savedCart) {
-      dispatch({ type: 'LOAD_CART', payload: JSON.parse(savedCart) });
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('kamba-cart');
+      if (savedCart) {
+        dispatch({ type: 'LOAD_CART', payload: JSON.parse(savedCart) });
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('kamba-cart', JSON.stringify(state.items));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('kamba-cart', JSON.stringify(state.items));
+    }
   }, [state.items]);
 
   // Actions du panier
