@@ -235,10 +235,12 @@ export default function AubeSacDeSport() {
               <div className={productStyles.productImageSection} style={{position: 'relative'}}>
                 {/* Breadcrumb - Positioned absolutely */}
                 <div className={productStyles.breadcrumb} style={{
-                  position: 'absolute',
-                  top: '10px',
+                  position: 'sticky',
+                  top: '20px',
                   left: '10px',
-                  zIndex: 10
+                  zIndex: 10,
+                  marginTop: 0,
+                  marginBottom: '-40px'
                 }}>
                   <Link href="/aube" className={productStyles.breadcrumbLink}>
                     <span>Aube</span>
@@ -259,10 +261,13 @@ export default function AubeSacDeSport() {
                   onClick={handleHeartClick}
                   aria-label="Favoris temporairement désactivés"
                   style={{
-                    position: 'absolute',
+                    position: 'sticky',
                     top: '10px',
                     right: '10px',
-                    zIndex: 10
+                    zIndex: 10,
+                    marginTop: 0,
+                    marginBottom: '-40px',
+                    marginLeft: 'auto'
                   }}
                 >
                   <span className={`u-w-full ${false ? 'u-hidden' : ''} | js-product-heart-add`}>
