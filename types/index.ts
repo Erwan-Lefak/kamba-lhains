@@ -68,7 +68,7 @@ export interface CartItem {
   // Compatibilité avec l'ancien format
   id: number;
   name: string;
-  price: number;
+  price: number | string;
   image: string;
   size: string;
   color: string;
