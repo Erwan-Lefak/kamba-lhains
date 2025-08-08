@@ -44,7 +44,7 @@ export default function AubeSacDeSport() {
   const sacDeSportProduct = {
     id: 'aube-sac-de-sport-001',
     name: 'Sac de Sport',
-    price: '150EUR',
+    price: 150,
     image: '/images/products/sacdesport1.jpg',
     images: ['/images/products/sacdesport1.jpg', '/images/products/sacdesport2.jpg', '/images/products/sacdesport3.jpg', '/images/products/sacdesport4.jpg'],
     category: 'Aube',
