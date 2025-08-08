@@ -385,56 +385,57 @@ export default function AubeSacDeSport() {
               </div>
             </div>
 
-            {/* Complete Your Look Section */}
-            <section className={productStyles.completeYourLook}>
-              <div className={productStyles.sectionContainer}>
-                <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
+          </div>
+
+          {/* Complete Your Look Section */}
+          <section className={productStyles.completeYourLook}>
+            <div className={productStyles.sectionContainer}>
+              <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
+            </div>
+            
+            {/* Three Products Grid Section - Using ProductPage Style */}
+            <section className={productStyles.threeProductsSection}>
+              {/* Desktop Grid */}
+              <div className={productStyles.threeProductsGrid}>
+                {products
+                  .filter(p => p.subCategory === 'aube' && p.id !== sacDeSportProduct.id)
+                  .slice(0, 3)
+                  .map((recommendedProduct) => (
+                    <div key={recommendedProduct.id} className={productStyles.productSlot}>
+                      <ProductCard product={recommendedProduct} />
+                    </div>
+                  ))
+                }
               </div>
               
-              {/* Three Products Grid Section - Using Homepage Style */}
-              <section className={productStyles.threeProductsSection}>
-                {/* Desktop Grid */}
-                <div className={productStyles.threeProductsGrid}>
-                  {products
-                    .filter(p => p.category === 'Aube' && p.id !== sacDeSportProduct.id)
-                    .slice(0, 3)
-                    .map((recommendedProduct) => (
-                      <div key={recommendedProduct.id} className={productStyles.productSlot}>
-                        <ProductCard product={recommendedProduct} />
-                      </div>
-                    ))
-                  }
-                </div>
-                
-                {/* Mobile Carousel */}
-                <div className={productStyles.mobileCarousel}>
-                  <MobileCarousel products={products.filter(p => p.category === 'Aube' && p.id !== sacDeSportProduct.id).slice(0, 3)} />
-                </div>
-              </section>
+              {/* Mobile Carousel */}
+              <div className={productStyles.mobileCarousel}>
+                <MobileCarousel products={products.filter(p => p.subCategory === 'aube' && p.id !== sacDeSportProduct.id).slice(0, 3)} />
+              </div>
             </section>
-
-            {/* Modal Overlay */}
-            <div 
-              className={`${productStyles.modalOverlay} ${rightModalOpen ? productStyles.open : ''}`}
-              onClick={closeModal}
-            />
-
-            {/* Right Modal (Description, Size Guide, Care Guide) */}
-            <div className={`${productStyles.slidingModal} ${productStyles.rightModal} ${rightModalOpen ? productStyles.open : ''}`}>
-              <div className={productStyles.modalHeader}>
-                <h2 className={productStyles.modalTitle}>{getModalTitle()}</h2>
-                <button className={productStyles.closeButton} onClick={closeModal}>
-                  ×
-                </button>
-              </div>
-              <div className={productStyles.modalContent}>
-                {renderModalContent()}
-              </div>
-            </div>
-          </div>
+          </section>
 
         </div>
       </main>
+
+      {/* Modal Overlay */}
+      <div 
+        className={`${productStyles.modalOverlay} ${rightModalOpen ? productStyles.open : ''}`}
+        onClick={closeModal}
+      />
+
+      {/* Right Modal (Description, Size Guide, Care Guide) */}
+      <div className={`${productStyles.slidingModal} ${productStyles.rightModal} ${rightModalOpen ? productStyles.open : ''}`}>
+        <div className={productStyles.modalHeader}>
+          <h2 className={productStyles.modalTitle}>{getModalTitle()}</h2>
+          <button className={productStyles.closeButton} onClick={closeModal}>
+            ×
+          </button>
+        </div>
+        <div className={productStyles.modalContent}>
+          {renderModalContent()}
+        </div>
+      </div>
 
       <Footer isKambaversPage={true} isMenuVisible={isMenuVisible} />
 
