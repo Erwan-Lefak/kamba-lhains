@@ -434,9 +434,10 @@ export default function ProductDetail() {
           <section className={styles.threeProductsSection}>
             {/* Desktop Grid */}
             <div className={styles.threeProductsGrid}>
-              {products
-                .filter(p => p.id !== product.id)
-                .slice(0, 3)
+              {[
+                ...products.filter(p => p.id !== product.id).slice(0, 3),
+                products.filter(p => ['12', '13', '14', '15'].includes(p.id))[Math.floor(Math.random() * 4)]
+              ].filter(Boolean)
                 .map((recommendedProduct) => (
                   <div key={recommendedProduct.id} className={styles.productSlot}>
                     <ProductCard product={recommendedProduct} />
@@ -447,7 +448,10 @@ export default function ProductDetail() {
             
             {/* Mobile Carousel */}
             <div className={styles.mobileCarousel}>
-              <MobileCarousel products={products.filter(p => p.id !== product.id).slice(0, 3)} />
+              <MobileCarousel products={[
+                ...products.filter(p => p.id !== product.id).slice(0, 3),
+                products.filter(p => ['12', '13', '14', '15'].includes(p.id))[Math.floor(Math.random() * 4)]
+              ].filter(Boolean)} />
             </div>
           </section>
         </section>

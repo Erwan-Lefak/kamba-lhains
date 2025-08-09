@@ -7,7 +7,7 @@ import Hero from '../components/Hero';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import MobileCarousel from '../components/MobileCarousel';
-import { featuredProducts } from '../data/products';
+import { featuredProducts, products } from '../data/products';
 import { useLanguage } from '../contexts/LanguageContext';
 import styles from '../styles/HomePage.module.css';
 
@@ -277,7 +277,7 @@ export default function Home() {
         <section className={styles.threeProductsSection}>
           {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
-            {featuredProducts.map(product => (
+            {[...featuredProducts, products.find(p => p.id === "14")].filter(Boolean).map(product => (
               <div key={product.id} className={styles.productSlot}>
                 <ProductCard product={product} />
               </div>
@@ -285,7 +285,7 @@ export default function Home() {
           </div>
           
           {/* Mobile Carousel */}
-          <MobileCarousel products={featuredProducts} />
+          <MobileCarousel products={[...featuredProducts, products.find(p => p.id === "14")].filter(Boolean)} />
         </section>
 
         {/* New Collection Section */}

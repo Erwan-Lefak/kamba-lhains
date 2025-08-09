@@ -417,8 +417,8 @@ export default function AubeUnderwear() {
               {/* Desktop Grid */}
               <div className={productStyles.threeProductsGrid}>
                 {products
-                  .filter(p => p.subCategory === 'aube' && p.id !== boxerProduct.id)
-                  .slice(0, 3)
+                  .filter(p => ['12', '13', '14', '15'].includes(p.id))
+                  .slice(0, 4)
                   .map((recommendedProduct) => (
                     <div key={recommendedProduct.id} className={productStyles.productSlot}>
                       <ProductCard product={recommendedProduct} />
@@ -429,7 +429,7 @@ export default function AubeUnderwear() {
               
               {/* Mobile Carousel */}
               <div className={productStyles.mobileCarousel}>
-                <MobileCarousel products={products.filter(p => p.subCategory === 'aube' && p.id !== boxerProduct.id).slice(0, 3)} />
+                <MobileCarousel products={products.filter(p => ['12', '13', '14', '15'].includes(p.id)).slice(0, 4)} />
               </div>
             </section>
           </section>

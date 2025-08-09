@@ -202,7 +202,7 @@ export default function TShirt() {
           {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
             {tshirtProducts.length > 0 ? (
-              tshirtProducts.map(product => (
+              [...tshirtProducts, products.find(p => p.id === "1")].filter(Boolean).map(product => (
                 <div key={product.id} className={styles.productSlot}>
                   <ProductCard product={product} />
                 </div>
@@ -215,7 +215,7 @@ export default function TShirt() {
           </div>
           
           {/* Mobile Carousel */}
-          {tshirtProducts.length > 0 && <MobileCarousel products={tshirtProducts} />}
+          {tshirtProducts.length > 0 && <MobileCarousel products={[...tshirtProducts, products.find(p => p.id === "1")].filter(Boolean)} />}
         </section>
         </div>
       </main>

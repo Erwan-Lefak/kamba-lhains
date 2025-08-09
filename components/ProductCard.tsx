@@ -301,7 +301,7 @@ export default function ProductCard({ product, hideInfo = false, noLink = false 
               )}
               <div className={styles.productOverlay}>
                 <div className={styles.productName}>{product.name}</div>
-                <div className={styles.productPrice}>{product.price}</div>
+                <div className={styles.productPrice}>{product.price} EUR</div>
               </div>
             </>
           )}

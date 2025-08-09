@@ -221,6 +221,116 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     inStock: true,
     featured: false
+  },
+  {
+    id: "12",
+    name: "PULL MARIN AUBE",
+    price: 385,
+    image: "/images/collection/IMG_2785.jpeg",
+    images: [
+      "/images/collection/IMG_2785.jpeg"
+    ],
+    description: [
+      "Pull marin en maille fine pour la collection Aube",
+      "Coupe ajustée et confortable",
+      "Détails marines authentiques",
+      "Parfait pour les matinées fraîches",
+      "Fabrication européenne"
+    ],
+    category: "unisexe",
+    subCategory: "aube",
+    colors: ["#000080", "#FFFFFF"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: "13", 
+    name: "CHEMISE AUBE CLASSIC",
+    price: 295,
+    image: "/images/collection/IMG_2796.jpeg",
+    images: [
+      "/images/collection/IMG_2796.jpeg"
+    ],
+    description: [
+      "Chemise classique de la collection Aube",
+      "Coupe droite intemporelle",
+      "Col chemise traditionnel",
+      "Tissu premium respirant",
+      "Idéale pour toutes occasions"
+    ],
+    category: "unisexe",
+    subCategory: "aube", 
+    colors: ["#FFFFFF", "#F5F5DC"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: "14",
+    name: "POLO AUBE PREMIUM",
+    price: 245,
+    image: "/images/collection/IMG_2798.jpeg", 
+    images: [
+      "/images/collection/IMG_2798.jpeg"
+    ],
+    description: [
+      "Polo premium collection Aube",
+      "Maille piquée de qualité supérieure",
+      "Col polo ajustable",
+      "Coupe moderne et élégante",
+      "Parfait pour le sport-chic"
+    ],
+    category: "unisexe",
+    subCategory: "aube",
+    colors: ["#000000", "#8B7355"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: "15",
+    name: "VESTE AUBE URBAN",
+    price: 520,
+    image: "/images/collection/IMG_2917.jpeg",
+    images: [
+      "/images/collection/IMG_2917.jpeg"
+    ],
+    description: [
+      "Veste urbaine collection Aube",
+      "Design contemporain et fonctionnel",
+      "Matières techniques résistantes",
+      "Poches multiples pratiques",
+      "Style moderne et polyvalent"
+    ],
+    category: "unisexe",
+    subCategory: "aube",
+    colors: ["#000000", "#2F2F2F"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: "16",
+    name: "SWEAT ESSENTIEL",
+    price: 195,
+    image: "/images/collection/IMG_2864.jpeg",
+    images: [
+      "/images/collection/IMG_2864.jpeg"
+    ],
+    description: [
+      "Sweat essentiel pour un style décontracté",
+      "Coton molletonné de qualité premium",
+      "Coupe regular confortable",
+      "Finitions soignées",
+      "Parfait pour toutes saisons"
+    ],
+    category: "unisexe",
+    subCategory: "general",
+    colors: ["#000000", "#FFFFFF", "#808080"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: false
   }
 ];
 

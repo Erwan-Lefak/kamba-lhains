@@ -103,7 +103,7 @@
 }
 
 .productName {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -112,7 +112,7 @@
 }
 
 .productPrice {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 200;
   color: black;
   font-family: 'Manrope', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
