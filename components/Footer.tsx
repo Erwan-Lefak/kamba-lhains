@@ -213,7 +213,7 @@ export default function Footer({ isKambaversPage = false, isMenuVisible = false 
             <ul className={`section-content ${openSections.entreprise ? 'open' : ''}`}>
               <li><Link href="/about" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/about') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/about')}>A propos</Link></li>
               <li><Link href="/contact" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/contact') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/contact')}>Nous contacter</Link></li>
-              <li><Link href="/charte" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/charte') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/charte')}>Charte</Link></li>
+              <li><Link href="/charte" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/charte') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/charte')}>Nos valeurs</Link></li>
               <li><Link href="/carriere" style={{fontSize: '9px', textTransform: 'uppercase', color: isActiveLink('/carriere') ? '#9f0909' : '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '/carriere')}>Carrière</Link></li>
             </ul>
           </div>

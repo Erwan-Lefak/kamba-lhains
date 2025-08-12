@@ -277,7 +277,7 @@ export default function Home() {
         <section className={styles.threeProductsSection}>
           {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
-            {[...featuredProducts, products.find(p => p.id === "14")].filter(Boolean).map(product => (
+            {featuredProducts.map(product => (
               <div key={product.id} className={styles.productSlot}>
                 <ProductCard product={product} />
               </div>
@@ -285,7 +285,7 @@ export default function Home() {
           </div>
           
           {/* Mobile Carousel */}
-          <MobileCarousel products={[...featuredProducts, products.find(p => p.id === "14")].filter(Boolean)} />
+          <MobileCarousel products={featuredProducts} />
         </section>
 
         {/* New Collection Section */}

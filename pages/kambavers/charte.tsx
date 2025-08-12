@@ -25,8 +25,8 @@ export default function KambaversCharte() {
   return (
     <>
       <Head>
-        <title>Notre Charte - Kambavers - Kamba Lhains</title>
-        <meta name="description" content="Découvrez notre charte éthique et nos engagements en matière de mode responsable, respect humain et protection environnementale." />
+        <title>Nos valeurs - Kambavers - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos valeurs éthiques et nos engagements en matière de mode responsable, respect humain et protection environnementale." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -51,7 +51,7 @@ export default function KambaversCharte() {
               </li>
               <li>
                 <button className="active">
-                  NOTRE CHARTE
+                  NOS VALEURS
                 </button>
               </li>
               <li>
@@ -136,10 +136,10 @@ export default function KambaversCharte() {
                   width: '100%'
                 }}
               >
-                Notre Charte
+                Nos valeurs
               </h1>
               <p className={styles.collectionDescription}>
-                Chez Kamba Lhains, nous croyons que la mode peut et doit être porteuse de sens. Au-delà du style, nos créations reflètent un engagement profond envers l'humain, les animaux et la planète. Cette charte incarne les valeurs fondamentales de notre marque et guide chacune de nos décisions.
+                Chez Kamba Lhains, nous croyons que la mode peut et doit être porteuse de sens. Au-delà du style, nos créations reflètent un engagement profond envers l'humain, les animaux et la planète. Ces valeurs incarnent les fondements de notre marque et guident chacune de nos décisions.
               </p>
             </div>
             
@@ -147,7 +147,7 @@ export default function KambaversCharte() {
               <div className={styles.imageContainer}>
                 <Image
                   src="/images/charte2.jpg"
-                  alt="Notre Charte - Kamba Lhains"
+                  alt="Nos valeurs - Kamba Lhains"
                   width={1200}
                   height={800}
                   className={styles.collectionImage}
@@ -158,13 +158,13 @@ export default function KambaversCharte() {
             </div>
           </section>
 
-          {/* Section 2 - Détails de la Charte - comme 2ème section marque */}
+          {/* Section 2 - Détails de nos valeurs - comme 2ème section marque */}
           <section className={styles.twoProductsSection}>
             <div className={styles.twoProductsGrid}>
               <div className={styles.simpleProductSlot}>
                 <Image
                   src="/images/charte.jpg"
-                  alt="Détails de notre Charte - Kamba Lhains"
+                  alt="Détails de nos valeurs - Kamba Lhains"
                   width={1200}
                   height={800}
                   className={styles.collectionImage}
