@@ -15,12 +15,13 @@ export default function Compte() {
     newsletter: false
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value, type, checked } = target;
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
@@ -32,7 +33,7 @@ export default function Compte() {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: {[key: string]: string} = {};
     
     if (!formData.email.trim()) newErrors.email = 'L\'email est requis';
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email invalide';
@@ -50,7 +51,7 @@ export default function Compte() {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors = validateForm();
     
@@ -392,12 +393,14 @@ export default function Compte() {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#333';
-                  e.target.style.color = 'white';
+                  const target = e.target as HTMLButtonElement;
+                  target.style.backgroundColor = '#333';
+                  target.style.color = 'white';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'transparent';
-                  e.target.style.color = '#333';
+                  const target = e.target as HTMLButtonElement;
+                  target.style.backgroundColor = 'transparent';
+                  target.style.color = '#333';
                 }}
               >
                 {isLogin ? 'CRÉER UN COMPTE' : 'SE CONNECTER'}

@@ -17,7 +17,7 @@ export default function Collaboration() {
     portfolio: null
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -31,8 +31,9 @@ export default function Collaboration() {
     { value: 'other', label: 'Autre' }
   ];
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const files = (e.target as HTMLInputElement).files;
     setFormData(prev => ({
       ...prev,
       [name]: files ? files[0] : value
@@ -44,7 +45,7 @@ export default function Collaboration() {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: {[key: string]: string} = {};
     
     if (!formData.type) newErrors.type = 'Sélectionnez un type de collaboration';
     if (!formData.name.trim()) newErrors.name = 'Le nom est requis';
@@ -56,7 +57,7 @@ export default function Collaboration() {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors = validateForm();
     
@@ -390,7 +391,7 @@ export default function Collaboration() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                rows="6"
+                rows={6}
                 placeholder="Décrivez votre projet de collaboration, vos idées, ce que vous proposez..."
                 style={{
                   width: '100%',
@@ -418,7 +419,7 @@ export default function Collaboration() {
                 name="experience"
                 value={formData.experience}
                 onChange={handleChange}
-                rows="4"
+                rows={4}
                 placeholder="Parlez-nous de vos expériences de collaboration, vos références, votre univers..."
                 style={{
                   width: '100%',

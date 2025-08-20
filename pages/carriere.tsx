@@ -16,12 +16,13 @@ export default function Carriere() {
     portfolio: null
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const files = (e.target as HTMLInputElement).files;
     setFormData(prev => ({
       ...prev,
       [name]: files ? files[0] : value
@@ -33,7 +34,7 @@ export default function Carriere() {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: {[key: string]: string} = {};
     
     if (!formData.firstName.trim()) newErrors.firstName = 'Le prénom est requis';
     if (!formData.lastName.trim()) newErrors.lastName = 'Le nom est requis';
@@ -46,7 +47,7 @@ export default function Carriere() {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors = validateForm();
     
@@ -297,7 +298,7 @@ export default function Carriere() {
                 name="experience"
                 value={formData.experience}
                 onChange={handleChange}
-                rows="4"
+                rows={4}
                 placeholder="Décrivez brièvement votre parcours professionnel..."
                 style={{
                   width: '100%',
@@ -321,7 +322,7 @@ export default function Carriere() {
                 name="motivation"
                 value={formData.motivation}
                 onChange={handleChange}
-                rows="6"
+                rows={6}
                 placeholder="Pourquoi souhaitez-vous rejoindre Kamba Lhains ? Qu'est-ce qui vous motive dans notre approche de la mode ?"
                 style={{
                   width: '100%',

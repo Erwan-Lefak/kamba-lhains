@@ -17,13 +17,14 @@ export default function Newsletter() {
     frequency: 'weekly'
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isUnsubscribe, setIsUnsubscribe] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value, type, checked } = target;
     
     if (name.startsWith('interests.')) {
       const interestName = name.split('.')[1];
@@ -47,7 +48,7 @@ export default function Newsletter() {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: {[key: string]: string} = {};
     
     if (!formData.email.trim()) newErrors.email = 'L\'email est requis';
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email invalide';
@@ -57,7 +58,7 @@ export default function Newsletter() {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors = validateForm();
     

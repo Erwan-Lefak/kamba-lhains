@@ -9,11 +9,11 @@ export default function SuiviCommande() {
     email: ''
   });
 
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  const [touched, setTouched] = useState<{[key: string]: boolean}>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -28,7 +28,7 @@ export default function SuiviCommande() {
     }
   };
 
-  const handleBlur = (e) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name } = e.target;
     setTouched({
       ...touched,
@@ -37,7 +37,7 @@ export default function SuiviCommande() {
     validateField(name);
   };
 
-  const validateField = (fieldName) => {
+  const validateField = (fieldName: string) => {
     const newErrors = { ...errors };
     
     if (fieldName === 'orderNumber' && !formData.orderNumber.trim()) {
@@ -50,17 +50,17 @@ export default function SuiviCommande() {
     setErrors(newErrors);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     const requiredFields = ['orderNumber', 'email'];
-    const newTouched = {};
+    const newTouched: {[key: string]: boolean} = {};
     requiredFields.forEach(field => {
       newTouched[field] = true;
     });
     setTouched(newTouched);
     
-    const newErrors = {};
+    const newErrors: {[key: string]: string} = {};
     if (!formData.orderNumber.trim()) newErrors.orderNumber = 'Ce champ est requis';
     if (!formData.email.trim()) newErrors.email = 'Ce champ est requis';
     

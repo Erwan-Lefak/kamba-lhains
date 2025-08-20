@@ -15,7 +15,7 @@ export default function Reclamation() {
     attachments: null
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -29,8 +29,9 @@ export default function Reclamation() {
     'Autre'
   ];
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const files = (e.target as HTMLInputElement).files;
     setFormData(prev => ({
       ...prev,
       [name]: files ? files[0] : value
@@ -42,7 +43,7 @@ export default function Reclamation() {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: {[key: string]: string} = {};
     
     if (!formData.firstName.trim()) newErrors.firstName = 'Le prénom est requis';
     if (!formData.lastName.trim()) newErrors.lastName = 'Le nom est requis';
@@ -55,7 +56,7 @@ export default function Reclamation() {
     return newErrors;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors = validateForm();
     
@@ -300,7 +301,7 @@ export default function Reclamation() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                rows="6"
+                rows={6}
                 placeholder="Décrivez précisément le problème rencontré..."
                 style={{
                   width: '100%',
