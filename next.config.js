@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Port configuration
+  devIndicators: {
+    port: 3002
+  },
   // Image optimization avancée
   images: {
     formats: ['image/webp', 'image/avif'],

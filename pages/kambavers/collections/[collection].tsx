@@ -206,8 +206,8 @@ export default function KambaversCollection() {
                     onPlaying={handlePlaying}
                     style={{ opacity: showPoster ? 0 : 1 }}
                   >
-                    <source src="/collec.mov" type="video/quicktime" />
-                    <source src="/collec.mov" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1755524165/collec_h49use.mp4" type="video/mp4" />
+                    <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1755520950/ACCUEIL_krmrok.mp4" type="video/mp4" />
                     Votre navigateur ne supporte pas la lecture de vidéos.
                   </video>
                   
@@ -440,7 +440,7 @@ export default function KambaversCollection() {
                 <button 
                   onClick={() => router.push('/kambavers/charte')}
                 >
-                  NOTRE CHARTE
+                  NOS VALEURS
                 </button>
               </li>
               <li>

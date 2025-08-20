@@ -53,7 +53,7 @@ export default function KambaversIndex() {
                 <button 
                   onClick={() => router.push('/kambavers/charte')}
                 >
-                  NOTRE CHARTE
+                  NOS VALEURS
                 </button>
               </li>
               <li>

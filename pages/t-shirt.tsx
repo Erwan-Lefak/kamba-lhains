@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import MobileCarousel from '../components/MobileCarousel';
 import { products } from '../data/products';
+import { Product } from '../types';
 import styles from '../styles/HomePage.module.css';
 
 export default function TShirt() {
@@ -202,8 +203,8 @@ export default function TShirt() {
           {/* Desktop Grid */}
           <div className={styles.threeProductsGrid}>
             {tshirtProducts.length > 0 ? (
-              [...tshirtProducts, products.find(p => p.id === "1")].filter(Boolean).map(product => (
-                <div key={product.id} className={styles.productSlot}>
+              [...tshirtProducts, products.find(p => p.id === "1")].filter(Boolean).map((product, index) => product && (
+                <div key={product.id || index} className={styles.productSlot}>
                   <ProductCard product={product} />
                 </div>
               ))
@@ -215,7 +216,7 @@ export default function TShirt() {
           </div>
           
           {/* Mobile Carousel */}
-          {tshirtProducts.length > 0 && <MobileCarousel products={[...tshirtProducts, products.find(p => p.id === "1")].filter(Boolean)} />}
+          {tshirtProducts.length > 0 && <MobileCarousel products={[...tshirtProducts, products.find(p => p.id === "1")].filter((product): product is Product => Boolean(product))} />}
         </section>
         </div>
       </main>

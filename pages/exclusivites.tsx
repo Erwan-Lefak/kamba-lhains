@@ -109,16 +109,29 @@ export default function Exclusivites() {
             </div>
             
             <div className={styles.mediaSection}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src="/exclu2.jpg"
-                  alt="Exclusivités - Kamba Lhains"
-                  width={1200}
-                  height={800}
-                  className={styles.collectionImage}
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                />
+              <div className="exclusivity-images-container">
+                <div className="exclusivity-image-wrapper">
+                  <Image
+                    src="/images/exclu1.jpg"
+                    alt="Exclusivités - Kamba Lhains"
+                    width={600}
+                    height={800}
+                    className={styles.collectionImage}
+                    quality={95}
+                    sizes="(max-width: 768px) 50vw, 40vw"
+                  />
+                </div>
+                <div className="exclusivity-image-wrapper">
+                  <Image
+                    src="/images/exclu2.jpg"
+                    alt="Exclusivités - Kamba Lhains"
+                    width={600}
+                    height={800}
+                    className={styles.collectionImage}
+                    quality={95}
+                    sizes="(max-width: 768px) 50vw, 40vw"
+                  />
+                </div>
               </div>
             </div>
           </section>
@@ -364,6 +377,26 @@ export default function Exclusivites() {
           }
         }
 
+        .exclusivity-images-container {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+          height: 100%;
+        }
+
+        .exclusivity-image-wrapper {
+          flex: 1;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .exclusivity-image-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+
         @media (max-width: 768px) {
           .sidebar-menu {
             width: 280px;
@@ -379,6 +412,11 @@ export default function Exclusivites() {
           .main-content {
             margin-left: 0 !important;
             padding-top: 80px;
+          }
+
+          .exclusivity-images-container {
+            flex-direction: column;
+            gap: 10px;
           }
         }
       `}</style>

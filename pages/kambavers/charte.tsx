@@ -146,7 +146,7 @@ export default function KambaversCharte() {
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/charte2.jpg"
+                  src="/images/valeur1.jpg"
                   alt="Nos valeurs - Kamba Lhains"
                   width={1200}
                   height={800}
@@ -163,7 +163,7 @@ export default function KambaversCharte() {
             <div className={styles.twoProductsGrid}>
               <div className={styles.simpleProductSlot}>
                 <Image
-                  src="/images/charte.jpg"
+                  src="/images/valeur2.jpg"
                   alt="Détails de nos valeurs - Kamba Lhains"
                   width={1200}
                   height={800}

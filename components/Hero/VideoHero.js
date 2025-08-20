@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import styles from './Hero.module.css';
 
-const VideoHero = ({ videoSrc = '/ACCUEIL.mp4' }) => {
+const VideoHero = ({ videoSrc = 'https://res.cloudinary.com/diibzuu9j/video/upload/v1755520950/ACCUEIL_krmrok.mp4' }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
