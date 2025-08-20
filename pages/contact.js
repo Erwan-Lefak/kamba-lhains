@@ -265,7 +265,7 @@ export default function Contact() {
         }
 
         .contact-header h1 {
-          font-size: 1.1rem;
+          font-size: 11px;
           font-weight: 400;
           color: #333;
           margin-bottom: 40px;
@@ -294,7 +294,7 @@ export default function Contact() {
 
         .form-group label {
           display: block;
-          font-size: 0.9rem;
+          font-size: 11px;
           color: #666;
           margin-bottom: 8px;
           font-weight: 400;
@@ -307,7 +307,7 @@ export default function Contact() {
           border: none;
           border-bottom: 1px solid #ddd;
           background: transparent;
-          font-size: 1rem;
+          font-size: 11px;
           color: #333;
           font-family: inherit;
           transition: border-color 0.3s ease;
@@ -319,7 +319,7 @@ export default function Contact() {
           padding: 12px;
           border: 1px solid #ddd;
           background: transparent;
-          font-size: 1rem;
+          font-size: 11px;
           color: #333;
           font-family: inherit;
           transition: border-color 0.3s ease;
@@ -350,7 +350,7 @@ export default function Contact() {
 
         .error-text {
           display: block;
-          font-size: 0.8rem;
+          font-size: 10px;
           color: #e74c3c;
           margin-top: 5px;
         }
@@ -376,7 +376,7 @@ export default function Contact() {
 
 
         .char-count {
-          font-size: 0.8rem;
+          font-size: 10px;
           color: #999;
           text-align: right;
           margin-top: 5px;
@@ -390,7 +390,7 @@ export default function Contact() {
 
         .contact-info-text p,
         .contact-info-footer p {
-          font-size: 0.85rem;
+          font-size: 11px;
           color: #666;
           line-height: 1.5;
           margin: 0;
@@ -401,7 +401,7 @@ export default function Contact() {
           color: white;
           border: none;
           padding: 15px 60px;
-          font-size: 0.9rem;
+          font-size: 11px;
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 1px;
@@ -430,7 +430,7 @@ export default function Contact() {
           }
 
           .contact-header h1 {
-            font-size: 1rem;
+            font-size: 11px;
           }
         }
 
