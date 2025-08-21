@@ -24,7 +24,6 @@ export default function Paiements() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', marginBottom: '50px' }}>
             <div style={{ backgroundColor: '#f8f8f8', padding: '30px', textAlign: 'center' }}>
-              <div style={{ fontSize: '30px', marginBottom: '15px' }}>💳</div>
               <h2 style={{ fontSize: '11px', fontWeight: '500', color: '#333', marginBottom: '15px' }}>
                 CARTE BANCAIRE
               </h2>
@@ -34,7 +33,6 @@ export default function Paiements() {
             </div>
 
             <div style={{ backgroundColor: '#f8f8f8', padding: '30px', textAlign: 'center' }}>
-              <div style={{ fontSize: '30px', marginBottom: '15px' }}>📱</div>
               <h2 style={{ fontSize: '11px', fontWeight: '500', color: '#333', marginBottom: '15px' }}>
                 APPLE PAY
               </h2>
@@ -44,7 +42,6 @@ export default function Paiements() {
             </div>
 
             <div style={{ backgroundColor: '#f8f8f8', padding: '30px', textAlign: 'center' }}>
-              <div style={{ fontSize: '30px', marginBottom: '15px' }}>🔵</div>
               <h2 style={{ fontSize: '11px', fontWeight: '500', color: '#333', marginBottom: '15px' }}>
                 GOOGLE PAY
               </h2>
