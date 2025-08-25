@@ -1,40 +1,68 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useCart } from '../contexts/CartContext';
 import styles from '../styles/Checkout.module.css';
 
-export default function Checkout() {
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+// Checkout Form Component
+function CheckoutForm() {
   const router = useRouter();
+  const stripe = useStripe();
+  const elements = useElements();
   const { items, getFormattedTotal, getTotalPrice, clearCart } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [clientSecret, setClientSecret] = useState('');
   const [formData, setFormData] = useState({
-    // Informations personnelles
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
-    
-    // Adresse de livraison
     address: '',
+    address2: '',
     city: '',
     postalCode: '',
-    country: 'France',
-    
-    // Informations de paiement
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-    cardName: '',
-    
-    // Options
-    saveInfo: false,
-    newsletter: false
+    country: 'FR',
+    saveInfo: false
   });
   const [errors, setErrors] = useState({});
+
+  // Create payment intent on component mount
+  useEffect(() => {
+    if (items.length > 0) {
+      createPaymentIntent();
+    }
+  }, [items]);
+
+  const createPaymentIntent = async () => {
+    try {
+      const response = await fetch('/api/payments/create-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: items,
+          shippingCost: getShippingCost()
+        })
+      });
+      const { clientSecret } = await response.json();
+      setClientSecret(clientSecret);
+    } catch (error) {
+      console.error('Error creating payment intent:', error);
+    }
+  };
+
+  const getShippingCost = () => {
+    return getTotalPrice() >= 150 ? 0 : 9.90;
+  };
+
+  const getFinalTotal = () => {
+    return getTotalPrice() + getShippingCost();
+  };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -43,66 +71,71 @@ export default function Checkout() {
       [name]: type === 'checkbox' ? checked : value
     }));
 
-    // Clear errors when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
+      setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
-  const validateStep = (step) => {
+  const validateForm = () => {
     const newErrors = {};
-
-    if (step === 1) {
-      if (!formData.firstName) newErrors.firstName = 'Le prénom est requis';
-      if (!formData.lastName) newErrors.lastName = 'Le nom est requis';
-      if (!formData.email) newErrors.email = 'L\'email est requis';
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-        newErrors.email = 'Format d\'email invalide';
-      }
-    } else if (step === 2) {
-      if (!formData.address) newErrors.address = 'L\'adresse est requise';
-      if (!formData.city) newErrors.city = 'La ville est requise';
-      if (!formData.postalCode) newErrors.postalCode = 'Le code postal est requis';
-    } else if (step === 3) {
-      if (!formData.cardNumber) newErrors.cardNumber = 'Le numéro de carte est requis';
-      if (!formData.expiryDate) newErrors.expiryDate = 'La date d\'expiration est requise';
-      if (!formData.cvv) newErrors.cvv = 'Le CVV est requis';
-      if (!formData.cardName) newErrors.cardName = 'Le nom sur la carte est requis';
+    
+    if (!formData.firstName) newErrors.firstName = 'Prénom requis';
+    if (!formData.lastName) newErrors.lastName = 'Nom requis';
+    if (!formData.email) newErrors.email = 'Email requis';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Format email invalide';
     }
-
+    if (!formData.address) newErrors.address = 'Adresse requise';
+    if (!formData.city) newErrors.city = 'Ville requise';
+    if (!formData.postalCode) newErrors.postalCode = 'Code postal requis';
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
-
-  const nextStep = () => {
-    if (validateStep(currentStep)) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    setCurrentStep(currentStep - 1);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateStep(3)) return;
+    if (!validateForm() || !stripe || !elements) return;
 
     setIsProcessing(true);
 
     try {
-      // Simulation d'un processus de paiement
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      // Clear cart after successful payment
-      clearCart();
-      
-      // Redirect to success page
-      router.push('/commande-confirmee');
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: `${window.location.origin}/commande-confirmee`,
+          payment_method_data: {
+            billing_details: {
+              name: `${formData.firstName} ${formData.lastName}`,
+              email: formData.email,
+              phone: formData.phone,
+              address: {
+                line1: formData.address,
+                line2: formData.address2,
+                city: formData.city,
+                postal_code: formData.postalCode,
+                country: formData.country
+              }
+            }
+          },
+          shipping: {
+            name: `${formData.firstName} ${formData.lastName}`,
+            phone: formData.phone,
+            address: {
+              line1: formData.address,
+              line2: formData.address2,
+              city: formData.city,
+              postal_code: formData.postalCode,
+              country: formData.country
+            }
+          }
+        }
+      });
+
+      if (error) {
+        setErrors({ submit: error.message });
+      }
     } catch (error) {
       console.error('Payment error:', error);
       setErrors({ submit: 'Erreur de paiement. Veuillez réessayer.' });
@@ -111,29 +144,223 @@ export default function Checkout() {
     }
   };
 
-  const shippingCost = getTotalPrice() >= 150 ? 0 : 9.90;
-  const totalPrice = getTotalPrice() + shippingCost;
+  if (items.length === 0) {
+    return (
+      <main className={styles.checkoutPage}>
+        <div className={styles.emptyCheckout}>
+          <h1 className={styles.emptyTitle}>Votre panier est vide</h1>
+          <p className={styles.emptyDescription}>Découvrez notre collection</p>
+          <button onClick={() => router.push('/')} className={styles.continueButton}>
+            Continuer
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className={styles.checkoutPage}>
+      <div className={styles.checkoutContainer}>
+        {/* Order Summary - Compact top section */}
+        <div className={styles.orderSummary}>
+          <div className={styles.summaryHeader}>
+            <span className={styles.itemCount}>{items.length} article{items.length > 1 ? 's' : ''}</span>
+            <span className={styles.totalAmount}>{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(getFinalTotal())}</span>
+          </div>
+        </div>
+
+        {/* Customer Information - Full width */}
+        <div className={styles.checkoutSection}>
+          <h2 className={styles.sectionTitle}>Informations</h2>
+          <div className={styles.formGrid}>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
+                className={`${styles.input} ${errors.firstName ? styles.inputError : ''}`}
+                placeholder="Prénom"
+                required
+              />
+              {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleInputChange}
+                className={`${styles.input} ${errors.lastName ? styles.inputError : ''}`}
+                placeholder="Nom"
+                required
+              />
+              {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
+                placeholder="Email"
+                required
+              />
+              {errors.email && <span className={styles.error}>{errors.email}</span>}
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Téléphone (optionnel)"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Shipping Address - Full width */}
+        <div className={styles.checkoutSection}>
+          <h2 className={styles.sectionTitle}>Livraison</h2>
+          <div className={styles.formGrid}>
+            <div className={styles.inputGroup} style={{gridColumn: '1 / -1'}}>
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
+                className={`${styles.input} ${errors.address ? styles.inputError : ''}`}
+                placeholder="Adresse"
+                required
+              />
+              {errors.address && <span className={styles.error}>{errors.address}</span>}
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="address2"
+                value={formData.address2}
+                onChange={handleInputChange}
+                className={styles.input}
+                placeholder="Complément d'adresse (optionnel)"
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="city"
+                value={formData.city}
+                onChange={handleInputChange}
+                className={`${styles.input} ${errors.city ? styles.inputError : ''}`}
+                placeholder="Ville"
+                required
+              />
+              {errors.city && <span className={styles.error}>{errors.city}</span>}
+            </div>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="postalCode"
+                value={formData.postalCode}
+                onChange={handleInputChange}
+                className={`${styles.input} ${errors.postalCode ? styles.inputError : ''}`}
+                placeholder="Code postal"
+                required
+              />
+              {errors.postalCode && <span className={styles.error}>{errors.postalCode}</span>}
+            </div>
+            <div className={styles.inputGroup}>
+              <select
+                name="country"
+                value={formData.country}
+                onChange={handleInputChange}
+                className={styles.input}
+              >
+                <option value="FR">France</option>
+                <option value="BE">Belgique</option>
+                <option value="CH">Suisse</option>
+                <option value="LU">Luxembourg</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Payment - Full width */}
+        {clientSecret && (
+          <div className={styles.checkoutSection}>
+            <h2 className={styles.sectionTitle}>Paiement</h2>
+            <div className={styles.paymentSection}>
+              <PaymentElement 
+                options={{
+                  layout: {
+                    type: 'tabs',
+                    defaultCollapsed: false,
+                  }
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Submit button */}
+        <div className={styles.checkoutActions}>
+          {errors.submit && (
+            <div className={styles.submitError}>{errors.submit}</div>
+          )}
+          <button
+            onClick={handleSubmit}
+            className={styles.submitButton}
+            disabled={!stripe || isProcessing}
+          >
+            {isProcessing ? 'Traitement...' : `Commander ${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(getFinalTotal())}`}
+          </button>
+          <div className={styles.securityInfo}>
+            Paiement sécurisé
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+// Main Checkout Component with Stripe wrapper
+export default function Checkout() {
+  const { items } = useCart();
 
   if (items.length === 0) {
     return (
       <>
         <Head>
-          <title>Checkout - KAMBA LHAINS</title>
+          <title>Checkout - Kamba Lhains</title>
         </Head>
         <Header />
-        <main className={styles.checkoutPage}>
-          <div className={styles.emptyCheckout}>
-            <h1>Votre panier est vide</h1>
-            <p>Ajoutez des articles à votre panier avant de procéder au checkout.</p>
-            <button onClick={() => router.push('/')} className={styles.continueButton}>
-              Continuer mes achats
-            </button>
-          </div>
-        </main>
+        <CheckoutForm />
         <Footer />
       </>
     );
   }
+
+  const options = {
+    mode: 'payment',
+    currency: 'eur',
+    amount: Math.round((items.reduce((total, item) => {
+      const price = typeof item.price === 'string' 
+        ? parseFloat(item.price.replace(/[^\d.]/g, '')) 
+        : item.price;
+      return total + (price * item.quantity);
+    }, 0) + (items.reduce((total, item) => {
+      const price = typeof item.price === 'string' 
+        ? parseFloat(item.price.replace(/[^\d.]/g, '')) 
+        : item.price;
+      return total + (price * item.quantity);
+    }, 0) >= 150 ? 0 : 9.90)) * 100),
+    automatic_payment_methods: {
+      enabled: true,
+    },
+  };
 
   return (
     <>
@@ -141,313 +368,12 @@ export default function Checkout() {
         <title>Checkout - Kamba Lhains</title>
         <meta name="description" content="Finaliser votre commande Kamba Lhains" />
       </Head>
-
       <Header />
-
-      <main className={styles.checkoutPage}>
-        <div className={styles.checkoutContainer}>
-          <div className={styles.checkoutContent}>
-            <div className={styles.checkoutForm}>
-              <div className={styles.stepIndicator}>
-                <div className={`${styles.step} ${currentStep >= 1 ? styles.active : ''}`}>
-                  <span className={styles.stepNumber}>1</span>
-                  <span className={styles.stepLabel}>Informations</span>
-                </div>
-                <div className={`${styles.step} ${currentStep >= 2 ? styles.active : ''}`}>
-                  <span className={styles.stepNumber}>2</span>
-                  <span className={styles.stepLabel}>Livraison</span>
-                </div>
-                <div className={`${styles.step} ${currentStep >= 3 ? styles.active : ''}`}>
-                  <span className={styles.stepNumber}>3</span>
-                  <span className={styles.stepLabel}>Paiement</span>
-                </div>
-              </div>
-
-              <form onSubmit={handleSubmit}>
-                {currentStep === 1 && (
-                  <div className={styles.stepContent}>
-                    <h2 className={styles.stepTitle}>Informations personnelles</h2>
-                    
-                    <div className={styles.formRow}>
-                      <div className={styles.inputGroup}>
-                        <label className={styles.label}>Prénom *</label>
-                        <input
-                          type="text"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleInputChange}
-                          className={`${styles.input} ${errors.firstName ? styles.inputError : ''}`}
-                          placeholder="Votre prénom"
-                        />
-                        {errors.firstName && <span className={styles.error}>{errors.firstName}</span>}
-                      </div>
-
-                      <div className={styles.inputGroup}>
-                        <label className={styles.label}>Nom *</label>
-                        <input
-                          type="text"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleInputChange}
-                          className={`${styles.input} ${errors.lastName ? styles.inputError : ''}`}
-                          placeholder="Votre nom"
-                        />
-                        {errors.lastName && <span className={styles.error}>{errors.lastName}</span>}
-                      </div>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label className={styles.label}>Email *</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
-                        placeholder="votre@email.com"
-                      />
-                      {errors.email && <span className={styles.error}>{errors.email}</span>}
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label className={styles.label}>Téléphone</label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                        className={styles.input}
-                        placeholder="+33 6 12 34 56 78"
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 2 && (
-                  <div className={styles.stepContent}>
-                    <h2 className={styles.stepTitle}>Adresse de livraison</h2>
-                    
-                    <div className={styles.inputGroup}>
-                      <label className={styles.label}>Adresse *</label>
-                      <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        className={`${styles.input} ${errors.address ? styles.inputError : ''}`}
-                        placeholder="123 Rue de la Paix"
-                      />
-                      {errors.address && <span className={styles.error}>{errors.address}</span>}
-                    </div>
-
-                    <div className={styles.formRow}>
-                      <div className={styles.inputGroup}>
-                        <label className={styles.label}>Ville *</label>
-                        <input
-                          type="text"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleInputChange}
-                          className={`${styles.input} ${errors.city ? styles.inputError : ''}`}
-                          placeholder="Paris"
-                        />
-                        {errors.city && <span className={styles.error}>{errors.city}</span>}
-                      </div>
-
-                      <div className={styles.inputGroup}>
-                        <label className={styles.label}>Code postal *</label>
-                        <input
-                          type="text"
-                          name="postalCode"
-                          value={formData.postalCode}
-                          onChange={handleInputChange}
-                          className={`${styles.input} ${errors.postalCode ? styles.inputError : ''}`}
-                          placeholder="75001"
-                        />
-                        {errors.postalCode && <span className={styles.error}>{errors.postalCode}</span>}
-                      </div>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label className={styles.label}>Pays</label>
-                      <select
-                        name="country"
-                        value={formData.country}
-                        onChange={handleInputChange}
-                        className={styles.input}
-                      >
-                        <option value="France">France</option>
-                        <option value="Belgique">Belgique</option>
-                        <option value="Suisse">Suisse</option>
-                        <option value="Luxembourg">Luxembourg</option>
-                      </select>
-                    </div>
-                  </div>
-                )}
-
-                {currentStep === 3 && (
-                  <div className={styles.stepContent}>
-                    <h2 className={styles.stepTitle}>Informations de paiement</h2>
-                    
-                    <div className={styles.inputGroup}>
-                      <label className={styles.label}>Numéro de carte *</label>
-                      <input
-                        type="text"
-                        name="cardNumber"
-                        value={formData.cardNumber}
-                        onChange={handleInputChange}
-                        className={`${styles.input} ${errors.cardNumber ? styles.inputError : ''}`}
-                        placeholder="1234 5678 9012 3456"
-                        maxLength="19"
-                      />
-                      {errors.cardNumber && <span className={styles.error}>{errors.cardNumber}</span>}
-                    </div>
-
-                    <div className={styles.formRow}>
-                      <div className={styles.inputGroup}>
-                        <label className={styles.label}>Date d'expiration *</label>
-                        <input
-                          type="text"
-                          name="expiryDate"
-                          value={formData.expiryDate}
-                          onChange={handleInputChange}
-                          className={`${styles.input} ${errors.expiryDate ? styles.inputError : ''}`}
-                          placeholder="MM/YY"
-                          maxLength="5"
-                        />
-                        {errors.expiryDate && <span className={styles.error}>{errors.expiryDate}</span>}
-                      </div>
-
-                      <div className={styles.inputGroup}>
-                        <label className={styles.label}>CVV *</label>
-                        <input
-                          type="text"
-                          name="cvv"
-                          value={formData.cvv}
-                          onChange={handleInputChange}
-                          className={`${styles.input} ${errors.cvv ? styles.inputError : ''}`}
-                          placeholder="123"
-                          maxLength="4"
-                        />
-                        {errors.cvv && <span className={styles.error}>{errors.cvv}</span>}
-                      </div>
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label className={styles.label}>Nom sur la carte *</label>
-                      <input
-                        type="text"
-                        name="cardName"
-                        value={formData.cardName}
-                        onChange={handleInputChange}
-                        className={`${styles.input} ${errors.cardName ? styles.inputError : ''}`}
-                        placeholder="John Doe"
-                      />
-                      {errors.cardName && <span className={styles.error}>{errors.cardName}</span>}
-                    </div>
-
-                    <div className={styles.checkboxGroup}>
-                      <label className={styles.checkboxLabel}>
-                        <input
-                          type="checkbox"
-                          name="saveInfo"
-                          checked={formData.saveInfo}
-                          onChange={handleInputChange}
-                          className={styles.checkbox}
-                        />
-                        Sauvegarder mes informations pour mes prochains achats
-                      </label>
-                    </div>
-                  </div>
-                )}
-
-                {errors.submit && (
-                  <div className={styles.submitError}>{errors.submit}</div>
-                )}
-
-                <div className={styles.stepActions}>
-                  {currentStep > 1 && (
-                    <button
-                      type="button"
-                      onClick={prevStep}
-                      className={styles.prevButton}
-                    >
-                      Retour
-                    </button>
-                  )}
-
-                  {currentStep < 3 ? (
-                    <button
-                      type="button"
-                      onClick={nextStep}
-                      className={styles.nextButton}
-                    >
-                      Continuer
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className={styles.submitButton}
-                      disabled={isProcessing}
-                    >
-                      {isProcessing ? 'Traitement...' : `Payer ${new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalPrice)}`}
-                    </button>
-                  )}
-                </div>
-              </form>
-            </div>
-
-            <div className={styles.orderSummary}>
-              <div className={styles.summaryCard}>
-                <h2 className={styles.summaryTitle}>Résumé de commande</h2>
-                
-                <div className={styles.orderItems}>
-                  {items.map((item) => (
-                    <div key={item.cartId} className={styles.orderItem}>
-                      <div className={styles.itemImage}>
-                        <img src={item.image} alt={item.name} />
-                      </div>
-                      <div className={styles.itemDetails}>
-                        <h4 className={styles.itemName}>{item.name}</h4>
-                        <p className={styles.itemSpecs}>
-                          {item.color} • {item.size} • Qté: {item.quantity}
-                        </p>
-                      </div>
-                      <div className={styles.itemPrice}>{item.price}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className={styles.summaryCalculations}>
-                  <div className={styles.summaryRow}>
-                    <span>Sous-total</span>
-                    <span>{getFormattedTotal()}</span>
-                  </div>
-                  
-                  <div className={styles.summaryRow}>
-                    <span>Livraison</span>
-                    <span>{shippingCost === 0 ? 'Gratuite' : `${shippingCost.toFixed(2)} EUR`}</span>
-                  </div>
-                  
-                  <div className={styles.summaryDivider}></div>
-                  
-                  <div className={styles.summaryTotal}>
-                    <span>Total</span>
-                    <span>{new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(totalPrice)}</span>
-                  </div>
-                </div>
-
-                <div className={styles.securityInfo}>
-                  <div className={styles.securityIcon}>🔒</div>
-                  <span>Paiement 100% sécurisé</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-
+      <Elements stripe={stripePromise} options={options}>
+        <CheckoutForm />
+      </Elements>
       <Footer />
     </>
   );
+
 }

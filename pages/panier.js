@@ -13,45 +13,49 @@ export default function Cart() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleQuantityChange = (cartId, newQuantity) => {
-    updateQuantity(cartId, parseInt(newQuantity));
+    if (newQuantity <= 0) {
+      removeFromCart(cartId);
+    } else {
+      updateQuantity(cartId, parseInt(newQuantity));
+    }
   };
 
   const handleCheckout = async () => {
     if (items.length === 0) return;
     
     setIsProcessing(true);
-    // Simulation d'un processus de checkout
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    router.push('/checkout');
+    setTimeout(() => {
+      router.push('/checkout');
+    }, 500);
   };
 
-  const handleContinueShopping = () => {
-    router.push('/');
+  const getShippingCost = () => {
+    return getTotalPrice() >= 150 ? 0 : 9.90;
+  };
+
+  const getFinalTotal = () => {
+    return getTotalPrice() + getShippingCost();
   };
 
   if (items.length === 0) {
     return (
       <>
         <Head>
-          <title>Panier - Kamba Lhains</title>
-          <meta name="description" content="Votre panier Kamba Lhains" />
+          <title>panier - kamba lhains</title>
+          <meta name="description" content="votre panier kamba lhains" />
         </Head>
 
         <Header />
 
         <main className={styles.cartPage}>
           <div className={styles.emptyCart}>
-            <div className={styles.emptyCartIcon}>🛒</div>
             <h1 className={styles.emptyTitle}>Votre panier est vide</h1>
             <p className={styles.emptyDescription}>
-              Découvrez nos collections et ajoutez vos pièces préférées à votre panier.
+              Découvrez notre collection
             </p>
-            <button 
-              className={styles.continueButton}
-              onClick={handleContinueShopping}
-            >
-              Continuer mes achats
-            </button>
+            <Link href="/" className={styles.continueButton}>
+              Continuer
+            </Link>
           </div>
         </main>
 
@@ -63,48 +67,51 @@ export default function Cart() {
   return (
     <>
       <Head>
-        <title>Panier ({items.length}) - Kamba Lhains</title>
-        <meta name="description" content="Votre panier Kamba Lhains" />
+        <title>panier ({items.length}) - kamba lhains</title>
+        <meta name="description" content="votre panier kamba lhains" />
       </Head>
 
       <Header />
 
       <main className={styles.cartPage}>
         <div className={styles.cartContainer}>
-          <div className={styles.cartHeader}>
-            <h1 className={styles.cartTitle}>Mon Panier</h1>
+          <header className={styles.cartHeader}>
+            <h1 className={styles.cartTitle}>Panier</h1>
             <button 
               className={styles.clearButton}
               onClick={clearCart}
             >
-              Vider le panier
+              Vider
             </button>
-          </div>
+          </header>
 
           <div className={styles.cartContent}>
             <div className={styles.cartItems}>
               {items.map((item) => (
                 <div key={item.cartId} className={styles.cartItem}>
                   <div className={styles.itemImage}>
-                    <img src={item.image} alt={item.name} />
+                    <img src={item.image || item.product?.image} alt={item.name || item.product?.name} />
                   </div>
                   
                   <div className={styles.itemDetails}>
-                    <h3 className={styles.itemName}>{item.name}</h3>
+                    <h3 className={styles.itemName}>{item.name || item.product?.name}</h3>
                     <div className={styles.itemSpecs}>
-                      <span className={styles.itemColor}>Couleur: {item.color}</span>
-                      <span className={styles.itemSize}>Taille: {item.size}</span>
+                      <span className={styles.itemSpec}>Couleur {item.color || item.selectedColor}</span>
+                      <span className={styles.itemSpec}>Taille {item.size || item.selectedSize}</span>
                     </div>
-                    <div className={styles.itemPrice}>{item.price}</div>
                   </div>
 
                   <div className={styles.itemActions}>
+                    <div className={styles.itemPrice}>
+                      {typeof item.price === 'string' ? item.price : `${item.price} eur`}
+                    </div>
+                    
                     <div className={styles.quantityControl}>
                       <button 
                         className={styles.quantityButton}
                         onClick={() => handleQuantityChange(item.cartId, item.quantity - 1)}
                       >
-                        −
+                        –
                       </button>
                       <span className={styles.quantity}>{item.quantity}</span>
                       <button 
@@ -128,7 +135,7 @@ export default function Cart() {
 
             <div className={styles.cartSummary}>
               <div className={styles.summaryCard}>
-                <h2 className={styles.summaryTitle}>Résumé de commande</h2>
+                <h2 className={styles.summaryTitle}>Résumé</h2>
                 
                 <div className={styles.summaryRow}>
                   <span>Sous-total</span>
@@ -137,19 +144,17 @@ export default function Cart() {
                 
                 <div className={styles.summaryRow}>
                   <span>Livraison</span>
-                  <span>{getTotalPrice() >= 150 ? 'Gratuite' : '9,90 EUR'}</span>
+                  <span>{getShippingCost() === 0 ? 'Gratuite' : `${getShippingCost().toFixed(2)} eur`}</span>
                 </div>
                 
                 <div className={styles.summaryDivider}></div>
                 
                 <div className={styles.summaryTotal}>
                   <span>Total</span>
-                  <span>{
-                    new Intl.NumberFormat('fr-FR', {
-                      style: 'currency',
-                      currency: 'EUR'
-                    }).format(getTotalPrice() + (getTotalPrice() >= 150 ? 0 : 9.90))
-                  }</span>
+                  <span>{new Intl.NumberFormat('fr-FR', {
+                    style: 'currency',
+                    currency: 'EUR'
+                  }).format(getFinalTotal())}</span>
                 </div>
 
                 <button 
@@ -157,19 +162,11 @@ export default function Cart() {
                   onClick={handleCheckout}
                   disabled={isProcessing}
                 >
-                  {isProcessing ? 'Traitement...' : 'Finaliser ma commande'}
-                </button>
-
-                <button 
-                  className={styles.continueShoppingButton}
-                  onClick={handleContinueShopping}
-                >
-                  Continuer mes achats
+                  {isProcessing ? 'Traitement...' : 'Commander'}
                 </button>
 
                 <div className={styles.securityInfo}>
-                  <div className={styles.securityIcon}>🔒</div>
-                  <span>Paiement 100% sécurisé</span>
+                  Paiement sécurisé
                 </div>
               </div>
             </div>
