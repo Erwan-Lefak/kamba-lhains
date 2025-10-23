@@ -10,10 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Supabase Auth Users (read-only)
+// User model with local authentication
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
+  password  String
+  role      String   @default("user")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -24,7 +26,7 @@ model User {
   favorites Favorite[]
   analytics UserAnalytics[]
 
-  @@map("auth.users")
+  @@map("users")
 }
 
 // Extended user profile for luxury features
