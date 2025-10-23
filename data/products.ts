@@ -3,32 +3,21 @@ import { Product } from '../types';
 export const products: Product[] = [
   {
     id: "1",
-    name: "VESTE JANÉ",
-    price: 890,
-    image: "/images/collection/IMG_2864.jpeg",
+    name: "ASABILI SWEATPANTS",
+    price: 180,
+    image: "/images/IMG_3775.jpeg",
     images: [
-      "/images/collection/IMG_2864.jpeg",
-      "/images/collection/IMG_2865.jpeg",
-      "/images/collection/IMG_2871.jpeg",
-      "/images/collection/IMG_2866.jpeg",
-      "/images/collection/IMG_2868.jpeg",
-      "/images/collection/IMG_2872.jpeg",
-      "/images/collection/IMG_2870.jpeg",
-      "/images/collection/IMG_2867.jpeg",
-      "/images/collection/IMG_2869.jpeg"
+      "/images/IMG_3775.jpeg"
     ],
     description: [
-      "Veste en coton recyclé à coupe classique",
-      "Col chemise sans pied, fermeture à 6 boutons clous",
-      "Manches longues, poignets fendus avec boutons clous",
-      "Quatre poches plissées doublées à rabats, huit boutons pressions sur le devant",
-      "Empiècement vertical et plis au dos",
-      "Confection française"
+      "Sweatpants à coupe baggy, taille haute élastiquée, inspiré du short de boxe.",
+      "Logo frontal, poches plaquées à ouverture latérale et bas du vêtement à finition bord franc.",
+      "Composition : 100 % coton"
     ],
     category: "femme",
-    subCategory: "aube",
-    colors: ["#000000", "#8B7355"],
-    sizes: ["S", "M", "L", "XL"],
+    subCategory: "zenith",
+    colors: ["#808080", "#800020", "#556B2F", "#F5F5DC"],
+    sizes: ["S", "M"],
     inStock: true,
     featured: true
   },
@@ -54,8 +43,21 @@ export const products: Product[] = [
   {
     id: "3",
     name: "VOILE DE CORPS",
-    price: 380,
+    price: 368,
     image: "/images/IMG_3504.jpeg",
+    images: [
+      "/images/IMG_3504.jpeg",
+      "/images/59e68ef6-1758-4cf8-b860-bb6e98f37e78.jpg",
+      "/images/1b4c53b1-403a-4834-998e-4226cbd1db87.jpg",
+      "/images/0ca33ab3-b0f3-4a06-b40b-2fcf592ded3c.jpg",
+      "/images/64fb19a1-f7fb-4032-8d1e-159acb7ba259.jpg",
+      "/images/26dc157c-bd01-4abe-99ed-ff2726f4461a.jpg",
+      "/images/cda451fc-8233-435b-9062-12adf61f279b.jpg",
+      "/images/474bbbf9-e786-4884-ab0e-caa22275def1.jpg",
+      "/images/71a9b3e4-e96d-4856-a278-af558840b914.jpg",
+      "/images/df865631-0770-4a9a-a127-76018e1c7493.jpg",
+      "/images/e061c517-25af-4407-bbd0-6b69f38f62f7.jpg"
+    ],
     description: [
       "Voile de corps mi-mollet, à manches longues, doté d'un col large utilisable en capuche.",
       "Tailles : S, M, L, XL",
