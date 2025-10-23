@@ -51,9 +51,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // Stock filter
+    // Stock filter - check if product has variants with stock
     if (inStock !== undefined) {
-      where.inStock = inStock;
+      where.variants = {
+        some: {
+          stock: {
+            gt: 0
+          }
+        }
+      };
     }
 
     // Build orderBy clause
@@ -81,12 +87,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           name: true,
           description: true,
           price: true,
-          image: true,
+          images: true,
           category: true,
-          colors: true,
-          sizes: true,
-          inStock: true,
-          featured: true,
+          tags: true,
+          isFeatured: true,
           createdAt: true
         }
       }),

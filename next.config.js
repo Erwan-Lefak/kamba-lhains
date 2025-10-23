@@ -148,6 +148,9 @@ const nextConfig = {
     // optimizeCss: true, // Temporarily disabled - requires critters package
     scrollRestoration: true,
   },
+
+  // Output standalone pour Docker (requis pour Cloud Run)
+  output: 'standalone',
 }
 
 module.exports = nextConfig

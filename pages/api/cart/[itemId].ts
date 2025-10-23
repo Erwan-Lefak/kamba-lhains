@@ -63,8 +63,7 @@ async function updateCartItem(req: AuthenticatedRequest, res: NextApiResponse, i
             id: true,
             name: true,
             price: true,
-            image: true,
-            inStock: true
+            images: true
           }
         }
       }

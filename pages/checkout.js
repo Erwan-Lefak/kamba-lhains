@@ -375,5 +375,11 @@ export default function Checkout() {
       <Footer />
     </>
   );
+}
 
+// Force server-side rendering (no static generation)
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
 }

@@ -38,21 +38,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Hash password
     const hashedPassword = await hashPassword(password);
 
-    // Create user
+    // Create user with profile
     const user = await prisma.user.create({
       data: {
-        firstName,
-        lastName,
         email,
         password: hashedPassword,
+        profile: {
+          create: {
+            firstName,
+            lastName,
+          }
+        }
       },
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
         email: true,
         role: true,
-        createdAt: true
+        createdAt: true,
+        profile: {
+          select: {
+            firstName: true,
+            lastName: true,
+          }
+        }
       }
     });
 

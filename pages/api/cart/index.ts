@@ -36,8 +36,7 @@ async function getCart(req: AuthenticatedRequest, res: NextApiResponse) {
             id: true,
             name: true,
             price: true,
-            image: true,
-            inStock: true
+            images: true
           }
         }
       },
@@ -71,9 +70,17 @@ async function addToCart(req: AuthenticatedRequest, res: NextApiResponse) {
     const validatedData = addToCartSchema.parse(req.body);
     const { productId, quantity, size, color } = validatedData;
 
-    // Check if product exists and is in stock
+    // Check if product exists
     const product = await prisma.product.findUnique({
-      where: { id: productId }
+      where: { id: productId },
+      include: {
+        variants: {
+          where: {
+            color: color || '',
+            size: size || ''
+          }
+        }
+      }
     });
 
     if (!product) {
@@ -83,11 +90,15 @@ async function addToCart(req: AuthenticatedRequest, res: NextApiResponse) {
       });
     }
 
-    if (!product.inStock) {
-      return res.status(400).json({
-        success: false,
-        message: 'Produit en rupture de stock'
-      });
+    // Check variant stock if size and color are specified
+    if (size && color && product.variants.length > 0) {
+      const variant = product.variants[0];
+      if (variant.stock - variant.reservedStock < quantity) {
+        return res.status(400).json({
+          success: false,
+          message: 'Stock insuffisant pour cette variante'
+        });
+      }
     }
 
     // Check if item already exists in cart
@@ -115,7 +126,7 @@ async function addToCart(req: AuthenticatedRequest, res: NextApiResponse) {
               id: true,
               name: true,
               price: true,
-              image: true
+              images: true
             }
           }
         }
@@ -127,8 +138,8 @@ async function addToCart(req: AuthenticatedRequest, res: NextApiResponse) {
           userId: req.user.id,
           productId,
           quantity,
-          size,
-          color
+          size: size || '',
+          color: color || ''
         },
         include: {
           product: {
@@ -136,7 +147,7 @@ async function addToCart(req: AuthenticatedRequest, res: NextApiResponse) {
               id: true,
               name: true,
               price: true,
-              image: true
+              images: true
             }
           }
         }

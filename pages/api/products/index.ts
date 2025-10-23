@@ -47,14 +47,22 @@ async function getProducts(req: AuthenticatedRequest, res: NextApiResponse) {
     } = query;
 
     const where: any = {};
-    
+
     if (category) where.category = category;
-    if (featured !== undefined) where.featured = featured === 'true';
-    if (inStock !== undefined) where.inStock = inStock === 'true';
+    if (featured !== undefined) where.isFeatured = featured === 'true';
+    if (inStock !== undefined) {
+      where.variants = {
+        some: {
+          stock: {
+            gt: 0
+          }
+        }
+      };
+    }
     if (search) {
       where.OR = [
         { name: { contains: search, mode: 'insensitive' } },
-        { description: { hasSome: [search] } }
+        { description: { contains: search, mode: 'insensitive' } }
       ];
     }
 
@@ -102,7 +110,10 @@ async function createProduct(req: AuthenticatedRequest, res: NextApiResponse) {
     const validatedData = createProductSchema.parse(req.body);
 
     const product = await prisma.product.create({
-      data: validatedData
+      data: {
+        ...validatedData,
+        collectionId: validatedData.collectionId || null
+      }
     });
 
     res.status(201).json({

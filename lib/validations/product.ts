@@ -2,14 +2,22 @@ import { z } from 'zod';
 
 export const createProductSchema = z.object({
   name: z.string().min(1, 'Le nom du produit est requis'),
-  description: z.array(z.string()).min(1, 'Au moins une description est requise'),
+  slug: z.string().min(1, 'Le slug est requis'),
+  description: z.string().min(1, 'La description est requise'),
   price: z.number().positive('Le prix doit être positif'),
-  image: z.string().url('URL d\'image invalide'),
-  category: z.string().min(1, 'La catégorie est requise'),
-  colors: z.array(z.string()).min(1, 'Au moins une couleur est requise'),
-  sizes: z.array(z.string()).min(1, 'Au moins une taille est requise'),
-  inStock: z.boolean().optional(),
-  featured: z.boolean().optional(),
+  compareAtPrice: z.number().positive().optional(),
+  images: z.array(z.string().url('URL d\'image invalide')).min(1, 'Au moins une image est requise'),
+  category: z.enum(['TOPS', 'BOTTOMS', 'ACCESSORIES', 'OUTERWEAR', 'UNDERWEAR', 'BAGS', 'HATS']),
+  tags: z.array(z.string()).optional().default([]),
+  materials: z.array(z.string()).optional().default([]),
+  careInstructions: z.string().optional(),
+  madeIn: z.string().optional(),
+  collectionId: z.string().optional(),
+  isActive: z.boolean().optional().default(true),
+  isFeatured: z.boolean().optional().default(false),
+  isExclusive: z.boolean().optional().default(false),
+  metaTitle: z.string().optional(),
+  metaDescription: z.string().optional(),
 });
 
 export const updateProductSchema = createProductSchema.partial();
