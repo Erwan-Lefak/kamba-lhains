@@ -317,7 +317,7 @@ export default function ProductDetail() {
             {/* Main Content - Centered */}
             <div className={styles.productMainContent}>
               <h1 className={styles.productTitle}>{product.name}</h1>
-              <span className={styles.productPrice}>{product.price}</span>
+              <span className={styles.productPrice}>{product.price} EUR</span>
               
 
               {/* Color Selector */}
