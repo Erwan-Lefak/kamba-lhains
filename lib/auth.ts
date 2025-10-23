@@ -42,18 +42,31 @@ export async function getUserFromToken(token: string): Promise<User | null> {
     const decoded = verifyToken(token);
     if (!decoded) return null;
 
-    const user = await prisma.user.findUnique({
+    const dbUser = await prisma.user.findUnique({
       where: { id: decoded.userId },
       select: {
         id: true,
         email: true,
-        firstName: true,
-        lastName: true,
         role: true,
+        profile: {
+          select: {
+            firstName: true,
+            lastName: true,
+          }
+        }
       }
     });
 
-    return user;
+    if (!dbUser) return null;
+
+    // Transform to match User interface
+    return {
+      id: dbUser.id,
+      email: dbUser.email,
+      firstName: dbUser.profile?.firstName || '',
+      lastName: dbUser.profile?.lastName || '',
+      role: dbUser.role,
+    };
   } catch (error) {
     return null;
   }
