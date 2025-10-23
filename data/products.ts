@@ -53,19 +53,17 @@ export const products: Product[] = [
   },
   {
     id: "3",
-    name: "BOXY FIT SHIRT",
-    price: 320,
-    image: "/images/collection/IMG_2797.jpeg",
+    name: "VOILE DE CORPS",
+    price: 380,
+    image: "/images/IMG_3504.jpeg",
     description: [
-      "• Chemise coupe boxy en coton",
-      "• Col classique moderne",
-      "• Manches longues ajustables",
-      "• Finitions soignées",
-      "• Style contemporain décontracté"
+      "Voile de corps mi-mollet, à manches longues, doté d'un col large utilisable en capuche.",
+      "Tailles : S, M, L, XL",
+      "Composition : 97% polyamide 3% Lycra"
     ],
     category: "femme",
     subCategory: "crepuscule",
-    colors: ["#FFFFFF", "#F5F5DC"],
+    colors: ["#8B4513", "#800020", "#556B2F", "#000000", "#FF69B4"],
     sizes: ["S", "M", "L", "XL"],
     inStock: true,
     featured: true
