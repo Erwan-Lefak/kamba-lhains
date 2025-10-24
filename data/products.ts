@@ -2,6 +2,50 @@ import { Product } from '../types';
 
 export const products: Product[] = [
   {
+    id: "10",
+    name: "BOMBERS ITOUA",
+    price: 650,
+    image: "/images/IMG_3567.jpeg",
+    images: [
+      "/images/IMG_3567.jpeg"
+    ],
+    description: [
+      "• Bombers moderne en nylon technique",
+      "• Coupe oversize tendance",
+      "• Fermeture éclair YKK",
+      "• Poches cargo fonctionnelles",
+      "• Style streetwear premium"
+    ],
+    category: "homme",
+    subCategory: "aube",
+    colors: ["#000000", "#556B2F"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    featured: true
+  },
+  {
+    id: "17",
+    name: "SHORT URIEL",
+    price: 280,
+    image: "/images/IMG_3620.jpeg",
+    images: [
+      "/images/IMG_3620.jpeg"
+    ],
+    description: [
+      "• Short moderne en coton premium",
+      "• Coupe confortable et décontractée",
+      "• Taille ajustable avec cordon",
+      "• Poches fonctionnelles",
+      "• Style estival raffiné"
+    ],
+    category: "homme",
+    subCategory: "zenith",
+    colors: ["#F5F5DC", "#000000", "#556B2F"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+    featured: true
+  },
+  {
     id: "1",
     name: "ASABILI SWEATPANTS",
     price: 180,
@@ -19,7 +63,7 @@ export const products: Product[] = [
     colors: ["#808080", "#800020", "#556B2F", "#F5F5DC"],
     sizes: ["S", "M"],
     inStock: true,
-    featured: true
+    featured: false
   },
   {
     id: "2",
@@ -38,14 +82,15 @@ export const products: Product[] = [
     colors: ["#1E3A8A", "#000000"],
     sizes: ["XS", "S", "M", "L"],
     inStock: true,
-    featured: true
+    featured: false
   },
   {
     id: "3",
     name: "VOILE DE CORPS",
     price: 368,
-    image: "/images/IMG_3504.jpeg",
+    image: "/images/IMG_3731.jpeg",
     images: [
+      "/images/IMG_3731.jpeg",
       "/images/IMG_3504.jpeg",
       "/images/59e68ef6-1758-4cf8-b860-bb6e98f37e78.jpg",
       "/images/1b4c53b1-403a-4834-998e-4226cbd1db87.jpg",
@@ -58,6 +103,53 @@ export const products: Product[] = [
       "/images/df865631-0770-4a9a-a127-76018e1c7493.jpg",
       "/images/e061c517-25af-4407-bbd0-6b69f38f62f7.jpg"
     ],
+    imagesByColor: {
+      "#000000": [
+        "/images/IMG_3504.jpeg",
+        "/images/59e68ef6-1758-4cf8-b860-bb6e98f37e78.jpg",
+        "/images/1b4c53b1-403a-4834-998e-4226cbd1db87.jpg",
+        "/images/0ca33ab3-b0f3-4a06-b40b-2fcf592ded3c.jpg",
+        "/images/64fb19a1-f7fb-4032-8d1e-159acb7ba259.jpg",
+        "/images/26dc157c-bd01-4abe-99ed-ff2726f4461a.jpg",
+        "/images/cda451fc-8233-435b-9062-12adf61f279b.jpg",
+        "/images/474bbbf9-e786-4884-ab0e-caa22275def1.jpg",
+        "/images/71a9b3e4-e96d-4856-a278-af558840b914.jpg",
+        "/images/df865631-0770-4a9a-a127-76018e1c7493.jpg",
+        "/images/e061c517-25af-4407-bbd0-6b69f38f62f7.jpg"
+      ],
+      "#8B4513": [
+        "/images/DSC_1530.jpg",
+        "/images/DSC_1533.jpg",
+        "/images/DSC_1535.jpg",
+        "/images/DSC_1537.jpg",
+        "/images/DSC_1539.jpg",
+        "/images/DSC_1541.jpg",
+        "/images/DSC_1544.jpg",
+        "/images/DSC_1545.jpg",
+        "/images/DSC_1548.jpg"
+      ],
+      "#800020": [
+        "/images/DSC_1551.jpg",
+        "/images/DSC_1554.jpg",
+        "/images/DSC_1555.jpg",
+        "/images/DSC_1562.jpg",
+        "/images/DSC_1569.jpg",
+        "/images/DSC_1572.jpg",
+        "/images/DSC_1580.jpg"
+      ],
+      "#FF69B4": [
+        "/images/cropped_DSC_1459-Modifier.jpg",
+        "/images/cropped_DSC_1462.jpg",
+        "/images/cropped_DSC_1465.jpg",
+        "/images/cropped_DSC_1467.jpg",
+        "/images/cropped_DSC_1469.jpg",
+        "/images/cropped_DSC_1473.jpg",
+        "/images/cropped_DSC_1478.jpg",
+        "/images/cropped_DSC_1482.jpg",
+        "/images/cropped_DSC_1483.jpg",
+        "/images/cropped_DSC_1484.jpg"
+      ]
+    },
     description: [
       "Voile de corps mi-mollet, à manches longues, doté d'un col large utilisable en capuche.",
       "Tailles : S, M, L, XL",
@@ -181,25 +273,6 @@ export const products: Product[] = [
     subCategory: "crepuscule",
     colors: ["#000000", "#1E3A8A"],
     sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "10",
-    name: "BOMBERS ITOUA",
-    price: 650,
-    image: "/images/products/bombers-itoua.png",
-    description: [
-      "• Bombers moderne en nylon technique",
-      "• Coupe oversize tendance",
-      "• Fermeture éclair YKK",
-      "• Poches cargo fonctionnelles",
-      "• Style streetwear premium"
-    ],
-    category: "homme",
-    subCategory: "aube",
-    colors: ["#000000", "#556B2F"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: false
   },
