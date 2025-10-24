@@ -41,6 +41,7 @@ export interface Product {
   originalPrice?: number;
   image: string; // Pour compatibilité
   images?: ProductImage[] | string[];
+  imagesByColor?: Record<string, string[]>;
   variants?: ProductVariant[];
   category: string;
   subCategory?: string;
