@@ -224,10 +224,10 @@ export default function Footer({ isKambaversPage = false, isMenuVisible = false 
               <span className={`arrow ${openSections.suivre ? 'open' : ''}`}>^</span>
             </div>
             <ul className={`section-content ${openSections.suivre ? 'open' : ''}`}>
-              <li><a href="#" aria-label="Instagram" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Instagram</a></li>
-              <li><a href="#" aria-label="Facebook" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Facebook</a></li>
-              <li><a href="#" aria-label="TikTok" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>TikTok</a></li>
-              <li><a href="#" aria-label="X" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>X</a></li>
+              <li><a href="https://www.instagram.com/kambalhains/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Instagram</a></li>
+              <li><a href="https://www.facebook.com/share/1QP2wxTkDe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Facebook</a></li>
+              <li><a href="https://www.tiktok.com/@kambalhains?_t=ZN-90okin6RHYk&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>TikTok</a></li>
+              <li><a href="https://x.com/kambalhains?s=21" target="_blank" rel="noopener noreferrer" aria-label="X" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>X</a></li>
               <li><a href="#" aria-label="Pinterest" style={{fontSize: '9px', textTransform: 'uppercase', color: '#888'}} onMouseEnter={handleMouseEnter} onMouseLeave={(e) => handleMouseLeave(e, '#')}>Pinterest</a></li>
             </ul>
           </div>
