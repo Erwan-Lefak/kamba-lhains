@@ -30,6 +30,7 @@
   width: 100%;
   margin: 0;
   gap: 0;
+  align-items: stretch;
 }
 
 .mobileCarousel {
@@ -38,10 +39,17 @@
 
 .productSlot {
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
   overflow: hidden;
-  display: block;
+  display: flex;
+  align-items: stretch;
+  aspect-ratio: 2 / 3;
+}
+
+.productSlot :global(.productImage) {
+  object-fit: cover !important;
+  height: 100% !important;
 }
 
 /* Collection Page Title Section */
