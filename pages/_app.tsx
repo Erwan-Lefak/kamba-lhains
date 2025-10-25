@@ -7,6 +7,7 @@ import { LanguageProvider } from '../contexts/LanguageContext';
 import { CartProvider } from '../contexts/CartContext';
 import { FavoritesProvider } from '../contexts/FavoritesContext';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { TikTokPixel } from '../components/TikTokPixel';
 
 interface MyAppProps extends AppProps {
   pageProps: {
@@ -41,6 +42,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
           <LanguageProvider>
             <CartProvider>
               <FavoritesProvider>
+                <TikTokPixel />
                 <Component {...pageProps} />
               </FavoritesProvider>
             </CartProvider>

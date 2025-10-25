@@ -9,6 +9,7 @@ import MobileCarousel from '../../components/MobileCarousel';
 import { products } from '../../data/products';
 import { useCart } from '../../contexts/CartContext';
 import { useFavorites } from '../../contexts/FavoritesContext';
+import { trackViewContent, trackAddToCart } from '../../components/TikTokPixel';
 import styles from '../../styles/ProductPage.module.css';
 
 export default function ProductDetail() {
@@ -32,6 +33,10 @@ export default function ProductDetail() {
         setProduct(foundProduct);
         setSelectedColor(foundProduct.colors[0]);
         // Pas de sélection automatique de taille - l'utilisateur doit choisir
+
+        // Track ViewContent event with value parameter
+        const price = typeof foundProduct.price === 'string' ? parseFloat(foundProduct.price) : foundProduct.price;
+        trackViewContent(foundProduct.id, foundProduct.name, price);
       }
     }
   }, [id]);
@@ -41,9 +46,13 @@ export default function ProductDetail() {
       alert('Veuillez sélectionner une taille et une couleur');
       return;
     }
-    
+
     addToCart(product, selectedSize, selectedColor, quantity);
     alert(`${product.name} ajouté au panier !`);
+
+    // Track AddToCart event with value parameter
+    const price = typeof product.price === 'string' ? parseFloat(product.price) : product.price;
+    trackAddToCart(product.id, product.name, price, quantity);
   };
 
   const handleHeartClick = () => {
@@ -285,30 +294,40 @@ export default function ProductDetail() {
           <div className={styles.productImageSection}>
             {/* Vertical Image Stack */}
             <div className={styles.imageStack}>
-              {product.images && product.images.length > 0 ? (
-                product.images.map((image, index) => (
-                  <img 
-                    key={index}
-                    src={image}
-                    alt={`${product.name} ${index + 1}`}
+              {(() => {
+                // Determine which images to show based on selected color
+                let imagesToShow = product.images || [product.image];
+
+                // If product has imagesByColor and a color is selected, use those images
+                if (product.imagesByColor && selectedColor && product.imagesByColor[selectedColor]) {
+                  imagesToShow = product.imagesByColor[selectedColor];
+                }
+
+                return imagesToShow.length > 0 ? (
+                  imagesToShow.map((image, index) => (
+                    <img
+                      key={`${selectedColor}-${index}`}
+                      src={image}
+                      alt={`${product.name} ${index + 1}`}
+                      className={styles.stackedImage}
+                      onError={(e) => {
+                        console.log('Image failed to load:', image);
+                        e.target.src = '/logo.png';
+                      }}
+                    />
+                  ))
+                ) : (
+                  <img
+                    src={product.image}
+                    alt={product.name}
                     className={styles.stackedImage}
                     onError={(e) => {
-                      console.log('Image failed to load:', image);
+                      console.log('Image failed to load:', product.image);
                       e.target.src = '/logo.png';
                     }}
                   />
-                ))
-              ) : (
-                <img 
-                  src={product.image}
-                  alt={product.name}
-                  className={styles.stackedImage}
-                  onError={(e) => {
-                    console.log('Image failed to load:', product.image);
-                    e.target.src = '/logo.png';
-                  }}
-                />
-              )}
+                );
+              })()}
             </div>
           </div>
 
