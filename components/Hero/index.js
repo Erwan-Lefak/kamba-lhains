@@ -8,7 +8,7 @@ const Hero = () => {
       aria-label="Hero section"
       role="banner"
     >
-      <VideoHero videoSrc="/Kambaween_rotation.MOV" />
+      <VideoHero videoSrc="https://res.cloudinary.com/diibzuu9j/video/upload/v1761667241/Kambaween_rotation_rvbeqq.mov" />
     </section>
   );
 };
