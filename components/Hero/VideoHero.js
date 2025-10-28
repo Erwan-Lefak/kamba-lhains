@@ -103,11 +103,14 @@ const VideoHero = ({ videoSrc = 'https://res.cloudinary.com/diibzuu9j/video/uplo
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  // Create a white placeholder SVG that will match video dimensions
+  const whitePosterDataUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='100%25' height='100%25' fill='%23ffffff'/%3E%3C/svg%3E";
+
   return (
     <div className={`${styles.videoContainer} ${isFullscreen ? styles.fullscreen : ''}`}>
       {showPoster && (
         <img
-          src="/images/ui/video-poster.jpg"
+          src={whitePosterDataUrl}
           alt="Video loading"
           className={styles.videoPoster}
         />
@@ -120,7 +123,7 @@ const VideoHero = ({ videoSrc = 'https://res.cloudinary.com/diibzuu9j/video/uplo
         playsInline
         autoPlay
         preload="metadata"
-        poster="/images/ui/video-poster.jpg"
+        poster={whitePosterDataUrl}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onCanPlay={handleCanPlay}
