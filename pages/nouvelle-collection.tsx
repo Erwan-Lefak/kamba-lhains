@@ -163,9 +163,9 @@ export default function NouvelleCollection() {
   const singleProductWithImages = {
     ...featuredProducts[0],
     images: [
-      '/images/collection/IMG_3031.jpeg',
-      '/images/collection/IMG_3033.jpeg',
-      '/images/collection/IMG_3034.jpeg'
+      '/images/shadow-burst/DSC_1950-Modifier-2.jpg',
+      '/images/shadow-burst/DSC_1969-Modifier.jpg',
+      '/images/shadow-burst/DSC_1984.jpg'
     ]
   };
 
@@ -339,18 +339,18 @@ export default function NouvelleCollection() {
           </h2>
         </section>
 
-        {/* Gallery Section - 4x3 Grid */}
+        {/* Gallery Section - Shadow Burst Collection */}
         <section className={styles.gallerySection}>
           <div className={styles.galleryGrid}>
             {[
-              'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
-              'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg', 
-              'IMG_3054.jpeg', 'IMG_3055.jpeg', 'IMG_3056.jpeg', 'IMG_3057.jpeg'
+              'DSC_1950-Modifier-2.jpg', 'DSC_1969-Modifier.jpg', 'DSC_1984.jpg', 'DSC_1998-Modifier-2.jpg',
+              'DSC_2019-Modifier-Modifier.jpg', 'DSC_2021.jpg', 'DSC_2037-Modifier.jpg', 'DSC_2126-Modifier-2.jpg',
+              'DSC_2144.jpg', 'DSC_2149-Modifier-Modifier.jpg'
             ].map((imageName, index) => (
               <div key={index} className={styles.gallerySlot}>
-                <Image 
-                  src={`/images/collection/${imageName}`} 
-                  alt={`Collection image ${index + 1}`}
+                <Image
+                  src={`/images/shadow-burst/${imageName}`}
+                  alt={`Shadow Burst collection image ${index + 1}`}
                   width={800}
                   height={1200}
                   className={styles.galleryImage}
