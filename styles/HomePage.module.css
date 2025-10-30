@@ -316,6 +316,15 @@
   display: block;
 }
 
+/* Style spécifique pour les flèches du carousel de cette page */
+.simpleProductSlot:global(.nouvelle-collection-carousel) button[aria-label="Image précédente"],
+.simpleProductSlot:global(.nouvelle-collection-carousel) button[aria-label="Image suivante"] {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-radius: 50%;
+  width: 30px !important;
+  height: 30px !important;
+}
+
 .simpleProductImage {
   width: 100%;
   height: auto;

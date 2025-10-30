@@ -164,13 +164,13 @@ export default function NouvelleCollection() {
     ...featuredProducts[0],
     images: [
       '/images/shadow-burst/DSC_1950-Modifier-2.jpg',
-      '/images/shadow-burst/DSC_1969-Modifier.jpg',
+      '/images/shadow-burst/DSC_1970-Modifier.jpg',
       '/images/shadow-burst/DSC_1984.jpg',
-      '/images/shadow-burst/DSC_1998-Modifier-2.jpg',
-      '/images/shadow-burst/DSC_2019-Modifier-Modifier.jpg',
-      '/images/shadow-burst/DSC_2021.jpg',
-      '/images/shadow-burst/DSC_2037-Modifier.jpg',
       '/images/shadow-burst/DSC_2126-Modifier-2.jpg',
+      '/images/shadow-burst/DSC_2037-Modifier.jpg',
+      '/images/shadow-burst/DSC_2019-Modifier-Modifier.jpg',
+      '/images/shadow-burst/DSC_1998-Modifier-2.jpg',
+      '/images/shadow-burst/DSC_2021.jpg',
       '/images/shadow-burst/DSC_2144.jpg',
       '/images/shadow-burst/DSC_2149-Modifier-Modifier.jpg'
     ]
@@ -199,13 +199,29 @@ export default function NouvelleCollection() {
                 textShadow: 'none',
                 boxShadow: 'none',
                 textTransform: 'uppercase',
+                marginBottom: '5px',
+                textAlign: 'center',
+                width: '100%'
+              }}
+            >
+              "Shadow Burst Chapter I"
+            </h1>
+            <h2
+              style={{
+                fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
+                fontSize: '11px',
+                fontWeight: 400,
+                color: '#000000',
+                textShadow: 'none',
+                boxShadow: 'none',
+                textTransform: 'uppercase',
                 marginBottom: '15px',
                 textAlign: 'center',
                 width: '100%'
               }}
             >
-              "SHADOW BURST"
-            </h1>
+              Mist
+            </h2>
             <p className={styles.collectionDescription}>
               Une exploration subtile entre lumière et obscurité, où chaque pièce révèle l'élégance dans sa forme la plus pure. Cette collection capsule transcende les codes traditionnels pour offrir une garde-robe intemporelle, pensée pour la femme moderne qui cultive l'art de la sophistication discrète.
             </p>
@@ -312,7 +328,7 @@ export default function NouvelleCollection() {
         {/* Two Products Section */}
         <section className={styles.twoProductsSection}>
           <div className={styles.twoProductsGrid}>
-            <div className={styles.simpleProductSlot} ref={productRef}>
+            <div className={`${styles.simpleProductSlot} nouvelle-collection-carousel`} ref={productRef}>
               <ProductCard product={singleProductWithImages} hideInfo={true} noLink={true} />
             </div>
             <div className={styles.textZone} ref={textZoneRef}>
