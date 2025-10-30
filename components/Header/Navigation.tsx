@@ -15,7 +15,7 @@ const Navigation: React.FC = () => {
   const router = useRouter();
   
   const navigationItems: NavigationItem[] = [
-    { href: '/nouvelle-collection', label: 'Nouvelle Collection', type: 'link' },
+    { href: '/nouvelle-collection', label: 'Shadow Burst', type: 'link' },
     { href: '/exclusivites', label: 'Exclusivités', type: 'link' },
     { href: '/aube', label: 'Aube', type: 'link' },
     { href: '/zenith', label: 'Zenith', type: 'link' },

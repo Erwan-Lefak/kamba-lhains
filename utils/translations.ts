@@ -128,8 +128,8 @@ export const translations: Translations = {
     },
     sections: {
       femaleModel: "Modèle féminin",
-      maleModel: "Modèle masculin", 
-      newCollection: "NOUVELLE COLLECTION",
+      maleModel: "Modèle masculin",
+      newCollection: "SHADOW BURST",
       shop: "BOUTIQUE"
     },
     language: {
@@ -216,7 +216,7 @@ export const translations: Translations = {
     sections: {
       femaleModel: "Female Model",
       maleModel: "Male Model",
-      newCollection: "NEW COLLECTION", 
+      newCollection: "SHADOW BURST",
       shop: "SHOP"
     },
     language: {
@@ -303,7 +303,7 @@ export const translations: Translations = {
     sections: {
       femaleModel: "여성 모델",
       maleModel: "남성 모델",
-      newCollection: "신상품",
+      newCollection: "SHADOW BURST",
       shop: "쇼핑"
     },
     language: {

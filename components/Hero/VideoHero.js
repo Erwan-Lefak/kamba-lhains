@@ -134,12 +134,12 @@ const VideoHero = ({ videoSrc = 'https://res.cloudinary.com/diibzuu9j/video/uplo
         <source src={videoSrc} type="video/mp4" />
       </video>
       
-      {/* Sticky Text for Nouvelle Collection */}
+      {/* Sticky Text for Shadow Burst */}
       <div className={styles.stickyTextContainer}>
-        <div className={styles.stickyText}>NOUVELLE COLLECTION</div>
+        <div className={styles.stickyText}>SHADOW BURST</div>
       </div>
       <div className={styles.stickyTextContainer}>
-        <div className={styles.stickyText} id="nouvelle-collection-phase1">NOUVELLE COLLECTION</div>
+        <div className={styles.stickyText} id="nouvelle-collection-phase1">SHADOW BURST</div>
       </div>
       
       <div className={styles.videoControls}>

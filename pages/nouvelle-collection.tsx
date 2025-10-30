@@ -156,6 +156,9 @@ export default function NouvelleCollection() {
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  // Create a white placeholder SVG that will match video dimensions
+  const whitePosterDataUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='100%25' height='100%25' fill='%23ffffff'/%3E%3C/svg%3E";
+
   // Single product with 3 collection images for carousel
   const singleProductWithImages = {
     ...featuredProducts[0],
@@ -180,8 +183,8 @@ export default function NouvelleCollection() {
       <main style={{ paddingTop: '34px' }}>
         <section className={styles.newCollectionSection}>
           <div className={styles.textSection}>
-            <h1 
-              style={{ 
+            <h1
+              style={{
                 fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif",
                 fontSize: '11px',
                 fontWeight: 400,
@@ -194,7 +197,7 @@ export default function NouvelleCollection() {
                 width: '100%'
               }}
             >
-              "ÉCLAT D'OMBRE"
+              "SHADOW BURST"
             </h1>
             <p className={styles.collectionDescription}>
               Une exploration subtile entre lumière et obscurité, où chaque pièce révèle l'élégance dans sa forme la plus pure. Cette collection capsule transcende les codes traditionnels pour offrir une garde-robe intemporelle, pensée pour la femme moderne qui cultive l'art de la sophistication discrète.
@@ -205,7 +208,7 @@ export default function NouvelleCollection() {
             <div className={`${styles.videoContainer} ${isFullscreen ? styles.fullscreen : ''}`}>
               {showPoster && (
                 <img
-                  src="/images/ui/video-poster.jpg"
+                  src={whitePosterDataUrl}
                   alt="Video loading"
                   className={styles.videoPoster}
                 />
@@ -218,6 +221,7 @@ export default function NouvelleCollection() {
                 playsInline
                 autoPlay
                 preload="metadata"
+                poster={whitePosterDataUrl}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onCanPlay={handleCanPlay}
@@ -225,8 +229,7 @@ export default function NouvelleCollection() {
                 onPlaying={handlePlaying}
                 style={{ opacity: showPoster ? 0 : 1 }}
               >
-                <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1755524165/collec_h49use.mp4" type="video/mp4" />
-                <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1755520950/ACCUEIL_krmrok.mp4" type="video/mp4" />
+                <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1761667241/Kambaween_rotation_rvbeqq.mov" type="video/mp4" />
                 Votre navigateur ne supporte pas la lecture de vidéos.
               </video>
               

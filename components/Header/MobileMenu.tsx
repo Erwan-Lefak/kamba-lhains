@@ -65,7 +65,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen }) => {
   };
   
   const mainMenuItems: MenuItem[] = [
-    { href: '/nouvelle-collection', label: 'Nouvelle Collection' },
+    { href: '/nouvelle-collection', label: 'Shadow Burst' },
     { href: '/exclusivites', label: 'Exclusivités' },
     { href: '/aube', label: 'Aube' },
     { href: '/zenith', label: 'Zenith' },
