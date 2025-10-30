@@ -229,7 +229,7 @@ export default function NouvelleCollection() {
                 onPlaying={handlePlaying}
                 style={{ opacity: showPoster ? 0 : 1 }}
               >
-                <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1761667241/Kambaween_rotation_rvbeqq.mov" type="video/mp4" />
+                <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1761859556/WhatsApp_Vid%C3%A9o_2025-10-30_%C3%A0_22.12.39_4548f635_m274wh.mp4" type="video/mp4" />
                 Votre navigateur ne supporte pas la lecture de vidéos.
               </video>
               
