@@ -8,6 +8,7 @@ import { CartProvider } from '../contexts/CartContext';
 import { FavoritesProvider } from '../contexts/FavoritesContext';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { TikTokPixel } from '../components/TikTokPixel';
+import MaintenanceOverlay from '../components/MaintenanceOverlay';
 
 interface MyAppProps extends AppProps {
   pageProps: {
@@ -16,6 +17,9 @@ interface MyAppProps extends AppProps {
 }
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: MyAppProps) {
+  // Vérifier si le mode maintenance est activé
+  const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
+
   return (
     <>
       <Head>
@@ -43,6 +47,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
             <CartProvider>
               <FavoritesProvider>
                 <TikTokPixel />
+                {/* Afficher l'overlay de maintenance si activé */}
+                {isMaintenanceMode && <MaintenanceOverlay />}
                 <Component {...pageProps} />
               </FavoritesProvider>
             </CartProvider>
