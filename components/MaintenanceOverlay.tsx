@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
 import styles from '../styles/MaintenanceOverlay.module.css';
 
 export default function MaintenanceOverlay() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Fade in au chargement
-    setIsVisible(true);
-  }, []);
-
   return (
-    <div className={`${styles.overlay} ${isVisible ? styles.visible : ''}`}>
+    <div className={styles.overlay}>
       {/* Vidéo en arrière-plan */}
       <video
         className={styles.video}

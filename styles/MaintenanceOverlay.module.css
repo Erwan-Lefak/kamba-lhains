@@ -9,12 +9,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
-
-.overlay.visible {
-  opacity: 1;
 }
 
 /* Vidéo en arrière-plan */
@@ -191,18 +185,3 @@
   }
 }
 
-/* Animation d'entrée subtile */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.content {
-  animation: fadeInUp 1s ease-out 0.3s backwards;
-}
