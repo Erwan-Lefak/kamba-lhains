@@ -39,20 +39,12 @@
   z-index: 2;
 }
 
-/* Logo en haut à gauche avec lien Instagram */
-.logoLink {
+/* Logo en haut à gauche */
+.logoContainer {
   position: fixed;
   top: 30px;
   left: 30px;
   z-index: 10;
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0.9;
-}
-
-.logoLink:hover {
-  transform: scale(1.05);
-  opacity: 1;
 }
 
 .logo {
@@ -61,14 +53,44 @@
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
+/* Icône Instagram en haut à droite */
+.instagramIcon {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+.instagramIcon:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.instagramIcon svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
 @media (max-width: 768px) {
-  .logoLink {
+  .logoContainer {
     top: 20px;
     left: 20px;
   }
 
   .logo {
     height: 45px;
+  }
+
+  .instagramIcon {
+    top: 20px;
+    right: 20px;
+  }
+
+  .instagramIcon svg {
+    width: 28px;
+    height: 28px;
   }
 }
 
