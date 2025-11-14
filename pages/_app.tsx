@@ -48,8 +48,11 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
               <FavoritesProvider>
                 <TikTokPixel />
                 {/* Afficher l'overlay de maintenance si activé */}
-                {isMaintenanceMode && <MaintenanceOverlay />}
-                <Component {...pageProps} />
+                {isMaintenanceMode ? (
+                  <MaintenanceOverlay />
+                ) : (
+                  <Component {...pageProps} />
+                )}
               </FavoritesProvider>
             </CartProvider>
           </LanguageProvider>
