@@ -21,7 +21,7 @@ export default function MaintenanceOverlay() {
       {/* Logo en haut à gauche */}
       <div className={styles.logoContainer}>
         <img
-          src="/images/products/logo.png"
+          src="/images/products/logo.jpg"
           alt="KAMBA LHAINS"
           className={styles.logo}
         />
