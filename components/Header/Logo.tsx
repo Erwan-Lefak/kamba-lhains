@@ -6,9 +6,9 @@ const Logo: React.FC = () => {
   return (
     <div className={styles.logoSection}>
       <Link href="/" className={styles.logo}>
-        <img 
-          src="/images/products/logo.png" 
-          alt="KAMBA LHAINS" 
+        <img
+          src="/images/products/logo.jpg"
+          alt="KAMBA LHAINS"
           className={styles.logoImage}
         />
       </Link>
