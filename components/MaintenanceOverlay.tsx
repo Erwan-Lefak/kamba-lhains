@@ -1,16 +1,31 @@
+import { useEffect, useRef } from 'react';
 import styles from '../styles/MaintenanceOverlay.module.css';
 
 export default function MaintenanceOverlay() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Forcer le démarrage de la vidéo sur mobile
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log('Autoplay prevented:', error);
+      });
+    }
+  }, []);
+
   return (
     <div className={styles.overlay}>
       {/* Vidéo en arrière-plan */}
       <video
+        ref={videoRef}
         className={styles.video}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
+        defaultMuted
+        webkit-playsinline="true"
       >
         <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1761667241/Kambaween_rotation_rvbeqq.mov" type="video/mp4" />
       </video>
