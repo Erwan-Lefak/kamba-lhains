@@ -7,6 +7,11 @@ export default function MaintenanceOverlay() {
   useEffect(() => {
     // Forcer le démarrage de la vidéo sur mobile
     if (videoRef.current) {
+      // S'assurer que la vidéo est bien en mute
+      videoRef.current.muted = true;
+      videoRef.current.setAttribute('muted', '');
+      videoRef.current.setAttribute('playsinline', '');
+
       videoRef.current.play().catch((error) => {
         console.log('Autoplay prevented:', error);
       });
@@ -24,8 +29,6 @@ export default function MaintenanceOverlay() {
         muted
         playsInline
         preload="auto"
-        defaultMuted
-        webkit-playsinline="true"
       >
         <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1761667241/Kambaween_rotation_rvbeqq.mov" type="video/mp4" />
       </video>
