@@ -30,7 +30,8 @@ export default function MaintenanceOverlay() {
         playsInline
         preload="auto"
       >
-        <source src="https://res.cloudinary.com/diibzuu9j/video/upload/v1761667241/Kambaween_rotation_rvbeqq.mov" type="video/mp4" />
+        <source src="https://res.cloudinary.com/diibzuu9j/video/upload/f_mp4,vc_h264/v1761667241/Kambaween_rotation_rvbeqq.mp4" type="video/mp4" />
+        <source src="https://res.cloudinary.com/diibzuu9j/video/upload/f_webm/v1761667241/Kambaween_rotation_rvbeqq.webm" type="video/webm" />
       </video>
 
       {/* Overlay sombre pour contraste */}
