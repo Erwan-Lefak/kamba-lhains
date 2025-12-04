@@ -42,6 +42,7 @@ export interface Product {
   image: string; // Pour compatibilité
   images?: ProductImage[] | string[];
   imagesByColor?: Record<string, string[]>;
+  imagesByColorAndSize?: Record<string, Record<string, string[]>>;
   variants?: ProductVariant[];
   category: string;
   subCategory?: string;

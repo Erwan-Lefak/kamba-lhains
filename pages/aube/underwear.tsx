@@ -41,25 +41,25 @@ export default function AubeUnderwear() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Product page functions
-  const boxerProduct = {
-    id: 'aube-boxer-001',
-    name: 'Boxer',
-    price: '30 EUR',
-    image: '/images/products/boxer1.jpg',
-    images: ['/images/products/boxer1.jpg', '/images/products/boxer2.jpg', '/images/products/boxer3.jpg', '/images/products/boxer4.jpg', '/images/products/boxer5.jpg', '/images/products/boxer6.jpg'],
-    category: 'Aube',
-    subcategory: 'Sous-vêtements',
-    description: ['Boxer confortable et élégant pour un confort optimal au quotidien.', 'Coton biologique de qualité supérieure', 'Coupe ajustée et respirante', 'Ceinture élastique douce'],
-    colors: ['Blanc', 'Noir'],
+  // Product page functions - utiliser le produit depuis products.ts
+  const caleconProduct = products.find(p => p.id === 'calecon-champion') || {
+    id: 'calecon-champion',
+    name: 'CALEÇON CHAMPION',
+    price: 90,
+    image: '/images/calecon-blanc-face.jpg',
+    images: ['/images/calecon-blanc-face.jpg'],
+    category: 'homme',
+    subCategory: 'aube',
+    description: ['Caleçon en percale'],
+    colors: ['#FFFFFF'],
     sizes: ['S', 'M', 'L', 'XL'],
     inStock: true,
     featured: false
   };
 
   const handleAddToCart = () => {
-    addToCart(boxerProduct, selectedSize, selectedColor, quantity);
-    alert(`${boxerProduct.name} ajouté au panier !`);
+    addToCart(caleconProduct, selectedSize, selectedColor, quantity);
+    alert(`${caleconProduct.name} ajouté au panier !`);
   };
 
   const handleHeartClick = () => {
@@ -92,7 +92,7 @@ export default function AubeUnderwear() {
           <div>
             <h3>Composition</h3>
             <ul>
-              {boxerProduct.description.map((item, index) => (
+              {(Array.isArray(caleconProduct.description) ? caleconProduct.description : [caleconProduct.description]).map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
@@ -193,7 +193,7 @@ export default function AubeUnderwear() {
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/underwear.jpg"
+                  src="/images/underwear-hero-new.jpg?v=5"
                   alt="Collection Aube - Kamba Lhains"
                   width={1200}
                   height={800}
@@ -251,7 +251,7 @@ export default function AubeUnderwear() {
                   </Link>
                   <span> - </span>
                   <Link href="/aube/underwear" className={productStyles.breadcrumbLink}>
-                    <span>Boxer</span>
+                    <span>Caleçon</span>
                   </Link>
                 </div>
                 
@@ -284,18 +284,21 @@ export default function AubeUnderwear() {
                 
                 {/* Vertical Image Stack */}
                 <div className={productStyles.imageStack}>
-                  {boxerProduct.images.map((image, index) => (
-                    <img 
+                  {caleconProduct.images?.map((image, index) => {
+                    const imageUrl = typeof image === 'string' ? image : image.url;
+                    return (
+                    <img
                       key={index}
-                      src={image}
-                      alt={`${boxerProduct.name} ${index + 1}`}
+                      src={imageUrl}
+                      alt={`${caleconProduct.name} ${index + 1}`}
                       className={productStyles.stackedImage}
                       onError={(e) => {
-                        console.log('Image failed to load:', image);
+                        console.log('Image failed to load:', imageUrl);
                         (e.target as HTMLImageElement).src = '/logo.png';
                       }}
                     />
-                  ))}
+                  );
+                  })}
                 </div>
               </div>
 
@@ -303,8 +306,8 @@ export default function AubeUnderwear() {
               <div className={productStyles.productInfoSection}>
                 {/* Main Content - Centered */}
                 <div className={productStyles.productMainContent}>
-                  <h1 className={productStyles.productTitle}>{boxerProduct.name}</h1>
-                  <span className={productStyles.productPrice}>{boxerProduct.price}</span>
+                  <h1 className={productStyles.productTitle}>{caleconProduct.name}</h1>
+                  <span className={productStyles.productPrice}>{caleconProduct.price} EUR</span>
                   
                   {/* Color Selector */}
                   <div className={productStyles.colorSection}>
@@ -314,13 +317,13 @@ export default function AubeUnderwear() {
                       </div>
                     </div>
                     <div className={productStyles.colorOptions}>
-                      {boxerProduct.colors.map((color, index) => (
+                      {caleconProduct.colors?.map((color, index) => (
                         <div
                           key={index}
                           className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
-                          style={{ 
-                            backgroundColor: color === 'Blanc' ? '#FFFFFF' : color === 'Noir' ? '#000000' : color === 'Gris' ? '#808080' : color,
-                            border: color === 'Blanc' ? '1px solid #E5E5E5' : 'none'
+                          style={{
+                            backgroundColor: color,
+                            border: color === '#FFFFFF' ? '1px solid #E5E5E5' : 'none'
                           }}
                           onClick={() => setSelectedColor(color)}
                         />
@@ -334,7 +337,7 @@ export default function AubeUnderwear() {
                       <div className={productStyles.sizeLabel}>Taille</div>
                     </div>
                     <div className={productStyles.sizeGrid}>
-                      {boxerProduct.sizes.map((size, index) => (
+                      {caleconProduct.sizes?.map((size, index) => (
                         <button
                           key={index}
                           className={`${productStyles.sizeOption} ${selectedSize === size ? productStyles.active : ''}`}

@@ -1,10 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-import { buffer } from 'micro';
 import { addOrderToSheet } from '../../../lib/googleSheetsWrite';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-11-20.acacia',
+  apiVersion: '2025-07-30.basil',
 });
 
 export const config = {
@@ -12,6 +11,14 @@ export const config = {
     bodyParser: false,
   },
 };
+
+async function getRawBody(req: NextApiRequest): Promise<Buffer> {
+  const chunks: Buffer[] = [];
+  for await (const chunk of req) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -21,7 +28,7 @@ export default async function handler(
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const buf = await buffer(req);
+  const buf = await getRawBody(req);
   const sig = req.headers['stripe-signature'];
 
   if (!sig) {
@@ -58,7 +65,7 @@ export default async function handler(
         customerEmail = checkoutSession.customer_details?.email || '';
         customerName = checkoutSession.customer_details?.name || '';
         phone = checkoutSession.customer_details?.phone || '';
-        shippingAddress = checkoutSession.shipping?.address || checkoutSession.customer_details?.address || {};
+        shippingAddress = (checkoutSession as any).shipping?.address || checkoutSession.customer_details?.address || {};
         amount = checkoutSession.amount_total ? checkoutSession.amount_total / 100 : 0;
 
         // Récupérer les line items

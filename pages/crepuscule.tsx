@@ -1,37 +1,67 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
 import MobileCarousel from '../components/MobileCarousel';
-import CollectionSidebar from '../components/CollectionSidebar';
 import { products } from '../data/products';
+import { useCart } from '../contexts/CartContext';
+import { useFavorites } from '../contexts/FavoritesContext';
 import styles from '../styles/HomePage.module.css';
+import productStyles from '../styles/ProductPage.module.css';
 
 export default function Crepuscule() {
   const router = useRouter();
-  const [isMenuVisible, setIsMenuVisible] = useState(true);
-  const [isHoveringMenu, setIsHoveringMenu] = useState(false);
-  const [isHoveringButton, setIsHoveringButton] = useState(false);
-  const [showHautSubmenu, setShowHautSubmenu] = useState(false);
-  const [showBasSubmenu, setShowBasSubmenu] = useState(false);
-  const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
+  const { addToCart } = useCart();
+  const [selectedColor, setSelectedColor] = useState('#000000');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [hasClickedPlus, setHasClickedPlus] = useState(false);
+  const [modalType, setModalType] = useState<string | null>(null);
+  const [selectedUnit, setSelectedUnit] = useState('cm');
 
-  // Cacher le menu immédiatement quand on arrive sur la page
-  useEffect(() => {
-    setIsMenuVisible(false);
-  }, []);
+  // Récupérer le produit voile de corps (id: "3")
+  const voileProduct = products.find(product => product.id === '3');
 
-  const toggleMenu = () => {
-    setIsMenuVisible(!isMenuVisible);
+  if (!voileProduct) {
+    return <div>Produit non trouvé</div>;
+  }
+
+  const handleAddToCart = () => {
+    if (!selectedSize || !selectedColor) {
+      alert('Veuillez sélectionner une taille et une couleur');
+      return;
+    }
+    addToCart(voileProduct, selectedSize, selectedColor, quantity);
+    alert(`${voileProduct.name} ajouté au panier !`);
   };
 
-  // Filtrer les produits de la catégorie "Crépuscule"
-  const crepusculeProducts = products.filter(product => {
-    return product.category === 'Crépuscule';
-  });
+  const handleHeartClick = () => {
+    // Handle favorites logic here
+  };
+
+  const openModal = (type: string) => {
+    setModalType(type);
+  };
+
+  const closeModal = () => {
+    setModalType(null);
+  };
+
+  // Fonction pour obtenir le nom de la couleur
+  const getColorName = (color: string): string => {
+    const colorMap: { [key: string]: string } = {
+      '#000000': 'Noir',
+      '#8B4513': 'Marron',
+      '#800020': 'Bordeaux',
+      '#556B2F': 'Kaki',
+      '#FF69B4': 'Rose',
+    };
+    return colorMap[color] || color;
+  };
 
   return (
     <>
@@ -45,44 +75,7 @@ export default function Crepuscule() {
       <Header />
 
       <main className="kambavers-page">
-        <CollectionSidebar
-          collection="crepuscule"
-          isMenuVisible={isMenuVisible}
-          isHoveringMenu={isHoveringMenu}
-          showHautSubmenu={showHautSubmenu}
-          showBasSubmenu={showBasSubmenu}
-          showAccessoiresSubmenu={showAccessoiresSubmenu}
-          setShowHautSubmenu={setShowHautSubmenu}
-          setShowBasSubmenu={setShowBasSubmenu}
-          setShowAccessoiresSubmenu={setShowAccessoiresSubmenu}
-          setIsHoveringMenu={setIsHoveringMenu}
-        />
-
-        {/* Bouton toggle pour le menu */}
-        <button 
-          className="menu-toggle" 
-          onClick={toggleMenu}
-          onMouseEnter={() => setIsHoveringButton(true)}
-          onMouseLeave={() => setIsHoveringButton(false)}
-        >
-          {isMenuVisible ? (
-            // Croix quand le menu est visible
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          ) : (
-            // 3 traits quand le menu n'est pas visible
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-          )}
-        </button>
-
-        {/* Contenu principal */}
-        <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
+        <div className="main-content full-width">
           {/* Section Introduction Crépuscule */}
           <section className={styles.newCollectionSection}>
             <div className={styles.textSection}>
@@ -110,7 +103,7 @@ export default function Crepuscule() {
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/crepuscule.jpg"
+                  src="/images/crepuscule-hero-new.jpg?v=2"
                   alt="Collection Crépuscule - Kamba Lhains"
                   width={1200}
                   height={800}
@@ -122,7 +115,29 @@ export default function Crepuscule() {
             </div>
           </section>
 
-          {/* Collection Title */}
+          {/* Section Image + Texte */}
+          <section className={styles.twoProductsSection}>
+            <div className={styles.twoProductsGrid}>
+              <div className={styles.simpleProductSlot}>
+                <Image
+                  src="/images/crepuscule-section2-new.jpg?v=1"
+                  alt="Collection Crépuscule"
+                  width={1200}
+                  height={800}
+                  className={styles.collectionImage}
+                  quality={95}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className={styles.textZone}>
+                <p className={styles.textZoneContent}>
+                  Le Crépuscule capture l'essence de ces instants magiques où le jour cède doucement sa place à la nuit. Cette collection évoque la poésie des ciels teintés de pourpre et d'or, révélant des créations empreintes de mystère et d'élégance intemporelle. Chaque pièce incarne cette transition délicate, alliant sophistication moderne et inspiration naturelle.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* 2ème section: Titre de la sous-catégorie */}
           <section style={{
             padding: '60px 0',
             textAlign: 'center',
@@ -145,46 +160,226 @@ export default function Crepuscule() {
             </h2>
           </section>
 
-          {/* Gallery Section - 2x4 Grid */}
-          <section className={styles.gallerySection}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_2868.jpeg', 'IMG_2869.jpeg', 'IMG_2870.jpeg', 'IMG_2871.jpeg',
-                'IMG_2872.jpeg', 'IMG_2873.jpeg', 'IMG_2877.jpeg', 'IMG_2879.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`Collection Crépuscule ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className={styles.galleryImage}
-                    quality={90}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
+          {/* 3ème section: Page Produit Complète */}
+          <div className={productStyles.productPage} style={{marginTop: 0}}>
+            <div className={productStyles.productContainer}>
+              {/* Image Section - 60% */}
+              <div className={productStyles.productImageSection} style={{position: 'relative'}}>
+                {/* Breadcrumb - Positioned absolutely */}
+                <div className={productStyles.breadcrumb} style={{
+                  position: 'sticky',
+                  top: '20px',
+                  left: '10px',
+                  zIndex: 10,
+                  marginTop: 0,
+                  marginBottom: '-40px'
+                }}>
+                  <Link href="/crepuscule" className={productStyles.breadcrumbLink}>
+                    <span>Crépuscule</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/crepuscule" className={productStyles.breadcrumbLink}>
+                    <span>Voile de corps</span>
+                  </Link>
                 </div>
-              ))}
-            </div>
-          </section>
 
-        {/* Three Products Grid Section */}
-        <section className={styles.threeProductsSection}>
-          {/* Desktop Grid */}
-          <div className={styles.threeProductsGrid}>
-            {crepusculeProducts.map(product => (
-              <div key={product.id} className={styles.productSlot}>
-                <ProductCard product={product} />
+                {/* Heart Icon - Positioned absolutely */}
+                <button
+                  className={`${productStyles.heartIcon} ${false ? productStyles.liked : ''}`}
+                  onClick={handleHeartClick}
+                  aria-label={false ? "Retirer des favoris" : "Ajouter aux favoris"}
+                  style={{
+                    position: 'sticky',
+                    top: '10px',
+                    right: '10px',
+                    zIndex: 10,
+                    marginTop: 0,
+                    marginBottom: '-40px',
+                    marginLeft: 'auto'
+                  }}
+                >
+                  <span className={`u-w-full ${false ? 'u-hidden' : ''} | js-product-heart-add`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                  <span className={`u-w-full ${!false ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                </button>
+
+                {/* Vertical Image Stack */}
+                <div className={productStyles.imageStack}>
+                  {(() => {
+                    // Get images for selected color
+                    let imagesToShow = voileProduct.images || [voileProduct.image];
+
+                    if (voileProduct.imagesByColor && selectedColor && voileProduct.imagesByColor[selectedColor]) {
+                      imagesToShow = voileProduct.imagesByColor[selectedColor];
+                    }
+
+                    return imagesToShow.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={`${voileProduct.name} ${index + 1}`}
+                        className={productStyles.stackedImage}
+                        onError={(e) => {
+                          console.log('Image failed to load:', image);
+                          (e.target as HTMLImageElement).src = '/logo.png';
+                        }}
+                      />
+                    ));
+                  })()}
+                </div>
               </div>
-            ))}
+
+              {/* Product Info Section - 40% */}
+              <div className={productStyles.productInfoSection}>
+                {/* Main Content - Centered */}
+                <div className={productStyles.productMainContent}>
+                  <h1 className={productStyles.productTitle}>{voileProduct.name}</h1>
+                  <span className={productStyles.productPrice}>{voileProduct.price} EUR</span>
+
+                  {/* Color Selector */}
+                  <div className={productStyles.colorSection}>
+                    <div className={productStyles.colorHeader}>
+                      <div className={productStyles.colorLabel}>
+                        Couleur : {getColorName(selectedColor)}
+                      </div>
+                    </div>
+                    <div className={productStyles.colorOptions}>
+                      {voileProduct.colors?.map((color, index) => (
+                        <div
+                          key={index}
+                          className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
+                          style={{
+                            backgroundColor: color,
+                            border: color === '#FFFFFF' ? '1px solid #E5E5E5' : 'none'
+                          }}
+                          onClick={() => setSelectedColor(color)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Size Selector */}
+                  <div className={productStyles.sizeSection}>
+                    <div className={productStyles.sizeHeader}>
+                      <div className={productStyles.sizeLabel}>Taille</div>
+                    </div>
+                    <div className={productStyles.sizeGrid}>
+                      {voileProduct.sizes?.map((size, index) => (
+                        <button
+                          key={index}
+                          className={`${productStyles.sizeOption} ${selectedSize === size ? productStyles.active : ''}`}
+                          onClick={() => setSelectedSize(size)}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Add to Cart Button with Quantity */}
+                  <div className={productStyles.addToCartSection}>
+                    <div className={productStyles.addToCartButton}>
+                      <div
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => {
+                          const newQuantity = Math.max(1, quantity - 1);
+                          setQuantity(newQuantity);
+                          if (newQuantity === 1) {
+                            setHasClickedPlus(false);
+                          }
+                        }}
+                      >
+                        -
+                      </div>
+                      <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1, color: 'black'}}>
+                        <span>AJOUTER AU PANIER</span>
+                      </button>
+                      <div
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => {
+                          if (quantity === 1 && !hasClickedPlus) {
+                            setHasClickedPlus(true);
+                          } else {
+                            setQuantity(quantity + 1);
+                          }
+                        }}
+                      >
+                        {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info Links */}
+                  <div className={productStyles.infoLinksSection}>
+                    <button
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('description')}
+                    >
+                      Description
+                    </button>
+                    <button
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('sizeGuide')}
+                    >
+                      Guide des tailles
+                    </button>
+                    <button
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('careGuide')}
+                    >
+                      Entretien
+                    </button>
+                  </div>
+
+                  {/* Product Description */}
+                  <div className={productStyles.productDescription}>
+                    {(Array.isArray(crepusculeProduct.description) ? Product.description : [Product.description]).map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          {/* Mobile Carousel */}
-          <MobileCarousel products={crepusculeProducts} />
-        </section>
+
+          {/* Complete Your Look Section */}
+          <section className={productStyles.completeYourLook}>
+            <div className={productStyles.sectionContainer}>
+              <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
+            </div>
+
+            {/* Three Products Grid Section - Using ProductPage Style */}
+            <section className={productStyles.threeProductsSection}>
+              {/* Desktop Grid */}
+              <div className={productStyles.threeProductsGrid}>
+                {products
+                  .filter(p => p.subCategory === 'aube' && p.inStock)
+                  .slice(0, 4)
+                  .map((recommendedProduct) => (
+                    <div key={recommendedProduct.id} className={productStyles.productSlot}>
+                      <ProductCard product={recommendedProduct} />
+                    </div>
+                  ))
+                }
+              </div>
+
+              {/* Mobile Carousel */}
+              <div className={productStyles.mobileCarousel}>
+                <MobileCarousel products={products.filter(p => p.subCategory === 'aube' && p.inStock).slice(0, 4)} />
+              </div>
+            </section>
+          </section>
         </div>
       </main>
 
-      <Footer isKambaversPage={true} isMenuVisible={isMenuVisible} />
+      <Footer isKambaversPage={true} isMenuVisible={false} />
 
       <style jsx>{`
         .kambavers-page {

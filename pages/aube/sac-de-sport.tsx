@@ -92,7 +92,7 @@ export default function AubeSacDeSport() {
           <div>
             <h3>Composition</h3>
             <ul>
-              {sacDeSportProduct.description.map((item, index) => (
+              {(Array.isArray(sacDeSportProduct.description) ? sacDeSportProduct.description : [sacDeSportProduct.description]).map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
@@ -314,7 +314,7 @@ export default function AubeSacDeSport() {
                       </div>
                     </div>
                     <div className={productStyles.colorOptions}>
-                      {sacDeSportProduct.colors.map((color, index) => (
+                      {sacDeSportProduct.colors?.map((color, index) => (
                         <div
                           key={index}
                           className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}

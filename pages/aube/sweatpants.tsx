@@ -1,16 +1,19 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
+import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
 import MobileCarousel from '../../components/MobileCarousel';
 import CollectionSidebar from '../../components/CollectionSidebar';
 import { products } from '../../data/products';
+import { useCart } from '../../contexts/CartContext';
 import styles from '../../styles/HomePage.module.css';
+import productStyles from '../../styles/ProductPage.module.css';
 
-export default function AubeSweatpants() {
+export default function Sweatpants() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
@@ -19,33 +22,139 @@ export default function AubeSweatpants() {
   const [showBasSubmenu, setShowBasSubmenu] = useState(true);
   const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
 
+  // Get sweatpants product (must be before useEffect)
+  const sweatpantsProduct = products.find(p => p.id === 'asabili-sweatpants') || {
+    id: 'asabili-sweatpants',
+    name: 'ASABILI SWEATPANTS',
+    price: 180,
+    image: '/images/sweatpant-bordeaux-2.jpg',
+    images: ['/images/sweatpant-bordeaux-2.jpg'],
+    category: 'femme',
+    subCategory: 'aube',
+    description: ['Sweatpants en coton premium'],
+    colors: ['#800020', '#F5F5DC', '#808080', '#556B2F'],
+    sizes: ['S', 'M'],
+    inStock: true,
+    featured: false
+  };
+
+  // Product page states
+  const { addToCart } = useCart();
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [quantity, setQuantity] = useState(1);
+  const [hasClickedPlus, setHasClickedPlus] = useState(false);
+  const [rightModalOpen, setRightModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState('');
+  const [displayedImages, setDisplayedImages] = useState<string[]>([]);
+
+  // Cacher le menu immédiatement quand on arrive sur la page
   useEffect(() => {
     setIsMenuVisible(false);
+    // Initialize with default images
+    if (sweatpantsProduct.images) {
+      const imageUrls = Array.isArray(sweatpantsProduct.images)
+        ? sweatpantsProduct.images.map(img => typeof img === 'string' ? img : img.url)
+        : [];
+      setDisplayedImages(imageUrls);
+    }
   }, []);
+
+  // Update displayed images when color changes
+  useEffect(() => {
+    if (sweatpantsProduct.imagesByColor && selectedColor) {
+      const colorImages = sweatpantsProduct.imagesByColor[selectedColor];
+      if (colorImages && colorImages.length > 0) {
+        setDisplayedImages(colorImages);
+      }
+    }
+  }, [selectedColor]);
 
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  const sweatpantsProducts = products.filter(product => {
-    const isAube = product.category === 'Aube';
-    const nameMatch = product.name.toLowerCase().includes('sweatpants') || 
-                     product.name.toLowerCase().includes('jogging');
-    const descriptionMatch = Array.isArray(product.description) 
-      ? product.description.some(desc => 
-          desc.toLowerCase().includes('sweatpants') || 
-          desc.toLowerCase().includes('jogging')
-        )
-      : product.description.toLowerCase().includes('sweatpants') || 
-        product.description.toLowerCase().includes('jogging');
-    return isAube && (nameMatch || descriptionMatch);
-  });
+  const handleAddToCart = () => {
+    addToCart(sweatpantsProduct, selectedSize, selectedColor, quantity);
+    alert(`${sweatpantsProduct.name} ajouté au panier !`);
+  };
+
+  const handleHeartClick = () => {
+    console.log('Heart clicked');
+  };
+
+  const openModal = (content: any) => {
+    setModalContent(content);
+    setRightModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setRightModalOpen(false);
+  };
+
+  const getModalTitle = () => {
+    switch (modalContent) {
+      case 'description': return 'Description';
+      case 'sizeGuide': return 'Guide des tailles';
+      case 'careGuide': return 'Guide d\'entretien';
+      default: return '';
+    }
+  };
+
+  const getColorName = (hexColor: string) => {
+    const colorMap: { [key: string]: string } = {
+      '#800020': 'Bordeaux',
+      '#F5F5DC': 'Blanc cassé',
+      '#808080': 'Gris',
+      '#556B2F': 'Kaki'
+    };
+    return colorMap[hexColor] || hexColor;
+  };
+
+  const renderModalContent = () => {
+    switch (modalContent) {
+      case 'description':
+        return (
+          <div>
+            <h3>Composition</h3>
+            <ul>
+              {(Array.isArray(sweatpantsProduct.description) ? sweatpantsProduct.description : [sweatpantsProduct.description]).map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      case 'sizeGuide':
+        return (
+          <div>
+            <h3>Guide des tailles</h3>
+            <p><strong>S</strong> : Tour de taille 70-75cm</p>
+            <p><strong>M</strong> : Tour de taille 76-80cm</p>
+          </div>
+        );
+      case 'careGuide':
+        return (
+          <div>
+            <h3>Composition et entretien</h3>
+            <ul>
+              <li>100% coton.</li>
+              <li>Lavage en machine à 30°C.</li>
+              <li>Pas de blanchiment.</li>
+              <li>Séchage à basse température.</li>
+              <li>Repassage à basse température.</li>
+            </ul>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
       <Head>
         <title>Sweatpants - Kamba Lhains</title>
-        <meta name="description" content="Découvrez nos Sweatpants - Fraîcheur et élégance pour vos matinées lumineuses." />
+        <meta name="description" content="Découvrez nos sweatpants - Des pièces uniques de la collection Aube." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -67,18 +176,21 @@ export default function AubeSweatpants() {
           setIsHoveringMenu={setIsHoveringMenu}
         />
 
-        <button 
-          className="menu-toggle" 
+        {/* Bouton toggle pour le menu */}
+        <button
+          className="menu-toggle"
           onClick={toggleMenu}
           onMouseEnter={() => setIsHoveringButton(true)}
           onMouseLeave={() => setIsHoveringButton(false)}
         >
           {isMenuVisible ? (
+            // Croix quand le menu est visible
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           ) : (
+            // 3 traits quand le menu n'est pas visible
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -87,21 +199,23 @@ export default function AubeSweatpants() {
           )}
         </button>
 
+        {/* Contenu principal */}
         <div className={`main-content ${isMenuVisible ? 'with-sidebar' : 'full-width'}`}>
-
-          {/* Image Section */}
+          {/* Section Introduction Sweatpants */}
           <section className={styles.newCollectionSection}>
-            <div className={styles.mediaSection}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src="/aube.jpg"
-                  alt="Collection Aube - Kamba Lhains"
-                  width={1200}
-                  height={800}
-                  className={styles.collectionImage}
-                  quality={95}
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                />
+            <div className={styles.mediaSection} style={{ width: '100%' }}>
+              <div className="sweatpants-images-container">
+                <div className="sweatpants-image-wrapper">
+                  <Image
+                    src="/images/sweatpants-hero.jpg"
+                    alt="Sweatpants - Kamba Lhains"
+                    width={600}
+                    height={800}
+                    className={styles.collectionImage}
+                    quality={95}
+                    sizes="(max-width: 768px) 100vw, 100vw"
+                  />
+                </div>
               </div>
             </div>
           </section>
@@ -129,30 +243,233 @@ export default function AubeSweatpants() {
             </h2>
           </section>
 
-          {/* 3ème section: Galerie photo 4x2 */}
-          <section className={styles.gallerySection}>
-            <div className={styles.galleryGrid}>
-              {[
-                'IMG_3036.jpeg', 'IMG_3046.jpeg', 'IMG_3047.jpeg', 'IMG_3048.jpeg',
-                'IMG_3049.jpeg', 'IMG_3050.jpeg', 'IMG_3051.jpeg', 'IMG_3052.jpeg'
-              ].map((imageName, index) => (
-                <div key={index} className={styles.gallerySlot}>
-                  <Image 
-                    src={`/images/collection/${imageName}`} 
-                    alt={`Sweatpants ${index + 1}`}
-                    width={400}
-                    height={600}
-                    className={styles.galleryImage}
-                    quality={90}
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
+          {/* 3ème section: Page Produit Complète */}
+          <div className={productStyles.productPage} style={{marginTop: 0}}>
+            <div className={productStyles.productContainer}>
+              {/* Image Section - 60% */}
+              <div className={productStyles.productImageSection} style={{position: 'relative'}}>
+                {/* Breadcrumb - Positioned absolutely */}
+                <div className={productStyles.breadcrumb} style={{
+                  position: 'sticky',
+                  top: '20px',
+                  left: '10px',
+                  zIndex: 10,
+                  marginTop: 0,
+                  marginBottom: '-40px'
+                }}>
+                  <Link href="/aube" className={productStyles.breadcrumbLink}>
+                    <span>Aube</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/aube/sweatpants" className={productStyles.breadcrumbLink}>
+                    <span>Bas</span>
+                  </Link>
+                  <span> - </span>
+                  <Link href="/aube/sweatpants" className={productStyles.breadcrumbLink}>
+                    <span>Sweatpants</span>
+                  </Link>
                 </div>
-              ))}
+
+                {/* Heart Icon - Positioned absolutely */}
+                <button
+                  className={`${productStyles.heartIcon} ${false ? productStyles.liked : ''}`}
+                  onClick={handleHeartClick}
+                  aria-label={false ? "Retirer des favoris" : "Ajouter aux favoris"}
+                  style={{
+                    position: 'sticky',
+                    top: '10px',
+                    right: '10px',
+                    zIndex: 10,
+                    marginTop: 0,
+                    marginBottom: '-40px',
+                    marginLeft: 'auto'
+                  }}
+                >
+                  <span className={`u-w-full ${false ? 'u-hidden' : ''} | js-product-heart-add`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-plain" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                  <span className={`u-w-full ${!false ? 'u-hidden' : ''} | js-product-heart-remove`}>
+                    <svg className="c-icon" data-size="sm">
+                      <use xlinkHref="#icon-heart-kamba-red" x="0" y="0"></use>
+                    </svg>
+                  </span>
+                </button>
+
+                {/* Vertical Image Stack */}
+                <div className={productStyles.imageStack}>
+                  {displayedImages.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`${sweatpantsProduct.name} ${index + 1}`}
+                      className={productStyles.stackedImage}
+                      onError={(e) => {
+                        console.log('Image failed to load:', image);
+                        (e.target as HTMLImageElement).src = '/logo.png';
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Product Info Section - 40% */}
+              <div className={productStyles.productInfoSection}>
+                {/* Main Content - Centered */}
+                <div className={productStyles.productMainContent}>
+                  <h1 className={productStyles.productTitle}>{sweatpantsProduct.name}</h1>
+                  <span className={productStyles.productPrice}>{sweatpantsProduct.price} EUR</span>
+
+                  {/* Color Selector */}
+                  <div className={productStyles.colorSection}>
+                    <div className={productStyles.colorHeader}>
+                      <div className={productStyles.colorLabel}>
+                        Couleur : {selectedColor ? getColorName(selectedColor) : ''}
+                      </div>
+                    </div>
+                    <div className={productStyles.colorOptions}>
+                      {sweatpantsProduct.colors?.map((color, index) => (
+                        <div
+                          key={index}
+                          className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
+                          style={{
+                            backgroundColor: color,
+                            border: color === '#FFFFFF' || color === '#F5F5DC' ? '1px solid #E5E5E5' : 'none'
+                          }}
+                          onClick={() => setSelectedColor(color)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Size Selector */}
+                  <div className={productStyles.sizeSection}>
+                    <div className={productStyles.sizeHeader}>
+                      <div className={productStyles.sizeLabel}>Taille</div>
+                    </div>
+                    <div className={productStyles.sizeGrid}>
+                      {sweatpantsProduct.sizes?.map((size, index) => (
+                        <button
+                          key={index}
+                          className={`${productStyles.sizeOption} ${selectedSize === size ? productStyles.active : ''}`}
+                          onClick={() => setSelectedSize(size)}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Add to Cart Button with Quantity */}
+                  <div className={productStyles.addToCartSection}>
+                    <div className={productStyles.addToCartButton}>
+                      <div
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => {
+                          const newQuantity = Math.max(1, quantity - 1);
+                          setQuantity(newQuantity);
+                          if (newQuantity === 1) {
+                            setHasClickedPlus(false);
+                          }
+                        }}
+                      >
+                        -
+                      </div>
+                      <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1, color: 'black'}}>
+                        <span>AJOUTER AU PANIER</span>
+                      </button>
+                      <div
+                        className={productStyles.quantityButtonInside}
+                        onClick={() => {
+                          if (quantity === 1 && !hasClickedPlus) {
+                            setHasClickedPlus(true);
+                          } else {
+                            setQuantity(quantity + 1);
+                          }
+                        }}
+                      >
+                        {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info Links */}
+                  <div className={productStyles.infoLinksSection}>
+                    <button
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('description')}
+                    >
+                      Description
+                    </button>
+                    <button
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('sizeGuide')}
+                    >
+                      Guide des tailles
+                    </button>
+                    <button
+                      className={productStyles.infoLink}
+                      onClick={() => openModal('careGuide')}
+                    >
+                      Guide d'entretien
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
+
+          </div>
+
+          {/* Complete Your Look Section */}
+          <section className={productStyles.completeYourLook}>
+            <div className={productStyles.sectionContainer}>
+              <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
+            </div>
+
+            {/* Three Products Grid Section - Using ProductPage Style */}
+            <section className={productStyles.threeProductsSection}>
+              {/* Desktop Grid */}
+              <div className={productStyles.threeProductsGrid}>
+                {products
+                  .filter(p => ['12', '13', '14', '15'].includes(p.id))
+                  .slice(0, 4)
+                  .map((recommendedProduct) => (
+                    <div key={recommendedProduct.id} className={productStyles.productSlot}>
+                      <ProductCard product={recommendedProduct} />
+                    </div>
+                  ))
+                }
+              </div>
+
+              {/* Mobile Carousel */}
+              <div className={productStyles.mobileCarousel}>
+                <MobileCarousel products={products.filter(p => ['12', '13', '14', '15'].includes(p.id)).slice(0, 4)} />
+              </div>
+            </section>
           </section>
 
         </div>
       </main>
+
+      {/* Modal Overlay */}
+      <div
+        className={`${productStyles.modalOverlay} ${rightModalOpen ? productStyles.open : ''}`}
+        onClick={closeModal}
+      />
+
+      {/* Right Modal (Description, Size Guide, Care Guide) */}
+      <div className={`${productStyles.slidingModal} ${productStyles.rightModal} ${rightModalOpen ? productStyles.open : ''}`}>
+        <div className={productStyles.modalHeader}>
+          <h2 className={productStyles.modalTitle}>{getModalTitle()}</h2>
+          <button className={productStyles.closeButton} onClick={closeModal}>
+            ×
+          </button>
+        </div>
+        <div className={productStyles.modalContent}>
+          {renderModalContent()}
+        </div>
+      </div>
 
       <Footer isKambaversPage={true} isMenuVisible={isMenuVisible} />
 
@@ -208,6 +525,26 @@ export default function AubeSweatpants() {
           margin-left: 250px;
         }
 
+        .sweatpants-images-container {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+          height: 100%;
+        }
+
+        .sweatpants-image-wrapper {
+          flex: 1;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .sweatpants-image-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+
         @media (max-width: 1024px) {
           .main-content.with-sidebar {
             margin-left: 200px;
@@ -223,6 +560,11 @@ export default function AubeSweatpants() {
           .main-content {
             margin-left: 0 !important;
             padding-top: 80px;
+          }
+
+          .sweatpants-images-container {
+            flex-direction: column;
+            gap: 10px;
           }
         }
       `}</style>

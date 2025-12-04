@@ -13,13 +13,13 @@ import { useCart } from '../../contexts/CartContext';
 import styles from '../../styles/HomePage.module.css';
 import productStyles from '../../styles/ProductPage.module.css';
 
-export default function ZenithShort() {
+export default function ZenithVeste() {
   const router = useRouter();
   const [isMenuVisible, setIsMenuVisible] = useState(true);
   const [isHoveringMenu, setIsHoveringMenu] = useState(false);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
-  const [showHautSubmenu, setShowHautSubmenu] = useState(false);
-  const [showBasSubmenu, setShowBasSubmenu] = useState(true);
+  const [showHautSubmenu, setShowHautSubmenu] = useState(true);
+  const [showBasSubmenu, setShowBasSubmenu] = useState(false);
   const [showAccessoiresSubmenu, setShowAccessoiresSubmenu] = useState(false);
 
   // Product page states
@@ -39,25 +39,25 @@ export default function ZenithShort() {
     setIsMenuVisible(!isMenuVisible);
   };
 
-  // Product page functions - utiliser le produit short depuis products.ts
-  const shortProduct = products.find(p => p.id === '17') || {
-    id: '17',
-    name: 'SHORT URIEL',
-    price: 280,
-    image: '/images/short-uriel-rouge-1.jpg',
-    images: ['/images/short-uriel-rouge-1.jpg'],
+  // Product page functions - utiliser le produit bombers depuis products.ts
+  const bombersProduct = products.find(p => p.id === 'bombers-itoua-zenith') || {
+    id: 'bombers-itoua-zenith',
+    name: 'BOMBERS ITOUA',
+    price: 1120,
+    image: '/images/bombers-cafe-1.jpg?v=1',
+    images: ['/images/bombers-cafe-1.jpg?v=1'],
     category: 'homme',
     subCategory: 'zenith',
-    description: ['Short moderne en coton premium'],
-    colors: ['#DC2626'],
-    sizes: ['S', 'M', 'L', 'XL'],
+    description: ['Bomber extra oversize'],
+    colors: ['#A0826D'],
+    sizes: ['S', 'M', 'L'],
     inStock: true,
-    featured: false
+    featured: true
   };
 
   const handleAddToCart = () => {
-    addToCart(shortProduct, selectedSize, selectedColor, quantity);
-    alert(`${shortProduct.name} ajouté au panier !`);
+    addToCart(bombersProduct, selectedSize, selectedColor, quantity);
+    alert(`${bombersProduct.name} ajouté au panier !`);
   };
 
   const handleHeartClick = () => {
@@ -89,7 +89,7 @@ export default function ZenithShort() {
           <div>
             <h3>Composition</h3>
             <ul>
-              {(Array.isArray(shortProduct.description) ? Product.description : [Product.description]).map((item, index) => (
+              {(Array.isArray(vesteProduct.description) ? Product.description : [Product.description]).map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
@@ -99,10 +99,9 @@ export default function ZenithShort() {
         return (
           <div>
             <h3>Guide des tailles</h3>
-            <p><strong>S</strong> : Tour de taille 70-75cm</p>
-            <p><strong>M</strong> : Tour de taille 76-80cm</p>
-            <p><strong>L</strong> : Tour de taille 81-85cm</p>
-            <p><strong>XL</strong> : Tour de taille 86-90cm</p>
+            <p><strong>S</strong> : Tour de poitrine 92-96cm</p>
+            <p><strong>M</strong> : Tour de poitrine 96-100cm</p>
+            <p><strong>L</strong> : Tour de poitrine 100-104cm</p>
           </div>
         );
       case 'careGuide':
@@ -111,10 +110,11 @@ export default function ZenithShort() {
             <h3>Composition et entretien</h3>
             <ul>
               <li>100% coton premium.</li>
-              <li>Lavage en machine à 30°C.</li>
+              <li>Lavage délicat à 30°C.</li>
               <li>Pas de blanchiment.</li>
-              <li>Séchage à basse température.</li>
-              <li>Repassage à basse température.</li>
+              <li>Repassage à basse température, sans vapeur.</li>
+              <li>Nettoyage à sec possible.</li>
+              <li>Ne pas sécher en machine.</li>
             </ul>
           </div>
         );
@@ -126,8 +126,8 @@ export default function ZenithShort() {
   return (
     <>
       <Head>
-        <title>Short - Kamba Lhains</title>
-        <meta name="description" content="Découvrez nos Shorts Zénith - L'apogée du style décontracté et raffiné." />
+        <title>Veste - Kamba Lhains</title>
+        <meta name="description" content="Découvrez nos vestes - L'apogée du style." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -137,7 +137,7 @@ export default function ZenithShort() {
       <main className="kambavers-page">
         <CollectionSidebar
           collection="zenith"
-          currentPage="short"
+          currentPage="veste"
           isMenuVisible={isMenuVisible}
           isHoveringMenu={isHoveringMenu}
           showHautSubmenu={showHautSubmenu}
@@ -176,7 +176,7 @@ export default function ZenithShort() {
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/zenith-short-hero-1.jpg?v=2"
+                  src="/images/zenith-veste-hero.jpg?v=2"
                   alt="Collection Zénith - Kamba Lhains"
                   width={1200}
                   height={800}
@@ -207,7 +207,7 @@ export default function ZenithShort() {
               width: '100%',
               margin: 0
             }}>
-              Short
+              Veste
             </h2>
           </section>
 
@@ -216,7 +216,7 @@ export default function ZenithShort() {
             <div className={productStyles.productContainer}>
               {/* Image Section - 60% */}
               <div className={productStyles.productImageSection} style={{position: 'relative'}}>
-                {/* Breadcrumb */}
+                {/* Breadcrumb - Positioned absolutely */}
                 <div className={productStyles.breadcrumb} style={{
                   position: 'sticky',
                   top: '20px',
@@ -229,16 +229,16 @@ export default function ZenithShort() {
                     <span>Zénith</span>
                   </Link>
                   <span> - </span>
-                  <Link href="/zenith/short" className={productStyles.breadcrumbLink}>
-                    <span>Bas</span>
+                  <Link href="/zenith/veste" className={productStyles.breadcrumbLink}>
+                    <span>Veste</span>
                   </Link>
                   <span> - </span>
-                  <Link href="/zenith/short" className={productStyles.breadcrumbLink}>
-                    <span>Short</span>
+                  <Link href="/zenith/veste" className={productStyles.breadcrumbLink}>
+                    <span>Bombers</span>
                   </Link>
                 </div>
 
-                {/* Heart Icon */}
+                {/* Heart Icon - Positioned absolutely */}
                 <button
                   className={`${productStyles.heartIcon} ${false ? productStyles.liked : ''}`}
                   onClick={handleHeartClick}
@@ -267,11 +267,11 @@ export default function ZenithShort() {
 
                 {/* Vertical Image Stack */}
                 <div className={productStyles.imageStack}>
-                  {shortProduct.images.map((image, index) => (
+                  {bombersProduct.images.map((image, index) => (
                     <img
                       key={index}
                       src={image}
-                      alt={`${shortProduct.name} ${index + 1}`}
+                      alt={`${bombersProduct.name} ${index + 1}`}
                       className={productStyles.stackedImage}
                       onError={(e) => {
                         console.log('Image failed to load:', image);
@@ -284,9 +284,10 @@ export default function ZenithShort() {
 
               {/* Product Info Section - 40% */}
               <div className={productStyles.productInfoSection}>
+                {/* Main Content - Centered */}
                 <div className={productStyles.productMainContent}>
-                  <h1 className={productStyles.productTitle}>{shortProduct.name}</h1>
-                  <span className={productStyles.productPrice}>{shortProduct.price} EUR</span>
+                  <h1 className={productStyles.productTitle}>{bombersProduct.name}</h1>
+                  <span className={productStyles.productPrice}>{bombersProduct.price} EUR</span>
 
                   {/* Color Selector */}
                   <div className={productStyles.colorSection}>
@@ -296,7 +297,7 @@ export default function ZenithShort() {
                       </div>
                     </div>
                     <div className={productStyles.colorOptions}>
-                      {shortProduct.colors?.map((color, index) => (
+                      {bombersProduct.colors?.map((color, index) => (
                         <div
                           key={index}
                           className={`${productStyles.colorSwatch} ${selectedColor === color ? productStyles.active : ''}`}
@@ -316,7 +317,7 @@ export default function ZenithShort() {
                       <div className={productStyles.sizeLabel}>Taille</div>
                     </div>
                     <div className={productStyles.sizeGrid}>
-                      {shortProduct.sizes?.map((size, index) => (
+                      {bombersProduct.sizes?.map((size, index) => (
                         <button
                           key={index}
                           className={`${productStyles.sizeOption} ${selectedSize === size ? productStyles.active : ''}`}
@@ -385,6 +386,7 @@ export default function ZenithShort() {
                 </div>
               </div>
             </div>
+
           </div>
 
           {/* Complete Your Look Section */}
@@ -393,10 +395,12 @@ export default function ZenithShort() {
               <h2 className={productStyles.sectionTitle}>DES OPTIONS À EXPLORER</h2>
             </div>
 
+            {/* Three Products Grid Section - Using ProductPage Style */}
             <section className={productStyles.threeProductsSection}>
+              {/* Desktop Grid */}
               <div className={productStyles.threeProductsGrid}>
                 {products
-                  .filter(p => p.subCategory === 'zenith' && p.id !== '17')
+                  .filter(p => p.subCategory === 'zenith' && p.id !== 'bombers-itoua-zenith')
                   .slice(0, 4)
                   .map((recommendedProduct) => (
                     <div key={recommendedProduct.id} className={productStyles.productSlot}>
@@ -406,8 +410,9 @@ export default function ZenithShort() {
                 }
               </div>
 
+              {/* Mobile Carousel */}
               <div className={productStyles.mobileCarousel}>
-                <MobileCarousel products={products.filter(p => p.subCategory === 'zenith' && p.id !== '17').slice(0, 4)} />
+                <MobileCarousel products={products.filter(p => p.subCategory === 'zenith' && p.id !== 'bombers-itoua-zenith').slice(0, 4)} />
               </div>
             </section>
           </section>
@@ -421,7 +426,7 @@ export default function ZenithShort() {
         onClick={closeModal}
       />
 
-      {/* Right Modal */}
+      {/* Right Modal (Description, Size Guide, Care Guide) */}
       <div className={`${productStyles.slidingModal} ${productStyles.rightModal} ${rightModalOpen ? productStyles.open : ''}`}>
         <div className={productStyles.modalHeader}>
           <h2 className={productStyles.modalTitle}>{getModalTitle()}</h2>
@@ -449,8 +454,8 @@ export default function ZenithShort() {
           left: 20px;
           z-index: 1001;
           background: rgba(255, 255, 255, 0.3);
-          border-radius: 50%;
           border: none;
+          border-radius: 50%;
           width: 32px;
           height: 32px;
           display: flex;
