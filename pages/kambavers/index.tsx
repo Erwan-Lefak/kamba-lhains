@@ -50,14 +50,14 @@ export default function KambaversIndex() {
                 </button>
               </li>
               <li>
-                <button 
+                <button
                   onClick={() => router.push('/kambavers/charte')}
                 >
                   NOS VALEURS
                 </button>
               </li>
-              <li>
-                <button 
+              {/* <li>
+                <button
                   onClick={() => {
                     setShowCollectionsSubmenu(!showCollectionsSubmenu);
                   }}
@@ -66,16 +66,16 @@ export default function KambaversIndex() {
                 </button>
                 {showCollectionsSubmenu && (
                   <ul className="submenu">
-                    {/* <li>
-                      <button 
+                    <li>
+                      <button
                         onClick={() => router.push('/kambavers/collections/eclat-ombre')}
                         className="submenu-item"
                       >
                         ÉCLAT D'OMBRE
                       </button>
-                    </li> */}
+                    </li>
                     <li>
-                      <button 
+                      <button
                         onClick={() => router.push('/kambavers/collections/ota-benga')}
                         className="submenu-item"
                       >
@@ -84,14 +84,14 @@ export default function KambaversIndex() {
                     </li>
                   </ul>
                 )}
-              </li>
-              <li>
-                <button 
+              </li> */}
+              {/* <li>
+                <button
                   onClick={() => router.push('/kambavers/boutiques')}
                 >
                   POINTS DE VENTE
                 </button>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>
@@ -140,14 +140,14 @@ export default function KambaversIndex() {
                 "KAMBAVERS"
               </h1>
               <p className={styles.collectionDescription}>
-                L'univers Kambavers incarne l'essence de la créativité africaine contemporaine, fusionnant héritage culturel et innovation moderne. Chaque création raconte une histoire unique, célébrant la richesse des traditions tout en embrassant les codes de la mode d'aujourd'hui. Un voyage artistique où l'authenticité rencontre l'élégance.
+                L'inspiration de Kamba Lhains repose sur une dualité subtile, une opposition qui, loin de se contrarier, donne naissance à une création unique et singulière. Nous fusionnons des mondes apparemment opposés pour inventer un univers où l'héritage rencontre l'innovation, et où la modernité dialogue avec la tradition. Cette dynamique crée une esthétique sans égale, un équilibre parfait entre le passé et le futur, entre l'Afrique et l'Europe, une invitation à découvrir de nouvelles formes d'élégance. Pour en savoir plus sur notre univers, nous vous invitons à découvrir l'histoire de Kamba Lhains a travers notre rubrique, La Marque ainsi que Nos valeurs.
               </p>
             </div>
             
             <div className={styles.mediaSection}>
               <div className={styles.imageContainer}>
                 <Image
-                  src="/images/kambavers.jpg"
+                  src="/images/kambavers-hero-new.jpg?v=2"
                   alt="Kambavers Collection"
                   width={1200}
                   height={800}

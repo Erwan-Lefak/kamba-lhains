@@ -2,24 +2,236 @@ import { Product } from '../types';
 
 export const products: Product[] = [
   {
-    id: "10",
-    name: "BOMBERS ITOUA",
-    price: 650,
-    image: "/images/IMG_3567.jpeg",
+    id: "gilet-1957",
+    name: "GILET 1957",
+    price: 480,
+    image: "/images/gilet-1957-face.jpg?v=5",
     images: [
-      "/images/IMG_3567.jpeg"
+      "/images/gilet-1957-face.jpg?v=5",
+      "/images/gilet-1957-droit.jpg?v=5",
+      "/images/gilet-1957-gauche.jpg?v=5",
+      "/images/gilet-1957-dos.jpg?v=5",
+      "/images/gilet-1957-tex1.jpg?v=5",
+      "/images/gilet-1957-tex2.jpg?v=5",
+      "/images/gilet-1957-tex3.jpg?v=5"
     ],
+    imagesByColor: {
+      "#191970": [
+        "/images/gilet-1957-face.jpg?v=5",
+        "/images/gilet-1957-droit.jpg?v=5",
+        "/images/gilet-1957-gauche.jpg?v=5",
+        "/images/gilet-1957-dos.jpg?v=5",
+        "/images/gilet-1957-tex1.jpg?v=5",
+        "/images/gilet-1957-tex2.jpg?v=5",
+        "/images/gilet-1957-tex3.jpg?v=5"
+      ]
+    },
     description: [
-      "• Bombers moderne en nylon technique",
-      "• Coupe oversize tendance",
-      "• Fermeture éclair YKK",
-      "• Poches cargo fonctionnelles",
-      "• Style streetwear premium"
+      "Veste en denim, dotée de quatre poches plaquées plissées à rabat, avec boutons-pression, deux poches passepoilés intérieurs. Boutons à \"cloud\" sur le devant.",
+      "Empiècement au dos avec logo brodé et dos plissé pour une silhouette structurée.",
+      "Surpiqûres marron orangé sur l'ensemble de la pièce.",
+      "",
+      "Composition : 100 % coton",
+      "Tailles : S, M, L, XL (sold out)",
+      "Couleur : Bleu nuit",
+      "Zénith / Haut / Gilet / Denim / Coton"
+    ],
+    category: "homme",
+    subCategory: "denim",
+    colors: ["#191970"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inStock: false,
+    featured: false
+  },
+  {
+    id: "jean-1957",
+    name: "BAGGY 1957",
+    price: 360,
+    image: "/images/jean-1957-face.jpg?v=5",
+    images: [
+      "/images/jean-1957-face.jpg?v=5",
+      "/images/jean-1957-droit.jpg?v=5",
+      "/images/jean-1957-gauche.jpg?v=5",
+      "/images/jean-1957-dos.jpg?v=5",
+      "/images/jean-1957-tex1.jpg?v=5",
+      "/images/jean-1957-tex2.jpg?v=5",
+      "/images/jean-1957-tex3.jpg?v=5"
+    ],
+    imagesByColor: {
+      "#191970": [
+        "/images/jean-1957-face.jpg?v=5",
+        "/images/jean-1957-droit.jpg?v=5",
+        "/images/jean-1957-gauche.jpg?v=5",
+        "/images/jean-1957-dos.jpg?v=5",
+        "/images/jean-1957-tex1.jpg?v=5",
+        "/images/jean-1957-tex2.jpg?v=5",
+        "/images/jean-1957-tex3.jpg?v=5"
+      ]
+    },
+    description: [
+      "Jean en denim à coupe baggy, doté de boutons \"cloud\", d'un empiècement au dos et de poches plaquées à pli.",
+      "Surpiqûres marron orangé sur l'ensemble de la pièce, agrémenté d'un patch logo brodé sur la ceinture.",
+      "",
+      "Composition : 100 % coton",
+      "Tailles : S, M, L, XL (sold out)",
+      "Couleur : Bleu nuit",
+      "Zénith / Bas / Pantalon / Denim / Coton"
+    ],
+    category: "homme",
+    subCategory: "denim",
+    colors: ["#191970"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inStock: false,
+    featured: false
+  },
+  {
+    id: "pantalon-jane",
+    name: "PANTALON JANE",
+    price: 360,
+    image: "/images/pantalon-jane-face.jpg?v=3",
+    images: [
+      "/images/pantalon-jane-face.jpg?v=3",
+      "/images/pantalon-jane-droit.jpg?v=3",
+      "/images/pantalon-jane-gauche.jpg?v=3",
+      "/images/pantalon-jane-dos.jpg?v=3",
+      "/images/pantalon-jane-tex1.jpg?v=3",
+      "/images/pantalon-jane-tex2.jpg?v=3",
+      "/images/pantalon-jane-tex3.jpg?v=3"
+    ],
+    imagesByColor: {
+      "#1E3A8A": [
+        "/images/pantalon-jane-face.jpg?v=3",
+        "/images/pantalon-jane-droit.jpg?v=3",
+        "/images/pantalon-jane-gauche.jpg?v=3",
+        "/images/pantalon-jane-dos.jpg?v=3",
+        "/images/pantalon-jane-tex1.jpg?v=3",
+        "/images/pantalon-jane-tex2.jpg?v=3",
+        "/images/pantalon-jane-tex3.jpg?v=3"
+      ]
+    },
+    description: [
+      "Jean en denim, taille haute, à coupe évasée façon années 70.",
+      "Fermeture zippée, empiècement au dos et poches plaquées à pli.",
+      "Surpiqûres bleu gris sur l'ensemble de la pièce, agrémenté d'un patch logo brodé sur la ceinture.",
+      "",
+      "Tailles : S, M, L, XL (sold out)",
+      "Couleur : Bleu indigo",
+      "Composition : 100 % coton",
+      "Zénith / Bas / Pantalon / Denim / Coton"
+    ],
+    category: "femme",
+    subCategory: "denim",
+    colors: ["#1E3A8A"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inStock: false,
+    featured: false
+  },
+  {
+    id: "calecon-champion",
+    name: "CALEÇON CHAMPION",
+    price: 90,
+    image: "/images/calecon-blanc-face.jpg?v=3",
+    images: [
+      "/images/calecon-blanc-face.jpg?v=3",
+      "/images/calecon-blanc-droit.jpg?v=3",
+      "/images/calecon-blanc-gauche.jpg?v=3",
+      "/images/calecon-blanc-dos.jpg?v=3",
+      "/images/calecon-blanc-tex1.jpg?v=3",
+      "/images/calecon-blanc-tex2.jpg?v=3",
+      "/images/calecon-blanc-tex3.jpg?v=3"
+    ],
+    imagesByColor: {
+      "#FFFFFF": [
+        "/images/calecon-blanc-face.jpg?v=3",
+        "/images/calecon-blanc-droit.jpg?v=3",
+        "/images/calecon-blanc-gauche.jpg?v=3",
+        "/images/calecon-blanc-dos.jpg?v=3",
+        "/images/calecon-blanc-tex1.jpg?v=3",
+        "/images/calecon-blanc-tex2.jpg?v=3",
+        "/images/calecon-blanc-tex3.jpg?v=3"
+      ]
+    },
+    description: [
+      "Caleçon en percale, taille haute élastiquée, revisitant la coupe emblématique du short de boxe.",
+      "Détail logo apposé sur le devant.",
+      "",
+      "Composition : 100 % coton",
+      "Tailles : S, M, L, XL (disponible : S, M)",
+      "Couleur : Blanc",
+      "Aube / Bas / Sous-vêtement / Coton"
     ],
     category: "homme",
     subCategory: "aube",
-    colors: ["#000000", "#556B2F"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: ["#FFFFFF"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: "bombers-itoua-zenith",
+    name: "BOMBERS ITOUA",
+    price: 1120,
+    image: "/images/bombers-cafe-face.jpg?v=2",
+    images: [
+      "/images/bombers-cafe-face.jpg?v=2",
+      "/images/bombers-cafe-droit.jpg?v=2",
+      "/images/bombers-cafe-gauche.jpg?v=2",
+      "/images/bombers-cafe-dos.jpg?v=2",
+      "/images/bombers-cafe-tex2.jpg?v=2",
+      "/images/bombers-cafe-tex3.jpg?v=2",
+      "/images/bombers-cafe-tex4.jpg?v=2"
+    ],
+    imagesByColor: {
+      "#A0826D": [
+        "/images/bombers-cafe-face.jpg?v=2",
+        "/images/bombers-cafe-droit.jpg?v=2",
+        "/images/bombers-cafe-gauche.jpg?v=2",
+        "/images/bombers-cafe-dos.jpg?v=2",
+        "/images/bombers-cafe-tex2.jpg?v=2",
+        "/images/bombers-cafe-tex3.jpg?v=2",
+        "/images/bombers-cafe-tex4.jpg?v=2"
+      ],
+      "#808080": [
+        "/images/bombers-gris-face.jpg?v=2",
+        "/images/bombers-gris-droit.jpg?v=2",
+        "/images/bombers-gris-gauche.jpg?v=2",
+        "/images/bombers-gris-dos.jpg?v=2",
+        "/images/bombers-gris-tex1.jpg?v=2",
+        "/images/bombers-gris-tex2.jpg?v=2",
+        "/images/bombers-gris-tex3.jpg?v=2"
+      ]
+    },
+    description: [
+      "Bomber extra oversize zippé, doté de quatre poches frontales, deux poches latérales et de poches passepoilées intérieures.",
+      "Dos plissé, finitions élastiquées à la taille et aux poignets pour un ajustement parfait.",
+      "",
+      "Matière : 100 % coton Panama brut",
+      "Doublure : 100 % coton",
+      "",
+      "Tailles : S, M, L (disponible : M)",
+      "Couleurs : Café, Gris (tous deux disponibles)",
+      "Zénith / Haut / Blouson / Coton",
+      "",
+      "• Blouson bombers extra-oversized",
+      "• Dos plissé et empiècement structuré brodé de l'emblème de la marque",
+      "• Huit poches au total : quatre à l'avant à soufflets fermées par rabats à boutons de pressions, deux latérales, deux intérieures",
+      "• Fermeture zippée sur le devant",
+      "• Col structuré",
+      "• Motif Itoua à l'esprit rustique",
+      "• Poignets et ourlet élastiqués",
+      "• Fabriqué en France",
+      "",
+      "ENTRETIEN :",
+      "• Lavage délicat à 30°C",
+      "• Pas de blanchiment",
+      "• Repassage à basse température, sans vapeur",
+      "• Nettoyage à sec possible",
+      "• Ne pas sécher en machine"
+    ],
+    category: "homme",
+    subCategory: "zenith",
+    colors: ["#A0826D", "#808080"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: true
   },
@@ -27,384 +239,387 @@ export const products: Product[] = [
     id: "17",
     name: "SHORT URIEL",
     price: 280,
-    image: "/images/IMG_3620.jpeg",
+    image: "/images/short-uriel-rouge-face.jpg?v=2",
     images: [
-      "/images/IMG_3620.jpeg"
+      "/images/short-uriel-rouge-face.jpg?v=2",
+      "/images/short-uriel-rouge-droit.jpg?v=2",
+      "/images/short-uriel-rouge-gauche.jpg?v=2",
+      "/images/short-uriel-rouge-dos.jpg?v=2",
+      "/images/short-uriel-rouge-tex1.jpg?v=2",
+      "/images/short-uriel-rouge-tex2.jpg?v=2",
+      "/images/short-uriel-rouge-tex3.jpg?v=2"
     ],
+    imagesByColor: {
+      "#9f0909": [
+        "/images/short-uriel-rouge-face.jpg?v=2",
+        "/images/short-uriel-rouge-droit.jpg?v=2",
+        "/images/short-uriel-rouge-gauche.jpg?v=2",
+        "/images/short-uriel-rouge-dos.jpg?v=2",
+        "/images/short-uriel-rouge-tex1.jpg?v=2",
+        "/images/short-uriel-rouge-tex2.jpg?v=2",
+        "/images/short-uriel-rouge-tex3.jpg?v=2"
+      ]
+    },
     description: [
       "• Short moderne en coton premium",
       "• Coupe confortable et décontractée",
       "• Taille ajustable avec cordon",
       "• Poches fonctionnelles",
-      "• Style estival raffiné"
+      "• Style estival raffiné",
+      "",
+      "Zénith / Bas / Short / Coton"
     ],
     category: "homme",
     subCategory: "zenith",
-    colors: ["#F5F5DC", "#000000", "#556B2F"],
-    sizes: ["S", "M", "L", "XL"],
+    colors: ["#9f0909"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
-    featured: true
+    featured: false
   },
   {
-    id: "1",
+    id: "asabili-sweatpants",
     name: "ASABILI SWEATPANTS",
     price: 180,
-    image: "/images/IMG_3775.jpeg",
+    image: "/images/sweatpant-bordeaux-face.jpg?v=3",
     images: [
-      "/images/IMG_3775.jpeg"
+      "/images/sweatpant-bordeaux-face.jpg?v=3",
+      "/images/sweatpant-bordeaux-droit.jpg?v=3",
+      "/images/sweatpant-bordeaux-gauche.jpg?v=3",
+      "/images/sweatpant-bordeaux-dos.jpg?v=3",
+      "/images/sweatpant-bordeaux-tex1.jpg?v=3",
+      "/images/sweatpant-bordeaux-tex2.jpg?v=3"
     ],
+    imagesByColor: {
+      "#9f0909": [
+        "/images/sweatpant-bordeaux-face.jpg?v=3",
+        "/images/sweatpant-bordeaux-droit.jpg?v=3",
+        "/images/sweatpant-bordeaux-gauche.jpg?v=3",
+        "/images/sweatpant-bordeaux-dos.jpg?v=3",
+        "/images/sweatpant-bordeaux-tex1.jpg?v=3",
+        "/images/sweatpant-bordeaux-tex2.jpg?v=3"
+      ],
+      "#F5F5DC": [
+        "/images/sweatpant-beige-face.jpg?v=3",
+        "/images/sweatpant-beige-droit.jpg?v=3",
+        "/images/sweatpant-beige-gauche.jpg?v=3",
+        "/images/sweatpant-beige-dos.jpg?v=3",
+        "/images/sweatpant-beige-tex1.jpg?v=3",
+        "/images/sweatpant-beige-tex2.jpg?v=3",
+        "/images/sweatpant-beige-tex3.jpg?v=3",
+        "/images/sweatpant-beige-tex4.jpg?v=3"
+      ],
+      "#808080": [
+        "/images/sweatpant-gris-face.jpg?v=3",
+        "/images/sweatpant-gris-droit.jpg?v=3",
+        "/images/sweatpant-gris-gauche.jpg?v=3",
+        "/images/sweatpant-gris-dos.jpg?v=3",
+        "/images/sweatpant-gris-tex1.jpg?v=3",
+        "/images/sweatpant-gris-tex2.jpg?v=3"
+      ],
+      "#556B2F": [
+        "/images/sweatpant-kaki-face.jpg?v=3",
+        "/images/sweatpant-kaki-droit.jpg?v=3",
+        "/images/sweatpant-kaki-gauche.jpg?v=3",
+        "/images/sweatpant-kaki-dos.jpg?v=3",
+        "/images/sweatpant-kaki-tex1.jpg?v=3",
+        "/images/sweatpant-kaki-tex2.jpg?v=3"
+      ]
+    },
     description: [
       "Sweatpants à coupe baggy, taille haute élastiquée, inspiré du short de boxe.",
       "Logo frontal, poches plaquées à ouverture latérale et bas du vêtement à finition bord franc.",
-      "Composition : 100 % coton"
+      "",
+      "Tailles : S, M, L, XL",
+      "Couleurs : Gris, bordeaux, kaki, blanc cassé",
+      "",
+      "Composition : 100 % coton",
+      "Aube / Bas / Pantalon / Coton"
     ],
     category: "femme",
-    subCategory: "zenith",
-    colors: ["#808080", "#800020", "#556B2F", "#F5F5DC"],
-    sizes: ["S", "M"],
+    subCategory: "aube",
+    colors: ["#9f0909", "#F5F5DC", "#808080", "#556B2F"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
-    featured: false
-  },
-  {
-    id: "2",
-    name: "JEAN TRF MOM FIT",
-    price: 450,
-    image: "/images/collection/IMG_2885.jpeg",
-    description: [
-      "• Jean mom fit en denim premium",
-      "• Taille haute confortable",
-      "• Coupe décontractée moderne",
-      "• Finitions vintage authentiques",
-      "• Fabrication européenne"
-    ],
-    category: "femme",
-    subCategory: "zenith",
-    colors: ["#1E3A8A", "#000000"],
-    sizes: ["XS", "S", "M", "L"],
-    inStock: true,
-    featured: false
+    featured: true
   },
   {
     id: "3",
     name: "VOILE DE CORPS",
-    price: 368,
-    image: "/images/IMG_3731.jpeg",
+    price: 318,
+    image: "/images/voile-bordeaux-face.jpg?v=4",
     images: [
-      "/images/IMG_3731.jpeg",
-      "/images/IMG_3504.jpeg",
-      "/images/59e68ef6-1758-4cf8-b860-bb6e98f37e78.jpg",
-      "/images/1b4c53b1-403a-4834-998e-4226cbd1db87.jpg",
-      "/images/0ca33ab3-b0f3-4a06-b40b-2fcf592ded3c.jpg",
-      "/images/64fb19a1-f7fb-4032-8d1e-159acb7ba259.jpg",
-      "/images/26dc157c-bd01-4abe-99ed-ff2726f4461a.jpg",
-      "/images/cda451fc-8233-435b-9062-12adf61f279b.jpg",
-      "/images/474bbbf9-e786-4884-ab0e-caa22275def1.jpg",
-      "/images/71a9b3e4-e96d-4856-a278-af558840b914.jpg",
-      "/images/df865631-0770-4a9a-a127-76018e1c7493.jpg",
-      "/images/e061c517-25af-4407-bbd0-6b69f38f62f7.jpg"
+      "/images/voile-bordeaux-face.jpg?v=4",
+      "/images/voile-bordeaux-droit.jpg?v=4",
+      "/images/voile-bordeaux-gauche.jpg?v=4",
+      "/images/voile-bordeaux-dos.jpg?v=4",
+      "/images/voile-bordeaux-tex1.jpg?v=4",
+      "/images/voile-bordeaux-tex2.jpg?v=4"
     ],
     imagesByColor: {
-      "#000000": [
-        "/images/IMG_3794.jpeg",
-        "/images/IMG_3795.jpeg",
-        "/images/IMG_3798.jpeg",
-        "/images/IMG_3799.jpeg",
-        "/images/IMG_3800.jpeg",
-        "/images/IMG_3801.jpeg",
-        "/images/IMG_3805.jpeg",
-        "/images/IMG_3806.jpeg"
+      "#9f0909": [
+        "/images/voile-bordeaux-face.jpg?v=4",
+        "/images/voile-bordeaux-droit.jpg?v=4",
+        "/images/voile-bordeaux-gauche.jpg?v=4",
+        "/images/voile-bordeaux-dos.jpg?v=4",
+        "/images/voile-bordeaux-tex1.jpg?v=4",
+        "/images/voile-bordeaux-tex2.jpg?v=4"
       ],
       "#8B4513": [
-        "/images/IMG_3794.jpeg",
-        "/images/IMG_3795.jpeg",
-        "/images/IMG_3798.jpeg",
-        "/images/IMG_3799.jpeg",
-        "/images/IMG_3800.jpeg",
-        "/images/IMG_3801.jpeg",
-        "/images/IMG_3805.jpeg",
-        "/images/IMG_3806.jpeg"
+        "/images/voile-marron-face.jpg?v=4",
+        "/images/voile-marron-droit.jpg?v=4",
+        "/images/voile-marron-gauche.jpg?v=4",
+        "/images/voile-marron-dos.jpg?v=4",
+        "/images/voile-marron-tex1.jpg?v=4",
+        "/images/voile-marron-tex2.jpg?v=4"
       ],
-      "#800020": [
-        "/images/IMG_3808.jpeg",
-        "/images/IMG_3810.jpeg",
-        "/images/IMG_3812.jpeg",
-        "/images/IMG_3815.jpeg",
-        "/images/IMG_3816.jpeg",
-        "/images/IMG_3819.jpeg"
-      ],
-      "#556B2F": [
-        "/images/IMG_3794.jpeg",
-        "/images/IMG_3795.jpeg",
-        "/images/IMG_3798.jpeg",
-        "/images/IMG_3799.jpeg",
-        "/images/IMG_3800.jpeg",
-        "/images/IMG_3801.jpeg",
-        "/images/IMG_3805.jpeg",
-        "/images/IMG_3806.jpeg"
+      "#000000": [
+        "/images/voile-noir-new-1.jpg?v=5",
+        "/images/voile-noir-new-2.jpg?v=5",
+        "/images/voile-noir-new-3.jpg?v=5",
+        "/images/voile-noir-new-4.jpg?v=5",
+        "/images/voile-noir-new-5.jpg?v=5",
+        "/images/voile-noir-new-6.jpg?v=5",
+        "/images/voile-noir-new-7.jpg?v=5"
       ],
       "#FF69B4": [
-        "/images/IMG_3859.jpeg",
-        "/images/IMG_3868.jpeg",
-        "/images/IMG_3869.JPG",
-        "/images/IMG_3870.JPG",
-        "/images/IMG_3873.JPG",
-        "/images/IMG_3874.JPG",
-        "/images/IMG_3887.JPG",
-        "/images/IMG_3891.jpeg"
+        "/images/voile-rose-new-1.jpg?v=5",
+        "/images/voile-rose-new-2.jpg?v=5",
+        "/images/voile-rose-new-3.jpg?v=5",
+        "/images/voile-rose-new-4.jpg?v=5",
+        "/images/voile-rose-new-5.jpg?v=5",
+        "/images/voile-rose-new-6.jpg?v=5",
+        "/images/voile-rose-new-7.jpg?v=5"
       ]
+    },
+    imagesByColorAndSize: {
+      "#000000": {
+        "M": [
+          "/images/voile-noir-m-1.jpg",
+          "/images/voile-noir-m-2.jpg",
+          "/images/voile-noir-m-3.jpg"
+        ]
+      }
     },
     description: [
       "Voile de corps mi-mollet, à manches longues, doté d'un col large utilisable en capuche.",
       "Tailles : S, M, L, XL",
-      "Composition : 97% polyamide 3% Lycra"
+      "Composition : 97% polyamide 3% Lycra",
+      "",
+      "Crépuscule / Haut / Voile / Polyamide"
     ],
     category: "femme",
     subCategory: "crepuscule",
-    colors: ["#8B4513", "#800020", "#556B2F", "#000000", "#FF69B4"],
-    sizes: ["S", "M", "L", "XL"],
+    colors: ["#9f0909", "#8B4513", "#000000", "#FF69B4"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: true
   },
   {
-    id: "4",
-    name: "VESTE AVEC COL EN CONTRASTE",
-    price: 460,
-    image: "/images/collection/IMG_2877.jpeg",
-    description: [
-      "• Veste élégante avec col contrastant",
-      "• Coupe moderne et sophistiquée",
-      "• Finitions soignées",
-      "• Style contemporain raffiné",
-      "• Parfaite pour toutes occasions"
-    ],
-    category: "femme",
-    subCategory: "aube",
-    colors: ["#000000", "#F5F5DC"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "5",
-    name: "PANTALON KOFFI",
-    price: 580,
-    image: "/images/products/pantalon-koffi.png",
-    description: [
-      "• Pantalon droit en laine mérinos",
-      "• Taille mi-haute confortable",
-      "• Plis marqués devant",
-      "• Poches italiennes",
-      "• Fabrication européenne"
-    ],
-    category: "homme",
-    subCategory: "zenith",
-    colors: ["#1E3A8A", "#36454F"],
-    sizes: ["46", "48", "50", "52", "54"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "6",
-    name: "BLAZER AMARA",
-    price: 890,
-    image: "/images/products/blazer-amara.png",
-    description: [
-      "• Blazer non doublé en lin",
-      "• Coupe déstructurée moderne",
-      "• Revers crantés classiques",
-      "• Poches plaquées",
-      "• Idéal mi-saison"
-    ],
-    category: "homme",
-    subCategory: "crepuscule",
-    colors: ["#F5F5DC", "#1E3A8A"],
-    sizes: ["46", "48", "50", "52"],
-    inStock: true,
-    featured: false
-  },
-  {
     id: "7",
-    name: "CHEMISE URIEL",
+    name: "CHEMISE URIEL MANCHE LONGUE",
     price: 390,
-    image: "/images/products/chemise-uriel.png",
+    image: "/images/chemise-uriel-vert-face.jpg?v=2",
+    images: [
+      "/images/chemise-uriel-vert-face.jpg?v=2",
+      "/images/chemise-uriel-vert-droit.jpg?v=2",
+      "/images/chemise-uriel-vert-gauche.jpg?v=2",
+      "/images/chemise-uriel-vert-dos.jpg?v=2",
+      "/images/chemise-uriel-vert-tex1.jpg?v=2",
+      "/images/chemise-uriel-vert-tex2.jpg?v=2"
+    ],
+    imagesByColor: {
+      "#556B2F": [
+        "/images/chemise-uriel-vert-face.jpg?v=2",
+        "/images/chemise-uriel-vert-droit.jpg?v=2",
+        "/images/chemise-uriel-vert-gauche.jpg?v=2",
+        "/images/chemise-uriel-vert-dos.jpg?v=2",
+        "/images/chemise-uriel-vert-tex1.jpg?v=2",
+        "/images/chemise-uriel-vert-tex2.jpg?v=2"
+      ],
+      "#9f0909": [
+        "/images/chemise-uriel-rouge-face.jpg?v=2",
+        "/images/chemise-uriel-rouge-droit.jpg?v=2",
+        "/images/chemise-uriel-rouge-gauche.jpg?v=2",
+        "/images/chemise-uriel-rouge-dos.jpg?v=2",
+        "/images/chemise-uriel-rouge-tex1.jpg?v=2",
+        "/images/chemise-uriel-rouge-tex2.jpg?v=2"
+      ],
+      "#808080": [
+        "/images/chemise-uriel-gris-face.jpg?v=2",
+        "/images/chemise-uriel-gris-droit.jpg?v=2",
+        "/images/chemise-uriel-gris-gauche.jpg?v=2",
+        "/images/chemise-uriel-gris-dos.jpg?v=2"
+      ]
+    },
     description: [
       "• Chemise coupe droite en coton",
       "• Col boutonné moderne",
       "• Manches longues ajustables",
       "• Finitions soignées",
-      "• Style contemporain"
+      "• Style contemporain",
+      "",
+      "Zénith / Haut / Chemise / Coton"
     ],
     category: "homme",
-    subCategory: "aube",
-    colors: ["#FFFFFF", "#0EA5E9"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "8",
-    name: "VESTE KMOBOU",
-    price: 590,
-    image: "/images/products/veste-kmobou.png",
-    description: [
-      "• Veste légère en coton mélangé",
-      "• Coupe moderne décontractée",
-      "• Poches fonctionnelles",
-      "• Fermeture boutonnée",
-      "• Parfaite pour toutes saisons"
-    ],
-    category: "femme",
     subCategory: "zenith",
-    colors: ["#F5F5DC", "#8B7355"],
-    sizes: ["S", "M", "L", "XL"],
+    colors: ["#556B2F", "#9f0909", "#808080"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: false
   },
   {
-    id: "9",
-    name: "VESTE JANE",
-    price: 720,
-    image: "/images/products/veste-jane.png",
+    id: "7-ml",
+    name: "CHEMISE URIEL MANCHES COURTES",
+    price: 390,
+    image: "/images/chemise-uriel-mc-1.jpg?v=5",
+    images: [
+      "/images/chemise-uriel-mc-1.jpg?v=5",
+      "/images/chemise-uriel-mc-2.jpg?v=5",
+      "/images/chemise-uriel-mc-3.jpg?v=5",
+      "/images/chemise-uriel-mc-4.jpg?v=5",
+      "/images/chemise-uriel-mc-5.jpg?v=5"
+    ],
+    imagesByColor: {
+      "#9f0909": [
+        "/images/chemise-uriel-mc-1.jpg?v=5",
+        "/images/chemise-uriel-mc-2.jpg?v=5",
+        "/images/chemise-uriel-mc-3.jpg?v=5",
+        "/images/chemise-uriel-mc-4.jpg?v=5",
+        "/images/chemise-uriel-mc-5.jpg?v=5"
+      ]
+    },
     description: [
-      "• Veste structurée en laine mélangée",
-      "• Coupe moderne et élégante",
-      "• Doublure soie premium",
-      "• Fermeture boutonnée dorée",
-      "• Style contemporain raffiné"
+      "• Chemise coupe droite en coton",
+      "• Col boutonné moderne",
+      "• Manches courtes",
+      "• Finitions soignées",
+      "• Style contemporain",
+      "",
+      "Zénith / Haut / Chemise / Coton"
+    ],
+    category: "homme",
+    subCategory: "zenith",
+    colors: ["#9f0909"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inStock: true,
+    featured: false
+  },
+  {
+    id: "veste-jane",
+    name: "VESTE JANE",
+    price: 480,
+    image: "/images/veste-jane-face.jpg?v=3",
+    images: [
+      "/images/veste-jane-face.jpg?v=3",
+      "/images/veste-jane-droit.jpg?v=3",
+      "/images/veste-jane-gauche.jpg?v=3",
+      "/images/veste-jane-dos.jpg?v=3",
+      "/images/veste-jane-tex1.jpg?v=3",
+      "/images/veste-jane-tex2.jpg?v=3",
+      "/images/veste-jane-tex3.jpg?v=3"
+    ],
+    imagesByColor: {
+      "#191970": [
+        "/images/veste-jane-face.jpg?v=3",
+        "/images/veste-jane-droit.jpg?v=3",
+        "/images/veste-jane-gauche.jpg?v=3",
+        "/images/veste-jane-dos.jpg?v=3",
+        "/images/veste-jane-tex1.jpg?v=3",
+        "/images/veste-jane-tex2.jpg?v=3",
+        "/images/veste-jane-tex3.jpg?v=3"
+      ]
+    },
+    description: [
+      "Veste en denim, dotée de quatre poches plaquées plissées à rabat, avec boutons-pression, deux poches passepoilés intérieurs. Boutons à \"cloud\" sur le devant.",
+      "Empiècement au dos avec logo brodé et dos plissé pour une silhouette structurée.",
+      "Surpiqûres bleu gris sur l'ensemble de la pièce.",
+      "",
+      "Composition : 100 % coton",
+      "Tailles : S, M, L, XL (sold out)",
+      "Couleur : Bleu nuit",
+      "Zénith / Haut / Veste / Denim / Coton"
     ],
     category: "femme",
-    subCategory: "crepuscule",
-    colors: ["#000000", "#1E3A8A"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
+    subCategory: "denim",
+    colors: ["#191970"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    inStock: false,
     featured: false
   },
   {
     id: "11",
     name: "JUPE BINE",
     price: 420,
-    image: "/images/products/jupe-bine.png",
+    image: "/images/jupe-face.jpg?v=3",
+    images: [
+      "/images/jupe-face.jpg?v=3",
+      "/images/jupe-droit.jpg?v=3",
+      "/images/jupe-gauche.jpg?v=3",
+      "/images/jupe-dos.jpg?v=3",
+      "/images/jupe-tex1.jpg?v=3",
+      "/images/jupe-tex2.jpg?v=3",
+      "/images/jupe-tex3.jpg?v=3"
+    ],
+    imagesByColor: {
+      "#9f0909": [
+        "/images/jupe-face.jpg?v=3",
+        "/images/jupe-droit.jpg?v=3",
+        "/images/jupe-gauche.jpg?v=3",
+        "/images/jupe-dos.jpg?v=3",
+        "/images/jupe-tex1.jpg?v=3",
+        "/images/jupe-tex2.jpg?v=3",
+        "/images/jupe-tex3.jpg?v=3"
+      ]
+    },
     description: [
       "• Jupe midi en crêpe fluide",
       "• Taille haute confortable",
       "• Coupe évasée moderne",
       "• Fermeture invisible",
-      "• Style féminin intemporel"
+      "• Style féminin intemporel",
+      "",
+      "Zénith / Bas / Jupe / Crêpe"
     ],
     category: "femme",
     subCategory: "zenith",
-    colors: ["#000000", "#800020"],
-    sizes: ["XS", "S", "M", "L", "XL"],
+    colors: ["#9f0909"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: false
   },
   {
-    id: "12",
-    name: "PULL MARIN AUBE",
-    price: 385,
-    image: "/images/collection/IMG_2785.jpeg",
+    id: "surchemise-grand-boubou",
+    name: "SURCHEMISE GRAND BOUBOU",
+    price: 215,
+    image: "/images/surchemise-boubou-face.jpg?v=2",
     images: [
-      "/images/collection/IMG_2785.jpeg"
+      "/images/surchemise-boubou-face.jpg?v=2",
+      "/images/surchemise-boubou-droit.jpg?v=2",
+      "/images/surchemise-boubou-gauche.jpg?v=2",
+      "/images/surchemise-boubou-dos.jpg?v=2"
     ],
+    imagesByColor: {
+      "#4A5568": [
+        "/images/surchemise-boubou-face.jpg?v=2",
+        "/images/surchemise-boubou-droit.jpg?v=2",
+        "/images/surchemise-boubou-gauche.jpg?v=2",
+        "/images/surchemise-boubou-dos.jpg?v=2"
+      ]
+    },
     description: [
-      "Pull marin en maille fine pour la collection Aube",
-      "Coupe ajustée et confortable",
-      "Détails marines authentiques",
-      "Parfait pour les matinées fraîches",
-      "Fabrication européenne"
+      "Surchemise grand boubou à coupe ample et fluide inspirée du boubou traditionnel.",
+      "Motifs géométriques africains, col chemise structuré.",
+      "Manches amples pour un confort optimal, pièce statement alliant tradition et modernité.",
+      "",
+      "Composition : 100 % popeline de coton",
+      "Tailles : S, M, L, XL",
+      "Couleur : Gris",
+      "Zénith / Haut / Chemise / Coton"
     ],
-    category: "unisexe",
-    subCategory: "aube",
-    colors: ["#000080", "#FFFFFF"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "13", 
-    name: "CHEMISE AUBE CLASSIC",
-    price: 295,
-    image: "/images/collection/IMG_2796.jpeg",
-    images: [
-      "/images/collection/IMG_2796.jpeg"
-    ],
-    description: [
-      "Chemise classique de la collection Aube",
-      "Coupe droite intemporelle",
-      "Col chemise traditionnel",
-      "Tissu premium respirant",
-      "Idéale pour toutes occasions"
-    ],
-    category: "unisexe",
-    subCategory: "aube", 
-    colors: ["#FFFFFF", "#F5F5DC"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "14",
-    name: "POLO AUBE PREMIUM",
-    price: 245,
-    image: "/images/collection/IMG_2798.jpeg", 
-    images: [
-      "/images/collection/IMG_2798.jpeg"
-    ],
-    description: [
-      "Polo premium collection Aube",
-      "Maille piquée de qualité supérieure",
-      "Col polo ajustable",
-      "Coupe moderne et élégante",
-      "Parfait pour le sport-chic"
-    ],
-    category: "unisexe",
-    subCategory: "aube",
-    colors: ["#000000", "#8B7355"],
-    sizes: ["S", "M", "L", "XL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "15",
-    name: "VESTE AUBE URBAN",
-    price: 520,
-    image: "/images/collection/IMG_2917.jpeg",
-    images: [
-      "/images/collection/IMG_2917.jpeg"
-    ],
-    description: [
-      "Veste urbaine collection Aube",
-      "Design contemporain et fonctionnel",
-      "Matières techniques résistantes",
-      "Poches multiples pratiques",
-      "Style moderne et polyvalent"
-    ],
-    category: "unisexe",
-    subCategory: "aube",
-    colors: ["#000000", "#2F2F2F"],
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    inStock: true,
-    featured: false
-  },
-  {
-    id: "16",
-    name: "SWEAT ESSENTIEL",
-    price: 195,
-    image: "/images/collection/IMG_2864.jpeg",
-    images: [
-      "/images/collection/IMG_2864.jpeg"
-    ],
-    description: [
-      "Sweat essentiel pour un style décontracté",
-      "Coton molletonné de qualité premium",
-      "Coupe regular confortable",
-      "Finitions soignées",
-      "Parfait pour toutes saisons"
-    ],
-    category: "unisexe",
-    subCategory: "general",
-    colors: ["#000000", "#FFFFFF", "#808080"],
-    sizes: ["S", "M", "L", "XL"],
+    category: "homme",
+    subCategory: "zenith",
+    colors: ["#4A5568"],
+    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     inStock: true,
     featured: false
   }

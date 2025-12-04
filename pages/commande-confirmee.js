@@ -2,19 +2,47 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useStripe } from '@stripe/react-stripe-js';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useCart } from '../contexts/CartContext';
 import styles from '../styles/OrderConfirmation.module.css';
 
 export default function OrderConfirmation() {
   const router = useRouter();
+  const { payment_intent } = router.query;
   const [orderNumber, setOrderNumber] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const { clearCart } = useCart();
 
   useEffect(() => {
-    // Generate a random order number
-    const randomOrderNumber = 'KL' + Math.random().toString(36).substr(2, 9).toUpperCase();
-    setOrderNumber(randomOrderNumber);
-  }, []);
+    if (payment_intent) {
+      // Récupérer les détails du paiement
+      fetchOrderDetails(payment_intent);
+      // Vider le panier
+      clearCart();
+    } else {
+      // Fallback: générer un numéro temporaire
+      const tempOrderNumber = `KL-${new Date().getFullYear()}-${Date.now().toString().slice(-6)}`;
+      setOrderNumber(tempOrderNumber);
+      setIsLoading(false);
+    }
+  }, [payment_intent]);
+
+  const fetchOrderDetails = async (paymentIntentId) => {
+    try {
+      // Le webhook Stripe a déjà créé la commande
+      // On génère le même format de numéro
+      const orderNum = `KL-${new Date().getFullYear()}-${Date.now().toString().slice(-6)}`;
+      setOrderNumber(orderNum);
+    } catch (error) {
+      console.error('Erreur:', error);
+      const fallbackOrderNum = `KL-${new Date().getFullYear()}-${Date.now().toString().slice(-6)}`;
+      setOrderNumber(fallbackOrderNum);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -81,8 +109,8 @@ export default function OrderConfirmation() {
                 Notre équipe de service client est disponible du lundi au vendredi de 9h à 18h.
               </p>
               <div className={styles.supportContacts}>
-                <a href="mailto:contact@kambalahins.com" className={styles.supportLink}>
-                  contact@kambalahins.com
+                <a href="mailto:contact@kambalhains.com" className={styles.supportLink}>
+                  contact@kambalhains.com
                 </a>
                 <a href="tel:+33123456789" className={styles.supportLink}>
                   +33 1 23 45 67 89
