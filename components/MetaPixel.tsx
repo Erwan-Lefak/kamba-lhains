@@ -42,11 +42,14 @@ export const trackMetaEvent = (eventName: string, parameters: any = {}, eventId?
  * Track ViewContent - AVEC déduplication Pixel/CAPI
  * @returns eventId à passer au CAPI pour déduplication
  */
-export const trackMetaViewContent = (productId: string, productName: string, price: number, currency: string = 'EUR'): string => {
+export const trackMetaViewContent = (productId: string, productName: string, price: number, currency: string = 'EUR', metaContentId?: string): string => {
   const eventId = generateMetaEventId('ViewContent');
 
+  // Utiliser metaContentId si disponible, sinon productId
+  const contentId = metaContentId || productId;
+
   trackMetaEvent('ViewContent', {
-    content_ids: [productId],
+    content_ids: [contentId],
     content_name: productName,
     content_type: 'product',
     value: price,
@@ -60,11 +63,14 @@ export const trackMetaViewContent = (productId: string, productName: string, pri
  * Track AddToCart - AVEC déduplication Pixel/CAPI
  * @returns eventId à passer au CAPI pour déduplication
  */
-export const trackMetaAddToCart = (productId: string, productName: string, price: number, quantity: number = 1, currency: string = 'EUR'): string => {
+export const trackMetaAddToCart = (productId: string, productName: string, price: number, quantity: number = 1, currency: string = 'EUR', metaContentId?: string): string => {
   const eventId = `AddToCart_${productId}_${Date.now()}`;
 
+  // Utiliser metaContentId si disponible, sinon productId
+  const contentId = metaContentId || productId;
+
   trackMetaEvent('AddToCart', {
-    content_ids: [productId],
+    content_ids: [contentId],
     content_name: productName,
     content_type: 'product',
     value: price * quantity,

@@ -5,6 +5,7 @@ export const products: Product[] = [
     id: "gilet-1957",
     name: "GILET 1957",
     nameEn: "VEST 1957",
+    metaContentId: "xb5svp83rn",
     price: 450,
     image: "/images/gilet-1957-face.jpg?v=5",
     images: [
@@ -48,6 +49,7 @@ export const products: Product[] = [
     id: "jean-1957",
     name: "BAGGY 1957",
     nameEn: "BAGGY 1957",
+    metaContentId: "fe40xyyaq0",
     price: 490,
     image: "/images/jean-1957-face.jpg?v=5",
     images: [
@@ -140,6 +142,7 @@ export const products: Product[] = [
     id: "calecon-champion",
     name: "CALEÇON CHAMPION",
     nameEn: "CHAMPION UNDERPANTS",
+    metaContentId: "lxp7omm81s",
     price: 109,
     image: "/images/calecon-blanc-face.jpg?v=3",
     images: [
@@ -181,6 +184,7 @@ export const products: Product[] = [
   {
     id: "bombers-itoua-zenith",
     name: "BOMBERS ITOUA",
+    metaContentId: "k46v6n4dgc",
     nameEn: "ITOUA BOMBER",
     price: 1120,
     image: "/images/bombers-cafe-face.jpg?v=2",
@@ -251,6 +255,7 @@ export const products: Product[] = [
   {
     id: "17",
     name: "SHORT URIEL",
+    metaContentId: "gkhg5wks9m",
     nameEn: "URIEL SHORTS",
     price: 309,
     image: "/images/short-uriel-rouge-face.jpg?v=2",
@@ -293,6 +298,7 @@ export const products: Product[] = [
   {
     id: "asabili-sweatpants",
     name: "BAS DE SURVÊTEMENT ASABILI",
+    metaContentId: "macvkotoy8",
     nameEn: "ASABILI SWEATPANTS",
     price: 190,
     image: "/images/sweatpant-bordeaux-face.jpg?v=3",
@@ -358,6 +364,7 @@ export const products: Product[] = [
   {
     id: "3",
     name: "VOILE DE CORPS",
+    metaContentId: "lm1zay3jds",
     nameEn: "BODY VEIL",
     price: 348,
     image: "/images/voile-bordeaux-face.jpg?v=4",
@@ -430,6 +437,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "CHEMISE URIEL MANCHE LONGUE",
+    metaContentId: "yk34ebojq0",
     nameEn: "URIEL LONG SLEEVE SHIRT",
     price: 390,
     image: "/images/chemise-uriel-vert-face.jpg?v=2",
@@ -484,6 +492,7 @@ export const products: Product[] = [
   {
     id: "7-ml",
     name: "CHEMISE URIEL MANCHES COURTES",
+    metaContentId: "kuudtj9rqj",
     nameEn: "URIEL SHORT SLEEVE SHIRT",
     price: 340,
     image: "/images/chemise-uriel-mc-1.jpg?v=5",
@@ -565,6 +574,7 @@ export const products: Product[] = [
   {
     id: "11",
     name: "JUPE BINE",
+    metaContentId: "qmum3zoo3s",
     nameEn: "BINE SKIRT",
     price: 520,
     image: "/images/jupe-face.jpg?v=3",
@@ -607,6 +617,7 @@ export const products: Product[] = [
   {
     id: "surchemise-grand-boubou",
     name: "SURCHEMISE GRAND BOUBOU",
+    metaContentId: "6fu2ecoyhi",
     nameEn: "GRAND BOUBOU OVERSHIRT",
     price: 640,
     image: "/images/surchemise-boubou-face.jpg?v=2",

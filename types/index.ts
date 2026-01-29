@@ -57,6 +57,7 @@ export interface Product {
   featured: boolean;
   seo?: SEOData;
   analytics?: ProductAnalytics;
+  metaContentId?: string; // Content ID pour Meta Pixel / Facebook Catalog
   createdAt?: string;
   updatedAt?: string;
 }

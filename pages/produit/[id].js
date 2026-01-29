@@ -111,7 +111,7 @@ export default function ProductDetail() {
         trackViewContent(foundProduct.id, foundProduct.name, price);
 
         // Meta Pixel ViewContent + CAPI avec déduplication eventId
-        const eventId = trackMetaViewContent(foundProduct.id, foundProduct.name, price);
+        const eventId = trackMetaViewContent(foundProduct.id, foundProduct.name, price, 'EUR', foundProduct.metaContentId);
 
         // Envoyer au CAPI avec le même eventId pour déduplication
         sendCAPIViewContent({
@@ -209,7 +209,7 @@ export default function ProductDetail() {
     trackAddToCart(product.id, product.name, price, quantity);
 
     // Meta Pixel AddToCart + CAPI avec déduplication eventId
-    const eventId = trackMetaAddToCart(product.id, product.name, price, quantity);
+    const eventId = trackMetaAddToCart(product.id, product.name, price, quantity, 'EUR', product.metaContentId);
 
     // Envoyer au CAPI avec le même eventId pour déduplication
     sendCAPIAddToCart({
@@ -1526,6 +1526,28 @@ export default function ProductDetail() {
       <Head>
         <title>{product.name} - Kamba Lhains</title>
         <meta name="description" content={`Découvrez ${product.name} de Kamba Lhains. ${product.description[0]}`} />
+
+        {/* Meta/Facebook Catalog Microdata - JSON-LD for automatic product detection */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org/",
+              "@type": "Product",
+              "name": product.name,
+              "description": Array.isArray(product.description) ? product.description.join(' ') : product.description,
+              "image": product.image,
+              "offers": {
+                "@type": "Offer",
+                "price": typeof product.price === 'string' ? parseFloat(product.price.replace(',', '.')) : product.price,
+                "priceCurrency": "EUR",
+                "availability": product.inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+                "url": `https://kamba-lhains.com/produit/${product.id}`
+              },
+              "productID": product.metaContentId || product.id
+            })
+          }}
+        />
       </Head>
 
       <Header />
