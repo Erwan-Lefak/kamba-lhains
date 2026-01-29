@@ -1,0 +1,3 @@
+Email,Prénom,Date d'inscription,Statut,Centres d'intérêt,Fréquence,Source
+exemple@email.com,Jean,2025-12-07T10:30:00.000Z,active,"Nouvelles collections, Offres exclusives",weekly,footer
+test@kamba.com,Marie,2025-12-07T14:20:00.000Z,active,"Coulisses de la marque, Conseils durabilité",monthly,newsletter-page

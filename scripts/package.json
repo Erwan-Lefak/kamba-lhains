@@ -1,0 +1,11 @@
+{
+  "name": "kamba-lhains-scripts",
+  "version": "1.0.0",
+  "description": "Scripts d'optimisation",
+  "scripts": {
+    "optimize-images": "node optimize-images.js"
+  },
+  "dependencies": {
+    "sharp": "^0.33.0"
+  }
+}

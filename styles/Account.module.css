@@ -1,0 +1,583 @@
+/* Account Page Styles - Kamba Lhains */
+
+.accountPage {
+  min-height: 100vh;
+  background: white;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  padding: calc(var(--header-height) + 40px) 20px 80px;
+}
+
+.accountContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 11px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tabs Navigation */
+.tabsContainer {
+  margin-bottom: 40px;
+  border-bottom: 1px solid #000;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 15px 25px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #000;
+}
+
+.activeTab {
+  color: #000 !important;
+  border-bottom-color: #000;
+}
+
+/* Tab Content */
+.tabContent {
+  padding: 40px 0;
+}
+
+.section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.subsectionTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 20px 0;
+}
+
+.description {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Form Elements */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  font-size: 11px;
+  color: #000;
+  font-family: 'Manrope', sans-serif;
+  transition: border-color 0.3s;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-bottom-color: #000;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.infoValue {
+  padding: 12px 0;
+  border-bottom: 1px solid transparent;
+  font-size: 11px;
+  color: #000;
+  min-height: 43px;
+}
+
+.checkboxGroup {
+  margin: 20px 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #000;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkbox:checked {
+  background-color: #000;
+  border-color: #000;
+}
+
+.checkbox:focus {
+  outline: none;
+  border-color: #000;
+}
+
+/* Buttons */
+.buttonGroup {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.editButton,
+.addButton,
+.saveButton,
+.cancelButton,
+.primaryButton,
+.logoutButton,
+.deleteButton {
+  padding: 12px 24px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #000;
+  background: transparent;
+  color: #000;
+}
+
+.editButton:hover,
+.addButton:hover,
+.cancelButton:hover {
+  background: #000;
+  color: white;
+}
+
+.saveButton,
+.primaryButton {
+  background: #000;
+  color: white;
+}
+
+.saveButton:hover,
+.primaryButton:hover {
+  background: #333;
+}
+
+.saveButton:disabled,
+.cancelButton:disabled,
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.logoutButton {
+  border-color: #666;
+  color: #666;
+}
+
+.logoutButton:hover {
+  background: #666;
+  color: white;
+}
+
+.deleteButton {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.deleteButton:hover {
+  background: #dc2626;
+  color: white;
+}
+
+/* Empty States */
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.emptyState p {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Security Section */
+.securitySection {
+  padding: 30px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.securitySection:last-child {
+  border-bottom: none;
+}
+
+.confirmDelete {
+  margin-top: 20px;
+}
+
+.warningText {
+  font-size: 11px;
+  color: #dc2626;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.preferenceGroup {
+  margin-bottom: 30px;
+}
+
+/* Addresses & Orders List */
+.addressForm {
+  background: #f9f9f9;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+}
+
+.comingSoon {
+  font-size: 11px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.addressList,
+.orderList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addressCard {
+  border: 1px solid #ddd;
+  padding: 25px;
+  position: relative;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.addressCard:hover {
+  border-color: #000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.defaultBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 4px 10px;
+  background: #000;
+  color: white;
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.addressContent {
+  margin-bottom: 20px;
+}
+
+.addressName {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.addressCompany {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.addressLine {
+  font-size: 11px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.addressPhone {
+  font-size: 11px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.addressActions {
+  display: flex;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.orderCard {
+  border: 1px solid #ddd;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.orderCard:hover {
+  border-color: #000;
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.orderNumber {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.orderDate {
+  font-size: 10px;
+  color: #666;
+}
+
+.orderStatus {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid;
+}
+
+.statusPENDING {
+  color: #f59e0b;
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.statusPAID {
+  color: #10b981;
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+.statusDELIVERED {
+  color: #3b82f6;
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.statusCANCELLED {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.orderItems {
+  margin-bottom: 15px;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orderItem {
+  font-size: 11px;
+  color: #333;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+.orderFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.orderTotal {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.trackingNumber {
+  font-size: 10px;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .accountPage {
+    padding: calc(var(--header-height) + 20px) 15px 50px;
+  }
+
+  .pageTitle {
+    font-size: 11px;
+    margin-bottom: 30px;
+  }
+
+  .tabs {
+    gap: 0;
+  }
+
+  .tab {
+    padding: 12px 15px;
+    font-size: 10px;
+  }
+
+  .tabContent {
+    padding: 30px 0;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .editButton,
+  .addButton,
+  .saveButton,
+  .cancelButton,
+  .primaryButton,
+  .logoutButton,
+  .deleteButton {
+    width: 100%;
+  }
+
+  .input {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    padding: 12px;
+    font-size: 9px;
+  }
+
+  .emptyState {
+    padding: 40px 15px;
+  }
+}

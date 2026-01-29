@@ -1,0 +1,518 @@
+/* Micro-interactions avancées avec feedback haptique */
+
+/* Interactive Button */
+.interactiveButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.interactiveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Variantes de boutons */
+.interactiveButton.primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.interactiveButton.secondary {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.interactiveButton.ghost {
+  background: transparent;
+  color: #666;
+  border: 1px solid #e0e0e0;
+}
+
+/* Tailles */
+.interactiveButton.sm {
+  padding: 8px 16px;
+  font-size: 14px;
+  min-height: 36px;
+}
+
+.interactiveButton.md {
+  padding: 12px 24px;
+  font-size: 16px;
+  min-height: 44px;
+}
+
+.interactiveButton.lg {
+  padding: 16px 32px;
+  font-size: 18px;
+  min-height: 52px;
+}
+
+/* Conteneur pour les ripples */
+.rippleContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Contenu du bouton */
+.buttonContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Spinner de chargement */
+.loadingSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+/* Effet shimmer */
+.shimmer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Interactive Card */
+.interactiveCard {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Gradient qui suit la souris */
+.mouseGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Actions flottantes */
+.floatingActions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.favoriteActive {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+
+/* Indicateur d'interaction */
+.interactionIndicator {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+/* Interactive Input */
+.inputContainer {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.inputWrapper {
+  position: relative;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  color: #9ca3af;
+}
+
+.inputField {
+  position: relative;
+  padding: 16px 12px 6px 12px;
+}
+
+.inputField:has(.inputIcon) {
+  padding-left: 40px;
+}
+
+.inputLabel {
+  position: absolute;
+  left: 12px;
+  top: 16px;
+  color: #9ca3af;
+  font-size: 16px;
+  pointer-events: none;
+  transform-origin: left top;
+  z-index: 2;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #1f2937;
+  z-index: 1;
+  position: relative;
+}
+
+.input::placeholder {
+  color: #d1d5db;
+  opacity: 1;
+}
+
+/* Icônes de statut */
+.successIcon,
+.errorIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  z-index: 3;
+}
+
+.successIcon {
+  color: #10b981;
+}
+
+.errorIcon {
+  color: #ef4444;
+}
+
+/* Message d'erreur */
+.errorMessage {
+  color: #ef4444;
+  font-size: 14px;
+  margin-top: 6px;
+  padding-left: 12px;
+}
+
+/* Barre de force du mot de passe */
+.strengthBar {
+  height: 4px;
+  background: #f3f4f6;
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.strengthFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Interactive Toggle */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.toggle {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: #e5e7eb;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.toggle.sm {
+  width: 36px;
+  height: 20px;
+}
+
+.toggle.lg {
+  width: 56px;
+  height: 28px;
+}
+
+.toggle.checked {
+  background: #10b981;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  will-change: transform;
+}
+
+.toggle.sm .toggleThumb {
+  width: 16px;
+  height: 16px;
+}
+
+.toggle.lg .toggleThumb {
+  width: 24px;
+  height: 24px;
+}
+
+.toggleGlow {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent 70%);
+  border-radius: 16px;
+}
+
+.toggleLabel {
+  font-size: 14px;
+  color: #374151;
+  user-select: none;
+}
+
+/* Toast Notification */
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  border-left: 4px solid;
+  max-width: 400px;
+  min-width: 300px;
+  cursor: grab;
+  user-select: none;
+}
+
+.toast:active {
+  cursor: grabbing;
+}
+
+.toast.success {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.toast.error {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+.toast.warning {
+  border-left-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.toast.info {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.toastIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.toastMessage {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.toastClose {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  min-height: auto;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.toastProgress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  transform-origin: left;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .interactiveButton.lg {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+  
+  .floatingActions {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+  
+  .toast {
+    max-width: calc(100vw - 32px);
+    min-width: auto;
+  }
+  
+  .inputField {
+    padding: 14px 12px 6px 12px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .interactiveButton {
+    border: 2px solid currentColor;
+  }
+  
+  .interactiveCard {
+    border: 1px solid #666;
+  }
+  
+  .inputWrapper {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .interactiveButton,
+  .interactiveCard,
+  .inputWrapper,
+  .toggle,
+  .toast {
+    transition: none;
+  }
+  
+  .shimmer,
+  .loadingSpinner {
+    animation: none;
+  }
+  
+  .ripple {
+    display: none;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .interactiveCard {
+    background: #1f2937;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .inputWrapper {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .input {
+    color: #f9fafb;
+  }
+  
+  .inputLabel {
+    color: #9ca3af;
+  }
+  
+  .toast {
+    background: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .toast.success {
+    background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  }
+  
+  .toast.error {
+    background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  }
+  
+  .toast.warning {
+    background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+  }
+  
+  .toast.info {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  }
+  
+  .toggleLabel {
+    color: #f9fafb;
+  }
+}

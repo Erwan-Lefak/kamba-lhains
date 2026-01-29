@@ -1,0 +1,366 @@
+/* Overlay */
+.searchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99999 !important;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Container */
+.searchModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  max-height: 70vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.searchHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 40px;
+  border-bottom: 1px solid #e5e5e5;
+  background: #ffffff;
+  z-index: 10;
+}
+
+.searchInputWrapper {
+  position: relative;
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  color: #666;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 14px 50px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  outline: none;
+  transition: all 0.2s ease;
+  background: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.searchInput:focus {
+  border-color: #000;
+  background: #ffffff;
+}
+
+.searchInput::placeholder {
+  color: #999;
+}
+
+.clearButton {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+}
+
+.clearButton:hover {
+  color: #000;
+  background: #f0f0f0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  margin-left: auto;
+}
+
+.closeButton:hover {
+  color: #000;
+  background: #f0f0f0;
+}
+
+/* Body Layout */
+.searchBody {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Suggestions Sidebar */
+.suggestionsSidebar {
+  width: 320px;
+  background: #ffffff;
+  padding: 32px 0;
+  overflow-y: auto;
+}
+
+.sidebarTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 20px 0;
+  padding: 0 24px;
+}
+
+.suggestionsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
+.suggestionItem {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #666;
+  background: none;
+  border: none;
+  padding: 8px 24px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestionItem:hover {
+  color: #000;
+}
+
+/* Products Content */
+.productsContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 40px;
+}
+
+/* Products Grid */
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background: #ffffff;
+  border-radius: 0;
+  overflow: hidden;
+  border: none;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.productImageWrapper {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.productCard:hover .productImage {
+  transform: scale(1.05);
+}
+
+/* No Results State */
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.noResultsIcon {
+  color: #d1d1d1;
+  margin-bottom: 24px;
+}
+
+.noResultsText {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.noResultsSubtext {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  color: #999;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Scrollbar Styles */
+.suggestionsSidebar::-webkit-scrollbar,
+.productsContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.suggestionsSidebar::-webkit-scrollbar-track,
+.productsContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.suggestionsSidebar::-webkit-scrollbar-thumb,
+.productsContent::-webkit-scrollbar-thumb {
+  background: #d1d1d1;
+  border-radius: 4px;
+}
+
+.suggestionsSidebar::-webkit-scrollbar-thumb:hover,
+.productsContent::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .searchHeader {
+    padding: 16px 20px;
+  }
+
+  .searchInput {
+    font-size: 11px;
+    padding: 12px 44px;
+  }
+
+  .searchBody {
+    flex-direction: column;
+  }
+
+  .suggestionsSidebar {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .suggestionsList {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0 20px;
+    gap: 8px;
+  }
+
+  .suggestionItem {
+    white-space: nowrap;
+    padding: 10px 20px;
+  }
+
+  .sidebarTitle {
+    padding: 0 20px;
+    margin-bottom: 16px;
+  }
+
+  .productsContent {
+    padding: 24px 20px;
+  }
+
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .searchInputWrapper {
+    max-width: 100%;
+  }
+
+  .searchHeader {
+    gap: 8px;
+  }
+
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}

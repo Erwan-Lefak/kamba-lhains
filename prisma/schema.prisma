@@ -1,0 +1,403 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model with local and OAuth authentication
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String?  // Nullable for OAuth users
+  role         String   @default("user")
+
+  // OAuth fields
+  provider      String?  // "google", "facebook", "apple", null for email/password
+  providerId    String?  // OAuth provider user ID
+
+  // Password reset
+  passwordResetToken   String?   @unique
+  passwordResetExpires DateTime?
+
+  // Account status
+  status        UserStatus @default(ACTIVE)
+  lastLogin     DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  profile   UserProfile?
+  orders    Order[]
+  cartItems CartItem[]
+  favorites Favorite[]
+  analytics UserAnalytics[]
+
+  @@map("users")
+}
+
+// Extended user profile for luxury features
+model UserProfile {
+  id           String    @id @default(uuid())
+  userId       String    @unique
+  firstName    String?
+  lastName     String?
+  phone        String?
+  birthday     DateTime?
+  
+  // Preferences
+  favoriteSizes  Json? // {"tops": "M", "bottoms": "L"}
+  notifications  Json? // {"newProducts": true, "restock": true}
+  shippingPrefs  Json? // {"speed": "standard", "packaging": "eco"}
+  
+  // Analytics data
+  averageOrderValue Decimal? @db.Decimal(10, 2)
+  totalOrders       Int      @default(0)
+  lifetimeValue     Decimal? @db.Decimal(10, 2)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  addresses UserAddress[]
+
+  @@map("user_profiles")
+}
+
+// Multiple addresses per user
+model UserAddress {
+  id          String  @id @default(uuid())
+  userId      String
+  type        AddressType
+  firstName   String
+  lastName    String
+  company     String?
+  address1    String
+  address2    String?
+  city        String
+  postalCode  String
+  country     String  @default("FR")
+  phone       String?
+  isDefault   Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  profile UserProfile @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@map("user_addresses")
+}
+
+// Collections (Aube, Crépuscule, Zénith, etc.)
+model Collection {
+  id          String   @id @default(uuid())
+  name        String   @unique // "aube", "crepuscule", "zenith"
+  displayName String   // "Aube", "Crépuscule", "Zénith" 
+  description String?
+  image       String?
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  products Product[]
+
+  @@map("collections")
+}
+
+// Products with luxury structure
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String
+  price       Decimal  @db.Decimal(10, 2)
+  compareAtPrice Decimal? @db.Decimal(10, 2) // For sale prices
+  
+  // Organization
+  collectionId String?
+  category     ProductCategory
+  tags         String[] // ["nouveauté", "bestseller", "limited"]
+  
+  // Media
+  images      String[] // Multiple images
+  
+  // Luxury features
+  materials   String[] // ["Coton bio", "Laine mérinos"]
+  careInstructions String?
+  madeIn      String?
+  
+  // Status
+  isActive    Boolean @default(true)
+  isFeatured  Boolean @default(false)
+  isExclusive Boolean @default(false)
+  
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  collection  Collection?     @relation(fields: [collectionId], references: [id])
+  variants    ProductVariant[]
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
+  favorites   Favorite[]
+  analytics   ProductAnalytics[]
+
+  @@map("products")
+}
+
+// Product variants (color × size × stock)
+model ProductVariant {
+  id        String  @id @default(uuid())
+  productId String
+  color     String  // "Noir", "Blanc", "Gris"
+  size      String  // "XS", "S", "M", "L", "XL", "XXL"
+  sku       String  @unique
+  stock     Int     @default(0)
+  
+  // Reserved stock during checkout
+  reservedStock Int @default(0)
+  lowStockThreshold Int @default(5)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, color, size])
+  @@map("product_variants")
+}
+
+// Orders with luxury workflow
+model Order {
+  id          String      @id @default(uuid())
+  orderNumber String      @unique // "KL-2025-001234"
+  userId      String?
+  
+  // Guest checkout support
+  guestEmail    String?
+  guestPhone    String?
+  
+  // Order details
+  status        OrderStatus @default(PENDING)
+  totalAmount   Decimal     @db.Decimal(10, 2)
+  shippingCost  Decimal     @db.Decimal(10, 2) @default(0)
+  taxAmount     Decimal     @db.Decimal(10, 2) @default(0)
+  
+  // Addresses
+  shippingAddress Json
+  billingAddress  Json?
+  
+  // Payment
+  paymentMethod   String?
+  paymentStatus   PaymentStatus @default(PENDING)
+  stripePaymentId String?
+  
+  // Shipping
+  carrier         String? // "chronopost", "fedex"
+  trackingNumber  String?
+  shippingMethod  String? // "standard", "express"
+  
+  // Luxury features
+  specialInstructions String?
+  giftMessage        String?
+  isGift            Boolean @default(false)
+  
+  // Timeline
+  confirmedAt DateTime?
+  processedAt DateTime?
+  shippedAt   DateTime?
+  deliveredAt DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user       User?       @relation(fields: [userId], references: [id])
+  orderItems OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Decimal @db.Decimal(10, 2) // Price at time of order
+  size      String
+  color     String
+  
+  // Product snapshot (in case product is deleted)
+  productName  String
+  productImage String
+
+  // Relations
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+// Cart with guest support
+model CartItem {
+  id        String @id @default(uuid())
+  userId    String?
+  sessionId String? // For guest users
+  productId String
+  quantity  Int
+  size      String
+  color     String
+  
+  // Auto-cleanup old carts
+  expiresAt DateTime? 
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId, size, color])
+  @@unique([sessionId, productId, size, color])
+  @@map("cart_items")
+}
+
+// Favorites/Wishlist
+model Favorite {
+  id        String @id @default(uuid())
+  userId    String
+  productId String
+  
+  createdAt DateTime @default(now())
+
+  // Relations
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@map("favorites")
+}
+
+// User behavior analytics
+model UserAnalytics {
+  id            String   @id @default(uuid())
+  userId        String?  // Optional for anonymous visitors
+  event         String   // "page_view", "add_to_cart", "purchase"
+  page          String?
+  productId     String?
+  sessionId     String
+  userAgent     String?
+  country       String?
+
+  createdAt     DateTime @default(now())
+
+  // Relations
+  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_analytics")
+}
+
+// Product performance analytics
+model ProductAnalytics {
+  id          String   @id @default(uuid())
+  productId   String
+  event       String   // "view", "add_to_cart", "purchase", "favorite"
+  count       Int      @default(1)
+  date        DateTime @default(now())
+
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, event, date])
+  @@map("product_analytics")
+}
+
+// Enums
+enum AddressType {
+  SHIPPING
+  BILLING
+  BOTH
+}
+
+enum ProductCategory {
+  TOPS
+  BOTTOMS
+  ACCESSORIES
+  OUTERWEAR
+  UNDERWEAR
+  BAGS
+  HATS
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  DELETED
+}
+
+// Newsletter subscribers
+model NewsletterSubscriber {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  firstName     String?
+  language      String   @default("fr") // "fr" or "en"
+
+  // Preferences
+  interests     String[] // ["newCollections", "exclusiveOffers", "behindTheScenes", "sustainabilityTips", "events"]
+  frequency     String   @default("weekly") // "weekly", "biweekly", "monthly", "events-only"
+
+  // Status
+  status        NewsletterStatus @default(ACTIVE)
+  source        String?  // "footer", "newsletter-page"
+
+  // Tracking
+  subscribedAt  DateTime @default(now())
+  unsubscribedAt DateTime?
+  lastEmailSent DateTime?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("newsletter_subscribers")
+}
+
+enum NewsletterStatus {
+  ACTIVE
+  UNSUBSCRIBED
+  BOUNCED
+}

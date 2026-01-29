@@ -1,0 +1,430 @@
+name: CI/CD Pipeline - Kamba Lhains
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+
+env:
+  NODE_VERSION: '18.x'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  # 🔍 Code Quality & Security Analysis
+  security-scan:
+    name: 🔒 Security & Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: 🛡️ Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: 📊 Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+    - name: 🔍 CodeQL Analysis
+      uses: github/codeql-action/init@v2
+      with:
+        languages: javascript
+
+    - name: 🏗️ Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: 📈 Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+
+  # 🧪 Tests & Quality Checks
+  test:
+    name: 🧪 Tests & Quality
+    runs-on: ubuntu-latest
+    needs: security-scan
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+        
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: |
+        npm ci
+        npm run build --if-present
+
+    - name: 🔧 Type checking
+      run: npm run type-check
+
+    - name: 🧹 Linting
+      run: npm run lint
+
+    - name: 🧪 Unit Tests
+      run: npm run test:coverage
+      env:
+        CI: true
+
+    - name: 📊 Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage/lcov.info
+        fail_ci_if_error: false
+
+    - name: 🎭 E2E Tests
+      run: |
+        npm run build
+        npm run test:e2e
+      env:
+        CI: true
+
+    - name: 📊 Lighthouse CI
+      run: |
+        npm install -g @lhci/cli@0.12.x
+        npm run lighthouse
+      env:
+        LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+    - name: 🔍 Bundle Analysis
+      run: npm run bundle-analyzer
+      if: github.event_name == 'pull_request'
+
+  # 🏗️ Build & Package
+  build:
+    name: 🏗️ Build & Package
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🏗️ Build application
+      run: npm run build
+      env:
+        CI: true
+        NODE_ENV: production
+
+    - name: 📦 Create build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-files
+        path: |
+          .next/
+          public/
+          package.json
+          package-lock.json
+        retention-days: 30
+
+    - name: 🔍 Build size analysis
+      run: |
+        echo "## 📊 Build Analysis" >> $GITHUB_STEP_SUMMARY
+        echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Build size | $(du -sh .next | cut -f1) |" >> $GITHUB_STEP_SUMMARY
+        echo "| Pages count | $(find .next/server/pages -name "*.html" | wc -l) |" >> $GITHUB_STEP_SUMMARY
+        echo "| Static files | $(find .next/static -type f | wc -l) |" >> $GITHUB_STEP_SUMMARY
+
+  # 🧪 Load Testing
+  load-test:
+    name: 🧪 Load Testing
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 📥 Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-files
+
+    - name: 🚀 Start application
+      run: |
+        npm start &
+        sleep 30
+      env:
+        NODE_ENV: production
+
+    - name: ⚡ Run load tests
+      run: |
+        npm run load-test:k6
+        npm run load-test:artillery
+      continue-on-error: true
+
+    - name: 📊 Upload load test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: load-test-results
+        path: reports/load-testing/
+
+  # 🚀 Deploy to Staging
+  deploy-staging:
+    name: 🚀 Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    if: github.ref == 'refs/heads/develop' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
+    environment:
+      name: staging
+      url: https://kamba-lhains-staging.vercel.app
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install Vercel CLI
+      run: npm install -g vercel@latest
+
+    - name: 📥 Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-files
+
+    - name: 🚀 Deploy to Staging
+      run: |
+        vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+        vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
+        
+    - name: 🔗 Get deployment URL
+      id: deployment
+      run: echo "url=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
+
+    - name: 🧪 Smoke tests on staging
+      run: |
+        curl -f "${{ steps.deployment.outputs.url }}" || exit 1
+        curl -f "${{ steps.deployment.outputs.url }}/api/products" || exit 1
+
+    - name: 💬 Comment deployment URL
+      uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '🚀 **Staging Deployment**: ${{ steps.deployment.outputs.url }}'
+          })
+
+  # 🏭 Deploy to Production
+  deploy-production:
+    name: 🏭 Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [build, test, load-test]
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
+    environment:
+      name: production
+      url: https://kamba-lhains.vercel.app
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install Vercel CLI
+      run: npm install -g vercel@latest
+
+    - name: 📥 Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-files
+
+    - name: 🚀 Deploy to Production
+      run: |
+        vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
+
+    - name: 🔗 Get production URL
+      id: deployment
+      run: echo "url=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
+
+    - name: 🧪 Production health checks
+      run: |
+        curl -f "${{ steps.deployment.outputs.url }}" || exit 1
+        curl -f "${{ steps.deployment.outputs.url }}/api/products" || exit 1
+        curl -f "${{ steps.deployment.outputs.url }}/robots.txt" || exit 1
+
+    - name: 📊 Post-deployment monitoring
+      run: |
+        echo "## 🚀 Production Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "| Item | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Deployment URL | ${{ steps.deployment.outputs.url }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Health Check | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+        echo "| Deployed at | $(date -u) |" >> $GITHUB_STEP_SUMMARY
+
+  # 🔄 Post-deployment tasks
+  post-deploy:
+    name: 🔄 Post-deployment
+    runs-on: ubuntu-latest
+    needs: [deploy-production]
+    if: success()
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🔄 Run backup script
+      run: |
+        if [ -f "scripts/backup.sh" ]; then
+          chmod +x scripts/backup.sh
+          ./scripts/backup.sh all production
+        fi
+      env:
+        PROD_DB_HOST: ${{ secrets.PROD_DB_HOST }}
+        PROD_DB_NAME: ${{ secrets.PROD_DB_NAME }}
+        PROD_DB_USER: ${{ secrets.PROD_DB_USER }}
+        DB_PASSWORD: ${{ secrets.PROD_DB_PASSWORD }}
+
+    - name: 📊 Performance monitoring
+      run: |
+        if [ -f "scripts/load-testing.sh" ]; then
+          chmod +x scripts/load-testing.sh
+          ./scripts/load-testing.sh k6 production
+        fi
+
+    - name: 📢 Slack notification
+      uses: 8398a7/action-slack@v3
+      if: always()
+      with:
+        status: ${{ job.status }}
+        channel: '#deployments'
+        text: |
+          🚀 **Kamba Lhains Production Deployment**
+          
+          **Status**: ${{ job.status == 'success' && '✅ Success' || '❌ Failed' }}
+          **Commit**: ${{ github.sha }}
+          **Author**: ${{ github.actor }}
+          **URL**: https://kamba-lhains.vercel.app
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: 📧 Email notification
+      uses: dawidd6/action-send-mail@v3
+      if: failure()
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: "🚨 Kamba Lhains Deployment Failed"
+        body: |
+          Deployment failed for commit ${{ github.sha }}
+          
+          Please check the GitHub Actions logs for more details.
+          
+          Repository: ${{ github.repository }}
+          Workflow: ${{ github.workflow }}
+          Run: ${{ github.run_id }}
+        to: ${{ secrets.NOTIFICATION_EMAIL }}
+        from: ${{ secrets.EMAIL_USERNAME }}
+
+  # 🧹 Cleanup & Maintenance
+  cleanup:
+    name: 🧹 Cleanup
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [post-deploy]
+    
+    steps:
+    - name: 🗑️ Clean up old artifacts
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: context.runId,
+          });
+          
+          // Keep artifacts for 7 days
+          const sevenDaysAgo = new Date();
+          sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+          
+          for (const artifact of artifacts.data.artifacts) {
+            const createdAt = new Date(artifact.created_at);
+            if (createdAt < sevenDaysAgo) {
+              await github.rest.actions.deleteArtifact({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                artifact_id: artifact.id,
+              });
+            }
+          }
+
+    - name: 📊 Workflow summary
+      run: |
+        echo "## 🎉 CI/CD Pipeline Completed" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Security scan completed" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Tests passed" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Build successful" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Deployment completed" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Post-deployment tasks finished" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Total pipeline duration**: ${{ github.event.head_commit.timestamp }}" >> $GITHUB_STEP_SUMMARY

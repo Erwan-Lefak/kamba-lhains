@@ -1,0 +1,22 @@
+🔔 Configuration des notifications budgétaires
+
+Budget créé : 20€/mois avec alertes à 50%, 90%, 100%
+
+Pour activer les notifications EMAIL :
+
+1. Ouvrez : https://console.cloud.google.com/billing/01F037-4642C8-DE99F9/budgets
+
+2. Cliquez sur le budget "Kamba Lhains - Alerte 20€"
+
+3. Cliquez sur "EDIT"
+
+4. Dans "Manage notifications" :
+   - Cochez "Email alerts to billing admins and users"
+   - Ajoutez votre email : erwan.lefak@gmail.com
+
+5. Cliquez "SAVE"
+
+✅ Vous recevrez maintenant des emails d'alerte automatiquement !
+
+Alternative : Créer un canal Pub/Sub pour webhook/Slack
+https://console.cloud.google.com/billing/01F037-4642C8-DE99F9/budgets

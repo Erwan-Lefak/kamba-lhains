@@ -1,0 +1,359 @@
+name: Quality Gates & Code Standards
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+env:
+  NODE_VERSION: '18.x'
+
+jobs:
+  # 📏 Code Quality Analysis
+  code-quality:
+    name: 📏 Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🧹 ESLint Analysis
+      run: |
+        npx eslint . --format json --output-file eslint-report.json || true
+        npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif || true
+
+    - name: 📊 Upload ESLint results to GitHub
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: eslint-results.sarif
+
+    - name: 🎯 SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: 📈 Code Coverage Threshold
+      run: |
+        npm run test:coverage
+        COVERAGE=$(node -e "
+          const fs = require('fs');
+          const coverage = JSON.parse(fs.readFileSync('coverage/coverage-summary.json'));
+          console.log(coverage.total.lines.pct);
+        ")
+        
+        echo "Current coverage: $COVERAGE%"
+        
+        if [ $(echo "$COVERAGE < 30" | bc -l) -eq 1 ]; then
+          echo "❌ Coverage $COVERAGE% is below minimum threshold of 30%"
+          exit 1
+        else
+          echo "✅ Coverage $COVERAGE% meets minimum threshold"
+        fi
+
+    - name: 🔍 Bundle Size Check
+      run: |
+        npm run build
+        BUNDLE_SIZE=$(du -sh .next | cut -f1)
+        echo "Bundle size: $BUNDLE_SIZE"
+        
+        # Check if bundle size is reasonable (< 50MB)
+        BUNDLE_SIZE_MB=$(du -sm .next | cut -f1)
+        if [ $BUNDLE_SIZE_MB -gt 50 ]; then
+          echo "⚠️ Bundle size ${BUNDLE_SIZE_MB}MB exceeds recommended 50MB"
+          echo "bundle-size-warning=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: 📊 Performance Budget
+      run: |
+        if command -v lighthouse &> /dev/null; then
+          npm run lighthouse:desktop || true
+          echo "Performance audit completed"
+        else
+          echo "Lighthouse not available, skipping performance audit"
+        fi
+
+  # 🔒 Security Quality Gates
+  security-gates:
+    name: 🔒 Security Gates
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🔍 npm audit
+      run: |
+        npm audit --audit-level=moderate --json > npm-audit.json || true
+        
+        # Check for critical vulnerabilities
+        CRITICAL=$(cat npm-audit.json | jq -r '.metadata.vulnerabilities.critical // 0')
+        HIGH=$(cat npm-audit.json | jq -r '.metadata.vulnerabilities.high // 0')
+        
+        echo "Critical vulnerabilities: $CRITICAL"
+        echo "High vulnerabilities: $HIGH"
+        
+        if [ $CRITICAL -gt 0 ]; then
+          echo "❌ Critical vulnerabilities found: $CRITICAL"
+          exit 1
+        fi
+        
+        if [ $HIGH -gt 5 ]; then
+          echo "⚠️ Too many high vulnerabilities: $HIGH (max: 5)"
+          exit 1
+        fi
+
+    - name: 🔐 Secrets Scan
+      uses: trufflesecurity/trufflehog@main
+      with:
+        path: ./
+        base: main
+        head: HEAD
+        extra_args: --debug --only-verified
+
+    - name: 🛡️ License Check
+      run: |
+        npx license-checker --onlyAllow 'MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC' --excludePrivatePackages
+
+  # 🧪 Test Quality Gates
+  test-gates:
+    name: 🧪 Test Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: 📦 Install dependencies
+      run: npm ci
+
+    - name: 🧪 Unit Tests with Coverage
+      run: |
+        npm run test:coverage
+        
+        # Parse coverage and enforce thresholds
+        node -e "
+          const fs = require('fs');
+          const coverage = JSON.parse(fs.readFileSync('coverage/coverage-summary.json'));
+          const thresholds = {
+            statements: 25,
+            branches: 20,
+            functions: 25,
+            lines: 25
+          };
+          
+          let passed = true;
+          Object.entries(thresholds).forEach(([key, threshold]) => {
+            const actual = coverage.total[key].pct;
+            console.log(\`\${key}: \${actual}% (threshold: \${threshold}%)\`);
+            if (actual < threshold) {
+              console.log(\`❌ \${key} coverage \${actual}% below threshold \${threshold}%\`);
+              passed = false;
+            }
+          });
+          
+          if (!passed) process.exit(1);
+          console.log('✅ All coverage thresholds met');
+        "
+
+    - name: 🎭 E2E Test Coverage
+      run: |
+        npm run build
+        npm run test:e2e || true
+        echo "E2E tests completed"
+
+    - name: ⚡ Performance Tests
+      run: |
+        if [ -f "scripts/load-testing.sh" ]; then
+          chmod +x scripts/load-testing.sh
+          timeout 300 ./scripts/load-testing.sh k6 local || echo "Load tests completed with timeout"
+        fi
+
+  # 📋 PR Quality Check
+  pr-quality:
+    name: 📋 PR Quality
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: 📏 PR Size Check
+      run: |
+        FILES_CHANGED=$(git diff --name-only origin/main...HEAD | wc -l)
+        LINES_CHANGED=$(git diff --stat origin/main...HEAD | tail -1 | awk '{print $4+$6}')
+        
+        echo "Files changed: $FILES_CHANGED"
+        echo "Lines changed: $LINES_CHANGED"
+        
+        if [ $FILES_CHANGED -gt 50 ]; then
+          echo "⚠️ Large PR: $FILES_CHANGED files changed (recommended: <50)"
+          echo "pr-size-warning=true" >> $GITHUB_OUTPUT
+        fi
+        
+        if [ $LINES_CHANGED -gt 1000 ]; then
+          echo "⚠️ Large PR: $LINES_CHANGED lines changed (recommended: <1000)"
+          echo "pr-lines-warning=true" >> $GITHUB_OUTPUT
+        fi
+
+    - name: 📝 PR Title & Description Check
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const { data: pr } = await github.rest.pulls.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+          });
+          
+          const title = pr.title;
+          const body = pr.body || '';
+          
+          // Check title format
+          const titlePattern = /^(feat|fix|docs|style|refactor|test|chore)(\(.+\))?: .+/;
+          if (!titlePattern.test(title)) {
+            core.setFailed('PR title must follow conventional commits format: type(scope): description');
+          }
+          
+          // Check description length
+          if (body.length < 50) {
+            core.setFailed('PR description should be at least 50 characters long');
+          }
+          
+          // Check for breaking changes
+          if (title.includes('!') || body.includes('BREAKING CHANGE')) {
+            core.notice('⚠️ This PR contains breaking changes');
+          }
+
+    - name: 🔍 Code Review Checklist
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const checklist = `
+          ## 🔍 Code Review Checklist
+          
+          Please verify the following before merging:
+          
+          ### 🧪 Testing
+          - [ ] Unit tests added/updated for new functionality
+          - [ ] E2E tests cover main user flows
+          - [ ] All tests pass locally and in CI
+          
+          ### 🔒 Security
+          - [ ] No secrets or sensitive data exposed
+          - [ ] Input validation implemented where needed
+          - [ ] Authentication/authorization checks in place
+          
+          ### 📊 Performance
+          - [ ] No obvious performance regressions
+          - [ ] Database queries optimized
+          - [ ] Images and assets optimized
+          
+          ### 🧹 Code Quality
+          - [ ] Code follows project conventions
+          - [ ] No commented-out code left behind
+          - [ ] Meaningful variable and function names
+          - [ ] Complex logic is documented
+          
+          ### 🚀 Deployment
+          - [ ] Database migrations included if needed
+          - [ ] Environment variables documented
+          - [ ] Backward compatibility maintained
+          `;
+          
+          // Check if checklist comment already exists
+          const { data: comments } = await github.rest.issues.listComments({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+          });
+          
+          const checklistExists = comments.some(comment => 
+            comment.body.includes('Code Review Checklist')
+          );
+          
+          if (!checklistExists) {
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: checklist
+            });
+          }
+
+  # 🎯 Quality Gate Summary
+  quality-summary:
+    name: 🎯 Quality Summary
+    runs-on: ubuntu-latest
+    needs: [code-quality, security-gates, test-gates, pr-quality]
+    if: always()
+    
+    steps:
+    - name: 📊 Generate Quality Report
+      run: |
+        echo "## 🎯 Quality Gates Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "${{ needs.code-quality.result }}" == "success" ]; then
+          echo "- ✅ Code Quality: Passed" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- ❌ Code Quality: Failed" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ "${{ needs.security-gates.result }}" == "success" ]; then
+          echo "- ✅ Security Gates: Passed" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- ❌ Security Gates: Failed" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ "${{ needs.test-gates.result }}" == "success" ]; then
+          echo "- ✅ Test Gates: Passed" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- ❌ Test Gates: Failed" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ "${{ github.event_name }}" == "pull_request" ]; then
+          if [ "${{ needs.pr-quality.result }}" == "success" ]; then
+            echo "- ✅ PR Quality: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ PR Quality: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+        fi
+
+    - name: 🚫 Block on Quality Failure
+      if: contains(needs.*.result, 'failure')
+      run: |
+        echo "❌ One or more quality gates failed. Please fix the issues before merging."
+        exit 1

@@ -1,0 +1,1164 @@
+/* Product Page CSS Module - Jacquemus Style */
+
+.productPage {
+  margin-top: var(--header-height);
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  background: white;
+}
+
+.productContainer {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  background: white;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+
+/* Image Section */
+.productImageSection {
+  background: #f5f5f5;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - var(--header-height));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+.productImageSection::-webkit-scrollbar {
+  display: none;
+}
+
+.imageStack {
+  display: block;
+  width: 100%;
+}
+
+
+
+.stackedImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: white;
+}
+
+.breadcrumb {
+  position: fixed;
+  top: calc(var(--header-height) + 50px);
+  left: 30px;
+  right: 40%;
+  max-width: calc(60% - 60px);
+  background: transparent;
+  font-size: 10px;
+  font-weight: 400;
+  color: #666;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.5px;
+  z-index: 50;
+  text-transform: uppercase;
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.breadcrumb span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb span:hover {
+  color: #9f0909;
+}
+
+.breadcrumbLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumbLink span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbLink:hover span {
+  color: #9f0909;
+}
+
+.heartIcon {
+  position: fixed;
+  top: calc(var(--header-height) + 30px);
+  right: calc(40% + 30px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  z-index: 50;
+}
+
+.heartIcon:hover {
+  transform: scale(1.1);
+}
+
+.heartIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Product Info Section */
+.productInfoSection {
+  padding: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  height: calc(100vh - var(--header-height));
+  z-index: 60;
+}
+
+.productMainContent {
+  padding: 40px clamp(40px, 12vw, 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  position: static;
+  width: max-content;
+  min-width: 100%;
+  flex-grow: 1;
+}
+
+
+.productTitle {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #000;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  white-space: nowrap;
+  overflow: visible;
+  width: max-content;
+  min-width: 100%;
+  display: block;
+}
+
+.productPrice {
+  font-size: 11px;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 40px 0;
+  display: block;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.productDescription {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.4;
+  font-weight: 300;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Color Section */
+.colorSection {
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.colorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
+}
+
+.colorLabel {
+  font-size: 10px;
+  color: #000;
+  font-weight: 400;
+  margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.seeAllColors {
+  font-size: 10px;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.seeAllColors:hover {
+  color: #000;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0;
+  justify-content: flex-start;
+}
+
+.colorSwatch {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.colorSwatch.active {
+  width: 10px;
+  height: 10px;
+}
+
+.colorSwatchYellow {
+  background-color: #F5E6A3;
+}
+
+.colorSwatchPink {
+  background-color: #F4C2C2;
+}
+
+/* Size Section */
+.sizeSection {
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.sizeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
+}
+
+.sizeLabel {
+  font-size: 10px;
+  color: #000;
+  font-weight: 400;
+  margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sizeGuide {
+  font-size: 10px;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.sizeGuide:hover {
+  color: #000;
+}
+
+.sizeGrid {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 15px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.sizeOption {
+  padding: 0;
+  border: none;
+  background: white;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  min-width: 20px;
+  color: #333;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  flex-shrink: 0;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.sizeOption:hover:not(.active) {
+  background: transparent;
+  color: #9f0909;
+}
+
+.sizeOption.active {
+  background: #9f0909;
+  color: white;
+  width: 18px;
+  height: 18px;
+}
+
+.sizeOption.unavailable {
+  color: #d3d3d3;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sizeOption.unavailable:hover {
+  background: transparent;
+  color: #d3d3d3;
+}
+
+
+/* Price Section */
+.priceSection {
+  margin: 40px 0 30px 0;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #000;
+}
+
+/* Add to Cart Section */
+.addToCartSection {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.quantityButtonInside {
+  background: none;
+  border: none;
+  font-size: 20px;
+  font-weight: 100;
+  cursor: pointer;
+  padding: 8px 12px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  box-shadow: none;
+  position: relative;
+}
+
+.quantityButtonInside:hover {
+  color: #9f0909;
+}
+
+.quantityButtonInside:focus {
+  outline: none;
+}
+
+.quantityButtonInside:active {
+  outline: none;
+}
+
+.addToCartButton {
+  width: max-content;
+  min-width: 100%;
+  padding: 2px 15px;
+  background: white;
+  border: 1px solid #000;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: none;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  max-height: 35px;
+  position: relative;
+}
+
+.addToCartButton > span {
+  transition: color 0.3s;
+}
+
+.addToCartButton > span:hover {
+  color: #9f0909;
+}
+
+.addToCartButton:hover {
+  background: white;
+}
+
+.addToCartButton:focus {
+  outline: none !important;
+  border: 1px solid #000 !important;
+}
+
+.addToCartButton:active {
+  outline: none !important;
+  border: 1px solid #000 !important;
+  transform: scale(0.97);
+  background: #f0f0f0;
+}
+
+.addToCartButton:focus-visible {
+  outline: none !important;
+  border: 1px solid #000 !important;
+}
+
+.addToCartButton button:focus {
+  outline: none;
+}
+
+.addToCartButton button:active {
+  outline: none;
+}
+
+
+/* Info Links Section */
+.infoLinksSection {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoLink {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 9px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.infoLink:hover {
+  color: #9f0909;
+}
+
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modalOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sliding Modal */
+.slidingModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100vh;
+  background: white;
+  z-index: 1001;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  border-right: 1px solid #eee;
+}
+
+.slidingModal.open {
+  transform: translateX(0);
+}
+
+/* Modal à droite pour description, taille et entretien */
+.slidingModal.rightModal {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+  border-right: none;
+  border-left: 1px solid #eee;
+}
+
+.slidingModal.rightModal.open {
+  transform: translateX(0);
+}
+
+.modalHeader {
+  padding: 0 40px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.modalTitle {
+  font-size: 11px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex: 1;
+  text-align: center;
+  padding-left: 60px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 60px;
+  left: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 100;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+  z-index: 20;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+.modalContent {
+  padding: 40px;
+  font-size: 10px;
+  color: #333;
+  line-height: 1.6;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modalContent p,
+.modalContent li {
+  text-transform: none !important;
+}
+
+.modalContent h3 {
+  font-size: 10px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 20px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modalContent p {
+  margin-bottom: 15px;
+}
+
+.modalContent ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.modalContent li {
+  margin-bottom: 12px;
+  color: #666;
+}
+
+.modalContent h4 {
+  font-size: 10px;
+  font-weight: 400;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Size Guide Modal Specific Styles */
+.sizeGuideContent {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.sizeGuideHeader {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sizeGuideHeader h3 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #000;
+  margin: 0;
+}
+
+.unitToggle {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+  padding-left: 5px;
+}
+
+.unitOption {
+  font-size: 10px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.unitOption:hover {
+  color: #000;
+}
+
+.activeUnit {
+  color: #000;
+}
+
+.activeUnit::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #000;
+}
+
+.sizeTable {
+  margin-bottom: 30px;
+  overflow-x: auto;
+}
+
+.sizeTable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.sizeTable th {
+  background: #f8f8f8;
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #333;
+  border: 1px solid #e5e5e5;
+}
+
+.sizeTable td {
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  color: #333;
+  font-weight: 400;
+}
+
+.sizeTable tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.sizeRow {
+  transition: all 0.2s ease;
+}
+
+.availableSize {
+  cursor: pointer;
+}
+
+.availableSize:hover {
+  font-weight: 600;
+  background: #f0f0f0 !important;
+}
+
+.availableSize:hover td {
+  color: #000;
+}
+
+.measurementGuide {
+  margin-bottom: 25px;
+}
+
+.measurementGuide h4 {
+  font-size: 10px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.measurementGuide p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 10px;
+  text-transform: none !important;
+}
+
+.measurementNote {
+  font-style: italic;
+  margin-top: 15px !important;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  text-transform: none !important;
+}
+
+.customerService {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.customerService h4 {
+  font-size: 10px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.customerService p {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 8px;
+  text-transform: none !important;
+}
+
+/* Categories Modal Styles */
+.categoriesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.allProductsLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+.allProductsLink:hover h4 {
+  color: #9f0909;
+}
+
+.allProductsLink h4 {
+  font-size: 10px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.categoryItem {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.categoryItem:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.categoryHeader {
+  cursor: pointer;
+  padding: 10px 0;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoryHeader:hover h4 {
+  color: #9f0909;
+}
+
+.categoryHeader h4 {
+  font-size: 10px;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  font-family: 'Manrope', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.categoryArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.3s ease;
+  transform: rotate(0deg);
+}
+
+.categoryArrow svg {
+  transition: inherit;
+}
+
+.categoryArrow.open {
+  transform: rotate(90deg);
+}
+
+.categoryHeader:hover .categoryArrow {
+  color: #9f0909;
+}
+
+.subcategoriesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-left: 15px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 300px;
+  }
+}
+
+.subcategoryItem {
+  font-size: 9px;
+  color: #333;
+  padding: 5px 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: none !important;
+  text-decoration: none;
+  display: block;
+}
+
+.subcategoryItem:hover {
+  color: #9f0909;
+}
+
+/* Complete Your Look Section */
+.completeYourLook {
+  background: white;
+  position: relative;
+  z-index: 100;
+}
+
+.sectionContainer {
+  max-width: 100%;
+  margin: 0;
+  padding: 60px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: white;
+}
+
+.sectionTitle {
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #000000;
+  text-shadow: none;
+  box-shadow: none;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* Three Products Section - Matching Homepage Style */
+.threeProductsSection {
+  width: 100%;
+  background: white;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.threeProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  margin: 0;
+  gap: 0;
+}
+
+.mobileCarousel {
+  display: none;
+}
+
+.productSlot {
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .productContainer {
+    grid-template-columns: 60% 40%;
+  }
+  
+  .productMainContent {
+    padding: 40px clamp(30px, 8vw, 100px);
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    width: max-content;
+    min-width: 100%;
+  }
+
+
+
+  .sizeGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .slidingModal {
+    width: 90vw;
+  }
+  
+  .slidingModal.rightModal {
+    width: 90vw;
+  }
+
+  .threeProductsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .sectionContainer {
+    padding: 80px 0 40px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .productContainer {
+    grid-template-columns: 1fr;
+    position: relative;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .productTitle {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    width: 100% !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+  }
+
+  .addToCartButton {
+    width: 100% !important;
+    min-width: auto !important;
+    max-width: 100% !important;
+  }
+
+  /* Image Section - Slider horizontal */
+  .productImageSection {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .productImageSection::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Product Info Section - Pas de scroll, hauteur auto */
+  .productInfoSection {
+    height: auto;
+    overflow: visible;
+    position: relative;
+  }
+
+  .imageStack {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+  }
+
+  .stackedImage {
+    width: 100vw;
+    height: auto;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    object-fit: contain;
+  }
+
+  /* Breadcrumb - Position fixe en haut à gauche de l'image */
+  .breadcrumb {
+    position: fixed;
+    top: calc(var(--header-height) + 20px);
+    left: 20px;
+    right: auto;
+    max-width: calc(100vw - 100px);
+    z-index: 50;
+    font-size: 9px;
+  }
+
+  /* Heart Icon - Position fixe en haut à droite aligné avec breadcrumb */
+  .heartIcon {
+    position: fixed;
+    top: calc(var(--header-height) + 10px);
+    right: 20px;
+    z-index: 50;
+  }
+
+  .productTitle {
+    font-size: 1.0rem;
+  }
+
+  .productPrice {
+    font-size: 0.8rem;
+  }
+
+  .productMainContent {
+    padding: 40px 20px;
+    position: relative;
+    top: auto;
+    transform: none;
+    height: auto;
+    max-height: none;
+    justify-content: flex-start;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box;
+  }
+
+  .sizeGrid {
+    flex-wrap: wrap;
+  }
+
+  .sizeGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .slidingModal {
+    width: 100vw;
+  }
+
+  .slidingModal.rightModal {
+    width: 100vw;
+  }
+
+  .modalHeader {
+    padding: 20px 30px 15px;
+  }
+
+  .modalContent {
+    padding: 30px;
+  }
+
+  .closeButton {
+    top: 60px;
+    left: 15px;
+  }
+
+  .threeProductsGrid {
+    display: none;
+  }
+
+  .mobileCarousel {
+    display: block;
+  }
+
+  .sectionContainer {
+    padding: 60px 20px 20px 20px;
+    position: relative;
+  }
+
+  .completeYourLook {
+    padding: 60px 0;
+    position: relative;
+  }
+
+  .sectionTitle {
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #000000;
+    text-shadow: none;
+    box-shadow: none;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+  }
+}

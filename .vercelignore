@@ -1,0 +1,23 @@
+coverage/
+__tests__/
+docs/
+*.txt
+tailles.png
+e2e/
+tests/
+scripts/
+*.mp4
+*.mov
+public/*.mp4
+public/*.mov
+bout.txt
+haussmann.txt
+kamba.txt
+room.txt
+templates/
+Photo V2/
+Photo Produit/
+*.zip
+*.deb
+*.xlsx
+cloudflared-linux-amd64.deb

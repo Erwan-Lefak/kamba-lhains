@@ -1,0 +1,249 @@
+/* Modern Single-Page Checkout - Luxury Style */
+
+.checkoutPage {
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  background: #ffffff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+}
+
+/* Empty Checkout */
+.emptyCheckout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.emptyTitle {
+  font-size: 11px;
+  font-weight: 300;
+  color: #000;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+.emptyDescription {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.4;
+}
+
+.continueButton {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 24px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.continueButton:hover {
+  opacity: 0.8;
+}
+
+/* Main Container */
+.checkoutContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Order Summary - Compact top section */
+.orderSummary {
+  background: #f8f8f8;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemCount {
+  font-size: 11px;
+  color: #666;
+}
+
+.totalAmount {
+  font-size: 11px;
+  font-weight: 300;
+  color: #000;
+}
+
+/* Form Sections */
+.checkoutSection {
+  margin-bottom: 40px;
+}
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 300;
+  color: #000;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  background: transparent;
+  font-size: 11px;
+  color: #000;
+  font-family: 'Manrope', sans-serif;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-color: #000;
+}
+
+.input::placeholder {
+  color: #999;
+  font-size: 11px;
+}
+
+.inputError {
+  border-bottom-color: #e74c3c;
+}
+
+.error {
+  display: block;
+  font-size: 11px;
+  color: #e74c3c;
+  margin-top: 5px;
+  letter-spacing: 0.3px;
+}
+
+/* Payment Section */
+.paymentSection {
+  background: #f8f8f8;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+/* Stripe Elements customization */
+.paymentSection .StripeElement {
+  font-family: 'Manrope', sans-serif !important;
+  font-size: 11px !important;
+}
+
+/* Checkout Actions */
+.checkoutActions {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.submitError {
+  background: #fdf2f2;
+  color: #e74c3c;
+  padding: 12px 16px;
+  font-size: 11px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #f5c6cb;
+}
+
+.submitButton {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 40px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-bottom: 15px;
+  min-width: 200px;
+}
+
+.submitButton:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.securityInfo {
+  text-align: center;
+  color: #999;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.paymentMethods {
+  text-align: center;
+  margin-top: 8px;
+  padding: 5px 0;
+}
+
+.paymentMethodsImage {
+  max-width: 180px;
+  height: auto;
+  opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .checkoutContainer {
+    padding: 30px 15px;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .orderSummary {
+    padding: 15px;
+    margin-bottom: 25px;
+  }
+  
+  .checkoutSection {
+    margin-bottom: 30px;
+  }
+  
+  .paymentSection {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkoutContainer {
+    padding: 20px 10px;
+  }
+  
+  .submitButton {
+    padding: 15px 30px;
+    min-width: 180px;
+  }
+}

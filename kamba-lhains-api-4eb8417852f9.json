@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "kamba-lhains-api",
+  "private_key_id": "4eb8417852f94a5f8f299337bce969fccfe79482",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCdfX43LgLGMwYh\n2YDIZCxeg9yOe0Gjm7eoScQy4ca0VOBM4+S3plal5N9e5qoxd/cFUU6z3Xf8KMB0\nj+Dio4/U8gQSXJRR+fYow7tPQfk+snNJmALqiKyQ7/B2R4RyAHsqyPKaW4tkoavh\nQNI4R/MoEVKFIdAQ3VxHsLWmNkdTcx351JfkKS97BgFq96VXa3CbxonSDfeLbAF4\nrhNrITFNJVfFRaMCWZ3xQe6hVXzJ50wZajbWVhZrOJOvMe9od8/VN31BDqwqiFga\n+j7GwDC9lJq3nAPaNjZsJXtiEwapFkA11vAuohr+8wDdYHtUNfQTpvARnw5Qfxyr\ng5HEJEWZAgMBAAECggEABsZQXh5KvJeS+B92RJMukhhDrhYLl6FKBWFloQyznVaY\nrtC6KijryZzD+73vbKECTXEXHMdLndtrlU1fzqVbjrz5w4fGUj/EQNz+mzpgIZF6\nl8auusO2AfwYUMuNx9D70LYuiB5Pq5IFe0iXDRhnPijUmb5/x/dFvMhotVAuFvRS\nUDjV7QzmgC6gfe58aXp4tZZRQ3QiQS4tVBi/65LiH/l6vCifWZ5h1V78AY/oFL5p\nWdqA/Qi5IYlCtwEzBgiPDhq2OYFo5ZMoi6w9owBunizGTempT5wKkDmhDgw6DHa+\n8oMXQI2OCm9RIe9c75UhyHcFkBSuuSbRSgohzZ3GkwKBgQDMT1zWjuiFIr5Ol6qg\n84zwrlsk346/PBx2VfxOHey5/h16vAMiAvhYIUQhboM0fXHkTBrfbMXqGFCcWfxl\n9YhOzDOdnA3fT4zz/k6Og1CirBT9YscPHaBnvcZkCj81hMBXjVdDvifhdDQkEElV\nkMhT4YQcRZtLJnm1BP0Y8Oxs0wKBgQDFVbs5+v24jHPE/yHiBd093CnrwYAzLlLf\nTcpVHEcfvQDtjO1+HYG9lDoIamNZRBMkyuquXyllGZ3j6AWDOQIkRrWZMFlvy3bR\nK961hfnT9wH8KYkBhA5eQMe8ZiJbMlaokgkhoLqF0h4c5zKku0t6uqq7issCupzF\nNbRrYNMQYwKBgF859lmCzlmPcggLpNnT6rMbcRvknxH/IHz/YtO+GuIt0OutygAG\nRl49UxYJ/lluxrDT0AqnFjAgGSJmxr93C4s+nigt3kFhQJ9QvqiqB+FqN3ZKneEr\nu+HekCN8qy10rHmiRTQr40av9MWCWcvp6ZU/HWZYAyOp0TxQEO+ZC3lFAoGBAIf/\n+OQRzjEVY2g+aayrW/oZNS8NEfy0DVtm8m5L6dy+1tfhC4Cid1sfwAsyvzuzRfpS\newEoBpBt4jpDGyF/9bDopploEAuTT1UDhh7WsgJatxyBx7GqwHhG7yExxrXRcJYG\n55IsgsBdunEzCd0sU+3GnopYMme0Ev17cNecSHp/AoGAXgLjAPPZHBqJxdrtqitv\n7g2U5BY7Y22+SWj+KN21+mk28hKaT3ZtusAn/0zL+fct6suEfi5Cc8eoHK4ZwQmf\nqSDeft4KTXguHLRZz2dhsGU45UglL9xz0Fl48b3FFbXxpFuepfDU48jJPWqr90i1\nXAd8s99Y+vlTVUpAiKxk+Wg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "kamba-sheets-writer@kamba-lhains-api.iam.gserviceaccount.com",
+  "client_id": "115171893742586307573",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/kamba-sheets-writer%40kamba-lhains-api.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
