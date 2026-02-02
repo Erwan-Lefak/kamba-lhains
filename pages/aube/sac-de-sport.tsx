@@ -119,6 +119,7 @@ export default function AubeSacDeSport() {
       case 'careGuide': return 'Guide d\'entretien';
       case 'deliveryTime': return 'Délai de livraison';
       case 'returnPolicy': return 'Retour et remboursement';
+      case 'klarna': return 'Paiement en plusieurs fois';
       default: return '';
     }
   };
@@ -241,6 +242,63 @@ export default function AubeSacDeSport() {
             <p style={{ marginTop: '20px', color: '#666' }}>
               Pour toute question, contactez notre service client via votre compte ou consultez notre <a href="/retours" style={{ textDecoration: 'underline', color: '#000' }}>page retours complète</a>.
             </p>
+          </div>
+        );
+      case 'klarna':
+        return (
+          <div style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', lineHeight: '1.8' }}>
+            <p style={{ marginBottom: '20px' }}>
+              Klarna est un service de paiement flexible qui vous permet de payer en plusieurs fois. Sélectionnez simplement Klarna au moment du paiement lorsque cette option est disponible et nous vérifierons rapidement vos informations pour terminer la commande.
+            </p>
+            <p style={{ marginBottom: '20px' }}>
+              Vous pouvez suivre et gérer tous vos paiements dans l'app Klarna, avec des rappels pour vous aider à respecter vos échéances.
+            </p>
+
+            <h3 style={{ fontWeight: '600', marginBottom: '15px', fontSize: '11px', textTransform: 'uppercase' }}>CONDITIONS D'UTILISATION</h3>
+            <p style={{ marginBottom: '15px' }}>Pour utiliser Klarna, vous devez :</p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px 0' }}>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Habiter en France
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Avoir minimum 18 ans
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Posséder un compte bancaire valide
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Avoir un historique de crédit positif
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Être en mesure de recevoir des codes de vérification par SMS
+              </li>
+            </ul>
+
+            <h3 style={{ fontWeight: '600', marginBottom: '15px', fontSize: '11px', textTransform: 'uppercase' }}>SÉCURITÉ</h3>
+            <p style={{ marginBottom: '15px' }}>Les normes de sécurité les plus strictes sont utilisées pour protéger vos données et vos informations personnelles.</p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px 0' }}>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Toutes les informations de paiement sont traitées de manière sécurisée
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Le magasin ne transfère et ne conserve aucune information
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Toutes les transactions s'effectuent via des connexions sécurisées conformes à des protocoles de sécurité stricts
+              </li>
+              <li style={{ marginBottom: '8px', paddingLeft: '15px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: 0 }}>•</span>
+                Vous pouvez à tout moment supprimer le compte bancaire ou la carte bancaire associée
+              </li>
+            </ul>
           </div>
         );
       default:

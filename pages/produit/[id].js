@@ -1729,7 +1729,7 @@ export default function ProductDetail() {
             <div className={styles.productMainContent}>
               <h1 className={styles.productTitle}>{currentLanguage === 'en' && product.nameEn ? product.nameEn : product.name}</h1>
               <span className={styles.productPrice}>{product.price} EUR</span>
-              
+
 
               {/* Color Selector */}
               <div className={styles.colorSection}>
