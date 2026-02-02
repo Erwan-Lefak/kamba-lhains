@@ -518,7 +518,7 @@ export default function AubeSacDeSport() {
                     <img
                       src="/images/paiement-klarna.jpg"
                       alt="Paiement en plusieurs fois avec Klarna"
-                      style={{ maxWidth: '150px', height: 'auto' }}
+                      style={{ maxWidth: '200px', height: 'auto' }}
                     />
                   </div>
 
