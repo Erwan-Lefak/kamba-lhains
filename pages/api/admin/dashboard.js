@@ -382,13 +382,28 @@ export default async function handler(req, res) {
       })
     ]);
 
-    // No filtering - show all real data
-    const totalRevenueAmount = totalRevenue.reduce((sum, order) =>
+    // Filter out test data from ALL statistics
+    const filteredTotalRevenue = totalRevenue.filter(order => {
+      const email = order.guestEmail || order.user?.email;
+      return !isTestEmail(email);
+    });
+
+    const filteredOrdersToday = ordersToday.filter(order => {
+      const email = order.guestEmail || order.user?.email;
+      return !isTestEmail(email);
+    });
+
+    const filteredTotalOrders = totalOrders.filter(order => {
+      const email = order.guestEmail || order.user?.email;
+      return !isTestEmail(email);
+    });
+
+    const totalRevenueAmount = filteredTotalRevenue.reduce((sum, order) =>
       sum + parseFloat(order.totalAmount), 0
     );
 
-    const ordersTodayCount = ordersToday.length;
-    const totalOrdersCount = totalOrders.length;
+    const ordersTodayCount = filteredOrdersToday.length;
+    const totalOrdersCount = filteredTotalOrders.length;
 
     // Calculer le panier moyen
     const averageOrderValue = totalOrdersCount > 0
@@ -397,8 +412,14 @@ export default async function handler(req, res) {
 
     // Formatter les données pour le frontend
     const formattedTopProducts = topProducts.map(product => {
-      const sales = product.orderItems.length;
-      const revenue = product.orderItems.reduce((sum, item) =>
+      // Filter out test orders from top products
+      const validOrderItems = product.orderItems.filter(item => {
+        const email = item.order?.guestEmail || item.order?.user?.email;
+        return !isTestEmail(email);
+      });
+
+      const sales = validOrderItems.length;
+      const revenue = validOrderItems.reduce((sum, item) =>
         sum + (parseFloat(item.price) * item.quantity), 0
       );
 
