@@ -49,6 +49,15 @@ export default function Paiements() {
                 Payez facilement avec votre compte Google en un clic sur tous vos appareils.
               </p>
             </div>
+
+            <div style={{ backgroundColor: 'white', padding: '30px', textAlign: 'center' }}>
+              <h2 style={{ fontSize: '11px', fontWeight: '500', color: '#333', marginBottom: '15px' }}>
+                KLARNA
+              </h2>
+              <p style={{ fontSize: '11px', color: '#666', lineHeight: '1.6' }}>
+                Payez en 3 ou 4 fois sans frais. Solution de paiement flexible et sécurisée.
+              </p>
+            </div>
           </div>
 
           <div style={{ backgroundColor: '#fff', border: '1px solid #eee', padding: '40px', marginBottom: '40px' }}>
