@@ -332,7 +332,14 @@ function CheckoutForm() {
             {t('checkout.securePayment')}
           </div>
           <div className={styles.paymentMethods}>
-            <Image width={600} height={750} src="/pay.png" alt="Payment methods" className={styles.paymentMethodsImage} />
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <img src="/visa_1_color.svg" alt="Visa" style={{ height: '24px', width: 'auto' }} />
+              <img src="/mastercard_color.svg" alt="Mastercard" style={{ height: '24px', width: 'auto' }} />
+              <img src="/americanexpress_1_color_card.svg" alt="American Express" style={{ height: '24px', width: 'auto' }} />
+              <img src="/applepay2_color.svg" alt="Apple Pay" style={{ height: '24px', width: 'auto' }} />
+              <img src="/paypal_3_color.svg" alt="PayPal" style={{ height: '24px', width: 'auto' }} />
+              <img src="/klarna_color.svg" alt="Klarna" style={{ height: '24px', width: 'auto' }} />
+            </div>
           </div>
         </div>
       </div>
