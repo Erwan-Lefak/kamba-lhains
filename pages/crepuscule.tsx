@@ -332,6 +332,15 @@ export default function Crepuscule() {
                     </div>
                   </div>
 
+                  {/* Klarna Payment Image */}
+                  <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '-25px', marginBottom: '0' }}>
+                    <img
+                      src="/images/paiement-klarna.jpg"
+                      alt="Paiement en plusieurs fois avec Klarna"
+                      style={{ maxWidth: '150px', height: 'auto' }}
+                    />
+                  </div>
+
                   {/* Add to Cart Button with Quantity */}
                   <div className={productStyles.addToCartSection}>
                     <button className={productStyles.addToCartButton} onClick={handleAddToCart}>
@@ -619,7 +628,7 @@ export default function Crepuscule() {
                   Pas de nettoyage à sec chimique
                 </li>
               </ul>
-              <p style={{ marginBottom: '20px', marginTop: '20px' }}>
+              <p style={{ marginBottom: '20px', marginTop: '-15px' }}>
                 Nous sélectionnons avec soin nos matières, en privilégiant principalement des tissus 100% naturels, ainsi que des textiles issus de stocks dormants et de fins de séries. Cette démarche peut entraîner de légères variations d'une pièce à l'autre, mais nous veillons toujours à préserver une harmonie visuelle et une esthétique fidèle aux modèles présentés et proposés à la vente.
               </p>
               <p style={{ marginBottom: '20px' }}>

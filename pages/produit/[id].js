@@ -1778,6 +1778,15 @@ export default function ProductDetail() {
                 </div>
               </div>
 
+              {/* Klarna Payment Image */}
+              <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '-25px', marginBottom: '0' }}>
+                <img
+                  src="/images/paiement-klarna.jpg"
+                  alt="Paiement en plusieurs fois avec Klarna"
+                  style={{ maxWidth: '150px', height: 'auto' }}
+                />
+              </div>
+
               {/* Add to Cart Button with Quantity */}
               <div className={styles.addToCartSection}>
                 <button className={styles.addToCartButton} onClick={handleAddToCart}>

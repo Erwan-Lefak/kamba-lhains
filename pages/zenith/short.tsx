@@ -312,7 +312,7 @@ export default function ZenithShort() {
                 {t('products.careGuide.noDryCleaning')}
               </li>
             </ul>
-            <p style={{ marginBottom: '20px', marginTop: '20px' }}>
+            <p style={{ marginBottom: '20px', marginTop: '-15px' }}>
               {t('products.careGuide.materialsIntro')}
             </p>
             <p style={{ marginBottom: '20px' }}>
@@ -689,6 +689,15 @@ export default function ZenithShort() {
                         {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                       </div>
                     </div>
+                  </div>
+
+                  {/* Klarna Payment Image */}
+                  <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '-15px' }}>
+                    <img
+                      src="/images/paiement-klarna.jpg"
+                      alt="Paiement en plusieurs fois avec Klarna"
+                      style={{ maxWidth: '150px', height: 'auto' }}
+                    />
                   </div>
 
                   {/* Info Links */}

@@ -317,7 +317,7 @@ export default function ZenithVeste() {
                 {t('products.careGuide.noDryCleaning')}
               </li>
             </ul>
-            <p style={{ marginBottom: '20px', marginTop: '20px' }}>
+            <p style={{ marginBottom: '20px', marginTop: '-15px' }}>
               {t('products.careGuide.materialsIntro')}
             </p>
             <p style={{ marginBottom: '20px' }}>
@@ -662,6 +662,15 @@ export default function ZenithVeste() {
                         </button>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Klarna Payment Image */}
+                  <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '-25px', marginBottom: '0' }}>
+                    <img
+                      src="/images/paiement-klarna.jpg"
+                      alt="Paiement en plusieurs fois avec Klarna"
+                      style={{ maxWidth: '150px', height: 'auto' }}
+                    />
                   </div>
 
                   {/* Add to Cart Button with Quantity */}
