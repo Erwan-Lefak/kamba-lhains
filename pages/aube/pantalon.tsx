@@ -179,7 +179,6 @@ export default function Pantalon() {
               </li>
             </ul>
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
         );
       case 'sizeGuide':
         return (
@@ -247,7 +246,6 @@ export default function Pantalon() {
                 </tbody>
               </table>
             </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
             <h4 style={{ fontWeight: '600', marginBottom: '15px', fontSize: '11px' }}>{t('products.sizeGuide.measurementsTitle')}</h4>
             <ul style={{ listStyle: 'none', padding: 0, marginBottom: '25px' }}>
@@ -302,7 +300,6 @@ export default function Pantalon() {
               </li>
             </ul>
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
         );
       case 'careGuide':
         return (
@@ -341,7 +338,6 @@ export default function Pantalon() {
               {t('products.careGuide.sustainabilityText')}
             </p>
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
         );
       case 'deliveryTime':
         return (
@@ -359,7 +355,6 @@ export default function Pantalon() {
               Ce délai nous permet de créer votre vêtement avec le soin et l'expertise qu'il mérite, tout en réduisant notre impact environnemental grâce à une production à la demande.
             </p>
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
         );
       case 'returnPolicy':
         return (
@@ -404,7 +399,6 @@ export default function Pantalon() {
               Pour toute question, contactez notre service client via votre compte ou consultez notre <a href="/retours" style={{ textDecoration: 'underline', color: '#000' }}>page retours complète</a>.
             </p>
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
         );
       case 'klarna':
         return (
@@ -462,7 +456,6 @@ export default function Pantalon() {
               </li>
             </ul>
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
         );
             default:
         return null;
@@ -535,11 +528,8 @@ export default function Pantalon() {
                     sizes="(max-width: 768px) 100vw, 100vw"
                   />
                 </div>
-              <div style={{ marginBottom: '12px' }}></div>
               </div>
-              <div style={{ marginBottom: '12px' }}></div>
             </div>
-              <div style={{ marginBottom: '12px' }}></div>
           </section>
 
           {/* 2ème section: Titre de la sous-catégorie */}
@@ -591,7 +581,6 @@ export default function Pantalon() {
                     <span>Bas de Survêtement</span>
                   </Link>
                 </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
                 {/* Heart Icon - Positioned absolutely */}
                 <button
@@ -634,9 +623,7 @@ export default function Pantalon() {
                     />
                   ))}
                 </div>
-              <div style={{ marginBottom: '12px' }}></div>
               </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
               {/* Product Info Section - 40% */}
               <div className={productStyles.productInfoSection}>
@@ -651,9 +638,7 @@ export default function Pantalon() {
                       <div className={productStyles.colorLabel}>
                         {t('products.page.colorLabel')} {selectedColor ? getColorTranslation(selectedColor, currentLanguage) : ''}
                       </div>
-              <div style={{ marginBottom: '12px' }}></div>
                     </div>
-              <div style={{ marginBottom: '12px' }}></div>
                     <div className={productStyles.colorOptions}>
                       {sweatpantsProduct.colors?.map((color, index) => (
                         <div
@@ -667,17 +652,13 @@ export default function Pantalon() {
                         />
                       ))}
                     </div>
-              <div style={{ marginBottom: '12px' }}></div>
                   </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
                   {/* Size Selector */}
                   <div className={productStyles.sizeSection}>
                     <div className={productStyles.sizeHeader}>
                       <div className={productStyles.sizeLabel}>{t('products.page.sizeLabel')}</div>
-              <div style={{ marginBottom: '12px' }}></div>
                     </div>
-              <div style={{ marginBottom: '12px' }}></div>
                     <div className={productStyles.sizeGrid}>
                       {sweatpantsProduct.sizes?.map((size, index) => {
                         const isAvailable = true;
@@ -693,9 +674,7 @@ export default function Pantalon() {
                         );
                       })}
                     </div>
-              <div style={{ marginBottom: '12px' }}></div>
                   </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
                   {/* Add to Cart Button with Quantity */}
                   <div className={productStyles.addToCartSection}>
@@ -712,7 +691,6 @@ export default function Pantalon() {
                       >
                         -
                       </div>
-              <div style={{ marginBottom: '12px' }}></div>
                       <button onClick={handleAddToCart} style={{border: 'none', background: 'transparent', flex: 1, color: 'black'}}>
                         <span>{t('products.page.addToCartButton')}</span>
                       </button>
@@ -728,11 +706,8 @@ export default function Pantalon() {
                       >
                         {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                       </div>
-              <div style={{ marginBottom: '12px' }}></div>
                     </div>
-              <div style={{ marginBottom: '12px' }}></div>
                   </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
                   {/* Info Links */}
                   <div className={productStyles.infoLinksSection}>
@@ -773,23 +748,17 @@ export default function Pantalon() {
                       Paiement en plusieurs fois
                     </button>
                   </div>
-              <div style={{ marginBottom: '12px' }}></div>
                 </div>
-              <div style={{ marginBottom: '12px' }}></div>
               </div>
-              <div style={{ marginBottom: '12px' }}></div>
             </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
           </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
           {/* Complete Your Look Section */}
           <section className={productStyles.completeYourLook}>
             <div className={productStyles.sectionContainer}>
               <h2 className={productStyles.sectionTitle}>{t('products.page.recommendedOptions')}</h2>
             </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
             {/* Three Products Grid Section - Using ProductPage Style */}
             <section className={productStyles.threeProductsSection}>
@@ -799,22 +768,18 @@ export default function Pantalon() {
                     <div key={recommendedProduct.id} className={productStyles.productSlot}>
                       <ProductCard product={recommendedProduct} />
                     </div>
-              <div style={{ marginBottom: '12px' }}></div>
                   ))
                 }
               </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
               {/* Mobile Carousel */}
               <div className={productStyles.mobileCarousel}>
                 <MobileCarousel products={randomProducts} />
               </div>
-              <div style={{ marginBottom: '12px' }}></div>
             </section>
           </section>
 
         </div>
-              <div style={{ marginBottom: '12px' }}></div>
       </main>
 
       {/* Modal Overlay */}
@@ -831,13 +796,10 @@ export default function Pantalon() {
             ×
           </button>
         </div>
-              <div style={{ marginBottom: '12px' }}></div>
         <div className={productStyles.modalContent}>
           {renderModalContent()}
         </div>
-              <div style={{ marginBottom: '12px' }}></div>
       </div>
-              <div style={{ marginBottom: '12px' }}></div>
 
       <Footer isKambaversPage={true} isMenuVisible={isMenuVisible} />
 
