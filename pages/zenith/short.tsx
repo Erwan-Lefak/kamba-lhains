@@ -658,6 +658,12 @@ export default function ZenithShort() {
                     </div>
                   </div>
 
+                  {/* Klarna Payment Info */}
+                  <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '-10px', fontSize: '11px', color: '#666', justifyContent: 'center' }}>
+                    <span>Payez en 3x sans frais avec</span>
+                    <img src="/klarna_color.svg" alt="Klarna" style={{ height: '30px', width: 'auto', marginTop: '1px' }} />
+                  </div>
+
                   {/* Add to Cart Button with Quantity */}
                   <div className={productStyles.addToCartSection}>
                     <div className={productStyles.addToCartButton}>
@@ -689,15 +695,6 @@ export default function ZenithShort() {
                         {quantity === 1 && !hasClickedPlus ? '+' : <span style={{fontSize: '14px'}}>{quantity}</span>}
                       </div>
                     </div>
-                  </div>
-
-                  {/* Klarna Payment Image */}
-                  <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '-15px' }}>
-                    <img
-                      src="/images/paiement-klarna.jpg"
-                      alt="Paiement en plusieurs fois avec Klarna"
-                      style={{ maxWidth: '200px', height: 'auto' }}
-                    />
                   </div>
 
                   {/* Info Links */}
