@@ -661,7 +661,7 @@ export default function ZenithShort() {
                   {/* Klarna Payment Info */}
                   <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '6px', marginTop: '-10px', fontSize: '11px', color: '#666', justifyContent: 'center' }}>
                     <span>Payez en 3x sans frais avec</span>
-                    <img src="/klarna_color.svg" alt="Klarna" style={{ height: '30px', width: 'auto', marginTop: '1px' }} />
+                    <img src="/klarna_color.svg" alt="Klarna" style={{ height: '30px', width: 'auto', marginTop: '0px' }} />
                   </div>
 
                   {/* Add to Cart Button with Quantity */}
